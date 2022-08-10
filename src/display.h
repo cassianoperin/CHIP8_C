@@ -1,5 +1,9 @@
 #pragma once
 
+typedef int bool;
+#define true 1
+#define false 0
+
 struct display {
   SDL_Window* window;
   SDL_Renderer* renderer;

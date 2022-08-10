@@ -24,6 +24,7 @@ void Initialize(){
 	I = 0x00;
 }
 
+// Debug
 void Show(){ // Missing Delay Timers and Keys
 	printf("Cycle: %d\tOpcode: %04X(%04X)\tPC: %d(0x%X)\tSP: %d\tStack: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]\
 	\tV: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]\tI: %d\n", Cycle, Opcode, Opcode & 0xF000, PC, PC,  SP, Stack[0],

@@ -1,8 +1,7 @@
 #include <SDL2/SDL.h>
-#include <string>
 #include "lib.h"
-#include "cpu.h"
 #include "display.h"
+#include "cpu.h"
 
 // Global Variables
 unsigned int Cycle = 0;

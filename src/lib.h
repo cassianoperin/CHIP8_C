@@ -1,5 +1,9 @@
 #pragma once
 
+typedef int bool;
+#define true 1
+#define false 0
+
 // ---------------------------- Tickers ---------------------------- //
 
 // Use with actions that should be executed each second
