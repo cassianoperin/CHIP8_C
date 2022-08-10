@@ -1,0 +1,16 @@
+{
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "files.associations": {
+        "ios": "cpp",
+        "random": "cpp",
+        "*.tcc": "cpp",
+        "string": "cpp",
+        "display.h": "c",
+        "type_traits": "c",
+        "__config": "cpp",
+        "stdbool.h": "c",
+        "__locale": "cpp",
+        "__string": "cpp",
+        "string_view": "cpp"
+    }
+}
