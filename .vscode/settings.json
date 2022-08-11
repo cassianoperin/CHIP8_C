@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "cstddef": "c",
+        "cpu.h": "c",
+        "bitset": "c"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
+}

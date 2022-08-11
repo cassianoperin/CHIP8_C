@@ -1,5 +1,10 @@
 // Global Variables
 
+// Boolean Type for Vanilla C
+typedef int bool;
+#define true 1
+#define false 0
+
 // Components
 extern unsigned char Memory[4096];      // Memory
 extern unsigned short PC;               // Program Counter
