@@ -23,6 +23,7 @@ extern unsigned int Cycle;
 // extern bool Legacy_Fx55_Fx65;
 
 void opc_chip8_2NNN();
+void opc_chip8_7XNN();
 void opc_chip8_ANNN();
 void opc_chip8_FX65(unsigned short x);
 
@@ -56,6 +57,27 @@ void opc_chip8_ANNN() {
 	}
 }
 
+// ---------------------------- CHIP-8 7xxx instruction set ---------------------------- //
+
+// 7xnn - ADD Vx, byte
+// Set Vx = Vx + nn.
+// Adds the value nn to the value of register Vx, then stores the result in Vx.
+void opc_chip8_7XNN() {
+	unsigned char x, nn;
+
+	x = (Opcode & 0x0F00) >> 8;
+	nn = (unsigned char)Opcode;
+
+	V[x] += nn;
+
+	PC += 2;
+	if ( Debug ) {
+		sprintf(OpcMessage, "CHIP-8 7xnn: Add the value nn(%d) to V[x(%d)]", nn, x);
+		printf("\t\t%s\n" , OpcMessage);
+	}
+}
+
+
 // ---------------------------- CHIP-8 Fxxx instruction set ---------------------------- //
 
 // Fx65 - LD Vx, [I]
@@ -81,7 +103,7 @@ void opc_chip8_FX65(unsigned short x) {
 
 	if ( Debug)  {
 
-		sprintf(OpcMessage, "CHIP-8 Fx65: Read registers V[0] through V[x(0x%02X)] from memory starting at location I(0x%04X)",x, I);
+		sprintf(OpcMessage, "CHIP-8 Fx65: Read registers V[0] through V[x(%d)] from memory starting at location I(0x%04X)",x, I);
 		printf("\t\t%s\n" , OpcMessage);
 
 		for ( i = 0 ; i <= x ; i ++ ) {
@@ -184,7 +206,7 @@ void Interpreter() {
 
 		// ---------------------------- CHIP-8 7xxx instruction set ---------------------------- //
 		case 0x7000: // 7xnn (CHIP-8)
-			printf ("7000\n");
+			opc_chip8_7XNN();
 			break;
 
 		// ---------------------------- CHIP-8 8xxx instruction set ---------------------------- //
