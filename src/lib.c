@@ -4,7 +4,7 @@
 
 // ---------------------------- Tickers ---------------------------- //
 
-// Use with actions that should be executed each second
+// Use with actions that should be executed each second = 1hz
 bool ticker_second(unsigned int lastTime, unsigned int currentTime)
 {
 	//Initialization flag
@@ -18,7 +18,7 @@ bool ticker_second(unsigned int lastTime, unsigned int currentTime)
 	return success;
 }
 
-// Use with actions that should be executed 60 times per second
+// Use with actions that should be executed 60 times per second = 60hz
 bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 {
 
@@ -31,6 +31,24 @@ bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 	// Check if it passed one second / FPS
 	if (currentTime > lastTime + (1000/FPS)) {
 	// if (currentTime > lastTime + (16)) {
+		success = true;
+	}
+
+	return success;
+}
+
+// Use with actions that should be executed 500 times per second = 500hz
+bool ticker_cpu(unsigned int lastTime, unsigned int currentTime)
+{
+
+	unsigned int CPU_CLOCK  = 500;
+
+	//Initialization flag
+	bool success = false;
+
+
+	// Check if it passed one second / FPS
+	if (currentTime > lastTime + (1000/CPU_CLOCK)) {
 		success = true;
 	}
 

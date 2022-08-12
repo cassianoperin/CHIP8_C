@@ -24,6 +24,8 @@ bool SCHIP;
 bool SCHIP_LORES;
 bool SCHIP_TimerHack;
 unsigned char Key[16];
+// Interface
+bool Pause;
 
 // Import External Variables
 extern unsigned int Cycle;
@@ -73,6 +75,9 @@ void Initialize(){
 
 	// Initialize random generator
 	srand(time(NULL));
+
+	// Interface
+	Pause = false;
 }
 
 // Debug

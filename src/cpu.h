@@ -23,13 +23,17 @@ extern char OpcMessage[100];			// Debug messages
 // SCHIP Specific Variables
 extern bool SCHIP;
 extern bool SCHIP_LORES;
-extern bool SCHIP_TimerHack;              // Enable or disable SCHIP DelayTimer Hack
-extern unsigned char RPL[8];              // HP-48 RPL user flags
+extern bool SCHIP_TimerHack;             // Enable or disable SCHIP DelayTimer Hack
+extern unsigned char RPL[8];             // HP-48 RPL user flags
 
 // Key Control
-extern bool SCHIP_TimerHack;              // Enable or disable SCHIP DelayTimer Hack
-extern unsigned char Key[16];              // Control the Keys Pressed
+extern bool SCHIP_TimerHack;             // Enable or disable SCHIP DelayTimer Hack
+extern unsigned char Key[16];            // Control the Keys Pressed
 
+// Interface
+extern bool Pause;
+
+// Function declaration
 void Initialize();
 void Show();
 void Interpreter();

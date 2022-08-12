@@ -6,10 +6,12 @@
 // Global Variables
 unsigned int Cycle = 0;
 unsigned int CycleCounter = 0;
+unsigned int CycleCounterCPU = 0;
 unsigned int Frame = 0;
 unsigned int FrameCounter = 0;
 unsigned int lastTime_second = 0;
 unsigned int lastTime_fps = 0;
+unsigned int lastTime_cpu = 0;
 unsigned int currentTime = 0;
 
 // extern bool SCHIP_TimerHack;
@@ -42,48 +44,175 @@ int main( int argc, char* args[] )
 		//Event handler
 		SDL_Event event;
 
-		// ----------------------- Infinite Loop  ----------------------- //
+		// ------------------------------ Infinite Loop  ------------------------------ //
 		while( !quit )
 		{
+
 			// Current time
 			currentTime = SDL_GetTicks();
 
+			// ------------------------------ Ticker CPU ------------------------------ //
 
-			// Ticker Second
-			if ( ticker_second(lastTime_second, currentTime) ) {
+			// if ( ticker_cpu(lastTime_cpu, currentTime) ) {
 
-				// Cycles and FPS Measurement
-				char title_msg[30];
-				sprintf(title_msg, "CPS: %d\t\tFPS: %d", CycleCounter, FrameCounter+1);
-				SDL_SetWindowTitle(display.window, title_msg);
 
-				// Update timer variables
-				lastTime_second = currentTime;
 
-				// Reset counters
-				CycleCounter = 0;
-				FrameCounter = 0;
-			}
+			// 	// Update timer variables
+			// 	lastTime_cpu = currentTime;
+
+
+
+
+			// 	// // Reset counters
+			// 	CycleCounterCPU ++;
+
+			// }
+
+
+
+
+
+			// ------------------------------ Ticker FPS ------------------------------ //
+
+			// Current time
+			// currentTime = SDL_GetTicks();
 
 			// Ticker FPS (60 times per second)
 			if ( ticker_fps(lastTime_fps, currentTime) ) {
+
+				// Clean the keyboard
+				memset(Key, 0x00, sizeof(Key));
 
 				// Handle events on queue
 				while( SDL_PollEvent( &event ) != 0 )
 				{
 					if (event.type == SDL_KEYDOWN)
 					{
-						const char* key = SDL_GetKeyName(event.key.keysym.sym);
-						if (strcmp(key,"Q") == 0 || strcmp(key,"Escape") == 0)
-						{
-							quit = true;
-						}
+						//Select surfaces based on key press
+                        switch( event.key.keysym.sym )
+                        {
+
+							case SDLK_1:
+								printf("KEY 1\n");
+								Key[0x1] = 1;
+								break;
+
+							case SDLK_2:
+								printf("KEY 2\n");
+								Key[0x2] = 1;
+								break;
+
+							case SDLK_3:
+								printf("KEY 3\n");
+								Key[0x3] = 1;
+								break;
+
+							case SDLK_4:
+								printf("KEY C\n");
+								Key[0xC] = 1;
+								break;
+
+							case SDLK_q:
+								printf("KEY 4\n");
+								Key[0x4] = 1;
+								break;
+
+							case SDLK_w:
+								printf("KEY 5\n");
+								Key[0x5] = 1;
+								break;
+
+							case SDLK_e:
+								printf("KEY 6\n");
+								Key[0x6] = 1;
+								break;
+
+							case SDLK_r:
+								printf("KEY D\n");
+								Key[0xD] = 1;
+								break;
+
+							case SDLK_a:
+								printf("KEY 7\n");
+								Key[0x7] = 1;
+								break;
+
+							case SDLK_s:
+								printf("KEY 8\n");
+								Key[0x8] = 1;
+								break;
+
+							case SDLK_d:
+								printf("KEY 9\n");
+								Key[0x9] = 1;
+								break;
+
+							case SDLK_f:
+								printf("KEY E\n");
+								Key[0xE] = 1;
+								break;
+
+							case SDLK_z:
+								printf("KEY A\n");
+								Key[0xA] = 1;
+								break;
+
+							case SDLK_x:
+								printf("KEY 0\n");
+								Key[0x0] = 1;
+								break;
+
+							case SDLK_c:
+								printf("KEY B\n");
+								Key[0xB] = 1;
+								break;
+
+							case SDLK_v:
+								printf("KEY F\n");
+								Key[0xF] = 1;
+								break;
+																																																																							
+                            // case SDLK_UP:
+							// 	printf("KEY UP\n");
+							// 	break;
+
+                            // case SDLK_DOWN:
+							// 	printf("KEY DOWN\n");
+							// 	break;
+
+                            // case SDLK_LEFT:
+							// 	printf("KEY LEFT\n");
+							// 	break;
+
+                            // case SDLK_RIGHT:
+							// 	printf("KEY RIGHT\n");
+							// 	break;
+
+							// Interface
+
+							case SDLK_p:
+								printf("KEY P\n");
+								Pause = !Pause;
+								break;
+
+							case SDLK_ESCAPE:
+								printf("KEY ESC\n");
+								quit = true;
+								break;
+
+                            default:
+								printf("KEY OTHERR\n");
+								break;
+                        }
+
 					}
 					else if (event.type == SDL_QUIT)
 					{
 						quit = true;
 					}
 				}
+
+				
 
 				// Delay Timer
 				// When ticker run (60 times in a second, check de DelayTimer)
@@ -106,7 +235,33 @@ int main( int argc, char* args[] )
 				FrameCounter++;
 			}
 
-			Interpreter();
+			// ---------------------------- Ticker Second ---------------------------- //
+
+			// Current time
+			// currentTime = SDL_GetTicks();
+
+			if ( ticker_second(lastTime_second, currentTime) ) {
+
+				// Cycles and FPS Measurement
+				char title_msg[510];
+				sprintf(title_msg, "CPS: %d\tFPS: %d\tCPU: %d", CycleCounter, FrameCounter+1, CycleCounterCPU);
+				SDL_SetWindowTitle(display.window, title_msg);
+
+				// Update timer variables
+				lastTime_second = currentTime;
+
+				// Reset counters
+				CycleCounter = 0;
+				FrameCounter = 0;
+				CycleCounterCPU = 0;
+			}
+
+			// ----------------------------- Interpreter ----------------------------- //
+
+				if ( !Pause ) {
+					Interpreter();
+				}
+
 
 			// Increment CPU Cycle
 			Cycle++;
