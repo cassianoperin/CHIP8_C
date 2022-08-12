@@ -12,13 +12,15 @@ unsigned int lastTime_second = 0;
 unsigned int lastTime_fps = 0;
 unsigned int currentTime = 0;
 
+// extern bool SCHIP_TimerHack;
+
 // -------------------------------- main -------------------------------- //
 
 int main( int argc, char* args[] )
 {
 	// Variables
 	struct display display;
-	char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/rush.ch8";
+	char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/pong.ch8";
 	// char* filename = args[1];
 
 	// Initialize
@@ -83,6 +85,15 @@ int main( int argc, char* args[] )
 					}
 				}
 
+				// Delay Timer
+				// When ticker run (60 times in a second, check de DelayTimer)
+				// SCHIP Uses a hack to decrease DT faster to gain speed
+				// if ( !SCHIP_TimerHack ) {
+				// 	if ( DelayTimer > 0 ) {
+				// 		DelayTimer--;
+				// 	}
+				// }
+
 				// Draw screen
 				display_draw(&display, FrameCounter);
 
@@ -101,6 +112,15 @@ int main( int argc, char* args[] )
 			Cycle++;
 			// Increment Cycle counter for FPS
 			CycleCounter++;
+
+			// printf("\n\n\n\n%02X\n\n\n", DelayTimer);
+			if ( DelayTimer > 0 ) {
+					DelayTimer--;
+			}
+
+			if ( SoundTimer > 0 ) {
+					SoundTimer--;
+			}
 
 			// Kill on first cycle for tests
 			// break;

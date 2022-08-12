@@ -50,13 +50,6 @@ bool display_draw(struct display* display, unsigned int frame)
 	//Initialization flag
 	bool success = true;
 
-	// Initialization - Clean pixels array
-	memset(pixels, PIXEL_OFF_COLOR, sizeof(pixels));
-
-	// Test turn on some pixels
-	pixels[frame] = PIXEL_ON_COLOR;
-	pixels[2048-frame] = PIXEL_ON_COLOR;
-
 	// Update the Screen
 	SDL_UpdateTexture(display->texture, NULL, pixels, SCREEN_WIDTH * sizeof(uint32_t));
 	SDL_RenderCopy(display->renderer, display->texture, NULL, NULL);
