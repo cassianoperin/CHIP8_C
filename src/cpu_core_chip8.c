@@ -9,9 +9,6 @@ extern bool drawFlagCounter;
 extern bool SCHIP;
 extern bool SCHIP_LORES;
 
-
-
-
 // ---------------------------- CHIP-8 0xxx instruction set ---------------------------- //
 
 // // 0NNN

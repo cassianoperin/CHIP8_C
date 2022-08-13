@@ -15,15 +15,11 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
     1.2 Why pass opcode on dxxx?
     void opc_chip8_DXYN(unsigned short opcode) {
 
-2. Timer 60 FPS working @1 (delay timer slow)
+2. Draw on drw flag
 
-2.1 Implement Sound Timer
+3. Test Diplay in all games (draws out of screen???)
 
-3. Implement Keyboard (// ExA1 - SKNP Vx fake)
-
-4. Test Diplay in all games (draws out of screen???)
-
-5. Add SDL_Delay to avoid infinite loop unnecessary cycles
+4. Add SDL_Delay to avoid infinite loop unnecessary cycles
 
 
 

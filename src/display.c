@@ -54,7 +54,6 @@ bool display_draw(struct display* display, unsigned int frame)
 	SDL_UpdateTexture(display->texture, NULL, pixels, SCREEN_WIDTH * sizeof(uint32_t));
 	SDL_RenderCopy(display->renderer, display->texture, NULL, NULL);
 	SDL_RenderPresent(display->renderer);
-
 	// SDL_SetWindowTitle(display->window, "CPS:0      FPS:0");
 	
 	return success;

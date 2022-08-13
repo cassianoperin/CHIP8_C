@@ -18,7 +18,7 @@ unsigned char	DelayTimer;			// Delay Timer
 unsigned char	SoundTimer;			// Sound Timer
 bool drawFlag;						// Send the draw to screen signal
 bool drawFlagCounter;				// Draw Flags counter
-bool Debug = false;					// Enable debug messages
+bool Debug = true;					// Enable debug messages
 char OpcMessage[100];				// Debug messages
 bool SCHIP;
 bool SCHIP_LORES;
@@ -101,8 +101,9 @@ void Interpreter() {
 	if ( Debug )
 		Show();
 
-	// if ( Cycle > 300 )
-	// 	exit(2);
+
+
+
 
 	// Map Opcode Family
 	switch ( Opcode & 0xF000 )
