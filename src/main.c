@@ -47,41 +47,28 @@ int main( int argc, char* args[] )
 		// ------------------------------ Infinite Loop  ------------------------------ //
 		while( !quit )
 		{
-
 			// Current time
 			currentTime = SDL_GetTicks();
 
 			// ------------------------------ Ticker CPU ------------------------------ //
 
-			// if ( ticker_cpu(lastTime_cpu, currentTime) ) {
+			if ( ticker_cpu(lastTime_cpu, currentTime) ) {
 
+				if ( !Pause ) {
+					Interpreter();
+				}
 
+				// Update timer variables
+				lastTime_cpu = currentTime;
 
-			// 	// Update timer variables
-			// 	lastTime_cpu = currentTime;
-
-
-
-
-			// 	// // Reset counters
-			// 	CycleCounterCPU ++;
-
-			// }
-
-
-
-
+				// // Reset counters
+				CycleCounterCPU ++;
+			}
 
 			// ------------------------------ Ticker FPS ------------------------------ //
 
-			// Current time
-			// currentTime = SDL_GetTicks();
-
 			// Ticker FPS (60 times per second)
 			if ( ticker_fps(lastTime_fps, currentTime) ) {
-
-				// Clean the keyboard
-				memset(Key, 0x00, sizeof(Key));
 
 				// Handle events on queue
 				while( SDL_PollEvent( &event ) != 0 )
@@ -91,7 +78,6 @@ int main( int argc, char* args[] )
 						//Select surfaces based on key press
                         switch( event.key.keysym.sym )
                         {
-
 							case SDLK_1:
 								printf("KEY 1\n");
 								Key[0x1] = 1;
@@ -171,22 +157,6 @@ int main( int argc, char* args[] )
 								printf("KEY F\n");
 								Key[0xF] = 1;
 								break;
-																																																																							
-                            // case SDLK_UP:
-							// 	printf("KEY UP\n");
-							// 	break;
-
-                            // case SDLK_DOWN:
-							// 	printf("KEY DOWN\n");
-							// 	break;
-
-                            // case SDLK_LEFT:
-							// 	printf("KEY LEFT\n");
-							// 	break;
-
-                            // case SDLK_RIGHT:
-							// 	printf("KEY RIGHT\n");
-							// 	break;
 
 							// Interface
 
@@ -199,20 +169,100 @@ int main( int argc, char* args[] )
 								printf("KEY ESC\n");
 								quit = true;
 								break;
+                        }
 
-                            default:
-								printf("KEY OTHERR\n");
+					} else if (event.type == SDL_KEYUP) {
+						
+						//Select surfaces based on key press
+                        switch( event.key.keysym.sym )
+                        {
+							case SDLK_1:
+								printf("KEY 1\n");
+								Key[0x1] = 0;
+								break;
+
+							case SDLK_2:
+								printf("KEY 2\n");
+								Key[0x2] = 0;
+								break;
+
+							case SDLK_3:
+								printf("KEY 3\n");
+								Key[0x3] = 0;
+								break;
+
+							case SDLK_4:
+								printf("KEY C\n");
+								Key[0xC] = 0;
+								break;
+
+							case SDLK_q:
+								printf("KEY 4\n");
+								Key[0x4] = 0;
+								break;
+
+							case SDLK_w:
+								printf("KEY 5\n");
+								Key[0x5] = 0;
+								break;
+
+							case SDLK_e:
+								printf("KEY 6\n");
+								Key[0x6] = 0;
+								break;
+
+							case SDLK_r:
+								printf("KEY D\n");
+								Key[0xD] = 0;
+								break;
+
+							case SDLK_a:
+								printf("KEY 7\n");
+								Key[0x7] = 0;
+								break;
+
+							case SDLK_s:
+								printf("KEY 8\n");
+								Key[0x8] = 0;
+								break;
+
+							case SDLK_d:
+								printf("KEY 9\n");
+								Key[0x9] = 0;
+								break;
+
+							case SDLK_f:
+								printf("KEY E\n");
+								Key[0xE] = 0;
+								break;
+
+							case SDLK_z:
+								printf("KEY A\n");
+								Key[0xA] = 0;
+								break;
+
+							case SDLK_x:
+								printf("KEY 0\n");
+								Key[0x0] = 0;
+								break;
+
+							case SDLK_c:
+								printf("KEY B\n");
+								Key[0xB] = 0;
+								break;
+
+							case SDLK_v:
+								printf("KEY F\n");
+								Key[0xF] = 0;
 								break;
                         }
 
-					}
-					else if (event.type == SDL_QUIT)
+					} else if (event.type == SDL_QUIT)
 					{
 						quit = true;
 					}
 				}
 
-				
 
 				// Delay Timer
 				// When ticker run (60 times in a second, check de DelayTimer)
@@ -237,9 +287,6 @@ int main( int argc, char* args[] )
 
 			// ---------------------------- Ticker Second ---------------------------- //
 
-			// Current time
-			// currentTime = SDL_GetTicks();
-
 			if ( ticker_second(lastTime_second, currentTime) ) {
 
 				// Cycles and FPS Measurement
@@ -258,9 +305,7 @@ int main( int argc, char* args[] )
 
 			// ----------------------------- Interpreter ----------------------------- //
 
-				if ( !Pause ) {
-					Interpreter();
-				}
+
 
 
 			// Increment CPU Cycle

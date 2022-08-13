@@ -23,6 +23,8 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 
 4. Test Diplay in all games (draws out of screen???)
 
+5. Add SDL_Delay to avoid infinite loop unnecessary cycles
+
 
 
         

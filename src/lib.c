@@ -41,14 +41,14 @@ bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 bool ticker_cpu(unsigned int lastTime, unsigned int currentTime)
 {
 
-	unsigned int CPU_CLOCK  = 500;
+	unsigned int CPU_CLOCK  = 1000;
 
 	//Initialization flag
 	bool success = false;
 
 
 	// Check if it passed one second / FPS
-	if (currentTime > lastTime + (1000/CPU_CLOCK)) {
+	if (currentTime >= lastTime + (1000/CPU_CLOCK)) {
 		success = true;
 	}
 

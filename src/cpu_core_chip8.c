@@ -587,7 +587,7 @@ void opc_chip8_EXA1(unsigned short x) {
 			printf("\t\t%s\n" , OpcMessage);
 		}
 	} else {
-		Key[V[x]] = 0;
+		// Key[V[x]] = 0;
 		PC += 2;
 		if ( Debug ) {
 			sprintf(OpcMessage, "CHIP-8 ExA1: Key[%d] pressed, continue\n", V[x]);
