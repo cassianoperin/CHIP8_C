@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lib.h"
+#include "constant.h"
 
 // ---------------------------- Tickers ---------------------------- //
 
@@ -21,12 +22,8 @@ bool ticker_second(unsigned int lastTime, unsigned int currentTime)
 // Use with actions that should be executed 60 times per second = 60hz
 bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 {
-
-	unsigned int FPS  = 60;
-
 	//Initialization flag
 	bool success = false;
-
 
 	// Check if it passed one second / FPS
 	if (currentTime > lastTime + (1000/FPS)) {

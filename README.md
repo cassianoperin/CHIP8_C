@@ -12,14 +12,13 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
         unsigned int lowestNibble : 4;
         https://stackoverflow.com/questions/863575/using-nibbles-4-bits-variables-in-windows-c-c
 
-    1.2 Why pass opcode on dxxx?
-    void opc_chip8_DXYN(unsigned short opcode) {
+2. Test Diplay in all games (draws out of screen???)
 
-2. Draw on drw flag
+3. Add SDL_Delay to avoid infinite loop unnecessary cycles
 
-3. Test Diplay in all games (draws out of screen???)
+4. Keep the constant file?
 
-4. Add SDL_Delay to avoid infinite loop unnecessary cycles
+5. Sound
 
 
 

@@ -17,7 +17,7 @@ void opc_chip8_8XYE(unsigned short x, unsigned short y);
 void opc_chip8_9XY0();
 void opc_chip8_ANNN();
 void opc_chip8_CXNN();
-void opc_chip8_DXYN(unsigned short opcode);
+void opc_chip8_DXYN();
 void opc_chip8_EXA1(unsigned short x);
 void opc_chip8_FX07(unsigned short x);
 void opc_chip8_FX15(unsigned short x);

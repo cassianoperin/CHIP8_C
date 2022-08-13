@@ -71,3 +71,4 @@ bool DXY0_loresWideSpriteQuirks;	// DXY0_loresWideSpriteQuirks - Draws a 16x16 s
 // Screen Size
 unsigned char SizeX;		// Number of Columns in Graphics
 unsigned char SizeY;		// Number of Lines in Graphics
+unsigned char FPS;			// Frames per second

@@ -413,7 +413,7 @@ void opc_chip8_CXNN() {
 
 // Dxyn - DRW Vx, Vy, nibble
 // Draw n-byte sprite starting at memory location I at (Vx, Vy), set VF = collision.
-void opc_chip8_DXYN(unsigned short opcode) {
+void opc_chip8_DXYN() {
 	// // Draw in Chip-8 Low Resolution mode
     unsigned short x, y, n, byte, gpx_position;
     unsigned char sprite;

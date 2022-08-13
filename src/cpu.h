@@ -15,8 +15,14 @@ extern unsigned char  V[16];            // V Register
 extern unsigned short I;                // I Register
 extern unsigned char DelayTimer;		// Delay Timer
 extern unsigned char SoundTimer;		// Sound Timer
-// 
+// Draw
 extern bool drawFlag;					// Send the draw to screen signal
+// Draw Mode
+// True  = Refresh screen (draw) every time DrawFlag is set
+// False = Refresh screen at 60Hz
+extern bool OriginalDrawMode;
+
+// Debug
 extern bool Debug;      				// Enable debug messages
 extern char OpcMessage[100];			// Debug messages
 

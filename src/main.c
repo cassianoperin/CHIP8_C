@@ -62,6 +62,18 @@ int main( int argc, char* args[] )
 						SoundTimer--;
 				}
 
+				// 
+				if ( OriginalDrawMode ) {
+					if ( drawFlag ) {
+						display_draw(&display, FrameCounter);
+
+						// Increment total frame counter
+						Frame ++;
+						// Increment frame counter for FPS
+						FrameCounter++;
+					}
+				}
+
 				// Update timer variables
 				lastTime_cpu = currentTime;
 
@@ -78,15 +90,17 @@ int main( int argc, char* args[] )
 				keyboard();
 
 				// Draw screen
-				display_draw(&display, FrameCounter);
+				if ( !OriginalDrawMode ) {
+					display_draw(&display, FrameCounter);
+
+					// Increment total frame counter
+					Frame ++;
+					// Increment frame counter for FPS
+					FrameCounter++;
+				}
 
 				// Update timer variables
 				lastTime_fps = currentTime;
-
-				// Increment total frame counter
-				Frame ++;
-				// Increment frame counter for FPS
-				FrameCounter++;
 			}
 
 			// ---------------------------- Ticker Second ---------------------------- //
@@ -95,7 +109,7 @@ int main( int argc, char* args[] )
 
 				// Cycles and FPS Measurement
 				char title_msg[510];
-				sprintf(title_msg, "CPS: %d\tFPS: %d\tCPU: %d", CycleCounter, FrameCounter+1, CycleCounterCPU);
+				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", CycleCounter, FrameCounter+1, CycleCounterCPU);
 				SDL_SetWindowTitle(display.window, title_msg);
 
 				// Update timer variables
@@ -109,9 +123,9 @@ int main( int argc, char* args[] )
 
 			// Increment CPU Cycle
 			Cycle++;
+
 			// Increment Cycle per second counter
 			CycleCounter++;
-
 		}
 	}
 

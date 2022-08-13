@@ -25,7 +25,8 @@
         "memory": "c",
         "array": "c",
         "utility": "c",
-        "variant": "c"
+        "variant": "c",
+        "sdl.h": "c"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
 }

@@ -17,6 +17,7 @@ unsigned short	I;                	// I Register
 unsigned char	DelayTimer;			// Delay Timer
 unsigned char	SoundTimer;			// Sound Timer
 bool drawFlag;						// Send the draw to screen signal
+bool OriginalDrawMode;				// Draw on flag or @60hz
 bool drawFlagCounter;				// Draw Flags counter
 bool Debug = true;					// Enable debug messages
 char OpcMessage[100];				// Debug messages
@@ -70,11 +71,17 @@ void Initialize(){
 	// Screen Size
 	SizeX = 64;		// Number of Columns in Graphics
 	SizeY = 32;		// Number of Lines in Graphics
+	// FPS
+	FPS = 60;
+	
 	// Keyboard
 	memset(Key, 0x00, sizeof(Key));
 
 	// Initialize random generator
 	srand(time(NULL));
+
+	// Draw
+	OriginalDrawMode = true;
 
 	// Interface
 	Pause = false;
@@ -361,7 +368,7 @@ void Interpreter() {
 
 				// DXYN (CHIP-8, Draw n-byte sprites)
 				default:
-					opc_chip8_DXYN(Opcode);
+					opc_chip8_DXYN();
 					break;
 			}
 			break;
