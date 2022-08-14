@@ -24,7 +24,7 @@ extern bool OriginalDrawMode;
 
 // Debug
 extern bool Debug;      				// Enable debug messages
-extern char OpcMessage[100];			// Debug messages
+extern char OpcMessage[120];			// Debug messages
 
 // SCHIP Specific Variables
 extern bool SCHIP;

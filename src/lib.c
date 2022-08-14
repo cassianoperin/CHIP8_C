@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lib.h"
+#include "cpu.h"
 #include "constant.h"
 
 // ---------------------------- Tickers ---------------------------- //
@@ -74,4 +76,28 @@ void load_rom(char* filename, unsigned char *mem, unsigned int mem_size)
 	// 	printf("%02X ", mem[i]);
 	
 	printf("\n\n");
+}
+
+// ------------------------ Game Signature ------------------------- //
+
+void get_game_signature(char* filename, char **s) {
+
+	// Get the first 12 elements of memory
+	char signature[30] = "";
+	sprintf(signature, "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X", Memory[0x200], Memory[0x201], Memory[0x202],\
+		 Memory[0x203], Memory[0x204], Memory[0x205], Memory[0x206], Memory[0x207], Memory[0x208], Memory[0x209]);
+
+	// Sum all memory bytes
+	unsigned int sum = 0;
+	char sum_string[10] = "";
+	for ( int i = 0x200 ; i < sizeof(Memory) ; i++ ) {
+		sum += Memory[i];
+	}
+	sprintf(sum_string, "%d", sum);
+
+	// Unify the 12 first bytes and the sum into the final signature
+	sprintf(signature + strlen(signature), "+%s", sum_string);
+
+	// Update the game_signature pointer
+	*s = signature;
 }

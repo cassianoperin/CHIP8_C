@@ -20,3 +20,6 @@ bool ticker_cpu(unsigned int lastTime, unsigned int currentTime);
 
 // Load rom into memory
 void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
+
+// ------------------------ Game Signature ------------------------- //
+void get_game_signature(char* filename, char **s);

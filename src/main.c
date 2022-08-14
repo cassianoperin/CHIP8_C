@@ -3,6 +3,8 @@
 #include "display.h"
 #include "cpu.h"
 #include "input.h"
+#include "qwirks.h"
+
 
 // Global Variables
 unsigned int Cycle = 0;		// Main loop cycles
@@ -21,14 +23,24 @@ int main( int argc, char* args[] )
 	unsigned int lastTime_fps = 0;
 	unsigned int lastTime_cpu = 0;
 	unsigned int currentTime = 0;
+	char *game_signature = "";
 	struct display display;
-	char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/pong.ch8";
+	// char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/pong.ch8";
+	char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/c8_test.c8";
 
 	// Initialize
 	Initialize();
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory, sizeof(Memory));
+	printf("Loaded game: %s\n", filename);
+
+	// Get Game signature for Qwirks
+	get_game_signature(filename, &game_signature);
+	printf("Signature:   %s\n", game_signature);
+
+	// Check for Quirks
+	Handle_legacy_opcodes(game_signature);
 
 	//Start up SDL and create window
 	if( !display_init(&display) )

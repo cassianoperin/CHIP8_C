@@ -120,29 +120,31 @@ void opc_chip8_4XNN() {
 	}
 }
 
-// // ---------------------------- CHIP-8 5xxx instruction set ---------------------------- //
+// ---------------------------- CHIP-8 5xxx instruction set ---------------------------- //
 
-// // 5xy0 - SE Vx, Vy
-// // Skip next instruction if Vx = Vy.
-// // The interpreter compares register Vx to register Vy, and if they are equal, increments the program counter by 2.
-// func opc_chip8_5XY0() {
-// 	x := (Opcode & 0x0F00) >> 8
-// 	y := (Opcode & 0x00F0) >> 4
+// 5xy0 - SE Vx, Vy
+// Skip next instruction if Vx = Vy.
+// The interpreter compares register Vx to register Vy, and if they are equal, increments the program counter by 2.
+void opc_chip8_5XY0() {
+	unsigned char x, y;
 
-// 	if (V[x] == V[y]){
-// 		PC += 4
-// 		if Debug {
-// 			OpcMessage = fmt.Sprintf("CHIP-8 5xy0: V[x(%d)]:%d EQUAL V[y(%d)]:%d, SKIP one instruction", x, V[x], y, V[y])
-// 			fmt.Printf("\t\t%s\n" , OpcMessage)
-// 		}
-// 	} else {
-// 		PC += 2
-// 		if Debug {
-// 			OpcMessage = fmt.Sprintf("CHIP-8 5xy0: V[x(%d)]:%d NOT EQUAL V[y(%d)]:%d, DO NOT SKIP one instruction", x, V[x], y, V[y])
-// 			fmt.Printf("\t\t%s\n" , OpcMessage)
-// 		}
-// 	}
-// }
+	x = (Opcode & 0x0F00) >> 8;
+	y = (Opcode & 0x00F0) >> 4;
+
+	if ( V[x] == V[y] ){
+		PC += 4;
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 5xy0: V[x(%d)]:%d EQUAL V[y(%d)]:%d, SKIP one instruction", x, V[x], y, V[y]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	} else {
+		PC += 2;
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 5xy0: V[x(%d)]:%d NOT EQUAL V[y(%d)]:%d, DO NOT SKIP one instruction", x, V[x], y, V[y]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	}
+}
 
 // ---------------------------- CHIP-8 6xxx instruction set ---------------------------- //
 
@@ -198,17 +200,17 @@ void opc_chip8_8XY0(unsigned short x, unsigned short y) {
 	}
 }
 
-// // 8xy1 - Set Vx = Vx OR Vy.
-// // Performs a bitwise OR on the values of Vx and Vy, then stores the result in Vx. A bitwise OR compares the corresponding bits from two values,
-// // and if either bit is 1, then the same bit in the result is also 1. Otherwise, it is 0.
-// func opc_chip8_8XY1(x, y uint16) {
-// 	V[x] |= V[y]
-// 	PC += 2
-// 	if Debug {
-// 		OpcMessage = fmt.Sprintf("CHIP-8 8xy1: Set V[x(%d)]:%d OR V[y(%d)]:%d", x, V[x], y, V[y])
-// 		fmt.Printf("\t\t%s\n" , OpcMessage)
-// 	}
-// }
+// 8xy1 - Set Vx = Vx OR Vy.
+// Performs a bitwise OR on the values of Vx and Vy, then stores the result in Vx. A bitwise OR compares the corresponding bits from two values,
+// and if either bit is 1, then the same bit in the result is also 1. Otherwise, it is 0.
+void opc_chip8_8XY1(unsigned short x, unsigned short y) {
+	V[x] |= V[y];
+	PC += 2;
+	if ( Debug ) {
+		sprintf(OpcMessage, "CHIP-8 8xy1: Set V[x(%d)]:%d OR V[y(%d)]:%d", x, V[x], y, V[y]);
+		printf("\t\t%s\n" , OpcMessage);
+	}
+}
 
 // 8xy2 - AND Vx, Vy
 // Set Vx = Vx AND Vy.
@@ -222,24 +224,25 @@ void opc_chip8_8XY2(unsigned short x, unsigned short y) {
 	}
 }
 
-// // 8xy3 - XOR Vx, Vy
-// // Set Vx = Vx XOR Vy.
-// // Performs a bitwise exclusive OR on the values of Vx and Vy, then stores the result in Vx. An exclusive OR compares the corresponding bits from two values,
-// // and if the bits are not both the same, then the corresponding bit in the result is set to 1. Otherwise, it is 0.
-// func opc_chip8_8XY3(x, y uint16) {
-// 	if Debug {
-// 		OpcMessage = fmt.Sprintf("CHIP-8 8xy3: Set V[x(%d)]:%d XOR V[y(%d)]:%d", x, V[x], y, V[y])
-// 		fmt.Printf("\t\t%s\n" , OpcMessage)
-// 	}
-// 	V[x] ^= V[y]
-// 	PC += 2
-// }
+// 8xy3 - XOR Vx, Vy
+// Set Vx = Vx XOR Vy.
+// Performs a bitwise exclusive OR on the values of Vx and Vy, then stores the result in Vx. An exclusive OR compares the corresponding bits from two values,
+// and if the bits are not both the same, then the corresponding bit in the result is set to 1. Otherwise, it is 0.
+void opc_chip8_8XY3(unsigned short x, unsigned short y) {
+	if ( Debug ) {
+		sprintf(OpcMessage, "CHIP-8 8xy3: Set V[x(%d)]:%d XOR V[y(%d)]:%d", x, V[x], y, V[y]);
+		printf("\t\t%s\n" , OpcMessage);
+	}
+	V[x] ^= V[y];
+	PC += 2;
+}
 
 // 8xy4 - ADD Vx, Vy
 // Set Vx = Vx + Vy, set VF = carry.
 // The values of Vx and Vy are added together. If the result is greater than 8 bits (i.e., > 255,) VF is set to 1, otherwise 0.
 // Only the lowest 8 bits of the result are kept, and stored in Vx.
-void opc_chip8_8XY4(unsigned short x, unsigned short y) {
+void opc_chip8_8XY4(unsigned char x, unsigned char y) {
+
 	if ( V[x] + V[y] < V[x]) {
 		V[0xF] = 1;
 	} else {
@@ -294,23 +297,23 @@ void opc_chip8_8XY6(unsigned short x, unsigned short y) {
 	}
 }
 
-// // 8xy7 - SUBN Vx, Vy
-// // Set Vx = Vy - Vx, set VF = NOT borrow.
-// // If Vy > Vx, then VF is set to 1, otherwise 0. Then Vx is subtracted from Vy, and the results stored in Vx.
-// func opc_chip8_8XY7(x, y uint16) {
-// 	if V[x] > V[y] {
-// 		V[0xF] = 0
-// 	} else {
-// 		V[0xF] = 1
-// 	}
-// 	if Debug {
-// 		OpcMessage = fmt.Sprintf("CHIP-8 8xy7: Set V[x(%d)]:%d = V[y(%d)]:%d - V[x(%d)]:%d\t\t = %d", x, V[x], y, V[y], x, V[x], V[y] - V[x])
-// 		fmt.Printf("\t\t%s\n" , OpcMessage)
-// 	}
-// 	V[x] = V[y] - V[x]
+// 8xy7 - SUBN Vx, Vy
+// Set Vx = Vy - Vx, set VF = NOT borrow.
+// If Vy > Vx, then VF is set to 1, otherwise 0. Then Vx is subtracted from Vy, and the results stored in Vx.
+void opc_chip8_8XY7(unsigned short x, unsigned short y) {
+	if ( V[x] > V[y] ) {
+		V[0xF] = 0;
+	} else {
+		V[0xF] = 1;
+	}
+	if ( Debug ) {
+		sprintf(OpcMessage, "CHIP-8 8xy7: Set V[x(%d)]:%d = V[y(%d)]:%d - V[x(%d)]:%d\t\t = %d", x, V[x], y, V[y], x, V[x], V[y] - V[x]);
+		printf("\t\t%s\n" , OpcMessage);
+	}
+	V[x] = V[y] - V[x];
 
-// 	PC += 2
-// }
+	PC += 2;
+}
 
 // 8xyE - SHL Vx {, Vy}
 // Set Vx = Vx SHL 1.
@@ -614,31 +617,33 @@ void opc_chip8_FX07(unsigned short x) {
 	}
 }
 
-// // Fx0A - LD Vx, K
-// // Wait for a key press, store the value of the key in Vx.
-// // All execution stops until a key is pressed, then the value of that key is stored in Vx.
-// func opc_chip8_FX0A(x uint16) {
-// 	pressed := 0
-// 	for i := 0 ; i < len(Key) ; i++ {
-// 		if (Key[i] == 1){
-// 			V[x] = byte(i)
-// 			pressed = 1
-// 			PC +=2
-// 			if Debug {
-// 				OpcMessage = fmt.Sprintf("CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED)", i)
-// 				fmt.Printf("\t\t%s\n" , OpcMessage)
-// 			}
-// 			// Stop after find the first key pressed
-// 			break
-// 		}
-// 	}
-// 	if pressed == 0 {
-// 		if Debug {
-// 			OpcMessage = fmt.Sprintf("CHIP-8 Fx0A: Wait for a key press = (NOT PRESSED)")
-// 			fmt.Printf("\t\t%s\n" , OpcMessage)
-// 		}
-// 	}
-// }
+// Fx0A - LD Vx, K
+// Wait for a key press, store the value of the key in Vx.
+// All execution stops until a key is pressed, then the value of that key is stored in Vx.
+void opc_chip8_FX0A(unsigned short x) {
+	bool pressed = false;
+	unsigned int i;
+
+	for ( i = 0 ; i < sizeof(Key) ; i++ ) {
+		if (Key[i] == 1) {
+			V[x] = (unsigned char)i;
+			pressed = true;
+			PC +=2;
+			if ( Debug ) {
+				sprintf(OpcMessage, "CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED)", i);
+				printf("\t\t%s\n" , OpcMessage);
+			}
+			// Stop after find the first key pressed
+			break;
+		}
+	}
+	if ( !pressed ) {
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 Fx0A: Wait for a key press = (NOT PRESSED)");
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	}
+}
 
 // Fx15 - LD DT, Vx
 // Set delay timer = Vx.
@@ -790,30 +795,32 @@ void opc_chip8_FX65(unsigned short x) {
 	}
 }
 
-// // ---------------------------- CHIP-8 undocumented instructions ---------------------------- //
+// ---------------------------- CHIP-8 undocumented instructions ---------------------------- //
 
-// // 02D8
-// // NON DOCUMENTED OPCODED, USED BY DEMO CLOCK Program
-// // LDA 02, I // Load from memory at address I into V[00] to V[02]
-// func opc_chip8_ND_02D8() {
-// 	x := (Opcode & 0x0F00) >> 8
+// 02D8
+// NON DOCUMENTED OPCODED, USED BY DEMO CLOCK Program
+// LDA 02, I // Load from memory at address I into V[00] to V[02]
+void opc_chip8_ND_02D8() {
+	unsigned char x;
 
-// 	if x != 2 {
-// 		//Map if this opcode can receive a different value here
-// 		fmt.Printf("\nProposital exit to map usage of 02D8 opcode\n")
-// 		os.Exit(2)
-// 	}
+	x = (Opcode & 0x0F00) >> 8;
 
-// 	V[0] = byte(I)
-// 	V[1] = byte(I) + 1
-// 	V[2] = byte(I) + 2
+	if ( x != 2 ) {
+		//Map if this opcode can receive a different value here
+		printf("\nProposital exit to map usage of 02D8 opcode\n");
+		exit(2);
+	}
 
-// 	PC += 2
-// 	if Debug {
-// 		OpcMessage = fmt.Sprintf("CHIP-8 02DB (NON DOCUMENTED): Load from memory at address I(%d) into V[0]= %d, V[1]= %d and V[2]= %d.", I, I , I+1, I+2)
-// 		fmt.Printf("\t\t%s\n" , OpcMessage)
-// 	}
-// }
+	V[0] = (unsigned char)I;
+	V[1] = (unsigned char)I + 1;
+	V[2] = (unsigned char)I + 2;
+
+	PC += 2;
+	if ( Debug ) {
+		sprintf(OpcMessage, "CHIP-8 02DB (NON DOCUMENTED): Load from memory at address I(%d) into V[0]= %d, V[1]= %d and V[2]= %d.", I, I , I+1, I+2);
+		printf("\t\t%s\n" , OpcMessage);
+	}
+}
 
 // // 02E4
 // // NON DOCUMENTED OPCODED, USED BY CHIP-8 Tic-Tac-Toe ([AUD_2464_09_B41_ID23_01] sound program

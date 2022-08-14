@@ -19,8 +19,8 @@ unsigned char	SoundTimer;			// Sound Timer
 bool drawFlag;						// Send the draw to screen signal
 bool OriginalDrawMode;				// Draw on flag or @60hz
 bool drawFlagCounter;				// Draw Flags counter
-bool Debug = true;					// Enable debug messages
-char OpcMessage[100];				// Debug messages
+bool Debug = false;					// Enable debug messages
+char OpcMessage[120];				// Debug messages
 bool SCHIP;
 bool SCHIP_LORES;
 bool SCHIP_TimerHack;
@@ -199,33 +199,33 @@ void Interpreter() {
 					// 		break;
 					// }
 
-				// case 0x0200: //02NN
-				// 	switch ( Opcode & 0x0FFF ) {
+				case 0x0200: //02NN
+					switch ( Opcode & 0x0FFF ) {
 
 				// 		// 0230 (CHIP-8 HIRES)
 				// 		case 0x0230:
 				// 			opc_chip8HiRes_0230();
 				// 			break;
 
-				// 		// 02D8 (CHIP-8 NON DOCUMENTED)
-				// 		case 0x02D8:
-				// 			opc_chip8_ND_02D8();
-				// 			break;
+						// 02D8 (CHIP-8 NON DOCUMENTED)
+						case 0x02D8:
+							opc_chip8_ND_02D8();
+							break;
 
 				// 		// 02E4 (CHIP-8 NON DOCUMENTED)
 				// 		case 0x02E4:
 				// 			opc_chip8_ND_02E4();
 				// 			break;
 
-				// 		default:
-				// 			fmt.Printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode)
-				// 			os.Exit(0)
-				// 	}
+						// default:
+						// 	printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode);
+						// 	exit(0);
+					}
 				break;
 
-				default:
-					printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode);
-					exit(0);
+				// default:
+				// 	printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode);
+				// 	exit(0);
 			}
 			break;
 		
@@ -252,7 +252,7 @@ void Interpreter() {
 
 		// ---------------------------- CHIP-8 5xxx instruction set ---------------------------- //
 		case 0x5000: // 5xy0 (CHIP-8)
-			printf ("5000\n");
+			opc_chip8_5XY0();
 			break;
 
 		// ---------------------------- CHIP-8 6xxx instruction set ---------------------------- //
@@ -279,20 +279,20 @@ void Interpreter() {
 					opc_chip8_8XY0(x, y);
 					break;
 
-				// // 8xy1 (CHIP-8)
-				// case 0x0001:
-				// 	opc_chip8_8XY1(x, y);
-				// 	break;
+				// 8xy1 (CHIP-8)
+				case 0x0001:
+					opc_chip8_8XY1(x, y);
+					break;
 
 				// 8xy2 (CHIP-8)
 				case 0x0002:
 					opc_chip8_8XY2(x, y);
 					break;
 
-				// // 8xy3 (CHIP-8)
-				// case 0x0003:
-				// 	opc_chip8_8XY3(x, y);
-				// 	break;
+				// 8xy3 (CHIP-8)
+				case 0x0003:
+					opc_chip8_8XY3(x, y);
+					break;
 
 				// 8xy4 (CHIP-8)
 				case 0x0004:
@@ -309,10 +309,10 @@ void Interpreter() {
 					opc_chip8_8XY6(x, y);
 					break;
 
-				// // 8xy7 (CHIP-8)
-				// case 0x0007:
-				// 	opc_chip8_8XY7(x, y);
-				// 	break;
+				// 8xy7 (CHIP-8)
+				case 0x0007:
+					opc_chip8_8XY7(x, y);
+					break;
 
 				// 8xyE (CHIP-8)
 				case 0x000E:
@@ -412,10 +412,10 @@ void Interpreter() {
 					opc_chip8_FX07(x);
 					break;
 
-				// // Fx0A (CHIP-*)
-				// case 0x000A:
-				// 	opc_chip8_FX0A(x);
-				// 	break;
+				// Fx0A (CHIP-8)
+				case 0x000A:
+					opc_chip8_FX0A(x);
+					break;
 
 				// Fx15 (CHIP-8)
 				case 0x0015:

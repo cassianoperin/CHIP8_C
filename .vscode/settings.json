@@ -26,7 +26,11 @@
         "array": "c",
         "utility": "c",
         "variant": "c",
-        "sdl.h": "c"
+        "sdl.h": "c",
+        "constant.h": "c",
+        "lib.h": "c",
+        "string.h": "c"
     },
-    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
+    "C_Cpp.errorSquiggles": "Disabled"
 }
