@@ -268,7 +268,7 @@ void Interpreter() {
 		// ---------------------------- CHIP-8 8xxx instruction set ---------------------------- //
 		case 0x8000: // 0x8000 instruction set
 		{
-			unsigned short x, y;
+			unsigned char x, y;
 			x = (Opcode & 0x0F00) >> 8;
 			y = (Opcode & 0x00F0) >> 4;
 
@@ -338,7 +338,7 @@ void Interpreter() {
 
 		// ---------------------------- CHIP-8 Bxxx instruction set ---------------------------- //
 		case 0xB000: // Bnnn (CHIP-8)
-			printf ("B0000\n");
+			opc_chip8_BNNN();
 			break;
 
 		// ---------------------------- CHIP-8 Cxxx instruction set ---------------------------- //
@@ -375,15 +375,15 @@ void Interpreter() {
 
 		// ---------------------------- CHIP-8 Exxx instruction set ---------------------------- //
 		case 0xE000: { // Exxx instruction set
-			unsigned short x;
+			unsigned char x;
 			x = (Opcode & 0x0F00) >> 8;
 
 			switch ( Opcode & 0x00FF ) {
 
-				// // Ex9E (CHIP-8)
-				// case 0x009E:
-				// 	opc_chip8_EX9E(x);
-				// 	break;
+				// Ex9E (CHIP-8)
+				case 0x009E:
+					opc_chip8_EX9E(x);
+					break;
 
 				// ExA1 (CHIP-8)
 				case 0x00A1:
@@ -401,10 +401,10 @@ void Interpreter() {
 		// ---------------------------- CHIP-8 Fxxx instruction set ---------------------------- //
 		case 0xF000: // Fxxx instruction set
 		{	
-			unsigned short x;
+			unsigned char x;
 			x = (Opcode & 0x0F00) >> 8;
 
-			switch (  Opcode & 0x00FF )
+			switch ( Opcode & 0x00FF )
 			{
 
 				// Fx07 (CHIP-8)

@@ -191,7 +191,7 @@ void opc_chip8_7XNN() {
 // 8xy0 - LD Vx, Vy
 // Set Vx = Vy.
 // Stores the value of register Vy in register Vx.
-void opc_chip8_8XY0(unsigned short x, unsigned short y) {
+void opc_chip8_8XY0(unsigned char x, unsigned char y) {
 	V[x] = V[y];
 	PC += 2;
 	if ( Debug ) {
@@ -203,7 +203,7 @@ void opc_chip8_8XY0(unsigned short x, unsigned short y) {
 // 8xy1 - Set Vx = Vx OR Vy.
 // Performs a bitwise OR on the values of Vx and Vy, then stores the result in Vx. A bitwise OR compares the corresponding bits from two values,
 // and if either bit is 1, then the same bit in the result is also 1. Otherwise, it is 0.
-void opc_chip8_8XY1(unsigned short x, unsigned short y) {
+void opc_chip8_8XY1(unsigned char x, unsigned char y) {
 	V[x] |= V[y];
 	PC += 2;
 	if ( Debug ) {
@@ -215,7 +215,7 @@ void opc_chip8_8XY1(unsigned short x, unsigned short y) {
 // 8xy2 - AND Vx, Vy
 // Set Vx = Vx AND Vy.
 // Performs a bitwise AND on the values of Vx and Vy, then stores the result in Vx. A bitwise AND compares the corresponding bits from two values, and if both bits are 1, then the same bit in the result is also 1. Otherwise, it is 0.
-void opc_chip8_8XY2(unsigned short x, unsigned short y) {
+void opc_chip8_8XY2(unsigned char x, unsigned char y) {
 	V[x] &= V[y];
 	PC += 2;
 	if ( Debug ) {
@@ -228,7 +228,7 @@ void opc_chip8_8XY2(unsigned short x, unsigned short y) {
 // Set Vx = Vx XOR Vy.
 // Performs a bitwise exclusive OR on the values of Vx and Vy, then stores the result in Vx. An exclusive OR compares the corresponding bits from two values,
 // and if the bits are not both the same, then the corresponding bit in the result is set to 1. Otherwise, it is 0.
-void opc_chip8_8XY3(unsigned short x, unsigned short y) {
+void opc_chip8_8XY3(unsigned char x, unsigned char y) {
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy3: Set V[x(%d)]:%d XOR V[y(%d)]:%d", x, V[x], y, V[y]);
 		printf("\t\t%s\n" , OpcMessage);
@@ -243,11 +243,6 @@ void opc_chip8_8XY3(unsigned short x, unsigned short y) {
 // Only the lowest 8 bits of the result are kept, and stored in Vx.
 void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 
-	if ( V[x] + V[y] < V[x]) {
-		V[0xF] = 1;
-	} else {
-		V[0xF] = 0;
-	}
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy4: Set V[x(%d)] = V[x(%d)]: 0x%02X + V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
 		printf("\t\t%s\n" , OpcMessage);
@@ -255,18 +250,21 @@ void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 	// Old implementation, sum values, READ THE DOCS IN CASE OF PROBLEMS
 	V[x] += V[y];
 
+	// Test the new value and set the flaf
+	unsigned char tmp = V[x] + V[y];
+	if ( tmp < V[x] ) {
+		V[0xF] = 1;
+	} else {
+		V[0xF] = 0;
+	}
+
 	PC += 2;
 }
 
 // 8xy5 - SUB Vx, Vy
 // Set Vx = Vx - Vy, set VF = NOT borrow.
 // If Vx > Vy, then VF is set to 1, otherwise 0. Then Vy is subtracted from Vx, and the results stored in Vx.
-void opc_chip8_8XY5(unsigned short x, unsigned short y) {
-	if ( V[x] >= V[y] ) {
-		V[0xF] = 1;
-	} else {
-		V[0xF] = 0;
-	}
+void opc_chip8_8XY5(unsigned char x, unsigned char y) {
 
     if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy5: Set V[x(%d)] = V[x(%d)]: 0x%02X - V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
@@ -274,6 +272,14 @@ void opc_chip8_8XY5(unsigned short x, unsigned short y) {
 	}
 
 	V[x] -= V[y];
+
+	// Test the new value and set the flaf
+	if ( V[x] >= V[y] ) {
+		V[0xF] = 1;
+	} else {
+		V[0xF] = 0;
+	}
+
 	PC += 2;
 }
 
@@ -281,7 +287,7 @@ void opc_chip8_8XY5(unsigned short x, unsigned short y) {
 // Set Vx = Vx SHR 1.
 // If the least-significant bit of Vx is 1, then VF is set to 1, otherwise 0. Then Vx is divided by 2 (SHR).
 // Original Chip8 INCREMENT I in this instruction
-void opc_chip8_8XY6(unsigned short x, unsigned short y) {
+void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 	V[0xF] = V[x] & 0x01;
 
 	if ( Legacy_8xy6_8xyE ) {
@@ -300,7 +306,7 @@ void opc_chip8_8XY6(unsigned short x, unsigned short y) {
 // 8xy7 - SUBN Vx, Vy
 // Set Vx = Vy - Vx, set VF = NOT borrow.
 // If Vy > Vx, then VF is set to 1, otherwise 0. Then Vx is subtracted from Vy, and the results stored in Vx.
-void opc_chip8_8XY7(unsigned short x, unsigned short y) {
+void opc_chip8_8XY7(unsigned char x, unsigned char y) {
 	if ( V[x] > V[y] ) {
 		V[0xF] = 0;
 	} else {
@@ -318,7 +324,7 @@ void opc_chip8_8XY7(unsigned short x, unsigned short y) {
 // 8xyE - SHL Vx {, Vy}
 // Set Vx = Vx SHL 1.
 // If the most-significant bit of Vx is 1, then VF is set to 1, otherwise to 0. Then Vx is multiplied by 2.
-void opc_chip8_8XYE(unsigned short x, unsigned short y) {
+void opc_chip8_8XYE(unsigned char x, unsigned char y) {
 	V[0xF] = V[x] >> 7; // Set V[F] to the Most Important Bit
 
 	if ( Legacy_8xy6_8xyE ) {
@@ -378,19 +384,19 @@ void opc_chip8_ANNN() {
 
 
 
-// // ---------------------------- CHIP-8 Bxxx instruction set ---------------------------- //
+// ---------------------------- CHIP-8 Bxxx instruction set ---------------------------- //
 
-// // Bnnn - JP V0, addr
-// // Jump to location nnn + V0.
-// // The program counter is set to nnn plus the value of V0.
-// func opc_chip8_BNNN() {
-// 	nnn := Opcode & 0x0FFF
-// 	PC = nnn + uint16(V[0])
-// 	if Debug {
-// 		OpcMessage = fmt.Sprintf("CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0])
-// 		fmt.Printf("\t\t%s\n" , OpcMessage)
-// 	}
-// }
+// Bnnn - JP V0, addr
+// Jump to location nnn + V0.
+// The program counter is set to nnn plus the value of V0.
+void opc_chip8_BNNN() {
+	unsigned short nnn = Opcode & 0x0FFF;
+	PC = nnn + (unsigned short)V[0];
+	if ( Debug ) {
+		sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0]);
+		printf("\t\t%s\n" , OpcMessage);
+	}
+}
 
 // // ---------------------------- CHIP-8 Cxxx instruction set ---------------------------- //
 
@@ -398,7 +404,7 @@ void opc_chip8_ANNN() {
 // Set Vx = random byte AND nn.
 // The interpreter generates a random number from 0 to 255, which is then ANDed with the value nn. The results are stored in Vx. See instruction 8xy2 for more information on AND.
 void opc_chip8_CXNN() {
-	unsigned short x;
+	unsigned char x;
 	unsigned char nn;
 	x = (unsigned short)(Opcode&0x0F00) >> 8;
 	nn = Opcode & 0x00FF;
@@ -550,36 +556,36 @@ void opc_chip8_DXYN() {
 
 // ---------------------------- CHIP-8 Exxx instruction set ---------------------------- //
 
-// // Ex9E - SKP Vx
-// // Skip next instruction if key with the value of Vx is pressed.
-// // Checks the keyboard, and if the key corresponding to the value of Vx is currently in the down position, PC is increased by 2.
-// func opc_chip8_EX9E(x uint16) {
+// Ex9E - SKP Vx
+// Skip next instruction if key with the value of Vx is pressed.
+// Checks the keyboard, and if the key corresponding to the value of Vx is currently in the down position, PC is increased by 2.
+void opc_chip8_EX9E(unsigned char x) {
 
-// 	// If Key number is bigger than 16, fix it (Ex.: Breakfree game)
-// 	if int(V[x]) >= len(Key) {
-// 		V[x] = V[x] - 16
-// 		fmt.Printf("\n%d\n",x)
-// 	}
+	// If Key number is bigger than 16, fix it (Ex.: Breakfree game)
+	if ( V[x] >= sizeof(Key) ) {
+		V[x] = V[x] - 16;;
+		printf("\n%d\n",x);;
+	}
 
-// 	if Key[V[x]] == 1 {
-// 		PC += 4
-// 		if Debug {
-// 			OpcMessage = fmt.Sprintf("CHIP-8 Ex9E: Key[%d] pressed, skip one instruction", V[x])
-// 			fmt.Printf("\t\t%s\n" , OpcMessage)
-// 		}
-// 	} else {
-// 		PC += 2
-// 		if Debug {
-// 			OpcMessage = fmt.Sprintf("CHIP-8 Ex9E: Key[%d] NOT pressed, continue", V[x])
-// 			fmt.Printf("\t\t%s\n" , OpcMessage)
-// 		}
-// 	}
-// }
+	if ( Key[V[x]] == 1 ) {
+		PC += 4;
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 Ex9E: Key[%d] pressed, skip one instruction", V[x]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	} else {
+		PC += 2;
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 Ex9E: Key[%d] NOT pressed, continue", V[x]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	}
+}
 
 // ExA1 - SKNP Vx
 // Skip next instruction if key with the value of Vx is not pressed.
 // Checks the keyboard, and if the key corresponding to the value of Vx is currently in the up position, PC is increased by 2.
-void opc_chip8_EXA1(unsigned short x) {
+void opc_chip8_EXA1(unsigned char x) {
 	if ( Key[V[x]] == 0 ) {
 		PC += 4;
 		if ( Debug ) {
@@ -608,7 +614,7 @@ void opc_chip8_EXA1(unsigned short x) {
 // Fx07 - LD Vx, DT
 // Set Vx = delay timer value.
 // The value of DT is placed into Vx.
-void opc_chip8_FX07(unsigned short x) {
+void opc_chip8_FX07(unsigned char x) {
 	V[x] = DelayTimer;
 	PC += 2;
 	if ( Debug ) {
@@ -620,7 +626,7 @@ void opc_chip8_FX07(unsigned short x) {
 // Fx0A - LD Vx, K
 // Wait for a key press, store the value of the key in Vx.
 // All execution stops until a key is pressed, then the value of that key is stored in Vx.
-void opc_chip8_FX0A(unsigned short x) {
+void opc_chip8_FX0A(unsigned char x) {
 	bool pressed = false;
 	unsigned int i;
 
@@ -648,7 +654,7 @@ void opc_chip8_FX0A(unsigned short x) {
 // Fx15 - LD DT, Vx
 // Set delay timer = Vx.
 // DT is set equal to the value of Vx.
-void opc_chip8_FX15(unsigned short x) {
+void opc_chip8_FX15(unsigned char x) {
 	DelayTimer = V[x];
 	PC += 2;
 	if ( Debug ) {
@@ -660,7 +666,7 @@ void opc_chip8_FX15(unsigned short x) {
 // Fx18 - LD ST, Vx
 // Set sound timer = Vx.
 // ST is set equal to the value of Vx.
-void opc_chip8_FX18(unsigned short x) {
+void opc_chip8_FX18(unsigned char x) {
 	SoundTimer = V[x];
 	PC += 2;
 	if ( Debug ) {
@@ -676,7 +682,7 @@ void opc_chip8_FX18(unsigned short x) {
 // Check FX1E (I = I + VX) buffer overflow. If buffer overflow, register
 // VF must be set to 1, otherwise 0. As a result, register VF not set to 1.
 // This undocumented feature of the Chip-8 and used by Spacefight 2091!
-void opc_chip8_FX1E(unsigned short x) {
+void opc_chip8_FX1E(unsigned char x) {
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 Fx1E: Add the value of V[x(%d)]: 0x%02X to I: (0x%04X)",x, V[x], I);
 		printf("\t\t%s\n" , OpcMessage);
@@ -702,7 +708,7 @@ void opc_chip8_FX1E(unsigned short x) {
 // Fx29 - LD F, Vx
 // Set I = location of sprite for digit Vx.
 // The value of I is set to the location for the hexadecimal sprite corresponding to the value of Vx.
-void opc_chip8_FX29(unsigned short x) {
+void opc_chip8_FX29(unsigned char x) {
 	// Load CHIP-8 font. Start from Memory[0]
 	I = (unsigned short)V[x] * 5;
 	PC += 2;
@@ -723,7 +729,7 @@ void opc_chip8_FX29(unsigned short x) {
 // % = modulus operator:
 // 3 % 1 would equal zero (since 3 divides evenly by 1)
 // 3 % 2 would equal 1 (since dividing 3 by 2 results in a remainder of 1).
-void opc_chip8_FX33(unsigned short x) {
+void opc_chip8_FX33(unsigned char x) {
 	Memory[I]   = V[x]  / 100;
 	Memory[I+1] = (V[x] / 10)  % 10;
 	Memory[I+2] = (V[x] % 100) % 10;
@@ -740,7 +746,7 @@ void opc_chip8_FX33(unsigned short x) {
 //
 // Stores V0 to VX (including VX) in memory starting at address I. The offset from I is increased by 1 for each value written, but I itself is left unmodified.[d]
 // In the original CHIP-8 implementation, and also in CHIP-48, I is left incremented after this instruction had been executed. In SCHIP, I is left unmodified.
-void opc_chip8_FX55(unsigned short x) {
+void opc_chip8_FX55(unsigned char x) {
     unsigned char i;
 	for ( i = 0; i <= x; i++ ) {
 		Memory[I+i] = V[i];
@@ -769,9 +775,9 @@ void opc_chip8_FX55(unsigned short x) {
 //// I is set to I + X + 1 after operation²
 //// ² Erik Bryntse’s S-CHIP documentation incorrectly implies this instruction does not modify
 //// the I register. Certain S-CHIP-compatible emulators may implement this instruction in this manner.
-void opc_chip8_FX65(unsigned short x) {
+void opc_chip8_FX65(unsigned char x) {
 
-	unsigned short i; //TODO x and i should be char?
+	unsigned char i;
 
 	for ( i = 0; i <= x; i++ ) {
 		V[i] = Memory[I+i];
