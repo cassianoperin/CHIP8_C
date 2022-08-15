@@ -241,12 +241,12 @@ void opc_chip8_8XY3(unsigned char x, unsigned char y) {
 // Set Vx = Vx + Vy, set VF = carry.
 // The values of Vx and Vy are added together. If the result is greater than 8 bits (i.e., > 255,) VF is set to 1, otherwise 0.
 // Only the lowest 8 bits of the result are kept, and stored in Vx.
+// *** Flag needs to be set AFTER the ADD
 void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 
 	// Test the new value and set the flag
-	unsigned char tmp = V[x] + V[y];	// Need in case of overflows (keep number between 0-255)
-
-	unsigned char Vx_original = V[x];
+	unsigned char sum = V[x] + V[y];	// Need in case of overflows (keep number between 0-255)
+	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the ADD
 
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy4: Set V[x(%d)] = V[x(%d)]: 0x%02X + V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
@@ -255,7 +255,7 @@ void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 	// Old implementation, sum values, READ THE DOCS IN CASE OF PROBLEMS
 	V[x] += V[y];
 
-	if ( tmp < Vx_original) {
+	if ( sum < Vx_original) {
 		V[0xF] = 1;
 	} else {
 		V[0xF] = 0;
@@ -267,12 +267,10 @@ void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 // 8xy5 - SUB Vx, Vy
 // Set Vx = Vx - Vy, set VF = NOT borrow.
 // If Vx > Vy, then VF is set to 1, otherwise 0. Then Vy is subtracted from Vx, and the results stored in Vx.
+// *** Flag needs to be set AFTER the ADD
 void opc_chip8_8XY5(unsigned char x, unsigned char y) {
-	if ( V[x] >= V[y] ) {
-		V[0xF] = 1;
-	} else {
-		V[0xF] = 0;
-	}
+
+	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the ADD
 
     if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy5: Set V[x(%d)] = V[x(%d)]: 0x%02X - V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
@@ -280,6 +278,14 @@ void opc_chip8_8XY5(unsigned char x, unsigned char y) {
 	}
 
 	V[x] -= V[y];
+
+	// Now update the flag
+	if ( Vx_original >= V[y] ) {
+		V[0xF] = 1;
+	} else {
+		V[0xF] = 0;
+	}
+
 	PC += 2;
 }
 
