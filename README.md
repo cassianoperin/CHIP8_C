@@ -46,4 +46,45 @@ https://github.com/mattmikolay/chip-8
 
 
 
-        
+
+12) check if BIGGER or BIGGER THAN IN 
+// 8xy5 - SUB Vx, Vy
+// Set Vx = Vx - Vy, set VF = NOT borrow.
+// If Vx > Vy, then VF is set to 1, otherwise 0. Then Vy is subtracted from Vx, and the results stored in Vx.
+void opc_chip8_8XY5(unsigned char x, unsigned char y) {
+	if ( V[x] >= V[y] ) {
+
+
+
+13:
+opc_chip8_DXYN - varisble types 
+
+
+14: test breakfree
+void opc_chip8_EX9E(unsigned char x) {
+
+	// If Key number is bigger than 16, fix it (Ex.: Breakfree game)
+	if int(V[x]) >= len(Key) {
+
+
+15: print message debug just in the end of cycle?
+printf("\t\t%s\n" , OpcMessage);
+
+    
+16 TESTSSS
+https://github.com/Timendus/chip8-test-suite
+https://github.com/Timendus/silicon8/tree/main/tests
+
+// after problems
+Demos:
+Sierpinski\ \[Sergey\ Naydenov,\ 2010\].ch8
+Sirpinski\ \[Sergey\ Naydenov,\ 2010\].ch8
+Programs:
+Clock\ Program\ \[Bill\ Fisher,\ 1981\].ch8
+Life\ \[GV\ Samways,\ 1980\].ch8
+
+
+-----------
+
+tmp no 8xy4
+b000

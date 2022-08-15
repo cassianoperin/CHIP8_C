@@ -243,7 +243,10 @@ void opc_chip8_8XY3(unsigned char x, unsigned char y) {
 // Only the lowest 8 bits of the result are kept, and stored in Vx.
 void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 
-	if ( V[x] + V[y] < V[x]) {
+	// Test the new value and set the flag
+	unsigned char tmp = V[x] + V[y];	// Need in case of overflows (keep number between 0-255)
+
+	if ( tmp < V[x]) {
 		V[0xF] = 1;
 	} else {
 		V[0xF] = 0;
@@ -380,17 +383,17 @@ void opc_chip8_ANNN() {
 
 // // ---------------------------- CHIP-8 Bxxx instruction set ---------------------------- //
 
-// // Bnnn - JP V0, addr
-// // Jump to location nnn + V0.
-// // The program counter is set to nnn plus the value of V0.
-// func opc_chip8_BNNN() {
-// 	nnn := Opcode & 0x0FFF
-// 	PC = nnn + uint16(V[0])
-// 	if Debug {
-// 		OpcMessage = fmt.Sprintf("CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0])
-// 		fmt.Printf("\t\t%s\n" , OpcMessage)
-// 	}
-// }
+// Bnnn - JP V0, addr
+// Jump to location nnn + V0.
+// The program counter is set to nnn plus the value of V0.
+void opc_chip8_BNNN() {
+	unsigned short nnn = Opcode & 0x0FFF;
+	PC = nnn + (unsigned short)V[0];
+	if ( Debug ) {
+		sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0]);
+		printf("\t\t%s\n" , OpcMessage);
+	}
+}
 
 // // ---------------------------- CHIP-8 Cxxx instruction set ---------------------------- //
 

@@ -21,6 +21,7 @@ void opc_chip8_8XY7(unsigned char x, unsigned char y);
 void opc_chip8_8XYE(unsigned char x, unsigned char y);
 void opc_chip8_9XY0();
 void opc_chip8_ANNN();
+void opc_chip8_BNNN();
 void opc_chip8_CXNN();
 void opc_chip8_DXYN();
 void opc_chip8_EX9E(unsigned char x);

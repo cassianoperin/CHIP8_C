@@ -338,7 +338,7 @@ void Interpreter() {
 
 		// ---------------------------- CHIP-8 Bxxx instruction set ---------------------------- //
 		case 0xB000: // Bnnn (CHIP-8)
-			printf ("B0000\n");
+			opc_chip8_BNNN();
 			break;
 
 		// ---------------------------- CHIP-8 Cxxx instruction set ---------------------------- //
