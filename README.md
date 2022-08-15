@@ -84,7 +84,3 @@ Clock\ Program\ \[Bill\ Fisher,\ 1981\].ch8
 Life\ \[GV\ Samways,\ 1980\].ch8
 
 
------------
-
-tmp no 8xy4
-b000

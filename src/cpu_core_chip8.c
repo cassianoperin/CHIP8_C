@@ -246,17 +246,20 @@ void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 	// Test the new value and set the flag
 	unsigned char tmp = V[x] + V[y];	// Need in case of overflows (keep number between 0-255)
 
-	if ( tmp < V[x]) {
-		V[0xF] = 1;
-	} else {
-		V[0xF] = 0;
-	}
+	unsigned char Vx_original = V[x];
+
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy4: Set V[x(%d)] = V[x(%d)]: 0x%02X + V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
 		printf("\t\t%s\n" , OpcMessage);
 	}
 	// Old implementation, sum values, READ THE DOCS IN CASE OF PROBLEMS
 	V[x] += V[y];
+
+	if ( tmp < Vx_original) {
+		V[0xF] = 1;
+	} else {
+		V[0xF] = 0;
+	}
 
 	PC += 2;
 }
