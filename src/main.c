@@ -25,8 +25,9 @@ int main( int argc, char* args[] )
 	unsigned int currentTime = 0;
 	char *game_signature = "";
 	struct display display;
-	char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/pong.ch8";
+	// char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/pong.ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/c8_test.c8";
+	char* filename = args[1];
 
 	// Initialize
 	Initialize();

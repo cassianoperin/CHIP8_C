@@ -550,31 +550,31 @@ void opc_chip8_DXYN() {
 
 // ---------------------------- CHIP-8 Exxx instruction set ---------------------------- //
 
-// // Ex9E - SKP Vx
-// // Skip next instruction if key with the value of Vx is pressed.
-// // Checks the keyboard, and if the key corresponding to the value of Vx is currently in the down position, PC is increased by 2.
-// func opc_chip8_EX9E(x uint16) {
+// Ex9E - SKP Vx
+// Skip next instruction if key with the value of Vx is pressed.
+// Checks the keyboard, and if the key corresponding to the value of Vx is currently in the down position, PC is increased by 2.
+void opc_chip8_EX9E(unsigned char x) {
 
-// 	// If Key number is bigger than 16, fix it (Ex.: Breakfree game)
-// 	if int(V[x]) >= len(Key) {
-// 		V[x] = V[x] - 16
-// 		fmt.Printf("\n%d\n",x)
-// 	}
+	// If Key number is bigger than 16, fix it (Ex.: Breakfree game)
+	if ( V[x] >= sizeof(Key) ) {
+		V[x] = V[x] - 16;
+		printf("\n%d\n",x);
+	}
 
-// 	if Key[V[x]] == 1 {
-// 		PC += 4
-// 		if Debug {
-// 			OpcMessage = fmt.Sprintf("CHIP-8 Ex9E: Key[%d] pressed, skip one instruction", V[x])
-// 			fmt.Printf("\t\t%s\n" , OpcMessage)
-// 		}
-// 	} else {
-// 		PC += 2
-// 		if Debug {
-// 			OpcMessage = fmt.Sprintf("CHIP-8 Ex9E: Key[%d] NOT pressed, continue", V[x])
-// 			fmt.Printf("\t\t%s\n" , OpcMessage)
-// 		}
-// 	}
-// }
+	if ( Key[V[x]] == 1 ) {
+		PC += 4;
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 Ex9E: Key[%d] pressed, skip one instruction", V[x]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	} else {
+		PC += 2;
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 Ex9E: Key[%d] NOT pressed, continue", V[x]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	}
+}
 
 // ExA1 - SKNP Vx
 // Skip next instruction if key with the value of Vx is not pressed.

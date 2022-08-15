@@ -380,10 +380,10 @@ void Interpreter() {
 
 			switch ( Opcode & 0x00FF ) {
 
-				// // Ex9E (CHIP-8)
-				// case 0x009E:
-				// 	opc_chip8_EX9E(x);
-				// 	break;
+				// Ex9E (CHIP-8)
+				case 0x009E:
+					opc_chip8_EX9E(x);
+					break;
 
 				// ExA1 (CHIP-8)
 				case 0x00A1:
