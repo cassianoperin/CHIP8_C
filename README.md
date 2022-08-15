@@ -75,4 +75,3 @@ printf("\t\t%s\n" , OpcMessage);
     
 16 TESTSSS
 https://github.com/Timendus/chip8-test-suite
-https://github.com/Timendus/silicon8/tree/main/tests
