@@ -3,4 +3,4 @@
 build/debug/*
 *.dSYM
 *.ch8
-\#Games
+#Games
