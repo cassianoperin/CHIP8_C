@@ -312,17 +312,21 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 // 8xy7 - SUBN Vx, Vy
 // Set Vx = Vy - Vx, set VF = NOT borrow.
 // If Vy > Vx, then VF is set to 1, otherwise 0. Then Vx is subtracted from Vy, and the results stored in Vx.
+// *** Update the flag AFTER the SUBN with the V[x] RESULT and not original
 void opc_chip8_8XY7(unsigned char x, unsigned char y) {
-	if ( V[x] > V[y] ) {
-		V[0xF] = 0;
-	} else {
-		V[0xF] = 1;
-	}
+
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy7: Set V[x(%d)]:%d = V[y(%d)]:%d - V[x(%d)]:%d\t\t = %d", x, V[x], y, V[y], x, V[x], V[y] - V[x]);
 		printf("\t\t%s\n" , OpcMessage);
 	}
 	V[x] = V[y] - V[x];
+
+	// Now update the flag
+	if ( V[x] > V[y] ) {
+		V[0xF] = 0;
+	} else {
+		V[0xF] = 1;
+	}
 
 	PC += 2;
 }
@@ -330,8 +334,10 @@ void opc_chip8_8XY7(unsigned char x, unsigned char y) {
 // 8xyE - SHL Vx {, Vy}
 // Set Vx = Vx SHL 1.
 // If the most-significant bit of Vx is 1, then VF is set to 1, otherwise to 0. Then Vx is multiplied by 2.
+// *** The flag must be updated with the original V[x] value AFTER the SHL
 void opc_chip8_8XYE(unsigned char x, unsigned char y) {
-	V[0xF] = V[x] >> 7; // Set V[F] to the Most Important Bit
+
+	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHL
 
 	if ( Legacy_8xy6_8xyE ) {
 		V[x] = V[y] << 1;
@@ -339,7 +345,11 @@ void opc_chip8_8XYE(unsigned char x, unsigned char y) {
 		V[x] = V[x] << 1;
 	}
 
+	// Now update the flag
+	V[0xF] = Vx_original >> 7; // Set V[F] to the Most Important Bit
+
 	PC += 2;
+	
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xyE: Set V[x(%d)] SHIFT LEFT 1 =  0x%02X ", x, V[x]);
 		printf("\t\t%s\n" , OpcMessage);
