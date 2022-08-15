@@ -293,8 +293,10 @@ void opc_chip8_8XY5(unsigned char x, unsigned char y) {
 // Set Vx = Vx SHR 1.
 // If the least-significant bit of Vx is 1, then VF is set to 1, otherwise 0. Then Vx is divided by 2 (SHR).
 // Original Chip8 INCREMENT I in this instruction
+// The flag must be updated AFTER the SHR with the original V[x] value
 void opc_chip8_8XY6(unsigned char x, unsigned char y) {
-	V[0xF] = V[x] & 0x01;
+
+	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHR
 
 	if ( Legacy_8xy6_8xyE ) {
 		V[x] = V[y] >> 1;
@@ -302,7 +304,10 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 		V[x] = V[x] >> 1;
 	}
 
+	V[0xF] = Vx_original & 0x01;
+
 	PC += 2;
+
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy6: Set V[x(%d)] SHIFT RIGHT 1 = 0x%02X", x, V[x]);
 		printf("\t\t%s\n" , OpcMessage);
