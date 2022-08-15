@@ -25,8 +25,8 @@ int main( int argc, char* args[] )
 	unsigned int currentTime = 0;
 	char *game_signature = "";
 	struct display display;
-	// char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/pong.ch8";
-	char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/c8_test.c8";
+	char* filename = (char*)"/Users/cassiano/go/src/C_SDL/src/pong.ch8";
+	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/c8_test.c8";
 
 	// Initialize
 	Initialize();
@@ -64,16 +64,6 @@ int main( int argc, char* args[] )
 					Interpreter();
 				}
 
-				// Handle Delay Timer
-				if ( DelayTimer > 0 ) {
-					DelayTimer--;
-				}
-
-				// Handle Sound Timer
-				if ( SoundTimer > 0 ) {
-						SoundTimer--;
-				}
-
 				// 
 				if ( OriginalDrawMode ) {
 					if ( drawFlag ) {
@@ -100,6 +90,16 @@ int main( int argc, char* args[] )
 
 				// Handle Keyboard
 				keyboard();
+
+				// Handle Delay Timer
+				if ( DelayTimer > 0 ) {
+					DelayTimer--;
+				}
+
+				// Handle Sound Timer
+				if ( SoundTimer > 0 ) {
+						SoundTimer--;
+				}
 
 				// Draw screen
 				if ( !OriginalDrawMode ) {
