@@ -79,7 +79,8 @@ void opc_chip8_3XNN() {
     unsigned char x, nn;
 
 	x = (Opcode & 0x0F00) >> 8;
-	nn = (unsigned char)Opcode & 0x00FF;
+	nn = Opcode & 0x00FF;
+
 	if ( V[x] == nn ) {
 		PC += 4;
 		if ( Debug ) {
@@ -104,7 +105,7 @@ void opc_chip8_4XNN() {
     unsigned char x, nn;
 
 	x = (Opcode & 0x0F00) >> 8;
-	nn = (unsigned char)Opcode & 0x00FF;
+	nn = Opcode & 0x00FF;
 	if ( V[x] != nn ) {
 		PC += 4;
 		if ( Debug ) {
@@ -175,7 +176,7 @@ void opc_chip8_7XNN() {
 	unsigned char x, nn;
 
 	x = (Opcode & 0x0F00) >> 8;
-	nn = (unsigned char)Opcode;
+	nn = Opcode;
 
 	V[x] += nn;
 
@@ -445,8 +446,8 @@ void opc_chip8_CXNN() {
 // Draw n-byte sprite starting at memory location I at (Vx, Vy), set VF = collision.
 void opc_chip8_DXYN() {
 	// // Draw in Chip-8 Low Resolution mode
-    unsigned short x, y, n, byte, gpx_position;
-    unsigned char sprite;
+    unsigned short gpx_position;
+    unsigned char x , y, n, byte, sprite;
 
 	x = (Opcode & 0x0F00) >> 8;
 	y = (Opcode & 0x00F0) >> 4;
@@ -492,7 +493,7 @@ void opc_chip8_DXYN() {
 	}
 
 	// Translate the x and Y to the Graphics Vector
-	gpx_position = (unsigned short)V[x] + ( SizeX * (unsigned short)V[y] );
+	gpx_position = V[x] + ( SizeX * V[y] );
 
 	// Print N Bytes from address I in V[x]V[y] position of the screen
 	for ( byte = 0 ; byte < n ; byte++ ) {
@@ -501,13 +502,15 @@ void opc_chip8_DXYN() {
 		sprite = Memory[I + byte];
 
 		// Always print 8 bits
-        unsigned short bit, bit_value, gfx_index;
+        // unsigned short bit, bit_value, gfx_index;
+        unsigned char bit, bit_value;
+        unsigned short gfx_index;
 		for ( bit = 0; bit < 8 ; bit++ ) {
 			// Get the value of the byte
-			bit_value = (unsigned short)sprite >> (7 - bit) & 1;
+			bit_value = sprite >> (7 - bit) & 1;
 
 			// Set the index to write the 8 bits of each pixel
-			gfx_index = (unsigned short)gpx_position + (unsigned short)bit + (byte*SizeX);
+			gfx_index = (unsigned short)gpx_position + (unsigned short)bit + ((unsigned short)byte*(unsigned short)SizeX);
 
 			// If tryes to draw bits outside the vector size, ignore
 			if ( gfx_index >= SizeX * SizeY ) {
@@ -528,7 +531,7 @@ void opc_chip8_DXYN() {
 			// 	pixels[gfx_index] = PIXEL_ON_COLOR;
 
 
-						// If bit=1, test current graphics[index], if is already set, mark v[F]=1 (collision)
+			// If bit=1, test current graphics[index], if is already set, mark v[F]=1 (collision)
 			if ( bit_value  == 1 ) {
 				// Set colision case graphics[index] is already 1
 				if ( pixels[gfx_index] == PIXEL_ON_COLOR ) {
@@ -541,7 +544,6 @@ void opc_chip8_DXYN() {
 				// pixels[gfx_index] ^= 1;
 				// pixels[gfx_index] = PIXEL_ON_COLOR;
 
-                
 			}
 
 
@@ -725,7 +727,7 @@ void opc_chip8_FX1E(unsigned char x) {
 // Set I = location of sprite for digit Vx.
 // The value of I is set to the location for the hexadecimal sprite corresponding to the value of Vx.
 void opc_chip8_FX29(unsigned char x) {
-	// Load CHIP-8 font. Start from Memory[0]
+	// Load CHIP-8 font. Start from Memory[0]   
 	I = (unsigned short)V[x] * 5;
 	PC += 2;
 	if ( Debug ) {
@@ -823,15 +825,9 @@ void opc_chip8_FX65(unsigned char x) {
 // NON DOCUMENTED OPCODED, USED BY DEMO CLOCK Program
 // LDA 02, I // Load from memory at address I into V[00] to V[02]
 void opc_chip8_ND_02D8() {
-	unsigned char x;
-
-	x = (Opcode & 0x0F00) >> 8;
-
-	if ( x != 2 ) {
-		//Map if this opcode can receive a different value here
-		printf("\nProposital exit to map usage of 02D8 opcode\n");
-		exit(2);
-	}
+	// Will be always 2
+	// unsigned char x;
+	// x = (Opcode & 0x0F00) >> 8;
 
 	V[0] = (unsigned char)I;
 	V[1] = (unsigned char)I + 1;

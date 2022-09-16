@@ -19,7 +19,7 @@ unsigned char	SoundTimer;			// Sound Timer
 bool drawFlag;						// Send the draw to screen signal
 bool OriginalDrawMode;				// Draw on flag or @60hz
 bool drawFlagCounter;				// Draw Flags counter
-bool Debug = false;					// Enable debug messages
+bool Debug = true;					// Enable debug messages
 char OpcMessage[120];				// Debug messages
 bool SCHIP;
 bool SCHIP_LORES;
@@ -53,10 +53,10 @@ void Initialize(){
 		Memory[i] = Chip8Fontset[i];
 	}
 
-	// Load SCHIP 8x10 fontset (Memory address 80-240)
-	for ( i = 0; i < sizeof(SCHIPFontset); i++ ) {
-		Memory[i+80] = SCHIPFontset[i];
-	}
+	// // Load SCHIP 8x10 fontset (Memory address 80-240)
+	// for ( i = 0; i < sizeof(SCHIPFontset); i++ ) {
+	// 	Memory[i+80] = SCHIPFontset[i];
+	// }
 
 	// Legacy Opcodes and Quirks
 	Legacy_Fx55_Fx65			= false;
@@ -217,15 +217,12 @@ void Interpreter() {
 				// 			opc_chip8_ND_02E4();
 				// 			break;
 
-						// default:
-						// 	printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode);
-						// 	exit(0);
 					}
 				break;
 
-				// default:
-				// 	printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode);
-				// 	exit(0);
+				default:
+					printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode);
+					exit(0);
 			}
 			break;
 		
@@ -234,7 +231,7 @@ void Interpreter() {
 			opc_chip8_1NNN();
 			break;
 
-		// ---------------------------- CHIP-8 2xxx instruction set ---------------------------- //
+		// // ---------------------------- CHIP-8 2xxx instruction set ---------------------------- //
 		case 0x2000: // 2nnn (CHIP-8)
 			// printf ("2000\n");
 			opc_chip8_2NNN();
