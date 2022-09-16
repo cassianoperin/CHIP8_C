@@ -207,6 +207,11 @@ void opc_chip8_8XY0(unsigned char x, unsigned char y) {
 void opc_chip8_8XY1(unsigned char x, unsigned char y) {
 	V[x] |= V[y];
 	PC += 2;
+
+	if ( Quirk_VF_Reset_8XY1_8XY2_8XY3 ) {
+		V[0xF] = 0;
+	}
+
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy1: Set V[x(%d)]:%d OR V[y(%d)]:%d", x, V[x], y, V[y]);
 		printf("\t\t%s\n" , OpcMessage);
@@ -219,6 +224,11 @@ void opc_chip8_8XY1(unsigned char x, unsigned char y) {
 void opc_chip8_8XY2(unsigned char x, unsigned char y) {
 	V[x] &= V[y];
 	PC += 2;
+
+	if ( Quirk_VF_Reset_8XY1_8XY2_8XY3 ) {
+		V[0xF] = 0;
+	}
+
 	if ( Debug ) {
 		sprintf(OpcMessage, "CHIP-8 8xy2: Set V[x(%d)] to the result of V[x(%d)]:(0x%02x) AND V[y(%d)]:(0x%02X) = 0x%02X", x, x, V[x], y, V[y], V[x] &= V[y]);
 		printf("\t\t%s\n" , OpcMessage);
@@ -234,6 +244,11 @@ void opc_chip8_8XY3(unsigned char x, unsigned char y) {
 		sprintf(OpcMessage, "CHIP-8 8xy3: Set V[x(%d)]:%d XOR V[y(%d)]:%d", x, V[x], y, V[y]);
 		printf("\t\t%s\n" , OpcMessage);
 	}
+
+	if ( Quirk_VF_Reset_8XY1_8XY2_8XY3 ) {
+		V[0xF] = 0;
+	}
+	
 	V[x] ^= V[y];
 	PC += 2;
 }
@@ -299,7 +314,7 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHR
 
-	if ( Legacy_8xy6_8xyE ) {
+	if ( Quirk_Shifting_Legacy_8xy6_8xyE ) {
 		V[x] = V[y] >> 1;
 	} else {
 		V[x] = V[x] >> 1;
@@ -346,7 +361,7 @@ void opc_chip8_8XYE(unsigned char x, unsigned char y) {
 
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHL
 
-	if ( Legacy_8xy6_8xyE ) {
+	if ( Quirk_Shifting_Legacy_8xy6_8xyE ) {
 		V[x] = V[y] << 1;
 	} else {
 		V[x] = V[x] << 1;
@@ -416,7 +431,7 @@ void opc_chip8_BNNN() {
 	unsigned short nnn = Opcode & 0x0FFF;
 
 	// Normal Chip8 Bnnn Behavior
-	if (!Bnnn_jump_with_offset) {
+	if ( !Quirk_Jump_with_offset_Bnnn ) {
 		PC = nnn + (unsigned short)V[0];
 		if ( Debug ) {
 			sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0]);
@@ -500,7 +515,7 @@ void opc_chip8_DXYN() {
 	}
 
 	// Fix for Bowling game where the pins wrap the screen
-	if ( DXYN_bowling_wrap ) {
+	if ( Quirk_Clipping_DXYN ) {
 		if ( V[x] + (unsigned char)n > SizeX +1 ) {
 			n = (SizeX - 1) - (unsigned short)V[x];
 		}
@@ -721,7 +736,7 @@ void opc_chip8_FX1E(unsigned char x) {
 	}
 
 	// *** Implement the undocumented feature used by Spacefight 2091
-	if ( FX1E_spacefight2091 ) {
+	if ( Quirk_Spacefight2091_FX1E ) {
 		if ( I + (unsigned short)V[x] > 0xFFF ) { //4095 - Buffer overflow
 			V[0xF] = 1;
 			I = ( I + (unsigned short)V[x] ) - 4095;
@@ -786,7 +801,7 @@ void opc_chip8_FX55(unsigned char x) {
 	PC += 2;
 
 	// If needed, run the original Chip-8 opcode (not used in recent games)
-	if ( Legacy_Fx55_Fx65 ) {
+	if ( Quirk_Memory_Legacy_Fx55_Fx65 ) {
 		I = I + x + 1;
 	}
 
@@ -818,7 +833,7 @@ void opc_chip8_FX65(unsigned char x) {
 	PC += 2;
 
 	// If needed, run the original Chip-8 opcode (not used in recent games)
-	if ( Legacy_Fx55_Fx65 ) {
+	if ( Quirk_Memory_Legacy_Fx55_Fx65 ) {
 		I = I + x + 1;
 	}
 

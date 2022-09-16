@@ -8,7 +8,7 @@ void Handle_legacy_opcodes(char *game_signature) {
 	// Enable Fx55 and Fx65 legacy mode
 	// Game "Animal Race [Brian Astle]"
 	if ( !strcmp(game_signature, "6D0A6E02680E690BA5B5+103327") ) {
-		Legacy_Fx55_Fx65 = true;
+		Quirk_Memory_Legacy_Fx55_Fx65 = true;
 		printf("Legacy mode Fx55/Fx65 enabled.\n");
 	}
 
@@ -21,35 +21,35 @@ void Handle_legacy_opcodes(char *game_signature) {
 	// Enable undocumented FX1E feature needed by Spacefight 2091!
 	// Game "Spacefight 2091 [Carsten Soerensen, 1992].ch8"
 	if ( !strcmp(game_signature, "12245370616365466967+250532") ) {
-		FX1E_spacefight2091 = true;
+		Quirk_Spacefight2091_FX1E = true;
 		printf("FX1E undocumented feature enabled.\n");
 	}
 
 	// Enable undocumented FX1E feature needed by sctest_12
 	// SCHIP Test Program "sctest_12 (SC Test.ch8)"
 	if ( !strcmp(game_signature, "12122054726F6E697820+49853") ) {
-		FX1E_spacefight2091 = true;
+		Quirk_Spacefight2091_FX1E = true;
 		printf("FX1E undocumented feature enabled.\n");
 	}
 
 	// Enable Pixel Wrap Fix for Bowling game
 	// Game: "Bowling [Gooitzen van der Wal]"
 	if ( !strcmp(game_signature, "63146400255E600525B4+110648") ) {
-		DXYN_bowling_wrap = true;
+		Quirk_Clipping_DXYN = true;
 		printf("DXYN pixel wrap fix enabled.\n");
 	}
 
 	// Enable Low Res 16x16 Pixel Draw in Robot.ch8 DEMO
 	// SCHIP Demo: "Robot"
 	if ( !strcmp(game_signature, "00FEA23A60006100620F+7720") ) {
-		DXY0_loresWideSpriteQuirks = true;
+		Quirk_LoResWideSprite_DXY0 = true;
 		printf("DXY0 SCHIP Low Res 16x16 Pixel fix enabled.\n");
 	}
 
 	// This game uses 64x32 screen size
 	// CHIP-8 ETI-660 Hybrid: "Pong"
 	if ( !strcmp(game_signature, "6A026B0C6C3F6D0CA6EA+25121") ) {
-		ETI660_64x32_screen = true;
+		Quirk_ETI660_64x32_screen = true;
 		printf("ETI-660 Quirk 64 x 32 resolution Enabled.\n");
 		SizeX = 64;
 		SizeY = 32;
@@ -58,9 +58,12 @@ void Handle_legacy_opcodes(char *game_signature) {
 	// Set the quirks necessary for chip8-test-suite.ch8"
 	// https://github.com/Timendus/chip8-test-suite#quirks-test
 	if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
-		Legacy_Fx55_Fx65	= false;
-		Legacy_8xy6_8xyE	= false;
-		DXYN_bowling_wrap	= false;
+		Quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+		Quirk_Memory_Legacy_Fx55_Fx65	= true;		// Memory
+		Quirk_Shifting_Legacy_8xy6_8xyE	= true;		// Shifting
+		Quirk_Clipping_DXYN				= true;		// Clipping
+		Quirk_VF_Reset_8XY1_8XY2_8XY3	= true;		// VF Reset
+		// Disp, Wait	
 	}
 
 	// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]

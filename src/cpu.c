@@ -59,15 +59,16 @@ void Initialize(){
 	// }
 
 	// Legacy Opcodes and Quirks
-	Legacy_Fx55_Fx65			= false;
-	Legacy_8xy6_8xyE			= false;
-	FX1E_spacefight2091			= false;
-	DXYN_bowling_wrap			= false;
-	Resize_Quirk_00FE_00FF		= true;
-	DXY0_loresWideSpriteQuirks	= false;
-	scrollQuirks_00CN_00FB_00FC	= false;
-	ETI660_64x32_screen			= false;
-	Bnnn_jump_with_offset		= false;
+	Quirk_Memory_Legacy_Fx55_Fx65		= false;
+	Quirk_Shifting_Legacy_8xy6_8xyE		= false;
+	Quirk_Spacefight2091_FX1E			= false;
+	Quirk_Clipping_DXYN					= false;
+	Quirk_Resize_SCHIP_00FE_00FF		= true;
+	Quirk_LoResWideSprite_DXY0			= false;
+	Quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
+	Quirk_ETI660_64x32_screen			= false;
+	Quirk_Jump_with_offset_Bnnn		= false;
+	Quirk_VF_Reset_8XY1_8XY2_8XY3	= true;
 	// Keyboard_slow_press			= false;
 
 	// SCHIP Specific Variables
@@ -87,7 +88,7 @@ void Initialize(){
 	srand(time(NULL));
 
 	// Draw
-	OriginalDrawMode = true;
+	OriginalDrawMode = false;
 
 	// Interface
 	Pause = false;
@@ -359,7 +360,7 @@ void Interpreter() {
 					if ( !SCHIP ) {
 						// Quirk to SCHIP Robot DEMO)
 						// Even in SCHIP Mode this game needs to draw 16x16 Pixels
-						if ( DXY0_loresWideSpriteQuirks ) {
+						if ( Quirk_LoResWideSprite_DXY0 ) {
 							SCHIP_LORES = false;
 						} else {
 							// If NOT in SCHIP mode will draw 16x8 sprites
