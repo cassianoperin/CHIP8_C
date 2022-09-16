@@ -63,7 +63,12 @@ void Initialize(){
 	Legacy_8xy6_8xyE			= false;
 	FX1E_spacefight2091			= false;
 	DXYN_bowling_wrap			= false;
-	DXY0_loresWideSpriteQuirks = false;
+	Resize_Quirk_00FE_00FF		= true;
+	DXY0_loresWideSpriteQuirks	= false;
+	scrollQuirks_00CN_00FB_00FC	= false;
+	ETI660_64x32_screen			= false;
+	// Keyboard_slow_press			= false;
+
 	// SCHIP Specific Variables
 	SCHIP			= false;
 	SCHIP_LORES		= false;

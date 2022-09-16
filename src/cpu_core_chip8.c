@@ -305,6 +305,7 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 		V[x] = V[x] >> 1;
 	}
 
+	// Now update the flag
 	V[0xF] = Vx_original & 0x01;
 
 	PC += 2;

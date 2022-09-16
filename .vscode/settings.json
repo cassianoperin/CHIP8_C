@@ -29,7 +29,8 @@
         "sdl.h": "c",
         "constant.h": "c",
         "lib.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "stdio.h": "c"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "C_Cpp.errorSquiggles": "Disabled"
