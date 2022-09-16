@@ -59,15 +59,15 @@ static const char SCHIPFontset[160] = {  \
 unsigned int pixels[SCREEN_WIDTH * SCREEN_HEIGHT];
 
 // Legacy Opcodes and Quirks
-// Official
 bool Legacy_Fx55_Fx65; 				// Enable original Chip-8 Fx55 and Fx65 opcodes (increases I)
 bool Legacy_8xy6_8xyE;				// Enable original Chip-8 8xy6 and 8xyE opcodes
 bool FX1E_spacefight2091;			// FX1E undocumented feature needed by Spacefight 2091!
 bool DXYN_bowling_wrap;				// DXYN sprite wrap in Bowling game
-// Other
 bool Resize_Quirk_00FE_00FF;		// Resize_Quirk_00FE_00FF - Clears the screen - Must be set to True always
 bool scrollQuirks_00CN_00FB_00FC;	// Shift only 2 lines
 bool ETI660_64x32_screen;			// Enable screen adjustment to 64x32 instead of default 64x48 ETI-660 HW
+bool Bnnn_jump_with_offset;			// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]
+									// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#bnnn-jump-with-offset
 bool DXY0_loresWideSpriteQuirks;	// DXY0_loresWideSpriteQuirks - Draws a 16x16 sprite even in low-resolution (64x32) mode, row-major
 // bool	Keyboard_slow_press;			// Used by some programs that needs a slower key press rate
 

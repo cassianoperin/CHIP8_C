@@ -5,8 +5,6 @@
 // Quirks needed by specific games
 void Handle_legacy_opcodes(char *game_signature) {
 
-	// ------------------------------ Official Qwirks ------------------------------ //
-
 	// Enable Fx55 and Fx65 legacy mode
 	// Game "Animal Race [Brian Astle]"
 	if ( !strcmp(game_signature, "6D0A6E02680E690BA5B5+103327") ) {
@@ -41,9 +39,6 @@ void Handle_legacy_opcodes(char *game_signature) {
 		printf("DXYN pixel wrap fix enabled.\n");
 	}
 
-
-	// ------------------------------- Other Qwirks -------------------------------- //
-
 	// Enable Low Res 16x16 Pixel Draw in Robot.ch8 DEMO
 	// SCHIP Demo: "Robot"
 	if ( !strcmp(game_signature, "00FEA23A60006100620F+7720") ) {
@@ -60,9 +55,24 @@ void Handle_legacy_opcodes(char *game_signature) {
 		SizeY = 32;
 	}
 
-	// // Enable slow key press
-	// // CHIP-8 Game "Addition Problems [Paul C. Moews]"
-	// if (game_signature == "ccccc") {
+	// Set the quirks necessary for chip8-test-suite.ch8"
+	// https://github.com/Timendus/chip8-test-suite#quirks-test
+	if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
+		Legacy_Fx55_Fx65	= false;
+		Legacy_8xy6_8xyE	= false;
+		DXYN_bowling_wrap	= false;
+	}
+
+	// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]
+	// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#bnnn-jump-with-offset
+	// Not used yet
+	// if ( !strcmp(game_signature, "xxx") ) {
+	// 	Bnnn_jump_with_offset	= false;
+	// }
+
+	// Set the quirks necessary for chip8-test-suite.ch8"
+	// https://github.com/Timendus/chip8-test-suite#quirks-test
+	// if (game_signature == "xxx") {
 	// 	Keyboard_slow_press = true;
 	// }
 

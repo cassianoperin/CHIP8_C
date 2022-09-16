@@ -67,6 +67,7 @@ void Initialize(){
 	DXY0_loresWideSpriteQuirks	= false;
 	scrollQuirks_00CN_00FB_00FC	= false;
 	ETI660_64x32_screen			= false;
+	Bnnn_jump_with_offset		= false;
 	// Keyboard_slow_press			= false;
 
 	// SCHIP Specific Variables

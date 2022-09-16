@@ -414,10 +414,23 @@ void opc_chip8_ANNN() {
 // The program counter is set to nnn plus the value of V0.
 void opc_chip8_BNNN() {
 	unsigned short nnn = Opcode & 0x0FFF;
-	PC = nnn + (unsigned short)V[0];
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0]);
-		printf("\t\t%s\n" , OpcMessage);
+
+	// Normal Chip8 Bnnn Behavior
+	if (!Bnnn_jump_with_offset) {
+		PC = nnn + (unsigned short)V[0];
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
+	// Bnnn_jump_with_offset quirk, sum V[x] instead of V[0]
+	} else {
+		unsigned char x  = (Opcode & 0x0F00) >> 8;
+
+		PC = nnn + (unsigned short)V[x];
+		if ( Debug ) {
+			sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[x(%d)]", nnn, V[x]);
+			printf("\t\t%s\n" , OpcMessage);
+		}
 	}
 }
 
