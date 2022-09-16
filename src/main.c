@@ -30,10 +30,9 @@ int main( int argc, char* args[] )
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
 	//
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Bowling [Gooitzen van der Wal].ch8";
-	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
-	char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
+	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	
-
 	// Initialize
 	Initialize();
 
@@ -47,6 +46,9 @@ int main( int argc, char* args[] )
 
 	// Check for Quirks
 	Handle_legacy_opcodes(game_signature);
+
+	// Load Fonts
+	LoadFonts();
 
 	//Start up SDL and create window
 	if( !display_init(&display) )

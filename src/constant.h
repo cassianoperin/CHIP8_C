@@ -74,7 +74,8 @@ bool Quirk_ETI660_64x32_screen;			// Enable screen adjustment to 64x32 instead o
 bool Quirk_Jump_with_offset_Bnnn;		// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]
 										// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#bnnn-jump-with-offset
 bool Quirk_LoResWideSprite_DXY0;		// DXY0_loresWideSpriteQuirks - Draws a 16x16 sprite even in low-resolution (64x32) mode, row-major
-bool Quirk_VF_Reset_8XY1_8XY2_8XY3;	// The AND, OR and XOR opcodes (8XY1, 8XY2 and 8XY3) reset the flags register to zero
+bool Quirk_VF_Reset_8XY1_8XY2_8XY3;		// The AND, OR and XOR opcodes (8XY1, 8XY2 and 8XY3) reset the flags register to zero
+bool Quirk_ClockProgram_Fonts;			// To avoid glitches on FFFFF display, the memory used by SCHIP fonts can't be loaded
 // bool	Keyboard_slow_press;			// Used by some programs that needs a slower key press rate
 
 // Screen Size

@@ -64,6 +64,17 @@ void Handle_legacy_opcodes(char *game_signature) {
 		Quirk_Clipping_DXYN				= true;		// Clipping
 		Quirk_VF_Reset_8XY1_8XY2_8XY3	= true;		// VF Reset
 		// Disp, Wait	
+		printf("Jumping, Memory, Shifting, Clipping and VF Reset Quirks enabled.\n");
+
+	}
+
+	// Do not load SCHIP fonts to avoid garbage after FFFFFF clock
+	// CHIP8 Program: "Clock Program [Bill Fisher, 1981].ch8""
+	if ( !strcmp(game_signature, "F10AF20AF30AF40AF50A+27721") ) {
+		Quirk_ClockProgram_Fonts = true;
+		printf("Clock Program Quirk Enabled.\n");
+	} else {
+		printf("FODEU.\n");
 	}
 
 	// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]

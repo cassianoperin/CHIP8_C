@@ -33,8 +33,6 @@ extern unsigned int Cycle;
 
 void Initialize(){
 
-	unsigned char i;
-
 	// Components
 	memset(Memory, 0x00, sizeof(Memory));	// Clean Memory
 	PC = 0x200;								// Start at 0x200 (default CHIP-8)
@@ -47,17 +45,6 @@ void Initialize(){
 	// Initialization - Clean pixels array
 	memset(pixels, PIXEL_OFF_COLOR, sizeof(pixels));
 
-
-	// Load CHIP-8 8x5 fontset (Memory address 0-79)
-	for ( i = 0; i < sizeof(Chip8Fontset); i++  ){
-		Memory[i] = Chip8Fontset[i];
-	}
-
-	// // Load SCHIP 8x10 fontset (Memory address 80-240)
-	// for ( i = 0; i < sizeof(SCHIPFontset); i++ ) {
-	// 	Memory[i+80] = SCHIPFontset[i];
-	// }
-
 	// Legacy Opcodes and Quirks
 	Quirk_Memory_Legacy_Fx55_Fx65		= false;
 	Quirk_Shifting_Legacy_8xy6_8xyE		= false;
@@ -67,9 +54,10 @@ void Initialize(){
 	Quirk_LoResWideSprite_DXY0			= false;
 	Quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
 	Quirk_ETI660_64x32_screen			= false;
-	Quirk_Jump_with_offset_Bnnn		= false;
-	Quirk_VF_Reset_8XY1_8XY2_8XY3	= true;
-	// Keyboard_slow_press			= false;
+	Quirk_Jump_with_offset_Bnnn			= false;
+	Quirk_VF_Reset_8XY1_8XY2_8XY3		= true;
+	Quirk_ClockProgram_Fonts			= false;
+	// Keyboard_slow_press				= false;
 
 	// SCHIP Specific Variables
 	SCHIP			= false;
@@ -92,6 +80,24 @@ void Initialize(){
 
 	// Interface
 	Pause = false;
+}
+
+void LoadFonts(){
+
+	unsigned char i;
+
+	// Load CHIP-8 8x5 fontset (Memory address 0-79)
+	for ( i = 0; i < sizeof(Chip8Fontset); i++  ){
+		Memory[i] = Chip8Fontset[i];
+	}
+
+	if ( !Quirk_ClockProgram_Fonts ) {
+		// Load SCHIP 8x10 fontset (Memory address 80-240)
+		for ( i = 0; i < sizeof(SCHIPFontset); i++ ) {
+			Memory[i+80] = SCHIPFontset[i];
+		}
+	}
+
 }
 
 // Debug

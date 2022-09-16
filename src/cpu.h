@@ -41,5 +41,6 @@ extern bool Pause;
 
 // Function declaration
 void Initialize();
+void LoadFonts();
 void Show();
 void Interpreter();
