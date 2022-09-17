@@ -50,10 +50,10 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
     https://johnearnest.github.io/chip8Archive/
 
 
-3: Print message debug just in the end of cycle?
+3. Print message debug just in the end of cycle?
     printf("\t\t%s\n" , OpcMessage);
 
-4 Quirks
+4. Quirks
 https://github.com/Timendus/chip8-test-suite
     Missing implementation of display wait:
     Display wait - Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second (more information here)

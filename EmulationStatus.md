@@ -5,10 +5,10 @@
 | :------------ |:----------------:| :-----|
 | 15 Puzzle [Roger Ivie] | ![0%](https://progress-bar.dev/0) | |
 | 15 Puzzle [Roger Ivie] (alt) | ![0%](https://progress-bar.dev/0) | |
-| Acey Deucy | ![0%](https://progress-bar.dev/90) | Small Graphical Glitches |
+| Acey Deucy | ![0%](https://progress-bar.dev/0) | Small Graphical Glitches |
 | Addition Problems [Paul C. Moews] | ![0%](https://progress-bar.dev/0) | |
 | Airplane | ![0%](https://progress-bar.dev/0) | |
-| Animal Race [Brian Astle] | ![0%](https://progress-bar.dev/90)| Small Graphical Glitch after first race |
+| Animal Race [Brian Astle] | ![0%](https://progress-bar.dev/0)| Small Graphical Glitch after first race |
 | Astro Dodge [Revival Studios, 2008] | ![0%](https://progress-bar.dev/0) | |
 | Biorhythm [Jef Winsor] | ![0%](https://progress-bar.dev/0) | |
 | Blinky [Hans Christian Egeberg, 1991] | ![0%](https://progress-bar.dev/0) | |
@@ -65,7 +65,7 @@
 | Shooting Stars [Philip Baltzer, 1978] | ![0%](https://progress-bar.dev/0) | |
 | Slide [Joyce Weisbecker] | ![0%](https://progress-bar.dev/0) | |
 | Soccer | ![0%](https://progress-bar.dev/0) | |
-| Space Explorer [TCNJ S.572.2, 3] | ![0%](https://progress-bar.dev/90) | Small Graphical Glitches |
+| Space Explorer [TCNJ S.572.2, 3] | ![0%](https://progress-bar.dev/0) | Small Graphical Glitches |
 | Space Flight | ![0%](https://progress-bar.dev/0) | |
 | Space Intercept [Joseph Weisbecker, 1978] | ![0%](https://progress-bar.dev/0) | |
 | Space Intercept [TCNJ S.572.2, 37] | ![0%](https://progress-bar.dev/0) | |
