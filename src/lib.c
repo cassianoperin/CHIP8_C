@@ -4,6 +4,7 @@
 #include "lib.h"
 #include "cpu.h"
 #include "constant.h"
+#include "variables.h"
 
 // ---------------------------- Tickers ---------------------------- //
 

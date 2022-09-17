@@ -4,6 +4,7 @@
 #include "cpu.h"
 #include "input.h"
 #include "qwirks.h"
+#include "variables.h"
 
 
 // Global Variables
@@ -23,16 +24,17 @@ int main( int argc, char* args[] )
 	unsigned int lastTime_fps = 0;
 	unsigned int lastTime_cpu = 0;
 	unsigned int currentTime = 0;
-	char *game_signature = "";
 	struct display display;
 	// char* filename = args[1];
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
 	//
-	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Bowling [Gooitzen van der Wal].ch8";
-	char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
+	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	
+	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+
 	// Initialize
 	Initialize();
 

@@ -3,6 +3,7 @@
 #include <string.h>
 #include "cpu.h"
 #include "constant.h"
+#include "variables.h"
 
 extern bool drawFlag;
 extern bool drawFlagCounter;
@@ -616,7 +617,8 @@ void opc_chip8_EX9E(unsigned char x) {
 	// If Key number is bigger than 16, fix it (Ex.: Breakfree game)
 	if ( V[x] >= sizeof(Key) ) {
 		V[x] = V[x] - 16;
-		printf("\n%d\n",x);
+		printf("\nPranned exit to test games that try to use values > 15 for keys in EX9E.\nValue: %d\n\n",x);
+		exit(2);
 	}
 
 	if ( Key[V[x]] == 1 ) {

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "constant.h"
+#include "variables.h"
 
 // Quirks needed by specific games
 void Handle_legacy_opcodes(char *game_signature) {

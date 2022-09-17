@@ -87,6 +87,10 @@ void keyboard() {
 					Pause = !Pause;
 					break;
 
+				case SDLK_0:
+					cpu_reset();
+					break;
+
 				case SDLK_ESCAPE:
 					quit = true;
 					break;

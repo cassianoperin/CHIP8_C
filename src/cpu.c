@@ -3,8 +3,12 @@
 #include <string.h>
 #include <time.h>
 #include "constant.h"
+#include "variables.h"
 #include "cpu.h"
+#include "lib.h"
 #include "cpu_core_chip8.h"
+#include "qwirks.h"
+
 
 // Global Variables
 unsigned char	Memory[4096];		// Memory
@@ -30,6 +34,26 @@ bool Pause;
 
 // Import External Variables
 extern unsigned int Cycle;
+
+void cpu_reset(){
+
+	// Initialize
+	Initialize();
+
+	// Load ROM into Memory
+	load_rom(filename,  Memory, sizeof(Memory));
+	printf("Loaded game: %s\n", filename);
+
+	// Get Game signature for Qwirks
+	get_game_signature(filename, &game_signature);
+	printf("Signature:   %s\n", game_signature);
+
+	// Check for Quirks
+	Handle_legacy_opcodes(game_signature);
+
+	// Load Fonts
+	LoadFonts();
+}
 
 void Initialize(){
 

@@ -44,3 +44,4 @@ void Initialize();
 void LoadFonts();
 void Show();
 void Interpreter();
+void cpu_reset();
