@@ -1,8 +1,11 @@
 #include <SDL2/SDL.h>
 #include "cpu.h"
 
-// Import External Variables
+// --------------------------------- External Variables --------------------------------- //
 extern unsigned int quit;
+
+
+// -------------------------------------- Functions ------------------------------------- //
 
 void keyboard() {
 

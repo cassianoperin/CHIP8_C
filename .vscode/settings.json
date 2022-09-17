@@ -33,7 +33,9 @@
         "stdio.h": "c",
         "variables.h": "c",
         "qwirks.h": "c",
-        "fonts.h": "c"
+        "fonts.h": "c",
+        "time.h": "c",
+        "cpu_core_chip8.h": "c"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "C_Cpp.errorSquiggles": "Disabled"

@@ -3,7 +3,13 @@
 #include <string.h>
 #include "lib.h"
 #include "cpu.h"
-#include "variables.h"
+
+// --------------------------------- External Variables --------------------------------- //
+extern unsigned char FPS;
+
+// ---------------------------------- Global Variables ---------------------------------- //
+char *game_signature;		// Game signature
+
 
 // ---------------------------- Tickers ---------------------------- //
 

@@ -2,15 +2,43 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "variables.h"
-#include "fonts.h"
 #include "cpu.h"
-#include "lib.h"
 #include "cpu_core_chip8.h"
+#include "fonts.h"
+#include "lib.h"
 #include "qwirks.h"
 
+// --------------------------------- External Variables --------------------------------- //
+// Display
+extern unsigned char SCREEN_WIDTH;
+extern unsigned char SCREEN_HEIGHT;
+extern unsigned int  PIXEL_ON_COLOR;
+extern unsigned int  PIXEL_OFF_COLOR;
+extern unsigned int pixels[2048];
+// Legacy Opcodes and Quirks
+extern bool Quirk_Memory_Legacy_Fx55_Fx65;
+extern bool Quirk_Shifting_Legacy_8xy6_8xyE;
+extern bool Quirk_Spacefight2091_FX1E;
+extern bool Quirk_Clipping_DXYN;
+extern bool Quirk_Resize_SCHIP_00FE_00FF;
+extern bool Quirk_Scroll_SCHIP_00CN_00FB_00FC;
+extern bool Quirk_ETI660_64x32_screen;
+extern bool Quirk_Jump_with_offset_Bnnn;
+extern bool Quirk_LoResWideSprite_DXY0;
+extern bool Quirk_VF_Reset_8XY1_8XY2_8XY3;
+extern bool Quirk_ClockProgram_Fonts;
+// Screen Size
+extern unsigned char SizeX;
+extern unsigned char SizeY;
+extern unsigned char FPS;
+// Cycles
+extern unsigned int Cycle;
+// Game Signature
+extern char *game_signature;
+// File name
+extern char* filename;
 
-// Global Variables
+// ---------------------------------- Global Variables ---------------------------------- //
 unsigned char	Memory[4096];		// Memory
 unsigned short	PC;          	  	// Program Counter
 unsigned short	Opcode;           	// CPU Operation Code
@@ -32,8 +60,8 @@ unsigned char Key[16];
 // Interface
 bool Pause;
 
-// Import External Variables
-extern unsigned int Cycle;
+
+// -------------------------------------- Functions ------------------------------------- //
 
 void cpu_reset(){
 

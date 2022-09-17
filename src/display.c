@@ -1,6 +1,22 @@
 #include <SDL2/SDL.h>
 #include "display.h"
-#include "variables.h"
+
+// ---------------------------------- Global Variables ---------------------------------- //
+// Display
+unsigned char SCREEN_WIDTH   	= 64;
+unsigned char SCREEN_HEIGHT		= 32;
+unsigned char SCALE				= 10;
+unsigned int  PIXEL_ON_COLOR	= 0xFFFFFFFF;
+unsigned int  PIXEL_OFF_COLOR	= 0xFF000000;
+// unsigned int pixels[SCREEN_WIDTH * SCREEN_HEIGHT];
+unsigned int pixels[2048];
+// Screen Size
+unsigned char SizeX;		// Number of Columns in Graphics
+unsigned char SizeY;		// Number of Lines in Graphics
+unsigned char FPS;			// Frames per second
+
+
+// -------------------------------------- Functions ------------------------------------- //
 
 bool display_init(struct display* display)
 {

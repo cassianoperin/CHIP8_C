@@ -2,12 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cpu.h"
-#include "variables.h"
-
-extern bool drawFlag;
-extern bool drawFlagCounter;
-extern bool SCHIP;
-extern bool SCHIP_LORES;
+#include "cpu_core_chip8.h"
 
 // ---------------------------- CHIP-8 0xxx instruction set ---------------------------- //
 

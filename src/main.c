@@ -4,14 +4,18 @@
 #include "cpu.h"
 #include "input.h"
 #include "qwirks.h"
-#include "variables.h"
+
+// --------------------------------- External Variables --------------------------------- //
+extern char *game_signature;
 
 
-// Global Variables
+// ---------------------------------- Global Variables ---------------------------------- //
 unsigned int Cycle = 0;		// Main loop cycles
-bool quit = false;			//Main loop flag
+bool quit = false;			// Main loop flag
+char* filename;				// game path and file name
 
-// -------------------------------- main -------------------------------- //
+
+// ------------------------------------ Main Program ------------------------------------ //
 
 int main( int argc, char* args[] )
 {
