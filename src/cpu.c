@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "constant.h"
 #include "variables.h"
+#include "fonts.h"
 #include "cpu.h"
 #include "lib.h"
 #include "cpu_core_chip8.h"

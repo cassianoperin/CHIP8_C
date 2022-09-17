@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cpu.h"
-#include "constant.h"
 #include "variables.h"
 
 extern bool drawFlag;

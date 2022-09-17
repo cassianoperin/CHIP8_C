@@ -1,11 +1,16 @@
 #pragma once
-#include "constant.h"
 
 // Boolean Type for Vanilla C
 typedef int bool;
 #define true 1
 #define false 0
 
+// Display
+static const char SCREEN_WIDTH    = 64;
+static const char SCREEN_HEIGHT   = 32;
+static const char SCALE           = 10;
+static const int  PIXEL_ON_COLOR   = 0xFFFFFFFF;
+static const int  PIXEL_OFF_COLOR  = 0xFF000000;
 unsigned int pixels[SCREEN_WIDTH * SCREEN_HEIGHT];
 
 // Legacy Opcodes and Quirks

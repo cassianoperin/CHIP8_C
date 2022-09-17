@@ -28,7 +28,7 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 * ![100%](https://progress-bar.dev/100) Reset emulation
 * ![0%](https://progress-bar.dev/0) Command Line Arguments
 * ![0%](https://progress-bar.dev/0) Step Forward CPU Cycles for Debug
-* ![0%](https://progress-bar.dev/0) Step Back (Rewind) CPU Cycles for Debug (Need to be activated on command line with -Rewind)
+* ![0%](https://progress-bar.dev/0) Step Back (Rewind) CPU Cycles for Debug
 * ![0%](https://progress-bar.dev/0) Increase and Decrease CPU Clock Speed
 * ![0%](https://progress-bar.dev/0) Color Themes
 * ![0%](https://progress-bar.dev/0) Save States

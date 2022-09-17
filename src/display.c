@@ -1,6 +1,5 @@
 #include <SDL2/SDL.h>
 #include "display.h"
-#include "constant.h"
 #include "variables.h"
 
 bool display_init(struct display* display)

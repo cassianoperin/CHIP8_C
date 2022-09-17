@@ -1,19 +1,5 @@
 #pragma once
 
-// --------------------------------- Constants --------------------------------- //
-
-// Boolean Type for Vanilla C
-typedef int bool;
-#define true 1
-#define false 0
-
-// Display
-static const char SCREEN_WIDTH    = 64;
-static const char SCREEN_HEIGHT   = 32;
-static const char SCALE           = 10;
-static const int  PIXEL_ON_COLOR   = 0xFFFFFFFF;
-static const int  PIXEL_OFF_COLOR  = 0xFF000000;
-
 static const char Chip8Fontset[80] = { \
 	0xF0, 0x90, 0x90, 0x90, 0xF0,// 0
 	0x20, 0x60, 0x20, 0x20, 0x70,// 1
