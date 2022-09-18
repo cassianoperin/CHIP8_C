@@ -17,9 +17,9 @@
 void opc_chip8_00E0() {
     memset(pixels, 0x00, sizeof(pixels));
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 00E0: Clear the display");
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 00E0: Clear the display");
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -30,9 +30,9 @@ void opc_chip8_00E0() {
 void opc_chip8_00EE() {
 	PC = Stack[SP] + 2;
 	SP --;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 00EE: Return from a subroutine (PC=0x%04X)", PC);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 00EE: Return from a subroutine (PC=0x%04X)", PC);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -43,9 +43,9 @@ void opc_chip8_00EE() {
 // The interpreter sets the program counter to nnn.
 void opc_chip8_1NNN() {
 	PC = Opcode & 0x0FFF;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 1nnn: Jump to location 0x%02X", Opcode & 0x0FFF);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 1nnn: Jump to location 0x%02X", Opcode & 0x0FFF);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -58,9 +58,9 @@ void opc_chip8_2NNN(){
 	SP++;
 	Stack[SP] = PC;
 	PC = Opcode & 0x0FFF;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 2nnn: Call Subroutine at 0x%d", PC);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 2nnn: Call Subroutine at 0x%d", PC);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -78,15 +78,15 @@ void opc_chip8_3XNN() {
 
 	if ( V[x] == nn ) {
 		PC += 4;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 3xnn: V[x(%d)]:(0x%02X) = nn(0x%02X), skip one instruction", x, V[x], nn);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 3xnn: V[x(%d)]:(0x%02X) = nn(0x%02X), skip one instruction", x, V[x], nn);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	} else {
 		PC += 2;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 3xnn: V[x(%d)]:(0x%02X) != nn(0x%02X), do NOT skip one instruction", x, V[x], nn);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 3xnn: V[x(%d)]:(0x%02X) != nn(0x%02X), do NOT skip one instruction", x, V[x], nn);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	}
 }
@@ -103,14 +103,14 @@ void opc_chip8_4XNN() {
 	nn = Opcode & 0x00FF;
 	if ( V[x] != nn ) {
 		PC += 4;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 4xnn: V[x(%d)]: 0x%02X != nn(0x%02X), skip one instruction", x, V[x], nn);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 4xnn: V[x(%d)]: 0x%02X != nn(0x%02X), skip one instruction", x, V[x], nn);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	} else {
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 4xnn: V[x(%d)]: 0x%02X = nn(0x%02X), DO NOT skip one instruction", x, V[x], nn);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 4xnn: V[x(%d)]: 0x%02X = nn(0x%02X), DO NOT skip one instruction", x, V[x], nn);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 		PC += 2;
 	}
@@ -129,15 +129,15 @@ void opc_chip8_5XY0() {
 
 	if ( V[x] == V[y] ){
 		PC += 4;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 5xy0: V[x(%d)]:%d EQUAL V[y(%d)]:%d, SKIP one instruction", x, V[x], y, V[y]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 5xy0: V[x(%d)]:%d EQUAL V[y(%d)]:%d, SKIP one instruction", x, V[x], y, V[y]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	} else {
 		PC += 2;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 5xy0: V[x(%d)]:%d NOT EQUAL V[y(%d)]:%d, DO NOT SKIP one instruction", x, V[x], y, V[y]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 5xy0: V[x(%d)]:%d NOT EQUAL V[y(%d)]:%d, DO NOT SKIP one instruction", x, V[x], y, V[y]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	}
 }
@@ -155,9 +155,9 @@ void opc_chip8_6XNN() {
 
 	V[x] = nn;
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 6xnn: Set V[x(%d)] = 0x%02X", x, nn);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 6xnn: Set V[x(%d)] = 0x%02X", x, nn);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -176,9 +176,9 @@ void opc_chip8_7XNN() {
 	V[x] += nn;
 
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 7xnn: Add the value nn(%d) to V[x(%d)]", nn, x);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 7xnn: Add the value nn(%d) to V[x(%d)]", nn, x);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -190,9 +190,9 @@ void opc_chip8_7XNN() {
 void opc_chip8_8XY0(unsigned char x, unsigned char y) {
 	V[x] = V[y];
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy0: Set V[x(%d)] to the value of V[y(%d)] = 0x%02X", x, y, V[y]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy0: Set V[x(%d)] to the value of V[y(%d)] = 0x%02X", x, y, V[y]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -203,13 +203,13 @@ void opc_chip8_8XY1(unsigned char x, unsigned char y) {
 	V[x] |= V[y];
 	PC += 2;
 
-	if ( Quirk_VF_Reset_8XY1_8XY2_8XY3 ) {
+	if ( quirk_VF_Reset_8xy1_8xy2_8xy3 ) {
 		V[0xF] = 0;
 	}
 
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy1: Set V[x(%d)]:%d OR V[y(%d)]:%d", x, V[x], y, V[y]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy1: Set V[x(%d)]:%d OR V[y(%d)]:%d", x, V[x], y, V[y]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -220,13 +220,13 @@ void opc_chip8_8XY2(unsigned char x, unsigned char y) {
 	V[x] &= V[y];
 	PC += 2;
 
-	if ( Quirk_VF_Reset_8XY1_8XY2_8XY3 ) {
+	if ( quirk_VF_Reset_8xy1_8xy2_8xy3 ) {
 		V[0xF] = 0;
 	}
 
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy2: Set V[x(%d)] to the result of V[x(%d)]:(0x%02x) AND V[y(%d)]:(0x%02X) = 0x%02X", x, x, V[x], y, V[y], V[x] &= V[y]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy2: Set V[x(%d)] to the result of V[x(%d)]:(0x%02x) AND V[y(%d)]:(0x%02X) = 0x%02X", x, x, V[x], y, V[y], V[x] &= V[y]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -235,12 +235,12 @@ void opc_chip8_8XY2(unsigned char x, unsigned char y) {
 // Performs a bitwise exclusive OR on the values of Vx and Vy, then stores the result in Vx. An exclusive OR compares the corresponding bits from two values,
 // and if the bits are not both the same, then the corresponding bit in the result is set to 1. Otherwise, it is 0.
 void opc_chip8_8XY3(unsigned char x, unsigned char y) {
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy3: Set V[x(%d)]:%d XOR V[y(%d)]:%d", x, V[x], y, V[y]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy3: Set V[x(%d)]:%d XOR V[y(%d)]:%d", x, V[x], y, V[y]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 
-	if ( Quirk_VF_Reset_8XY1_8XY2_8XY3 ) {
+	if ( quirk_VF_Reset_8xy1_8xy2_8xy3 ) {
 		V[0xF] = 0;
 	}
 	
@@ -259,9 +259,9 @@ void opc_chip8_8XY4(unsigned char x, unsigned char y) {
 	unsigned char sum = V[x] + V[y];	// Need in case of overflows (keep number between 0-255)
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the ADD
 
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy4: Set V[x(%d)] = V[x(%d)]: 0x%02X + V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy4: Set V[x(%d)] = V[x(%d)]: 0x%02X + V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 	// Old implementation, sum values, READ THE DOCS IN CASE OF PROBLEMS
 	V[x] += V[y];
@@ -283,9 +283,9 @@ void opc_chip8_8XY5(unsigned char x, unsigned char y) {
 
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the ADD
 
-    if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy5: Set V[x(%d)] = V[x(%d)]: 0x%02X - V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
-		printf("\t\t%s\n" , OpcMessage);
+    if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy5: Set V[x(%d)] = V[x(%d)]: 0x%02X - V[y(%d)]: 0x%02X", x, x, V[x], y, V[y]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 
 	V[x] -= V[y];
@@ -309,7 +309,7 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHR
 
-	if ( Quirk_Shifting_Legacy_8xy6_8xyE ) {
+	if ( quirk_Shifting_legacy_8xy6_8xyE ) {
 		V[x] = V[y] >> 1;
 	} else {
 		V[x] = V[x] >> 1;
@@ -320,9 +320,9 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 
 	PC += 2;
 
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy6: Set V[x(%d)] SHIFT RIGHT 1 = 0x%02X", x, V[x]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy6: Set V[x(%d)] SHIFT RIGHT 1 = 0x%02X", x, V[x]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -332,9 +332,9 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 // *** Update the flag AFTER the SUBN with the V[x] RESULT and not original
 void opc_chip8_8XY7(unsigned char x, unsigned char y) {
 
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xy7: Set V[x(%d)]:%d = V[y(%d)]:%d - V[x(%d)]:%d\t\t = %d", x, V[x], y, V[y], x, V[x], V[y] - V[x]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xy7: Set V[x(%d)]:%d = V[y(%d)]:%d - V[x(%d)]:%d\t\t = %d", x, V[x], y, V[y], x, V[x], V[y] - V[x]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 	V[x] = V[y] - V[x];
 
@@ -356,7 +356,7 @@ void opc_chip8_8XYE(unsigned char x, unsigned char y) {
 
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHL
 
-	if ( Quirk_Shifting_Legacy_8xy6_8xyE ) {
+	if ( quirk_Shifting_legacy_8xy6_8xyE ) {
 		V[x] = V[y] << 1;
 	} else {
 		V[x] = V[x] << 1;
@@ -367,9 +367,9 @@ void opc_chip8_8XYE(unsigned char x, unsigned char y) {
 
 	PC += 2;
 	
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 8xyE: Set V[x(%d)] SHIFT LEFT 1 =  0x%02X ", x, V[x]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 8xyE: Set V[x(%d)] SHIFT LEFT 1 =  0x%02X ", x, V[x]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -386,15 +386,15 @@ void opc_chip8_9XY0() {
 
 	if ( V[x] != V[y] ) {
 		PC += 4;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 9xy0: V[x(%d)]:%02X != V[y(%d)]: 0x%02X, SKIP one instruction", x, V[x], y, V[y]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 9xy0: V[x(%d)]:%02X != V[y(%d)]: 0x%02X, SKIP one instruction", x, V[x], y, V[y]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	} else {
 		PC += 2;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 9xy0: V[x(%d)]:%02X = V[y(%d)]: 0x%02X, DO NOT SKIP one instruction", x, V[x], y, V[y]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 9xy0: V[x(%d)]:%02X = V[y(%d)]: 0x%02X, DO NOT SKIP one instruction", x, V[x], y, V[y]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	}
 }
@@ -409,9 +409,9 @@ void opc_chip8_9XY0() {
 void opc_chip8_ANNN() {
 	I = Opcode & 0x0FFF;
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Annn: Set I = 0x%04X", I);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Annn: Set I = 0x%04X", I);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -426,20 +426,20 @@ void opc_chip8_BNNN() {
 	unsigned short nnn = Opcode & 0x0FFF;
 
 	// Normal Chip8 Bnnn Behavior
-	if ( !Quirk_Jump_with_offset_Bnnn ) {
+	if ( !quirk_Jump_with_offset_Bnnn ) {
 		PC = nnn + (unsigned short)V[0];
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[0(%d)]", nnn, V[0]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	// Bnnn_jump_with_offset quirk, sum V[x] instead of V[0]
 	} else {
 		unsigned char x  = (Opcode & 0x0F00) >> 8;
 
 		PC = nnn + (unsigned short)V[x];
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[x(%d)]", nnn, V[x]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 Bnnn: Jump to location nnn(%d) + V[x(%d)]", nnn, V[x]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	}
 }
@@ -458,9 +458,9 @@ void opc_chip8_CXNN() {
 	V[x] = (rand() % 255) & nn;
 
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Cxnn: V[x(%d)] = %d (random byte AND nn(%d)) = %d", x, V[x], nn, V[x]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Cxnn: V[x(%d)] = %d (random byte AND nn(%d)) = %d", x, V[x], nn, V[x]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -481,9 +481,9 @@ void opc_chip8_DXYN() {
     gpx_position = 0;
     sprite = 0;
 
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 
 	// Clean the colision flag
@@ -493,7 +493,7 @@ void opc_chip8_DXYN() {
 	if ( V[y] >= SizeY ) {
         if (SizeY != 0) {
             V[y] = V[y] % SizeY;
-            if ( Debug ) {
+            if ( cpu_debug_mode ) {
                 printf("\t\tV[y] >= %d, modulus applied", SizeY);
             }
         }
@@ -503,14 +503,14 @@ void opc_chip8_DXYN() {
 	if ( V[x] >= SizeX ) {
         if (SizeX != 0) {
             V[x] = V[x] % SizeX;
-            if ( Debug ) {
+            if ( cpu_debug_mode ) {
                 printf("\t\tV[x] >= %d, modulus applied", SizeX);
             }
         }
 	}
 
 	// Fix for Bowling game where the pins wrap the screen
-	if ( Quirk_Clipping_DXYN ) {
+	if ( quirk_Clipping_Dxyn ) {
 		if ( V[x] + (unsigned char)n > SizeX +1 ) {
 			n = (SizeX - 1) - (unsigned short)V[x];
 		}
@@ -538,7 +538,7 @@ void opc_chip8_DXYN() {
 
 			// If tryes to draw bits outside the vector size, ignore
 			if ( gfx_index >= SizeX * SizeY ) {
-				if ( Debug ) {
+				if ( cpu_debug_mode ) {
 					printf("\n\n\nGraphics: Bigger than 2048 or 8192\n\n\n\n");
 				}
 				continue;
@@ -578,8 +578,8 @@ void opc_chip8_DXYN() {
 
 
 	PC += 2;
-	drawFlag = true;
-	drawFlagCounter ++;
+	cpu_draw_flag = true;
+	cpu_draw_counter ++;
 
 //   cpu->v[CARRY_REGISTER] = 0;
 //   for (int y = 0; y < n; y++) {
@@ -617,15 +617,15 @@ void opc_chip8_EX9E(unsigned char x) {
 
 	if ( Key[V[x]] == 1 ) {
 		PC += 4;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 Ex9E: Key[%d] pressed, skip one instruction", V[x]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 Ex9E: Key[%d] pressed, skip one instruction", V[x]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	} else {
 		PC += 2;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 Ex9E: Key[%d] NOT pressed, continue", V[x]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 Ex9E: Key[%d] NOT pressed, continue", V[x]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	}
 }
@@ -636,16 +636,16 @@ void opc_chip8_EX9E(unsigned char x) {
 void opc_chip8_EXA1(unsigned char x) {
 	if ( Key[V[x]] == 0 ) {
 		PC += 4;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 ExA1: Key[%d] NOT pressed, skip one instruction", V[x]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 ExA1: Key[%d] NOT pressed, skip one instruction", V[x]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	} else {
 		// Key[V[x]] = 0;
 		PC += 2;
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 ExA1: Key[%d] pressed, continue\n", V[x]);
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 ExA1: Key[%d] pressed, continue\n", V[x]);
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	}
 }
@@ -660,9 +660,9 @@ void opc_chip8_EXA1(unsigned char x) {
 void opc_chip8_FX07(unsigned char x) {
 	V[x] = DelayTimer;
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Fx07: Set V[x(%d)] with value of DelayTimer(%02X)", x, DelayTimer);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Fx07: Set V[x(%d)] with value of DelayTimer(%02X)", x, DelayTimer);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -678,18 +678,18 @@ void opc_chip8_FX0A(unsigned char x) {
 			V[x] = (unsigned char)i;
 			pressed = true;
 			PC +=2;
-			if ( Debug ) {
-				sprintf(OpcMessage, "CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED)", i);
-				printf("\t\t%s\n" , OpcMessage);
+			if ( cpu_debug_mode ) {
+				sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED)", i);
+				printf("\t\t%s\n" , cpu_debug_message);
 			}
 			// Stop after find the first key pressed
 			break;
 		}
 	}
 	if ( !pressed ) {
-		if ( Debug ) {
-			sprintf(OpcMessage, "CHIP-8 Fx0A: Wait for a key press = (NOT PRESSED)");
-			printf("\t\t%s\n" , OpcMessage);
+		if ( cpu_debug_mode ) {
+			sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key press = (NOT PRESSED)");
+			printf("\t\t%s\n" , cpu_debug_message);
 		}
 	}
 }
@@ -700,9 +700,9 @@ void opc_chip8_FX0A(unsigned char x) {
 void opc_chip8_FX15(unsigned char x) {
 	DelayTimer = V[x];
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Fx15: Set delay timer = V[x(%d)]: 0x%02X", x, V[x]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Fx15: Set delay timer = V[x(%d)]: 0x%02X", x, V[x]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -712,9 +712,9 @@ void opc_chip8_FX15(unsigned char x) {
 void opc_chip8_FX18(unsigned char x) {
 	SoundTimer = V[x];
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Fx18: Set sound timer = V[x(%d)]:%d",x, V[x]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Fx18: Set sound timer = V[x(%d)]:%d",x, V[x]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -726,13 +726,13 @@ void opc_chip8_FX18(unsigned char x) {
 // VF must be set to 1, otherwise 0. As a result, register VF not set to 1.
 // This undocumented feature of the Chip-8 and used by Spacefight 2091!
 void opc_chip8_FX1E(unsigned char x) {
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Fx1E: Add the value of V[x(%d)]: 0x%02X to I: (0x%04X)",x, V[x], I);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Fx1E: Add the value of V[x(%d)]: 0x%02X to I: (0x%04X)",x, V[x], I);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 
 	// *** Implement the undocumented feature used by Spacefight 2091
-	if ( Quirk_Spacefight2091_FX1E ) {
+	if ( quirk_Spacefight2091_Fx1E ) {
 		if ( I + (unsigned short)V[x] > 0xFFF ) { //4095 - Buffer overflow
 			V[0xF] = 1;
 			I = ( I + (unsigned short)V[x] ) - 4095;
@@ -755,9 +755,9 @@ void opc_chip8_FX29(unsigned char x) {
 	// Load CHIP-8 font. Start from Memory[0]   
 	I = (unsigned short)V[x] * 5;
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Fx29: Set I(%X) = location of sprite for digit V[x(%d)]:%d (*5)", I, x, V[x]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Fx29: Set I(%X) = location of sprite for digit V[x(%d)]:%d (*5)", I, x, V[x]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -777,9 +777,9 @@ void opc_chip8_FX33(unsigned char x) {
 	Memory[I+1] = (V[x] / 10)  % 10;
 	Memory[I+2] = (V[x] % 100) % 10;
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Fx33: Store BCD of V[x(%d)]:%d in memory locations I(%X):%d, I+1(%X):%d, and I+2(%X):%d", x, V[x], I, Memory[I], I+1, Memory[I+1], I+2, Memory[I+2]);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Fx33: Store BCD of V[x(%d)]:%d in memory locations I(%X):%d, I+1(%X):%d, and I+2(%X):%d", x, V[x], I, Memory[I], I+1, Memory[I+1], I+2, Memory[I+2]);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 
@@ -797,13 +797,13 @@ void opc_chip8_FX55(unsigned char x) {
 	PC += 2;
 
 	// If needed, run the original Chip-8 opcode (not used in recent games)
-	if ( Quirk_Memory_Legacy_Fx55_Fx65 ) {
+	if ( quirk_Memory_legacy_Fx55_Fx65 ) {
 		I = I + x + 1;
 	}
 
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 Fx55: Put registers V[0] through V[x(0x%02X)] in memory starting at location I(0x%04X)",x, I);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 Fx55: Put registers V[0] through V[x(0x%02X)] in memory starting at location I(0x%04X)",x, I);
+		printf("\t\t%s\n" , cpu_debug_message);
 
         for ( i = 0 ; i <= x ; i ++ ) {
 			printf("\t\t Memory[%04X] = 0x%02X\n", I+i, Memory[I+i]);
@@ -829,14 +829,14 @@ void opc_chip8_FX65(unsigned char x) {
 	PC += 2;
 
 	// If needed, run the original Chip-8 opcode (not used in recent games)
-	if ( Quirk_Memory_Legacy_Fx55_Fx65 ) {
+	if ( quirk_Memory_legacy_Fx55_Fx65 ) {
 		I = I + x + 1;
 	}
 
-	if ( Debug)  {
+	if ( cpu_debug_mode )  {
 
-		sprintf(OpcMessage, "CHIP-8 Fx65: Set registers V[0] through V[x(%d)] from memory starting at location I(0x%04X)",x, I);
-		printf("\t\t%s\n" , OpcMessage);
+		sprintf(cpu_debug_message, "CHIP-8 Fx65: Set registers V[0] through V[x(%d)] from memory starting at location I(0x%04X)",x, I);
+		printf("\t\t%s\n" , cpu_debug_message);
 
 		for ( i = 0 ; i <= x ; i ++ ) {
 			printf("\t\t V[%02X] = 0x%02X\n", i, V[i]);
@@ -859,9 +859,9 @@ void opc_chip8_ND_02D8() {
 	V[2] = (unsigned char)I + 2;
 
 	PC += 2;
-	if ( Debug ) {
-		sprintf(OpcMessage, "CHIP-8 02DB (NON DOCUMENTED): Load from memory at address I(%d) into V[0]= %d, V[1]= %d and V[2]= %d.", I, I , I+1, I+2);
-		printf("\t\t%s\n" , OpcMessage);
+	if ( cpu_debug_mode ) {
+		sprintf(cpu_debug_message, "CHIP-8 02DB (NON DOCUMENTED): Load from memory at address I(%d) into V[0]= %d, V[1]= %d and V[2]= %d.", I, I , I+1, I+2);
+		printf("\t\t%s\n" , cpu_debug_message);
 	}
 }
 

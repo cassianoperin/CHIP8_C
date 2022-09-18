@@ -1,1 +1,7 @@
-void keyboard();
+// #pragma once
+
+// --------------------------------- External Variables --------------------------------- //
+extern bool quit;
+
+// -------------------------------------- Functions ------------------------------------- //
+void input_keyboard();

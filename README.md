@@ -58,6 +58,8 @@ https://github.com/Timendus/chip8-test-suite
     Missing implementation of display wait:
     Display wait - Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second (more information here)
 
-5. Unify book definition
+5. Unify bool definition
 
 6. Improve headers usage (function declarations, global and external variables)
+
+7. Rename variables with the name of original src file

@@ -3,32 +3,33 @@
 #include "display.h"
 #include "cpu.h"
 #include "input.h"
-#include "qwirks.h"
+#include "quirks.h"
 
 // --------------------------------- External Variables --------------------------------- //
 extern char *game_signature;
 
-
 // ---------------------------------- Global Variables ---------------------------------- //
-unsigned int Cycle = 0;		// Main loop cycles
-bool quit = false;			// Main loop flag
-char* filename;				// game path and file name
+unsigned int cycle	= 0;		// Main loop cycles
+bool quit			= false;	// Main loop flag
+char* filename;					// game path and file name
 
 
 // ------------------------------------ Main Program ------------------------------------ //
 
 int main( int argc, char* args[] )
 {
-	// Variables
-	unsigned int CycleCounter = 0;
-	unsigned int CycleCounterCPU = 0;
-	unsigned int Frame = 0;
-	unsigned int FrameCounter = 0;
-	unsigned int lastTime_second = 0;
-	unsigned int lastTime_fps = 0;
-	unsigned int lastTime_cpu = 0;
-	unsigned int currentTime = 0;
+	// Counters
+	unsigned int cycle_counter				= 0;
+	unsigned int cycle_counter_cpu			= 0;
+	unsigned int frame						= 0;
+	unsigned int frame_counter				= 0;
+	// Tickers
+	unsigned int tickers_current_time		= 0;
+	unsigned int ticker_second_last_time	= 0;
+	unsigned int ticker_fps_last_time 		= 0;
+	unsigned int ticker_cpu_last_time		= 0;
 	struct display display;
+	// File name
 	// char* filename = args[1];
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
@@ -36,11 +37,10 @@ int main( int argc, char* args[] )
 	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	
 	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 
 	// Initialize
-	Initialize();
+	cpu_initialize();
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory, sizeof(Memory));
@@ -51,10 +51,10 @@ int main( int argc, char* args[] )
 	printf("Signature:   %s\n", game_signature);
 
 	// Check for Quirks
-	Handle_legacy_opcodes(game_signature);
+	handle_legacy_opcodes(game_signature);
 
 	// Load Fonts
-	LoadFonts();
+	cpu_load_fonts();
 
 	//Start up SDL and create window
 	if( !display_init(&display) )
@@ -68,42 +68,42 @@ int main( int argc, char* args[] )
 		while( !quit )
 		{
 			// Current time
-			currentTime = SDL_GetTicks();
+			tickers_current_time = SDL_GetTicks();
 
 			// ------------------------------ Ticker CPU ------------------------------ //
 
-			if ( ticker_cpu(lastTime_cpu, currentTime) ) {
+			if ( ticker_cpu(ticker_cpu_last_time, tickers_current_time) ) {
 
-				if ( !Pause ) {
-					Interpreter();
+				if ( !cpu_pause ) {
+					cpu_interpreter();
 				}
 
 				// 
-				if ( OriginalDrawMode ) {
-					if ( drawFlag ) {
-						display_draw(&display, FrameCounter);
+				if ( cpu_original_draw_mode ) {
+					if ( cpu_draw_flag ) {
+						display_draw(&display, frame_counter);
 
 						// Increment total frame counter
-						Frame ++;
+						frame ++;
 						// Increment frame counter for FPS
-						FrameCounter++;
+						frame_counter++;
 					}
 				}
 
 				// Update timer variables
-				lastTime_cpu = currentTime;
+				ticker_cpu_last_time = tickers_current_time;
 
 				// // Reset counters
-				CycleCounterCPU ++;
+				cycle_counter_cpu ++;
 			}
 
 			// ------------------------------ Ticker FPS ------------------------------ //
 
 			// Ticker FPS (60 times per second)
-			if ( ticker_fps(lastTime_fps, currentTime) ) {
+			if ( ticker_fps(ticker_fps_last_time, tickers_current_time) ) {
 
 				// Handle Keyboard
-				keyboard();
+				input_keyboard();
 
 				// Handle Delay Timer
 				if ( DelayTimer > 0 ) {
@@ -116,42 +116,42 @@ int main( int argc, char* args[] )
 				}
 
 				// Draw screen
-				if ( !OriginalDrawMode ) {
-					display_draw(&display, FrameCounter);
+				if ( !cpu_original_draw_mode ) {
+					display_draw(&display, frame_counter);
 
 					// Increment total frame counter
-					Frame ++;
+					frame ++;
 					// Increment frame counter for FPS
-					FrameCounter++;
+					frame_counter++;
 				}
 
 				// Update timer variables
-				lastTime_fps = currentTime;
+				ticker_fps_last_time = tickers_current_time;
 			}
 
 			// ---------------------------- Ticker Second ---------------------------- //
 
-			if ( ticker_second(lastTime_second, currentTime) ) {
+			if ( ticker_second(ticker_second_last_time, tickers_current_time) ) {
 
 				// Cycles and FPS Measurement
 				char title_msg[510];
-				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", CycleCounter, FrameCounter+1, CycleCounterCPU);
+				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter+1, cycle_counter_cpu);
 				SDL_SetWindowTitle(display.window, title_msg);
 
 				// Update timer variables
-				lastTime_second = currentTime;
+				ticker_second_last_time = tickers_current_time;
 
 				// Reset counters
-				CycleCounter = 0;
-				FrameCounter = 0;
-				CycleCounterCPU = 0;
+				cycle_counter = 0;
+				frame_counter = 0;
+				cycle_counter_cpu = 0;
 			}
 
 			// Increment CPU Cycle
-			Cycle++;
+			cycle++;
 
 			// Increment Cycle per second counter
-			CycleCounter++;
+			cycle_counter++;
 		}
 	}
 

@@ -1,6 +1,7 @@
 #include <SDL2/SDL.h>
 #include "display.h"
 
+
 // ---------------------------------- Global Variables ---------------------------------- //
 // Display
 unsigned char SCREEN_WIDTH   	= 64;

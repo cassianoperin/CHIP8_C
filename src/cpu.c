@@ -6,67 +6,12 @@
 #include "cpu_core_chip8.h"
 #include "fonts.h"
 #include "lib.h"
-#include "qwirks.h"
-
-// --------------------------------- External Variables --------------------------------- //
-// Display
-extern unsigned char SCREEN_WIDTH;
-extern unsigned char SCREEN_HEIGHT;
-extern unsigned int  PIXEL_ON_COLOR;
-extern unsigned int  PIXEL_OFF_COLOR;
-extern unsigned int pixels[2048];
-// Legacy Opcodes and Quirks
-extern bool Quirk_Memory_Legacy_Fx55_Fx65;
-extern bool Quirk_Shifting_Legacy_8xy6_8xyE;
-extern bool Quirk_Spacefight2091_FX1E;
-extern bool Quirk_Clipping_DXYN;
-extern bool Quirk_Resize_SCHIP_00FE_00FF;
-extern bool Quirk_Scroll_SCHIP_00CN_00FB_00FC;
-extern bool Quirk_ETI660_64x32_screen;
-extern bool Quirk_Jump_with_offset_Bnnn;
-extern bool Quirk_LoResWideSprite_DXY0;
-extern bool Quirk_VF_Reset_8XY1_8XY2_8XY3;
-extern bool Quirk_ClockProgram_Fonts;
-// Screen Size
-extern unsigned char SizeX;
-extern unsigned char SizeY;
-extern unsigned char FPS;
-// Cycles
-extern unsigned int Cycle;
-// Game Signature
-extern char *game_signature;
-// File name
-extern char* filename;
-
-// ---------------------------------- Global Variables ---------------------------------- //
-unsigned char	Memory[4096];		// Memory
-unsigned short	PC;          	  	// Program Counter
-unsigned short	Opcode;           	// CPU Operation Code
-unsigned short	Stack[16];        	// Stack
-unsigned short	SP;               	// Stack Pointer
-unsigned char	V[16];             	// V Register
-unsigned short	I;                	// I Register
-unsigned char	DelayTimer;			// Delay Timer
-unsigned char	SoundTimer;			// Sound Timer
-bool drawFlag;						// Send the draw to screen signal
-bool OriginalDrawMode;				// Draw on flag or @60hz
-bool drawFlagCounter;				// Draw Flags counter
-bool Debug = true;					// Enable debug messages
-char OpcMessage[120];				// Debug messages
-bool SCHIP;
-bool SCHIP_LORES;
-bool SCHIP_TimerHack;
-unsigned char Key[16];
-// Interface
-bool Pause;
-
-
-// -------------------------------------- Functions ------------------------------------- //
+#include "quirks.h"
 
 void cpu_reset(){
 
 	// Initialize
-	Initialize();
+	cpu_initialize();
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory, sizeof(Memory));
@@ -77,13 +22,13 @@ void cpu_reset(){
 	printf("Signature:   %s\n", game_signature);
 
 	// Check for Quirks
-	Handle_legacy_opcodes(game_signature);
+	handle_legacy_opcodes(game_signature);
 
 	// Load Fonts
-	LoadFonts();
+	cpu_load_fonts();
 }
 
-void Initialize(){
+void cpu_initialize(){
 
 	// Components
 	memset(Memory, 0x00, sizeof(Memory));	// Clean Memory
@@ -98,23 +43,23 @@ void Initialize(){
 	memset(pixels, PIXEL_OFF_COLOR, sizeof(pixels));
 
 	// Legacy Opcodes and Quirks
-	Quirk_Memory_Legacy_Fx55_Fx65		= false;
-	Quirk_Shifting_Legacy_8xy6_8xyE		= false;
-	Quirk_Spacefight2091_FX1E			= false;
-	Quirk_Clipping_DXYN					= false;
-	Quirk_Resize_SCHIP_00FE_00FF		= true;
-	Quirk_LoResWideSprite_DXY0			= false;
-	Quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
-	Quirk_ETI660_64x32_screen			= false;
-	Quirk_Jump_with_offset_Bnnn			= false;
-	Quirk_VF_Reset_8XY1_8XY2_8XY3		= true;
-	Quirk_ClockProgram_Fonts			= false;
+	quirk_Memory_legacy_Fx55_Fx65		= false;
+	quirk_Shifting_legacy_8xy6_8xyE		= false;
+	quirk_Spacefight2091_Fx1E			= false;
+	quirk_Clipping_Dxyn					= false;
+	quirk_Resize_SCHIP_00FE_00FF		= true;
+	quirk_LoRes_Wide_Sprite_Dxy0		= false;
+	quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
+	quirk_ETI660_64x32_screen			= false;
+	quirk_Jump_with_offset_Bnnn			= false;
+	quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
+	quirk_ClockProgram_fonts			= false;
 	// Keyboard_slow_press				= false;
 
 	// SCHIP Specific Variables
-	SCHIP			= false;
-	SCHIP_LORES		= false;
-	SCHIP_TimerHack	= false;
+	cpu_SCHIP_mode			= false;
+	cpu_SCHIP_LORES_mode	= false;
+	cpu_SCHIP_timer_hack	= false;
 	// Screen Size
 	SizeX = 64;		// Number of Columns in Graphics
 	SizeY = 32;		// Number of Lines in Graphics
@@ -128,13 +73,13 @@ void Initialize(){
 	srand(time(NULL));
 
 	// Draw
-	OriginalDrawMode = false;
+	cpu_original_draw_mode = false;
 
 	// Interface
-	Pause = false;
+	cpu_pause = false;
 }
 
-void LoadFonts(){
+void cpu_load_fonts(){
 
 	unsigned char i;
 
@@ -143,7 +88,7 @@ void LoadFonts(){
 		Memory[i] = Chip8Fontset[i];
 	}
 
-	if ( !Quirk_ClockProgram_Fonts ) {
+	if ( !quirk_ClockProgram_fonts ) {
 		// Load SCHIP 8x10 fontset (Memory address 80-240)
 		for ( i = 0; i < sizeof(SCHIPFontset); i++ ) {
 			Memory[i+80] = SCHIPFontset[i];
@@ -153,29 +98,25 @@ void LoadFonts(){
 }
 
 // Debug
-void Show(){ // Missing Delay Timers and Keys
+void cpu_debug_print(){ // Missing Delay Timers and Keys
 	printf("Cycle: %d\tOpcode: %04X(%04X)\tPC: %04d(0x%04X)\tSP: %02X\tStack: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]\
-	  V: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]  I: 0x%04X  DT: 0x%02X  ST: 0x%02X\n", Cycle, Opcode, Opcode & 0xF000, PC, PC,  SP, Stack[0],
+	  V: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]  I: 0x%04X  DT: 0x%02X  ST: 0x%02X\n", cycle, Opcode, Opcode & 0xF000, PC, PC,  SP, Stack[0],
 	 Stack[1], Stack[2], Stack[3], Stack[4], Stack[5], Stack[6], Stack[7], Stack[8], Stack[9], Stack[10], Stack[11], Stack[12], Stack[13], Stack[14], Stack[15],
 	  V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7], V[8], V[9], V[10], V[11], V[12], V[13], V[14], V[15], I, DelayTimer, SoundTimer);
 }
 
 // CPU Interpreter
-void Interpreter() {
+void cpu_interpreter() {
 
 	// Reset Flag every cycle
-	drawFlag = false;
+	cpu_draw_flag = false;
 
 	// Read the Opcode from PC and PC+1 bytes
 	Opcode = (unsigned short)Memory[PC]<<8 | (unsigned short)Memory[PC+1];
 
 	// Debug
-	if ( Debug )
-		Show();
-
-
-
-
+	if ( cpu_debug_mode )
+		cpu_debug_print();
 
 	// Map Opcode Family
 	switch ( Opcode & 0xF000 )
@@ -415,14 +356,14 @@ void Interpreter() {
 				// DXY0 (SCHIP)
 				case 0x0000:
 
-					if ( !SCHIP ) {
+					if ( !cpu_SCHIP_mode ) {
 						// Quirk to SCHIP Robot DEMO)
 						// Even in SCHIP Mode this game needs to draw 16x16 Pixels
-						if ( Quirk_LoResWideSprite_DXY0 ) {
-							SCHIP_LORES = false;
+						if ( quirk_LoRes_Wide_Sprite_Dxy0 ) {
+							cpu_SCHIP_LORES_mode = false;
 						} else {
 							// If NOT in SCHIP mode will draw 16x8 sprites
-							SCHIP_LORES = true;
+							cpu_SCHIP_LORES_mode = true;
 						}
 					}
 					// If in SCHIP mode will draw 16x16 sprites

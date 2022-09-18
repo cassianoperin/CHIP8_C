@@ -1,13 +1,9 @@
 #include <SDL2/SDL.h>
 #include "cpu.h"
-
-// --------------------------------- External Variables --------------------------------- //
-extern unsigned int quit;
+#include "input.h"
 
 
-// -------------------------------------- Functions ------------------------------------- //
-
-void keyboard() {
+void input_keyboard() {
 
 	//Event handler
 	SDL_Event event;
@@ -87,7 +83,7 @@ void keyboard() {
 				// Interface
 
 				case SDLK_p:
-					Pause = !Pause;
+					cpu_pause = !cpu_pause;
 					break;
 
 				case SDLK_0:

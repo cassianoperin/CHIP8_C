@@ -7,26 +7,29 @@ extern unsigned char SCREEN_HEIGHT;
 extern unsigned int  PIXEL_ON_COLOR;
 extern unsigned int  PIXEL_OFF_COLOR;
 extern unsigned int pixels[2048];
-extern bool drawFlag;
-extern bool drawFlagCounter;
+extern bool cpu_draw_Counter;
+// Legacy Opcodes and Quirks
+extern bool quirk_Memory_legacy_Fx55_Fx65;
+extern bool quirk_Shifting_legacy_8xy6_8xyE;
+extern bool quirk_Spacefight2091_Fx1E;
+extern bool quirk_Clipping_Dxyn;
+extern bool quirk_Resize_SCHIP_00FE_00FF;
+extern bool quirk_Scroll_SCHIP_00CN_00FB_00FC;
+extern bool quirk_ETI660_64x32_screen;
+extern bool quirk_Jump_with_offset_Bnnn;
+extern bool quirk_LoRes_Wide_Sprite_Dxy0;
+extern bool quirk_VF_Reset_8xy1_8xy2_8xy3;
+extern bool quirk_ClockProgram_fonts;
 // Screen Size
 extern unsigned char SizeX;
 extern unsigned char SizeY;
-// SCHIP
-extern bool SCHIP;
-extern bool SCHIP_LORES;
-// Legacy Opcodes and Quirks
-extern bool Quirk_Memory_Legacy_Fx55_Fx65;
-extern bool Quirk_Shifting_Legacy_8xy6_8xyE;
-extern bool Quirk_Spacefight2091_FX1E;
-extern bool Quirk_Clipping_DXYN;
-extern bool Quirk_Resize_SCHIP_00FE_00FF;
-extern bool Quirk_Scroll_SCHIP_00CN_00FB_00FC;
-extern bool Quirk_ETI660_64x32_screen;
-extern bool Quirk_Jump_with_offset_Bnnn;
-extern bool Quirk_LoResWideSprite_DXY0;
-extern bool Quirk_VF_Reset_8XY1_8XY2_8XY3;
-extern bool Quirk_ClockProgram_Fonts;
+extern unsigned char FPS;
+// Cycles
+extern unsigned int cycle;
+// Game Signature
+extern char *game_signature;
+// File name
+extern char* filename;
 
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8
