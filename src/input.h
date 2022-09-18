@@ -13,8 +13,18 @@ extern unsigned int  display_pixel_ON_color_alt;
 extern unsigned int  display_pixel_OFF_color_alt;
 extern unsigned int  display_pixels[2048]; 
 extern unsigned char display_color_theme;
-//
+extern char   *lib_game_signature;
+// External Functions
 extern void display_update_theme();
+
+// ---------------------------------- Global Variables ---------------------------------- //
+bool input_remap_flag;
+unsigned char input_remap_btn_UP;
+unsigned char input_remap_btn_DOWN;
+unsigned char input_remap_btn_LEFT;
+unsigned char input_remap_btn_RIGHT;
+unsigned char input_remap_btn_SPACE;
 
 // -------------------------------------- Functions ------------------------------------- //
 void input_keyboard();
+void input_keyboard_remaps();

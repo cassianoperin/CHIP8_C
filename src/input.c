@@ -2,10 +2,7 @@
 #include "input.h"
 #include "cpu.h"
 
-
 void input_keyboard() {
-
-
 
 	//Event handler
 	SDL_Event event;
@@ -80,6 +77,38 @@ void input_keyboard() {
 
 				case SDLK_v:
 					Key[0xF] = 1;
+					break;
+				
+				// Remap Keys
+
+				case SDLK_UP:
+				if ( input_remap_flag )
+					Key[input_remap_btn_UP] = 1;
+
+				break;
+				
+				case SDLK_DOWN:
+					if ( input_remap_flag )
+						Key[input_remap_btn_DOWN] = 1;
+
+					break;		
+
+				case SDLK_LEFT:
+					if ( input_remap_flag )
+						Key[input_remap_btn_LEFT] = 1;
+					
+					break;
+
+				case SDLK_RIGHT:
+					if ( input_remap_flag )
+						Key[input_remap_btn_RIGHT] = 1;
+					
+					break;
+
+				case SDLK_SPACE:
+					if ( input_remap_flag )
+						Key[input_remap_btn_SPACE] = 1;
+					
 					break;
 
 				// Interface
@@ -248,11 +277,57 @@ void input_keyboard() {
 				case SDLK_v:
 					Key[0xF] = 0;
 					break;
+
+				// Remap Keys
+				case SDLK_UP:
+					if ( input_remap_flag )
+						Key[input_remap_btn_UP] = 0;
+					
+					break;
+				
+				case SDLK_DOWN:
+					if ( input_remap_flag )
+						Key[input_remap_btn_DOWN] = 0;
+					
+					break;		
+
+				case SDLK_LEFT:
+					if ( input_remap_flag )
+						Key[input_remap_btn_LEFT] = 0;
+					
+					break;
+
+				case SDLK_RIGHT:
+					if ( input_remap_flag )
+						Key[input_remap_btn_RIGHT] = 0;
+					
+					break;
+
+				case SDLK_SPACE:
+					if ( input_remap_flag )
+						Key[input_remap_btn_SPACE] = 0;
+					
+					break;
 			}
 
 		} else if (event.type == SDL_QUIT)
 		{
 			quit = true;
 		}
+	}
+}
+
+void input_keyboard_remaps() {
+	input_remap_flag = false;
+
+	// CHIP-8 Game "Tank.ch8"
+	if ( !strcmp(lib_game_signature, "123076FB602080654F00+47957") ) {
+		input_remap_flag = true;
+		input_remap_btn_UP		= 0x8;
+		input_remap_btn_DOWN	= 0x2;
+		input_remap_btn_LEFT	= 0x4;
+		input_remap_btn_RIGHT	= 0x6;
+		input_remap_btn_SPACE 	= 0x5;
+		printf("Keys remaped to Arrows and SPACE.\n");
 	}
 }

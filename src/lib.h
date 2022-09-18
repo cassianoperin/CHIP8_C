@@ -10,7 +10,7 @@ extern unsigned char display_FPS;
 extern unsigned char Memory[4096];
 
 // ---------------------------------- Global Variables ---------------------------------- //
-char *game_signature;   // Game signature to apply quirks
+char *lib_game_signature;   // Game signature to apply quirks
 
 // -------------------------------------- Functions ------------------------------------- //
 

@@ -18,11 +18,11 @@ void cpu_reset(){
 	printf("Loaded game: %s\n", filename);
 
 	// Get Game signature for Qwirks
-	get_game_signature(filename, &game_signature);
-	printf("Signature:   %s\n", game_signature);
+	get_game_signature(filename, &lib_game_signature);
+	printf("Signature:   %s\n", lib_game_signature);
 
 	// Check for Quirks
-	handle_legacy_opcodes(game_signature);
+	handle_legacy_opcodes(lib_game_signature);
 
 	// Load Fonts
 	cpu_load_fonts();

@@ -15,7 +15,7 @@
 // 00E0 - CLS
 // Clear the display.
 void opc_chip8_00E0() {
-    memset(display_pixels, 0x00, sizeof(display_pixels));
+    memset(display_pixels, display_pixel_OFF_color, sizeof(display_pixels));
 	PC += 2;
 	if ( cpu_debug_mode ) {
 		sprintf(cpu_debug_message, "CHIP-8 00E0: Clear the display");

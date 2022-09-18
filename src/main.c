@@ -9,7 +9,7 @@
 
 
 // --------------------------------- External Variables --------------------------------- //
-extern char *game_signature;
+extern char *lib_game_signature;
 
 
 // ---------------------------------- Global Variables ---------------------------------- //
@@ -49,21 +49,25 @@ int main( int argc, char* args[] )
 	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory, sizeof(Memory));
 	printf("Loaded game: %s\n", filename);
 
 	// Get Game signature for Qwirks
-	get_game_signature(filename, &game_signature);
-	printf("Signature:   %s\n", game_signature);
+	get_game_signature(filename, &lib_game_signature);
+	printf("Signature:   %s\n", lib_game_signature);
 
 	// Check for Quirks
-	handle_legacy_opcodes(game_signature);
+	handle_legacy_opcodes(lib_game_signature);
 
 	// Load Fonts
 	cpu_load_fonts();
+
+	// Keyboard remaps
+	input_keyboard_remaps();
 
 	//Start up SDL and create window
 	if( !display_init(&display) )
