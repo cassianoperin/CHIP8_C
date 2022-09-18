@@ -534,7 +534,7 @@ void opc_chip8_DXYN() {
 			bit_value = sprite >> (7 - bit) & 1;
 
 			// Set the index to write the 8 bits of each pixel
-			gfx_index = (unsigned short)gpx_position + (unsigned short)bit + ((unsigned short)byte*(unsigned short)display_SCREEN_WIDTH_X);
+			gfx_index = gpx_position + bit + ( byte * display_SCREEN_WIDTH_X );
 
 			// If tryes to draw bits outside the vector size, ignore
 			if ( gfx_index >= display_SCREEN_WIDTH_X * display_SCREEN_HEIGHT_Y ) {
