@@ -60,6 +60,6 @@ https://github.com/Timendus/chip8-test-suite
 
 5. Unify bool definition
 
-6. Improve headers usage (function declarations, global and external variables)
+6. Enable debug with 9
 
-7. Rename variables with the name of original src file
+7. Why HEIGHT and SIZE X and Y?? where will it be different?

@@ -15,7 +15,7 @@
 // 00E0 - CLS
 // Clear the display.
 void opc_chip8_00E0() {
-    memset(pixels, 0x00, sizeof(pixels));
+    memset(display_pixels, 0x00, sizeof(display_pixels));
 	PC += 2;
 	if ( cpu_debug_mode ) {
 		sprintf(cpu_debug_message, "CHIP-8 00E0: Clear the display");
@@ -490,34 +490,34 @@ void opc_chip8_DXYN() {
 	V[0xF] = 0;
 
 	// Check if y is out of range and apply module to fit in screen
-	if ( V[y] >= SizeY ) {
-        if (SizeY != 0) {
-            V[y] = V[y] % SizeY;
+	if ( V[y] >= display_sizeY ) {
+        if (display_sizeY != 0) {
+            V[y] = V[y] % display_sizeY;
             if ( cpu_debug_mode ) {
-                printf("\t\tV[y] >= %d, modulus applied", SizeY);
+                printf("\t\tV[y] >= %d, modulus applied", display_sizeY);
             }
         }
 	}
 
 	// Check if y is out of range and apply module to fit in screen
-	if ( V[x] >= SizeX ) {
-        if (SizeX != 0) {
-            V[x] = V[x] % SizeX;
+	if ( V[x] >= display_sizeX ) {
+        if (display_sizeX != 0) {
+            V[x] = V[x] % display_sizeX;
             if ( cpu_debug_mode ) {
-                printf("\t\tV[x] >= %d, modulus applied", SizeX);
+                printf("\t\tV[x] >= %d, modulus applied", display_sizeX);
             }
         }
 	}
 
 	// Fix for Bowling game where the pins wrap the screen
 	if ( quirk_Clipping_Dxyn ) {
-		if ( V[x] + (unsigned char)n > SizeX +1 ) {
-			n = (SizeX - 1) - (unsigned short)V[x];
+		if ( V[x] + (unsigned char)n > display_sizeX +1 ) {
+			n = (display_sizeX - 1) - (unsigned short)V[x];
 		}
 	}
 
 	// Translate the x and Y to the Graphics Vector
-	gpx_position = V[x] + ( SizeX * V[y] );
+	gpx_position = V[x] + ( display_sizeX * V[y] );
 
 	// Print N Bytes from address I in V[x]V[y] position of the screen
 	for ( byte = 0 ; byte < n ; byte++ ) {
@@ -534,71 +534,32 @@ void opc_chip8_DXYN() {
 			bit_value = sprite >> (7 - bit) & 1;
 
 			// Set the index to write the 8 bits of each pixel
-			gfx_index = (unsigned short)gpx_position + (unsigned short)bit + ((unsigned short)byte*(unsigned short)SizeX);
+			gfx_index = (unsigned short)gpx_position + (unsigned short)bit + ((unsigned short)byte*(unsigned short)display_sizeX);
 
 			// If tryes to draw bits outside the vector size, ignore
-			if ( gfx_index >= SizeX * SizeY ) {
+			if ( gfx_index >= display_sizeX * display_sizeY ) {
 				if ( cpu_debug_mode ) {
 					printf("\n\n\nGraphics: Bigger than 2048 or 8192\n\n\n\n");
 				}
 				continue;
 			}
 
-			// // If bit=1, test current graphics[index], if is already set, mark v[F]=1 (collision)
-			// if ( bit_value  == 1 ) {
-			// 	// Set colision case graphics[index] is already 1
-			// 	if ( pixels[gfx_index] == PIXEL_ON_COLOR ) {
-			// 		V[0xF] = 1;
-			// 	}
-			// 	// After, XOR the graphics[index] (DRAW)
-			// 	// pixels[gfx_index] ^= 1;
-			// 	pixels[gfx_index] = PIXEL_ON_COLOR;
-
-
 			// If bit=1, test current graphics[index], if is already set, mark v[F]=1 (collision)
 			if ( bit_value  == 1 ) {
 				// Set colision case graphics[index] is already 1
-				if ( pixels[gfx_index] == PIXEL_ON_COLOR ) {
+				if ( display_pixels[gfx_index] == display_pixel_ON_color ) {
 					V[0xF] = 1;
-					pixels[gfx_index] = PIXEL_OFF_COLOR; 
+					display_pixels[gfx_index] = display_pixel_OFF_color; 
 				} else {
-          			pixels[gfx_index] = PIXEL_ON_COLOR;
+          			display_pixels[gfx_index] = display_pixel_ON_color;
 				}
-				// After, XOR the graphics[index] (DRAW)
-				// pixels[gfx_index] ^= 1;
-				// pixels[gfx_index] = PIXEL_ON_COLOR;
-
 			}
-
-
 		}
-
 	}
-                // pixels[100] = PIXEL_ON_COLOR;
-
 
 	PC += 2;
 	cpu_draw_flag = true;
 	cpu_draw_counter ++;
-
-//   cpu->v[CARRY_REGISTER] = 0;
-//   for (int y = 0; y < n; y++) {
-//     for (int x = 0; x < 8; x++) {
-//       uint8_t pixel = Memory[I + y];
-//       if (pixel & (0x80 >> x)) {
-//         int index = (V[x] + x) % 64 + ((V[y] + y) % 32) * 64;
-//         if (pixels[index] == PIXEL_ON_COLOR) {
-//         //   cpu->v[CARRY_REGISTER] = 1;
-//           pixels[index] = PIXEL_OFF_COLOR;
-//         } else {
-//           pixels[index] = PIXEL_ON_COLOR;
-//         }
-//         drawFlag = true;
-//       }
-//     }
-
-    // }
-
 }
 
 // ---------------------------- CHIP-8 Exxx instruction set ---------------------------- //

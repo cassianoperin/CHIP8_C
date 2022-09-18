@@ -26,6 +26,10 @@ void cpu_reset(){
 
 	// Load Fonts
 	cpu_load_fonts();
+
+	// Clean counters
+	cycle = 0;
+	cycle_cpu = 0;
 }
 
 void cpu_initialize(){
@@ -40,7 +44,7 @@ void cpu_initialize(){
 	I = 0x00;
 	
 	// Initialization - Clean pixels array
-	memset(pixels, PIXEL_OFF_COLOR, sizeof(pixels));
+	memset(display_pixels, display_pixel_OFF_color, sizeof(display_pixels));
 
 	// Legacy Opcodes and Quirks
 	quirk_Memory_legacy_Fx55_Fx65		= false;
@@ -61,10 +65,10 @@ void cpu_initialize(){
 	cpu_SCHIP_LORES_mode	= false;
 	cpu_SCHIP_timer_hack	= false;
 	// Screen Size
-	SizeX = 64;		// Number of Columns in Graphics
-	SizeY = 32;		// Number of Lines in Graphics
+	display_sizeX = 64;		// Number of Columns in Graphics
+	display_sizeY = 32;		// Number of Lines in Graphics
 	// FPS
-	FPS = 60;
+	display_FPS = 60;
 	
 	// Keyboard
 	memset(Key, 0x00, sizeof(Key));
@@ -75,8 +79,9 @@ void cpu_initialize(){
 	// Draw
 	cpu_original_draw_mode = false;
 
-	// Interface
-	cpu_pause = false;
+	// Debug
+	cpu_debug_mode	= true;
+	cpu_pause		= false;
 }
 
 void cpu_load_fonts(){
@@ -100,7 +105,7 @@ void cpu_load_fonts(){
 // Debug
 void cpu_debug_print(){ // Missing Delay Timers and Keys
 	printf("Cycle: %d\tOpcode: %04X(%04X)\tPC: %04d(0x%04X)\tSP: %02X\tStack: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]\
-	  V: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]  I: 0x%04X  DT: 0x%02X  ST: 0x%02X\n", cycle, Opcode, Opcode & 0xF000, PC, PC,  SP, Stack[0],
+	  V: [ %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X %02X ]  I: 0x%04X  DT: 0x%02X  ST: 0x%02X\n", cycle_cpu, Opcode, Opcode & 0xF000, PC, PC,  SP, Stack[0],
 	 Stack[1], Stack[2], Stack[3], Stack[4], Stack[5], Stack[6], Stack[7], Stack[8], Stack[9], Stack[10], Stack[11], Stack[12], Stack[13], Stack[14], Stack[15],
 	  V[0], V[1], V[2], V[3], V[4], V[5], V[6], V[7], V[8], V[9], V[10], V[11], V[12], V[13], V[14], V[15], I, DelayTimer, SoundTimer);
 }

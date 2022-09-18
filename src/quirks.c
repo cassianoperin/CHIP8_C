@@ -51,8 +51,8 @@ void handle_legacy_opcodes(char *game_signature) {
 	if ( !strcmp(game_signature, "6A026B0C6C3F6D0CA6EA+25121") ) {
 		quirk_ETI660_64x32_screen = true;
 		printf("ETI-660 Quirk 64 x 32 resolution Enabled.\n");
-		SizeX = 64;
-		SizeY = 32;
+		display_sizeX = 64;
+		display_sizeY = 32;
 	}
 
 	// Set the quirks necessary for chip8-test-suite.ch8"
@@ -73,8 +73,6 @@ void handle_legacy_opcodes(char *game_signature) {
 	if ( !strcmp(game_signature, "F10AF20AF30AF40AF50A+27721") ) {
 		quirk_ClockProgram_fonts = true;
 		printf("Clock Program Quirk Enabled.\n");
-	} else {
-		printf("FODEU.\n");
 	}
 
 	// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]

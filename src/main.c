@@ -5,13 +5,16 @@
 #include "input.h"
 #include "quirks.h"
 
+
 // --------------------------------- External Variables --------------------------------- //
 extern char *game_signature;
 
+
 // ---------------------------------- Global Variables ---------------------------------- //
-unsigned int cycle	= 0;		// Main loop cycles
-bool quit			= false;	// Main loop flag
-char* filename;					// game path and file name
+unsigned int cycle		= 0;		// Main loop cycles
+unsigned int cycle_cpu	= 0;		// Executed cpu cycles
+bool quit				= false;	// Main loop flag
+char* filename;						// game path and file name
 
 
 // ------------------------------------ Main Program ------------------------------------ //
@@ -93,6 +96,9 @@ int main( int argc, char* args[] )
 				// Update timer variables
 				ticker_cpu_last_time = tickers_current_time;
 
+				// Increment CPU Cycles
+				cycle_cpu ++;
+
 				// // Reset counters
 				cycle_counter_cpu ++;
 			}
@@ -147,7 +153,7 @@ int main( int argc, char* args[] )
 				cycle_counter_cpu = 0;
 			}
 
-			// Increment CPU Cycle
+			// Increment main loop cycle counter
 			cycle++;
 
 			// Increment Cycle per second counter

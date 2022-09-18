@@ -2,12 +2,12 @@
 
 // --------------------------------- External Variables --------------------------------- //
 // Display
-extern unsigned char SCREEN_WIDTH;
-extern unsigned char SCREEN_HEIGHT;
-extern unsigned int  PIXEL_ON_COLOR;
-extern unsigned int  PIXEL_OFF_COLOR;
-extern unsigned int pixels[2048];
-extern bool cpu_draw_Counter;
+extern unsigned int display_pixel_ON_color;
+extern unsigned int display_pixel_OFF_color;
+extern unsigned int display_pixels[2048];
+// Screen Size
+extern unsigned char display_sizeX;
+extern unsigned char display_sizeY;
 // Legacy Opcodes and Quirks
 extern bool quirk_Memory_legacy_Fx55_Fx65;
 extern bool quirk_Shifting_legacy_8xy6_8xyE;
@@ -20,14 +20,6 @@ extern bool quirk_Jump_with_offset_Bnnn;
 extern bool quirk_LoRes_Wide_Sprite_Dxy0;
 extern bool quirk_VF_Reset_8xy1_8xy2_8xy3;
 extern bool quirk_ClockProgram_fonts;
-// Screen Size
-extern unsigned char SizeX;
-extern unsigned char SizeY;
-extern unsigned char FPS;
-// Cycles
-extern unsigned int cycle;
-// Game Signature
-extern char *game_signature;
 // File name
 extern char* filename;
 

@@ -2,18 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include "lib.h"
-#include "cpu.h"
-
-// --------------------------------- External Variables --------------------------------- //
-extern unsigned char FPS;
-
-// ---------------------------------- Global Variables ---------------------------------- //
-char *game_signature;		// Game signature
 
 
-// ---------------------------- Tickers ---------------------------- //
-
-// Use with actions that should be executed each second = 1hz
+// Ticker - Use with actions that should be executed each second = 1hz
 bool ticker_second(unsigned int lastTime, unsigned int currentTime)
 {
 	//Initialization flag
@@ -27,14 +18,15 @@ bool ticker_second(unsigned int lastTime, unsigned int currentTime)
 	return success;
 }
 
-// Use with actions that should be executed 60 times per second = 60hz
+
+// Ticker - Use with actions that should be executed 60 times per second = 60hz
 bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 {
 	//Initialization flag
 	bool success = false;
 
 	// Check if it passed one second / FPS
-	if (currentTime > lastTime + (1000/FPS)) {
+	if (currentTime > lastTime + (1000/display_FPS)) {
 	// if (currentTime > lastTime + (16)) {
 		success = true;
 	}
@@ -42,7 +34,8 @@ bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 	return success;
 }
 
-// Use with actions that should be executed 500 times per second = 500hz
+
+// Ticker - Use with actions that should be executed 500 times per second = 500hz
 bool ticker_cpu(unsigned int lastTime, unsigned int currentTime)
 {
 
@@ -60,14 +53,11 @@ bool ticker_cpu(unsigned int lastTime, unsigned int currentTime)
 	return success;
 }
 
-// --------------------------- File load --------------------------- //
 
 // Load rom into memory
 void load_rom(char* filename, unsigned char *mem, unsigned int mem_size)
 {
 	int PC = 0x200;
-
-	// ----------------- Read File ----------------- //
 
 	FILE* rom = fopen(filename, "rb");
 	if (!rom) {
@@ -84,8 +74,8 @@ void load_rom(char* filename, unsigned char *mem, unsigned int mem_size)
 	printf("\n\n");
 }
 
-// ------------------------ Game Signature ------------------------- //
 
+// Get Game Signature
 void get_game_signature(char* filename, char **s) {
 
 	// Get the first 12 elements of memory
