@@ -1,6 +1,8 @@
 #include <SDL2/SDL.h>
+#include <string.h>
 #include "lib.h"
 #include "display.h"
+#include "cli.h"
 #include "cpu.h"
 #include "input.h"
 #include "quirks.h"
@@ -32,6 +34,14 @@ int main( int argc, char* args[] )
 	unsigned int ticker_fps_last_time 		= 0;
 	unsigned int ticker_cpu_last_time		= 0;
 	struct display display;
+
+	// Initialize
+	cpu_initialize();
+
+
+	// CLI
+	command_line_interface(argc, args);
+
 	// File name
 	// char* filename = args[1];
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
@@ -41,13 +51,6 @@ int main( int argc, char* args[] )
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-
-	// Initialize
-	cpu_initialize();
-
-	// Load ROM into Memory
-	load_rom(filename,  Memory, sizeof(Memory));
-	printf("Loaded game: %s\n", filename);
 
 	// Get Game signature for Qwirks
 	get_game_signature(filename, &game_signature);

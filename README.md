@@ -59,3 +59,5 @@ https://github.com/Timendus/chip8-test-suite
     Display wait - Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second (more information here)
 
 5. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
+
+6. Create a remap keys 
