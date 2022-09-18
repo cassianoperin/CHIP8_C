@@ -511,8 +511,8 @@ void opc_chip8_DXYN() {
 
 	// Fix for Bowling game where the pins wrap the screen
 	if ( quirk_Clipping_Dxyn ) {
-		if ( V[x] + (unsigned char)n > display_SCREEN_WIDTH_X + 1 ) {
-			n = (display_SCREEN_WIDTH_X - 1) - (unsigned short)V[x];
+		if ( V[x] + n > display_SCREEN_WIDTH_X + 1 ) {
+			n = (display_SCREEN_WIDTH_X - 1) - V[x];
 		}
 	}
 

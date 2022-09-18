@@ -40,7 +40,7 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 
 # TODO
 
-1. Add SDL_Delay to avoid infinite loop unnecessary cycles
+1. Add SDL_Delay to avoid unnecessary infinite loop cycles
 
 2. Test more games (Need SCHIP):
 
@@ -59,3 +59,7 @@ https://github.com/Timendus/chip8-test-suite
     Display wait - Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second (more information here)
 
 5. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
+
+6. Validate if the variable conversions on Dxnn are necessary:
+        //Set the index to write the 8 bits of each pixel
+	    gfx_index = (unsigned short)gpx_position + (unsigned short)bit + ((unsigned short)byte*(unsigned short)display_SCREEN_WIDTH_X);
