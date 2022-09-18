@@ -1,7 +1,6 @@
 #include <SDL2/SDL.h>
 #include "display.h"
 
-
 bool display_init(struct display* display)
 {
 	// Initialization flag
@@ -10,9 +9,10 @@ bool display_init(struct display* display)
 	// Variables
 	display_SCREEN_WIDTH_X	= 64;
 	display_SCREEN_HEIGHT_Y	= 32;
-	display_SCALE			= 10;
+	display_SCALE			= 20;
 	display_pixel_ON_color	= 0xFFFFFFFF;
 	display_pixel_OFF_color	= 0xFF000000;
+	display_color_theme		= 0;
 
 	// Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
@@ -78,4 +78,21 @@ void display_close(struct display* display)
 
 	//Quit SDL subsystems
 	SDL_Quit();
+}
+
+void display_update_theme(){
+	unsigned int i;
+
+	// Update graphics vector with new colors
+	for ( i = 0 ; i < 2048 ; i++ ) {
+		if ( display_pixels[i] == display_pixel_ON_color ) {
+			display_pixels[i] = display_pixel_ON_color_alt;
+		} else {
+			display_pixels[i] = display_pixel_OFF_color_alt;
+		}
+	}
+
+	// Update the colors
+	display_pixel_ON_color	= display_pixel_ON_color_alt;
+	display_pixel_OFF_color	= display_pixel_OFF_color_alt;
 }

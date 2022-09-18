@@ -38,9 +38,8 @@ int main( int argc, char* args[] )
 	// Initialize
 	cpu_initialize();
 
-
 	// CLI
-	command_line_interface(argc, args);
+	// command_line_interface(argc, args);
 
 	// File name
 	// char* filename = args[1];
@@ -51,6 +50,10 @@ int main( int argc, char* args[] )
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+
+	// Load ROM into Memory
+	load_rom(filename,  Memory, sizeof(Memory));
+	printf("Loaded game: %s\n", filename);
 
 	// Get Game signature for Qwirks
 	get_game_signature(filename, &game_signature);

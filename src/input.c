@@ -5,6 +5,8 @@
 
 void input_keyboard() {
 
+
+
 	//Event handler
 	SDL_Event event;
 	
@@ -82,15 +84,93 @@ void input_keyboard() {
 
 				// Interface
 
+				// Pause
 				case SDLK_p:
 					cpu_pause = !cpu_pause;
 					break;
 
+				// Change Theme
+				case SDLK_6: {
+
+					// Jump to next color theme
+					if ( display_color_theme < 5 ) {
+						display_color_theme ++;
+					} else {
+						display_color_theme = 0;
+					}
+					
+					//Select surfaces based on key press
+					switch( display_color_theme )
+					{
+						// Black and White
+						case 0:
+							display_pixel_ON_color_alt	= 0xFFFFFFFF;
+							display_pixel_OFF_color_alt	= 0xFF000000;
+
+							display_update_theme();
+							break;
+
+						// White and Black
+						case 1: {
+							// New colors
+							display_pixel_ON_color_alt	= 0xFF000000;
+							display_pixel_OFF_color_alt	= 0xFFFFFFFF;
+
+							display_update_theme();
+							break;
+						}
+
+						// Grey Wolfand and Crystal Blue
+						case 2: {
+							// New colors
+							display_pixel_ON_color_alt	= 0xFF5CB3FF;
+							display_pixel_OFF_color_alt	= 0xFF504A4B;
+
+							display_update_theme();
+							break;
+						}
+
+						// Cloudy Gray and Emerald Green
+						case 3: {
+							// New colors
+							display_pixel_ON_color_alt	= 0xFF50C878;
+							display_pixel_OFF_color_alt	= 0xFF6D6968;
+
+							display_update_theme();
+							break;
+						}
+
+						// Night Black and Pastel Yellow
+						case 4: {
+							// New colors
+							display_pixel_ON_color_alt	= 0xFFFAF884;
+							display_pixel_OFF_color_alt	= 0xFF0C090A;
+
+							display_update_theme();
+							break;
+						}
+
+
+						// LightCoral Pink and Salmon
+						case 5: {
+							// New colors
+							display_pixel_ON_color_alt	= 0xFFF08080;
+							display_pixel_OFF_color_alt	= 0xFF3A3B3C;
+
+							display_update_theme();
+							break;
+						}
+					}
+					break;
+				}
+
+				// Debug
 				case SDLK_9:
 					cpu_debug_mode = !cpu_debug_mode;
 					// cpu_debug_mode = false;
 					break;
 
+				// Reset
 				case SDLK_0:
 					cpu_reset();
 					break;

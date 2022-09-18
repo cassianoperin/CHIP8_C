@@ -26,11 +26,11 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 ## Emulator
 * ![100%](https://progress-bar.dev/100) Pause and resume emulation
 * ![100%](https://progress-bar.dev/100) Reset emulation
-* ![0%](https://progress-bar.dev/0) Command Line Arguments
+* ![100%](https://progress-bar.dev/100) Command Line Arguments
 * ![0%](https://progress-bar.dev/0) Step Forward CPU Cycles for Debug
 * ![0%](https://progress-bar.dev/0) Step Back (Rewind) CPU Cycles for Debug
 * ![0%](https://progress-bar.dev/0) Increase and Decrease CPU Clock Speed
-* ![0%](https://progress-bar.dev/0) Color Themes
+* ![100%](https://progress-bar.dev/100) Color Themes
 * ![0%](https://progress-bar.dev/0) Save States
 * ![0%](https://progress-bar.dev/0) Fullscreen
 * ![100%](https://progress-bar.dev/100) Binary rom format support
@@ -61,3 +61,5 @@ https://github.com/Timendus/chip8-test-suite
 5. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
 
 6. Create a remap keys 
+
+7. Add the usage to README
