@@ -58,8 +58,4 @@ https://github.com/Timendus/chip8-test-suite
     Missing implementation of display wait:
     Display wait - Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second (more information here)
 
-5. Unify bool definition
-
-6. Enable debug with 9
-
-7. Why HEIGHT and SIZE X and Y?? where will it be different?
+5. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?

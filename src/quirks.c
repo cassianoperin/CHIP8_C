@@ -51,8 +51,8 @@ void handle_legacy_opcodes(char *game_signature) {
 	if ( !strcmp(game_signature, "6A026B0C6C3F6D0CA6EA+25121") ) {
 		quirk_ETI660_64x32_screen = true;
 		printf("ETI-660 Quirk 64 x 32 resolution Enabled.\n");
-		display_sizeX = 64;
-		display_sizeY = 32;
+		display_SCREEN_WIDTH_X = 64;
+		display_SCREEN_HEIGHT_Y = 32;
 	}
 
 	// Set the quirks necessary for chip8-test-suite.ch8"

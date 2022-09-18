@@ -6,18 +6,17 @@ typedef int bool;
 #define false 0
 
 // ---------------------------------- Global Variables ---------------------------------- //
-// Display
-unsigned char display_screen_width;
-unsigned char display_screen_height;
-unsigned char display_scale;
+// Display (Screen size)
+unsigned char display_SCREEN_WIDTH_X;
+unsigned char display_SCREEN_HEIGHT_Y;
+unsigned char display_SCALE;
 unsigned int  display_pixel_ON_color;
 unsigned int  display_pixel_OFF_color;
-// unsigned int pixels[SCREEN_WIDTH * SCREEN_HEIGHT];
+// Display Array
 unsigned int  display_pixels[2048];
-// Screen Size
-unsigned char display_sizeX;		// Number of Columns in Graphics
-unsigned char display_sizeY;		// Number of Lines in Graphics
-unsigned char display_FPS;			// Frames per second
+// unsigned int pixels[SCREEN_WIDTH * SCREEN_HEIGHT];
+// Frames per second
+unsigned char display_FPS;			
 
 // ---------------------------------- Global Variables ---------------------------------- //
 struct display {

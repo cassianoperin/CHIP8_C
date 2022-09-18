@@ -490,34 +490,34 @@ void opc_chip8_DXYN() {
 	V[0xF] = 0;
 
 	// Check if y is out of range and apply module to fit in screen
-	if ( V[y] >= display_sizeY ) {
-        if (display_sizeY != 0) {
-            V[y] = V[y] % display_sizeY;
+	if ( V[y] >= display_SCREEN_HEIGHT_Y ) {
+        if (display_SCREEN_HEIGHT_Y != 0) {
+            V[y] = V[y] % display_SCREEN_HEIGHT_Y;
             if ( cpu_debug_mode ) {
-                printf("\t\tV[y] >= %d, modulus applied", display_sizeY);
+                printf("\t\tV[y] >= %d, modulus applied", display_SCREEN_HEIGHT_Y);
             }
         }
 	}
 
 	// Check if y is out of range and apply module to fit in screen
-	if ( V[x] >= display_sizeX ) {
-        if (display_sizeX != 0) {
-            V[x] = V[x] % display_sizeX;
+	if ( V[x] >= display_SCREEN_WIDTH_X ) {
+        if (display_SCREEN_WIDTH_X != 0) {
+            V[x] = V[x] % display_SCREEN_WIDTH_X;
             if ( cpu_debug_mode ) {
-                printf("\t\tV[x] >= %d, modulus applied", display_sizeX);
+                printf("\t\tV[x] >= %d, modulus applied", display_SCREEN_WIDTH_X);
             }
         }
 	}
 
 	// Fix for Bowling game where the pins wrap the screen
 	if ( quirk_Clipping_Dxyn ) {
-		if ( V[x] + (unsigned char)n > display_sizeX +1 ) {
-			n = (display_sizeX - 1) - (unsigned short)V[x];
+		if ( V[x] + (unsigned char)n > display_SCREEN_WIDTH_X + 1 ) {
+			n = (display_SCREEN_WIDTH_X - 1) - (unsigned short)V[x];
 		}
 	}
 
 	// Translate the x and Y to the Graphics Vector
-	gpx_position = V[x] + ( display_sizeX * V[y] );
+	gpx_position = V[x] + ( display_SCREEN_WIDTH_X * V[y] );
 
 	// Print N Bytes from address I in V[x]V[y] position of the screen
 	for ( byte = 0 ; byte < n ; byte++ ) {
@@ -534,10 +534,10 @@ void opc_chip8_DXYN() {
 			bit_value = sprite >> (7 - bit) & 1;
 
 			// Set the index to write the 8 bits of each pixel
-			gfx_index = (unsigned short)gpx_position + (unsigned short)bit + ((unsigned short)byte*(unsigned short)display_sizeX);
+			gfx_index = (unsigned short)gpx_position + (unsigned short)bit + ((unsigned short)byte*(unsigned short)display_SCREEN_WIDTH_X);
 
 			// If tryes to draw bits outside the vector size, ignore
-			if ( gfx_index >= display_sizeX * display_sizeY ) {
+			if ( gfx_index >= display_SCREEN_WIDTH_X * display_SCREEN_HEIGHT_Y ) {
 				if ( cpu_debug_mode ) {
 					printf("\n\n\nGraphics: Bigger than 2048 or 8192\n\n\n\n");
 				}

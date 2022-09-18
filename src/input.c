@@ -86,6 +86,11 @@ void input_keyboard() {
 					cpu_pause = !cpu_pause;
 					break;
 
+				case SDLK_9:
+					cpu_debug_mode = !cpu_debug_mode;
+					// cpu_debug_mode = false;
+					break;
+
 				case SDLK_0:
 					cpu_reset();
 					break;

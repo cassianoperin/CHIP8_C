@@ -8,9 +8,9 @@ bool display_init(struct display* display)
 	bool success = true;
 
 	// Variables
-	display_screen_width	= 64;
-	display_screen_height	= 32;
-	display_scale			= 10;
+	display_SCREEN_WIDTH_X	= 64;
+	display_SCREEN_HEIGHT_Y	= 32;
+	display_SCALE			= 10;
 	display_pixel_ON_color	= 0xFFFFFFFF;
 	display_pixel_OFF_color	= 0xFF000000;
 
@@ -23,7 +23,7 @@ bool display_init(struct display* display)
 	else
 	{
 		// Create window
-		display->window = SDL_CreateWindow( "C_SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, display_screen_width * display_scale, display_screen_height * display_scale, SDL_WINDOW_SHOWN );
+		display->window = SDL_CreateWindow( "C_SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, display_SCREEN_WIDTH_X * display_SCALE, display_SCREEN_HEIGHT_Y * display_SCALE, SDL_WINDOW_SHOWN );
 		if( display->window == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -39,7 +39,7 @@ bool display_init(struct display* display)
 				success = false;
 			} else {
 				// Create texture
-				display->texture = SDL_CreateTexture(display->renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, display_screen_width, display_screen_height);
+				display->texture = SDL_CreateTexture(display->renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, display_SCREEN_WIDTH_X, display_SCREEN_HEIGHT_Y);
 				if( display->renderer == NULL )
 				{
 					printf( "Texture could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -59,7 +59,7 @@ bool display_draw(struct display* display, unsigned int frame)
 	bool success = true;
 
 	// Update the Screen
-	SDL_UpdateTexture(display->texture, NULL, display_pixels, display_screen_width * sizeof(uint32_t));
+	SDL_UpdateTexture(display->texture, NULL, display_pixels, display_SCREEN_WIDTH_X * sizeof(uint32_t));
 	SDL_RenderCopy(display->renderer, display->texture, NULL, NULL);
 	SDL_RenderPresent(display->renderer);
 	// SDL_SetWindowTitle(display->window, "CPS:0      FPS:0");

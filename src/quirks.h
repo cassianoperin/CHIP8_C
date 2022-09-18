@@ -7,8 +7,8 @@ typedef int bool;
 
 // --------------------------------- External Variables --------------------------------- //
 // Screen Size
-extern unsigned char display_sizeX;
-extern unsigned char display_sizeY;
+extern unsigned char display_SCREEN_WIDTH_X;
+extern unsigned char display_SCREEN_HEIGHT_Y;
 
 
 // ---------------------------------- Global Variables ---------------------------------- //

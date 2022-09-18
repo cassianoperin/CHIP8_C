@@ -6,8 +6,8 @@ extern unsigned int display_pixel_ON_color;
 extern unsigned int display_pixel_OFF_color;
 extern unsigned int display_pixels[2048];
 // Screen Size
-extern unsigned char display_sizeX;
-extern unsigned char display_sizeY;
+extern unsigned char display_SCREEN_WIDTH_X;
+extern unsigned char display_SCREEN_HEIGHT_Y;
 // Legacy Opcodes and Quirks
 extern bool quirk_Memory_legacy_Fx55_Fx65;
 extern bool quirk_Shifting_legacy_8xy6_8xyE;
