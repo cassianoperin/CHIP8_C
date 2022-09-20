@@ -3,6 +3,8 @@
 // ---------------------------------- Global Variables ---------------------------------- //
 SDL_AudioDeviceID deviceId;
 Uint8 *wavBuffer;
+Uint32 wavLength;
 
 // -------------------------------------- Functions ------------------------------------- //
-void initialize_audio();
+void sound_init();
+void sound_close();

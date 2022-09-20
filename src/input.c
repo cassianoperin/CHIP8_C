@@ -180,11 +180,11 @@ void input_keyboard() {
 						}
 
 
-						// LightCoral Pink and Salmon
+						// Grey and LightCoral Pink
 						case 5: {
 							// New colors
 							display_pixel_ON_color_alt	= 0xFFF08080;
-							display_pixel_OFF_color_alt	= 0xFF3A3B3C;
+							display_pixel_OFF_color_alt	= 0xFF1C1C1C;
 
 							display_update_theme();
 							break;

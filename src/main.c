@@ -17,7 +17,6 @@
 // --------------------------------- External Variables --------------------------------- //
 extern char *lib_game_signature;
 
-
 // ---------------------------------- Global Variables ---------------------------------- //
 unsigned int cycle		= 0;		// Main loop cycles
 unsigned int cycle_cpu	= 0;		// Executed cpu cycles
@@ -26,11 +25,6 @@ char* filename;						// game path and file name
 
 
 // ------------------------------------ Main Program ------------------------------------ //
-
-
-
-
-
 
 int main( int argc, char* args[] )
 {
@@ -62,7 +56,7 @@ int main( int argc, char* args[] )
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
-	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong [Paul Vervalin, 1990].ch8";
+	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory, sizeof(Memory));
@@ -81,25 +75,8 @@ int main( int argc, char* args[] )
 	// Keyboard remaps
 	input_keyboard_remaps();
 
-
-
-
-
-
-
-
-
-
-	initialize_audio();
-
-
-// SDL_PauseAudioDevice(deviceId, 0);
-
-
-
-
-
-
+	// Initialize Audio System
+	sound_init();
 
 	//Start up SDL and create window
 	if( !display_init(&display) )
@@ -108,13 +85,13 @@ int main( int argc, char* args[] )
 	}
 	else
 	{
-
-
-	initialize_audio();
-
 		// ------------------------------ Infinite Loop  ------------------------------ //
 		while( !quit )
 		{
+
+			// Future avoid of unnecessary loop cycles
+			// Maybe calculate the time per cycle and wait?
+			// SDL_Delay(1);
 
 			// Current time
 			tickers_current_time = SDL_GetTicks();
@@ -165,24 +142,19 @@ int main( int argc, char* args[] )
 
 				// Handle Sound Timer
 				if ( SoundTimer > 0 ) {
-
-
-
+					// Play Sound
 				    if ( SoundTimer == 1 ) {
-						// Play Sound
-						initialize_audio();
+						int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength);
+						if ( success != 0 ) {
+							printf("Unable to PLAY sound file.\nExiting.\n");
+							exit(2);
+						}
+						// Zero play, 1 Pause
 						SDL_PauseAudioDevice(deviceId, 0);
-						cpu_pause = true;
-
-
-						// exit(2);
 					}
 
 					SoundTimer--;
-
 				}
-
-
 
 				// Draw screen
 				if ( !cpu_original_draw_mode ) {
@@ -225,6 +197,7 @@ int main( int argc, char* args[] )
 	}
 
 	//Free resources and close SDL
+	sound_close();
 	display_close(&display);
 
 	return 0;

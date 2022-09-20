@@ -8,21 +8,21 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 * ![100%](https://progress-bar.dev/100) Registers
 * ![100%](https://progress-bar.dev/100) Graphics
 * ![90%](https://progress-bar.dev/90) Qwirks
-* ![0%](https://progress-bar.dev/0) Sound
+* ![100%](https://progress-bar.dev/100) Sound
 ## CHIP8 HiRes
 * ![0%](https://progress-bar.dev/0) CPU Opcodes
 * ![100%](https://progress-bar.dev/100) Memory
 * ![100%](https://progress-bar.dev/100) Registers
 * ![0%](https://progress-bar.dev/0) Graphics
 * ![90%](https://progress-bar.dev/90) Qwirks
-* ![0%](https://progress-bar.dev/0) Sound
+* ![100%](https://progress-bar.dev/100) Sound
 ## SCHIP Status
 * ![0%](https://progress-bar.dev/0) CPU Opcodes
 * ![100%](https://progress-bar.dev/100) Memory
 * ![100%](https://progress-bar.dev/100) Registers
 * ![0%](https://progress-bar.dev/0) Graphics
 * ![90%](https://progress-bar.dev/90) Qwirks
-* ![0%](https://progress-bar.dev/0) Sound
+* ![100%](https://progress-bar.dev/100) Sound
 ## Emulator
 * ![100%](https://progress-bar.dev/100) Pause and resume emulation
 * ![100%](https://progress-bar.dev/100) Reset emulation
@@ -63,9 +63,4 @@ https://github.com/Timendus/chip8-test-suite
 
 6. Add the usage to README
 
-7. Sound
-    https://gigi.nullneuron.net/gigilabs/playing-a-wav-file-using-sdl2/
-
-8. Remapped keys are freezing screen for 1 second (tank) - investigate
-
-9. SOUND is WRONG, initializing every time.
+7. Remapped keys are freezing screen for 1 second (tank) - investigate

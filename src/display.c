@@ -76,11 +76,6 @@ void display_close(struct display* display)
 	display->window = NULL;
 	display->renderer = NULL;
 
-	// Destroy Audio
-	SDL_CloseAudioDevice(deviceId);
-	SDL_FreeWAV(wavBuffer);
-	SDL_Quit();
-
 	//Quit SDL subsystems
 	SDL_Quit();
 }

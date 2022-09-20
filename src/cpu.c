@@ -79,10 +79,10 @@ void cpu_initialize(){
 	srand(time(NULL));
 
 	// Draw
-	cpu_original_draw_mode = false;
+	cpu_original_draw_mode = true;
 
 	// Debug
-	cpu_debug_mode	= true;
+	cpu_debug_mode	= false;
 	cpu_pause		= false;
 }
 

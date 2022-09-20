@@ -5,11 +5,6 @@ typedef int bool;
 #define true 1
 #define false 0
 
-// Audio
-extern SDL_AudioDeviceID deviceId;
-extern Uint8 *wavBuffer;
-
-
 // ---------------------------------- Global Variables ---------------------------------- //
 // Display (Screen size)
 unsigned char display_SCREEN_WIDTH_X;
