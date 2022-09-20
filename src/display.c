@@ -70,11 +70,16 @@ bool display_draw(struct display* display, unsigned int frame)
 
 void display_close(struct display* display)
 {
-	//Destroy window	
+	// Destroy window	
 	SDL_DestroyRenderer( display->renderer );
 	SDL_DestroyWindow( display->window );
 	display->window = NULL;
 	display->renderer = NULL;
+
+	// Destroy Audio
+	SDL_CloseAudioDevice(deviceId);
+	SDL_FreeWAV(wavBuffer);
+	SDL_Quit();
 
 	//Quit SDL subsystems
 	SDL_Quit();

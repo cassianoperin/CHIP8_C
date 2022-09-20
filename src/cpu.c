@@ -82,7 +82,7 @@ void cpu_initialize(){
 	cpu_original_draw_mode = false;
 
 	// Debug
-	cpu_debug_mode	= false;
+	cpu_debug_mode	= true;
 	cpu_pause		= false;
 }
 

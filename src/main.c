@@ -6,6 +6,12 @@
 #include "cpu.h"
 #include "input.h"
 #include "quirks.h"
+#include "sound.h"
+
+// if sound_timer > 0:
+//     if sound_timer == 1:
+//         play_sound
+//     sound_timer -= 1
 
 
 // --------------------------------- External Variables --------------------------------- //
@@ -20,6 +26,11 @@ char* filename;						// game path and file name
 
 
 // ------------------------------------ Main Program ------------------------------------ //
+
+
+
+
+
 
 int main( int argc, char* args[] )
 {
@@ -50,7 +61,8 @@ int main( int argc, char* args[] )
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
+	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
+	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong [Paul Vervalin, 1990].ch8";
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory, sizeof(Memory));
@@ -69,6 +81,26 @@ int main( int argc, char* args[] )
 	// Keyboard remaps
 	input_keyboard_remaps();
 
+
+
+
+
+
+
+
+
+
+	initialize_audio();
+
+
+// SDL_PauseAudioDevice(deviceId, 0);
+
+
+
+
+
+
+
 	//Start up SDL and create window
 	if( !display_init(&display) )
 	{
@@ -77,9 +109,13 @@ int main( int argc, char* args[] )
 	else
 	{
 
+
+	initialize_audio();
+
 		// ------------------------------ Infinite Loop  ------------------------------ //
 		while( !quit )
 		{
+
 			// Current time
 			tickers_current_time = SDL_GetTicks();
 
@@ -126,10 +162,27 @@ int main( int argc, char* args[] )
 					DelayTimer--;
 				}
 
+
 				// Handle Sound Timer
 				if ( SoundTimer > 0 ) {
-						SoundTimer--;
+
+
+
+				    if ( SoundTimer == 1 ) {
+						// Play Sound
+						initialize_audio();
+						SDL_PauseAudioDevice(deviceId, 0);
+						cpu_pause = true;
+
+
+						// exit(2);
+					}
+
+					SoundTimer--;
+
 				}
+
+
 
 				// Draw screen
 				if ( !cpu_original_draw_mode ) {

@@ -62,3 +62,10 @@ https://github.com/Timendus/chip8-test-suite
 5. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
 
 6. Add the usage to README
+
+7. Sound
+    https://gigi.nullneuron.net/gigilabs/playing-a-wav-file-using-sdl2/
+
+8. Remapped keys are freezing screen for 1 second (tank) - investigate
+
+9. SOUND is WRONG, initializing every time.
