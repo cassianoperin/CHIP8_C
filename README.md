@@ -7,21 +7,21 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 * ![100%](https://progress-bar.dev/100) Memory
 * ![100%](https://progress-bar.dev/100) Registers
 * ![100%](https://progress-bar.dev/100) Graphics
-* ![90%](https://progress-bar.dev/90) Qwirks
+* ![100%](https://progress-bar.dev/100) Qwirks
 * ![100%](https://progress-bar.dev/100) Sound
 ## CHIP8 HiRes
 * ![0%](https://progress-bar.dev/0) CPU Opcodes
 * ![100%](https://progress-bar.dev/100) Memory
 * ![100%](https://progress-bar.dev/100) Registers
 * ![0%](https://progress-bar.dev/0) Graphics
-* ![90%](https://progress-bar.dev/90) Qwirks
+* ![100%](https://progress-bar.dev/100) Qwirks
 * ![100%](https://progress-bar.dev/100) Sound
 ## SCHIP Status
 * ![0%](https://progress-bar.dev/0) CPU Opcodes
 * ![100%](https://progress-bar.dev/100) Memory
 * ![100%](https://progress-bar.dev/100) Registers
 * ![0%](https://progress-bar.dev/0) Graphics
-* ![90%](https://progress-bar.dev/90) Qwirks
+* ![100%](https://progress-bar.dev/100) Qwirks
 * ![100%](https://progress-bar.dev/100) Sound
 ## Emulator
 * ![100%](https://progress-bar.dev/100) Pause and resume emulation
@@ -29,7 +29,7 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 * ![100%](https://progress-bar.dev/100) Command Line Arguments
 * ![100%](https://progress-bar.dev/100) Color Themes
 * ![100%](https://progress-bar.dev/100) Binary rom format support
-* ![100%](https://progress-bar.dev/100) Keyboard remaps
+* ![90%](https://progress-bar.dev/90) Keyboard remaps
 * ![0%](https://progress-bar.dev/0) Step Forward CPU Cycles for Debug
 * ![0%](https://progress-bar.dev/0) Step Back (Rewind) CPU Cycles for Debug
 * ![0%](https://progress-bar.dev/0) Increase and Decrease CPU Clock Speed
@@ -54,13 +54,9 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 3. Print message debug just in the end of cycle?
     printf("\t\t%s\n" , OpcMessage);
 
-4. Quirks
-https://github.com/Timendus/chip8-test-suite
-    Missing implementation of display wait:
-    Display wait - Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second (more information here)
+4. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
 
-5. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
+5. Add the usage to README
 
-6. Add the usage to README
-
-7. Remapped keys are freezing screen for 1 second (tank) - investigate
+6. Duplicate or triplicate frame buffer to reduce flickering
+https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/

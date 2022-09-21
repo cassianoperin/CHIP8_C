@@ -5,6 +5,7 @@
 extern unsigned int display_pixel_ON_color;
 extern unsigned int display_pixel_OFF_color;
 extern unsigned int display_pixels[2048];
+extern bool cpu_halt;
 // Screen Size
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
@@ -20,6 +21,7 @@ extern bool quirk_Jump_with_offset_Bnnn;
 extern bool quirk_LoRes_Wide_Sprite_Dxy0;
 extern bool quirk_VF_Reset_8xy1_8xy2_8xy3;
 extern bool quirk_ClockProgram_fonts;
+extern bool quirk_display_wait;
 // File name
 extern char* filename;
 

@@ -558,8 +558,18 @@ void opc_chip8_DXYN() {
 	}
 
 	PC += 2;
+	// Ask to draw screen
 	cpu_draw_flag = true;
+	// Increment counter
 	cpu_draw_counter ++;
+	// Limit to 60 draws per second
+	if ( quirk_display_wait ){
+		// Halt CPU
+		cpu_halt = true;
+	}
+	
+
+
 }
 
 // ---------------------------- CHIP-8 Exxx instruction set ---------------------------- //

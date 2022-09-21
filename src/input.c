@@ -330,4 +330,14 @@ void input_keyboard_remaps() {
 		input_remap_btn_SPACE 	= 0x5;
 		printf("Keys remaped to Arrows and SPACE.\n");
 	}
+
+	//
+	
+		// CHIP-8 Game "Pong (1 player).ch8"
+	if ( !strcmp(lib_game_signature, "6A026B0C6C3F6D0CA2EA+25041") ) {
+		input_remap_flag = true;
+		input_remap_btn_UP		= 0x1;
+		input_remap_btn_DOWN	= 0x4;
+		printf("Keys remaped to UP and DOWN.\n");
+	}
 }

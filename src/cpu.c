@@ -80,9 +80,10 @@ void cpu_initialize(){
 
 	// Draw
 	cpu_original_draw_mode = true;
+	cpu_halt = false;
 
 	// Debug
-	cpu_debug_mode	= false;
+	cpu_debug_mode	= true;
 	cpu_pause		= false;
 }
 
@@ -114,9 +115,6 @@ void cpu_debug_print(){ // Missing Delay Timers and Keys
 
 // CPU Interpreter
 void cpu_interpreter() {
-
-	// Reset Flag every cycle
-	cpu_draw_flag = false;
 
 	// Read the Opcode from PC and PC+1 bytes
 	Opcode = (unsigned short)Memory[PC]<<8 | (unsigned short)Memory[PC+1];

@@ -9,6 +9,7 @@ typedef int bool;
 // Screen Size
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
+extern bool cpu_original_draw_mode;
 
 
 // ---------------------------------- Global Variables ---------------------------------- //
@@ -30,6 +31,8 @@ bool quirk_Jump_with_offset_Bnnn;		// Bnnn behavior in some CHIP-48 and SUPER-CH
 bool quirk_LoRes_Wide_Sprite_Dxy0;		// DXY0_loresWideSpriteQuirks - Draws a 16x16 sprite even in low-resolution (64x32) mode, row-major
 bool quirk_VF_Reset_8xy1_8xy2_8xy3;		// The AND, OR and XOR opcodes (8XY1, 8XY2 and 8XY3) reset the flags register to zero
 bool quirk_ClockProgram_fonts;			// To avoid glitches on FFFFF display, the memory used by SCHIP fonts can't be loaded
+bool quirk_display_wait;				// Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second
+										// Turn game slower because it halt cpu to wait for draw @60hz
 // bool	Keyboard_slow_press;			// Used by some programs that needs a slower key press rate
 
 

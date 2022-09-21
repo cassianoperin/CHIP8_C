@@ -53,10 +53,10 @@ int main( int argc, char* args[] )
 	//
 	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
-	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
-	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
+	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory, sizeof(Memory));
@@ -101,18 +101,28 @@ int main( int argc, char* args[] )
 			if ( ticker_cpu(ticker_cpu_last_time, tickers_current_time) ) {
 
 				if ( !cpu_pause ) {
-					cpu_interpreter();
+
+					if (!cpu_halt) {
+						cpu_interpreter();
+					}
+
 				}
 
 				// 
 				if ( cpu_original_draw_mode ) {
 					if ( cpu_draw_flag ) {
+
+						// if (frame_counter % 3 == 0 ) {
 						display_draw(&display, frame_counter);
+
+						// }
 
 						// Increment total frame counter
 						frame ++;
 						// Increment frame counter for FPS
 						frame_counter++;
+						// Reset the flag
+						cpu_draw_flag = false;
 					}
 				}
 
@@ -164,6 +174,9 @@ int main( int argc, char* args[] )
 					frame ++;
 					// Increment frame counter for FPS
 					frame_counter++;
+
+					cpu_draw_flag = false;
+					cpu_halt = false;
 				}
 
 				// Update timer variables

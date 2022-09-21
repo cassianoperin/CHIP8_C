@@ -63,9 +63,9 @@ void handle_legacy_opcodes(char *game_signature) {
 		quirk_Shifting_legacy_8xy6_8xyE	= true;		// Shifting
 		quirk_Clipping_Dxyn				= true;		// Clipping
 		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-		// Disp, Wait	
-		printf("Jumping, Memory, Shifting, Clipping and VF Reset Quirks enabled.\n");
-
+		quirk_display_wait				= true;		// Display wait
+		cpu_original_draw_mode			= false;	// Needed by Display Wait to draw @60hz
+		printf("Jumping, Memory, Shifting, Clipping, VF Reset and Display Wait quirks enabled.\n");
 	}
 
 	// Do not load SCHIP fonts to avoid garbage after FFFFFF clock
