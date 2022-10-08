@@ -1,6 +1,6 @@
 # CHIP-8 / CHIP-8 HIRES / SCHIP Emulator
 
-Chip 8 emulator written in C with SDL2 (earlier stage)
+Chip 8 emulator written in C with SDL2
 
 ## CHIP8 Status
 * ![100%](https://progress-bar.dev/100) CPU Opcodes
@@ -8,7 +8,7 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 * ![100%](https://progress-bar.dev/100) Registers
 * ![100%](https://progress-bar.dev/100) Graphics
 * ![100%](https://progress-bar.dev/100) Qwirks
-* ![100%](https://progress-bar.dev/100) Sound
+* ![90%](https://progress-bar.dev/90) Sound
 ## CHIP8 HiRes
 * ![0%](https://progress-bar.dev/0) CPU Opcodes
 * ![100%](https://progress-bar.dev/100) Memory
@@ -39,6 +39,7 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 * ![0%](https://progress-bar.dev/0) Emulation Status from all games I have to test
 
 
+
 # TODO
 
 1. Add SDL_Delay to avoid unnecessary infinite loop cycles
@@ -58,5 +59,41 @@ Chip 8 emulator written in C with SDL2 (earlier stage)
 
 5. Add the usage to README
 
+6. Add pictures to README
+
 6. Duplicate or triplicate frame buffer to reduce flickering
 https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
+
+7. Add options to CLI:
+if *cliSchipHack {
+		CPU.SCHIP_TimerHack = true
+	}
+
+	if *cliDebug {
+		CPU.Debug = true
+		Global.SizeYused = 0.7 //Reserve debug screen area
+	}
+
+	if *cliDrawFlag {
+		// Enable Draw at DrawFlag instead of @60Hz
+		Global.OriginalDrawMode = true
+	}
+
+	if *cliHybridETI660 {
+		// Enable ETI-660 Hardware mode (hybrid)
+		// Store rom at 0x600 instead of default 0x200
+		// The ETI 660 had 64 x 48 OR 64 x 64 with a modification
+		Global.Hybrid_ETI_660_HW = true
+	}
+
+	if *cliPause {
+		CPU.Pause = true
+	}
+
+	if *cliHex {
+		hexFlag = true
+	}
+
+
+    8. SOUND must be played during de ST
+    https://gist.github.com/jacobsebek/10867cb10cdfccf1d6cfdd24fa23ee96
