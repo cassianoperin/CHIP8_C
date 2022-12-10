@@ -10,10 +10,6 @@
 
 // --------------------------------- External Variables --------------------------------- //
 extern char *lib_game_signature;
-// Sound
-extern _Atomic int buffer_pos;
-extern Sint16 buffer[BUFFER_LEN];
-extern SDL_AudioSpec spec;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 unsigned int cycle		= 0;		// Main loop cycles
@@ -30,6 +26,8 @@ int main( int argc, char* args[] )
 	unsigned int cycle_counter_cpu			= 0;
 	unsigned int frame						= 0;
 	unsigned int frame_counter				= 0;
+	// Sound
+	bool playing_sound						= false;
 	// Tickers
 	unsigned int tickers_current_time		= 0;
 	unsigned int ticker_second_last_time	= 0;
@@ -50,8 +48,8 @@ int main( int argc, char* args[] )
 	//
 	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
-	char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
 
@@ -75,90 +73,6 @@ int main( int argc, char* args[] )
 	// Initialize Audio System
 	sound_init();
 
-
-
-
-
-
-
-// 	for (int i = 0; i < BUFFER_LEN; i++) {
-// 		buffer[i] = format(tone(440, i), 0.5);
-// 	}
-
-// 	// PLAY!
-// 	// Unpause the device, this starts playback (the callback function starts getting called)
-// 	SDL_PauseAudioDevice(deviceId, 0);
-
-// 	// Wait until the sound plays (SDL_Delay(1000 * BUFFER_DURATION) is also possible, but this is more precise)
-// 	// while (buffer_pos < BUFFER_LEN) {}
-// 	SDL_Delay(2000);
-// 	SDL_LockAudioDevice(deviceId);
-
-// 	// SDL_PauseAudioDevice(deviceId, 1);
-
-// 	// SDL_CloseAudioDevice(deviceId);
-
-
-
-// 	// Wait until the sound plays (SDL_Delay(1000 * BUFFER_DURATION) is also possible, but this is more precise)
-// 	// while (buffer_pos < BUFFER_LEN) {}
-// 	SDL_Delay(2000);
-
-// 		SDL_UnlockAudioDevice(deviceId);
-
-
-// // // memset(buffer, 0x00, sizeof(buffer));
-// // 	for (int i = 0; i < BUFFER_LEN; i++) {
-// // 		buffer[i] = format(tone(440, i), 0.5);
-// // 	}
-
-
-// 	// SDL_CloseAudioDevice(deviceId);
-
-// 		// SDL_PauseAudioDevice(deviceId, 0);
-
-// 	SDL_Delay(2000);
-
-// 		SDL_LockAudioDevice(deviceId);
-
-
-// 	// SDL_PauseAudioDevice(deviceId, 1);
-// 	// SDL_CloseAudioDevice(deviceId);
-
-// 	SDL_Delay(2000);
-
-// 		SDL_UnlockAudioDevice(deviceId);
-
-
-
-// 	// SDL_Delay(2000);
-
-// 	// // SDL_CloseAudioDevice(deviceId);
-
-// 	// 	for (int i = 0; i < BUFFER_LEN; i++) {
-// 	// 	buffer[i] = format(tone(440, i), 0.5);
-// 	// }
-
-// 	// 	SDL_PauseAudioDevice(deviceId, 0);
-
-// 	// SDL_Delay(2000);
-
-// 	// SDL_PauseAudioDevice(deviceId, 1);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//Start up SDL and create window
 	if( !display_init(&display) )
 	{
@@ -166,43 +80,6 @@ int main( int argc, char* args[] )
 	}
 	else
 	{
-
-		SDL_PauseAudioDevice(deviceId, 0);
-		SDL_Delay(2000);
-		SDL_PauseAudioDevice(deviceId, 1);
-
-		// for (int i = 0; i < BUFFER_LEN; i++) {
-		// 	buffer[i] = format(tone(440, i), 0.5);
-		// }
-		buffer_pos = 0;
-
-
-
-		SDL_Delay(2000);
-
-		SDL_PauseAudioDevice(deviceId, 0);
-		SDL_Delay(2000);
-		SDL_PauseAudioDevice(deviceId, 1);
-
-		// for (int i = 0; i < BUFFER_LEN; i++) {
-		// 	buffer[i] = format(tone(440, i), 0.5);
-		// }
-		buffer_pos = 0;
-
-		SDL_Delay(2000);
-		SDL_PauseAudioDevice(deviceId, 0);
-		SDL_Delay(2000);
-		SDL_PauseAudioDevice(deviceId, 1);
-
-		// 		for (int i = 0; i < BUFFER_LEN; i++) {
-		// 	buffer[i] = format(tone(440, i), 0.5);
-		// }
-		buffer_pos = 0;
-
-		SDL_Delay(2000);
-		SDL_PauseAudioDevice(deviceId, 0);
-		SDL_Delay(2000);
-		SDL_PauseAudioDevice(deviceId, 1);
 
 		// ------------------------------ Infinite Loop  ------------------------------ //
 		while( !quit )
@@ -268,21 +145,29 @@ int main( int argc, char* args[] )
 					DelayTimer--;
 				}
 
-
 				// Handle Sound Timer
 				if ( SoundTimer > 0 ) {
-					// Play Sound
-				    if ( SoundTimer == 1 ) {
-						// int success = SDL_QueueAudio(deviceId, wavBuffer, wavLength);
-						// if ( success != 0 ) {
-						// 	printf("Unable to PLAY sound file.\nExiting.\n");
-						// 	exit(2);
-						// }
-						// // Zero play, 1 Pause
-						// SDL_PauseAudioDevice(deviceId, 0);
-					}
+
+					if ( !playing_sound ) {
+						// Start playing the beep
+						SDL_PauseAudioDevice(audio_device_id, 0);
+						
+						// Avoid starting again when already playing the sound
+						playing_sound = true;
+					} 
 
 					SoundTimer--;
+
+				} else {
+
+					if ( playing_sound ) {
+						// Stop sound
+						SDL_PauseAudioDevice(audio_device_id, 1);
+
+						// Avoid starting again when already playing the sound
+						playing_sound = false;
+					}
+
 				}
 
 				// Draw screen

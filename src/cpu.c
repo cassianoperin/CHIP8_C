@@ -83,7 +83,7 @@ void cpu_initialize(){
 	cpu_halt = false;
 
 	// Debug
-	cpu_debug_mode	= true;
+	cpu_debug_mode	= false;
 	cpu_pause		= false;
 }
 

@@ -8,7 +8,7 @@ Chip 8 emulator written in C with SDL2
 * ![100%](https://progress-bar.dev/100) Registers
 * ![100%](https://progress-bar.dev/100) Graphics
 * ![100%](https://progress-bar.dev/100) Qwirks
-* ![90%](https://progress-bar.dev/90) Sound
+* ![100%](https://progress-bar.dev/100) Sound
 ## CHIP8 HiRes
 * ![0%](https://progress-bar.dev/0) CPU Opcodes
 * ![100%](https://progress-bar.dev/100) Memory
@@ -37,8 +37,6 @@ Chip 8 emulator written in C with SDL2
 * ![0%](https://progress-bar.dev/0) Fullscreen
 * ![0%](https://progress-bar.dev/0) Hexadecimal rom format support
 * ![0%](https://progress-bar.dev/0) Emulation Status from all games I have to test
-
-
 
 # TODO
 
@@ -93,7 +91,3 @@ if *cliSchipHack {
 	if *cliHex {
 		hexFlag = true
 	}
-
-
-    8. SOUND must be played during de ST
-    https://gist.github.com/jacobsebek/10867cb10cdfccf1d6cfdd24fa23ee96
