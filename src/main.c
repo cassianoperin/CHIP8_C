@@ -1,5 +1,6 @@
 #include <SDL2/SDL.h>
 #include <string.h>
+#include "main.h"
 #include "lib.h"
 #include "display.h"
 #include "cli.h"
@@ -33,7 +34,6 @@ int main( int argc, char* args[] )
 	unsigned int ticker_second_last_time	= 0;
 	unsigned int ticker_fps_last_time 		= 0;
 	unsigned int ticker_cpu_last_time		= 0;
-	struct display display;
 
 	// Initialize
 	cpu_initialize();
@@ -48,8 +48,13 @@ int main( int argc, char* args[] )
 	//
 	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
+<<<<<<< HEAD
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+=======
+	char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+>>>>>>> 92b0c9c (Started implementation of SDL TTF)
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
 
@@ -74,7 +79,7 @@ int main( int argc, char* args[] )
 	sound_init();
 
 	//Start up SDL and create window
-	if( !display_init(&display) )
+	if( !display_init() )
 	{
 		printf( "Failed to initialize SDL!\n" );
 	}
@@ -109,7 +114,7 @@ int main( int argc, char* args[] )
 					if ( cpu_draw_flag ) {
 
 						// if (frame_counter % 3 == 0 ) {
-						display_draw(&display, frame_counter);
+						display_draw(frame_counter);
 
 						// }
 
@@ -172,7 +177,7 @@ int main( int argc, char* args[] )
 
 				// Draw screen
 				if ( !cpu_original_draw_mode ) {
-					display_draw(&display, frame_counter);
+					display_draw(frame_counter);
 
 					// Increment total frame counter
 					frame ++;
@@ -194,7 +199,7 @@ int main( int argc, char* args[] )
 				// Cycles and FPS Measurement
 				char title_msg[510];
 				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter+1, cycle_counter_cpu);
-				SDL_SetWindowTitle(display.window, title_msg);
+				SDL_SetWindowTitle(window, title_msg);
 
 				// Update timer variables
 				ticker_second_last_time = tickers_current_time;
@@ -215,7 +220,7 @@ int main( int argc, char* args[] )
 
 	//Free resources and close SDL
 	sound_close();
-	display_close(&display);
+	SDL_close();
 
 	return 0;
 }

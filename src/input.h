@@ -14,8 +14,12 @@ extern unsigned int  display_pixel_OFF_color_alt;
 extern unsigned int  display_pixels[2048]; 
 extern unsigned char display_color_theme;
 extern char   *lib_game_signature;
+extern unsigned char   Key[];
+extern bool cpu_pause;
+extern bool cpu_debug_mode;
 // External Functions
 extern void display_update_theme();
+extern void cpu_reset();
 
 // ---------------------------------- Global Variables ---------------------------------- //
 bool input_remap_flag;

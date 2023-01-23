@@ -1,6 +1,6 @@
 #include <SDL2/SDL.h>
 #include "input.h"
-#include "cpu.h"
+// #include "cpu.h"
 
 void input_keyboard() {
 
