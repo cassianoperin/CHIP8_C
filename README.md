@@ -91,3 +91,13 @@ if *cliSchipHack {
 	if *cliHex {
 		hexFlag = true
 	}
+
+8. Reduce the usage of insludes to put the counters in their places
+
+9. Test cpu_halt and the quirk_display_wait
+
+10. Switch to show and hide messages
+
+11. End use of bool def
+
+12. Limit the cpu run to max allowed (CPU CLOCK), to correct CPU instructions per second

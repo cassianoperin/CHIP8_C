@@ -9,6 +9,7 @@ typedef int bool;
 // Cycles
 extern unsigned int  cycle;
 extern unsigned int  cycle_cpu;
+extern unsigned int  cycle_counter_cpu;
 extern unsigned char display_FPS;
 extern unsigned int  display_pixels[2048];
 
@@ -38,6 +39,8 @@ bool            cpu_SCHIP_timer_hack;       // Enable or disable SCHIP DelayTime
 unsigned char   cpu_HP48_RPL_user_flags[8]; // HP-48 RPL user flags
 // Interface
 bool            cpu_pause;                  // Pause emulation
+// CPU Clock
+// unsigned int CPU_CLOCK  = 1000;
 
 
 // -------------------------------------- Functions ------------------------------------- //

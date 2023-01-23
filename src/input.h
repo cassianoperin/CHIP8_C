@@ -1,9 +1,5 @@
 #pragma once
-
-// Boolean Type for Vanilla C
-typedef int bool;
-#define true 1
-#define false 0
+#include "typedef.h"
 
 // -------------------------- External Variables and functions -------------------------- //
 extern bool          quit;

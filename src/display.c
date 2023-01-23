@@ -58,6 +58,12 @@ bool display_draw(unsigned int frame, Scene *scene)
 	//Initialization flag
 	bool success = true;
 
+	// Increment total frame counter
+	frame ++;
+
+	// Increment Frame Counter for FPS
+	frame_counter++;
+
 	// Update the Screen
 	SDL_UpdateTexture(texture, NULL, display_pixels, display_SCREEN_WIDTH_X * sizeof(uint32_t));
 	SDL_RenderCopy(renderer, texture, NULL, NULL);

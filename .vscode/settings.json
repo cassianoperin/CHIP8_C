@@ -39,7 +39,8 @@
         "cli.h": "c",
         "sdl_mixer.h": "c",
         "quirks.h": "c",
-        "font.h": "c"
+        "font.h": "c",
+        "input.h": "c"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "C_Cpp.errorSquiggles": "Disabled"

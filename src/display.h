@@ -13,6 +13,9 @@ extern SDL_Renderer* renderer;
 extern SDL_Texture* texture;
 // SDL Font
 extern char *string_msg1, *string_msg2;
+// Counters
+extern unsigned int frame;
+extern unsigned int frame_counter;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 // Display (Screen size)

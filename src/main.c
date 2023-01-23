@@ -11,24 +11,9 @@
 #include "sound.h"
 #include "font.h"
 
-// --------------------------------- External Variables --------------------------------- //
-extern char *lib_game_signature;
-
-// ---------------------------------- Global Variables ---------------------------------- //
-unsigned int cycle		= 0;		// Main loop cycles
-unsigned int cycle_cpu	= 0;		// Executed cpu cycles
-bool quit				= false;	// Main loop flag
-char* filename;						// game path and file name
-
-// ------------------------------------ Main Program ------------------------------------ //
 
 int main( int argc, char* args[] )
 {
-	// Counters
-	unsigned int cycle_counter				= 0;
-	unsigned int cycle_counter_cpu			= 0;
-	unsigned int frame						= 0;
-	unsigned int frame_counter				= 0;
 	// Sound
 	bool playing_sound						= false;
 	// Tickers
@@ -36,6 +21,8 @@ int main( int argc, char* args[] )
 	unsigned int ticker_second_last_time	= 0;
 	unsigned int ticker_fps_last_time 		= 0;
 	unsigned int ticker_cpu_last_time		= 0;
+	// Main loop control
+	quit								= false;
 
 	// Initialize
 	cpu_initialize();
@@ -95,23 +82,18 @@ int main( int argc, char* args[] )
 			// Maybe calculate the time per cycle and wait?
 			// SDL_Delay(1);
 
-			// Current time
-			tickers_current_time = SDL_GetTicks();
-
 			// Increment main loop cycle counter
 			cycle++;
 
 			// Increment Cycle per second counter
 			cycle_counter++;
 
+			// Current time
+			tickers_current_time = SDL_GetTicks();
+
 			// ---------------------------- Ticker Second ---------------------------- //
 
 			if ( ticker_second(ticker_second_last_time, tickers_current_time) ) {
-
-				// Cycles and FPS Measurement
-				char title_msg[510];
-				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu-1);
-				SDL_SetWindowTitle(window, title_msg);
 
 				display_draw(frame_counter, &scene);
 
@@ -125,6 +107,11 @@ int main( int argc, char* args[] )
 
 				// Update timer variables
 				ticker_second_last_time = tickers_current_time;
+
+				// Cycles and FPS Measurement
+				char title_msg[510];
+				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu-1);
+				SDL_SetWindowTitle(window, title_msg);
 
 				// Reset counters
 				cycle_counter = 0;
@@ -140,6 +127,8 @@ int main( int argc, char* args[] )
 				if ( !cpu_pause ) {
 
 					if (!cpu_halt) {
+						// Ensure that CPU will not run any cycle more than the limit
+						// if ( )
 						cpu_interpreter();
 					}
 
@@ -152,20 +141,10 @@ int main( int argc, char* args[] )
 						// Draw
 						display_draw(frame_counter, &scene);
 
-						// Increment total frame counter
-						frame ++;
-						// Increment frame counter for FPS
-						frame_counter++;
 						// Reset the flag
 						cpu_draw_flag = false;
 					}
 				}
-
-				// Increment CPU Cycles
-				cycle_cpu ++;
-
-				// Reset counters
-				cycle_counter_cpu ++;
 
 				// Update timer variables
 				ticker_cpu_last_time = tickers_current_time;
@@ -212,11 +191,6 @@ int main( int argc, char* args[] )
 				// Draw screen
 				if ( !cpu_original_draw_mode ) {
 					display_draw(frame_counter, &scene);
-
-					// Increment total frame counter
-					frame ++;
-					// Increment frame counter for FPS
-					frame_counter++;
 
 					cpu_draw_flag = false;
 					cpu_halt = false;

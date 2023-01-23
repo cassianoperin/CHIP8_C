@@ -116,6 +116,12 @@ void cpu_debug_print(){ // Missing Delay Timers and Keys
 // CPU Interpreter
 void cpu_interpreter() {
 
+	// Increment CPU Cycles
+	cycle_cpu ++;
+
+	// Increment opcodes per second counter
+	cycle_counter_cpu ++;
+
 	// Read the Opcode from PC and PC+1 bytes
 	Opcode = (unsigned short)Memory[PC]<<8 | (unsigned short)Memory[PC+1];
 
