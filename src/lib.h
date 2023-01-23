@@ -8,6 +8,7 @@ typedef int bool;
 // --------------------------------- External Variables --------------------------------- //
 extern unsigned char display_FPS;
 extern unsigned char Memory[4096];
+extern char *string_msg1, *string_msg2; 
 
 // ---------------------------------- Global Variables ---------------------------------- //
 char *lib_game_signature;   // Game signature to apply quirks
@@ -28,3 +29,7 @@ void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
 
 // Get Game Signature
 void get_game_signature(char* filename, char **s);
+
+// Print Frames and Cycles per second on screen
+void showCPS( long long unsigned int n);
+void showFPS( int number );

@@ -46,7 +46,7 @@ bool ticker_cpu(unsigned int lastTime, unsigned int currentTime)
 
 
 	// Check if it passed one second / FPS
-	if (currentTime >= lastTime + (1000/CPU_CLOCK)) {
+	if (currentTime >= lastTime + (1000 / (CPU_CLOCK))) {
 		success = true;
 	}
 
@@ -96,4 +96,76 @@ void get_game_signature(char* filename, char **s) {
 
 	// Update the game_signature pointer
 	*s = signature;
+}
+
+// Show Cycles Per Second
+void showCPS( long long unsigned int number) 
+{
+	// Variables
+    char nstring[30];
+	int str_size, ptr, i , j = 0;
+
+	// Allocate memory for the pointer
+	int length = snprintf( NULL, 0, "%llu", number );
+	string_msg1 = malloc( length + 30 );
+
+	// Convert the integer into a string
+    sprintf(nstring, "%llu", number);
+	// Size of string
+	str_size = strlen(nstring);
+
+	// Label
+	strcat(string_msg1, "Cycles per second: ");
+
+	// Work with First 3 digits
+	ptr = str_size % 3;
+	if (ptr) {
+		 // Print first digits before point
+		for ( i = 0 ; i < ptr ; i++ ) {      
+			// printf("%c", nstring[i]); 
+			strncat(string_msg1, &nstring[i], 1);
+		}
+
+		// Just print the point if number is bigguer than 3
+		if ( str_size > 3) {
+			// printf(".");
+			strcat(string_msg1, ".");
+		}
+	}
+
+
+	for ( i = ptr ; i < str_size ; i++ ) {      // print the rest inserting points
+		// printf("%c", nstring[i]);
+		strncat(string_msg1, &nstring[i], 1);
+		j++;
+		if ( j % 3 == 0 ) {
+			if( i < (str_size-1) ) {
+				strcat(string_msg1, ".");
+				// printf(".");
+			} 
+		}
+	}
+
+	// printf("\n");
+
+}
+
+// Show Frames Per Second
+void showFPS( int number ) 
+{
+	int length = snprintf( NULL, 0, "%d", number );
+	string_msg2 = malloc( length + 10);
+
+	char temp[20];
+	char fps_count[10];
+	char fps_text[6] = "FPS: ";
+	snprintf( fps_count, length + 1, "%d", number );
+
+
+	memcpy(temp,fps_count,sizeof(fps_count));
+	memcpy(fps_count,fps_text,strlen(fps_text));
+	memcpy(fps_count+strlen(fps_text),temp,strlen(temp)+1);
+
+
+	strcpy(string_msg2, fps_count);
 }

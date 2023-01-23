@@ -53,7 +53,7 @@ bool display_init()
 }
 
 
-bool display_draw(unsigned int frame)
+bool display_draw(unsigned int frame, Scene *scene)
 {
 	//Initialization flag
 	bool success = true;
@@ -61,8 +61,18 @@ bool display_draw(unsigned int frame)
 	// Update the Screen
 	SDL_UpdateTexture(texture, NULL, display_pixels, display_SCREEN_WIDTH_X * sizeof(uint32_t));
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
+
+	// ----- Update Text Messages ----- //
+	// Message Slot 1
+	if ( string_msg1 != NULL && strcmp( string_msg1, "") != 0 ) {
+		    SDL_RenderCopy(renderer, scene->message1, NULL, &scene->message1_Rect);
+	}
+	// Message Slot 2
+	if ( string_msg2 != NULL && strcmp( string_msg2, "") != 0 ) {
+    	SDL_RenderCopy(renderer, scene->message2, NULL, &scene->message2_Rect);
+	}
+
 	SDL_RenderPresent(renderer);
-	// SDL_SetWindowTitle(window, "CPS:0      FPS:0");
 	
 	return success;
 }

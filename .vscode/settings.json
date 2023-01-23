@@ -38,7 +38,8 @@
         "cpu_core_chip8.h": "c",
         "cli.h": "c",
         "sdl_mixer.h": "c",
-        "quirks.h": "c"
+        "quirks.h": "c",
+        "font.h": "c"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "C_Cpp.errorSquiggles": "Disabled"

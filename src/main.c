@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_ttf.h>
 #include <string.h>
 #include "main.h"
 #include "lib.h"
@@ -8,6 +9,7 @@
 #include "input.h"
 #include "quirks.h"
 #include "sound.h"
+#include "font.h"
 
 // --------------------------------- External Variables --------------------------------- //
 extern char *lib_game_signature;
@@ -48,13 +50,10 @@ int main( int argc, char* args[] )
 	//
 	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
-<<<<<<< HEAD
+
 	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-=======
-	char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
->>>>>>> 92b0c9c (Started implementation of SDL TTF)
+
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
 	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
 
@@ -78,6 +77,9 @@ int main( int argc, char* args[] )
 	// Initialize Audio System
 	sound_init();
 
+	// ------------------------------ Font Init ------------------------------ //
+	font_init(renderer);
+
 	//Start up SDL and create window
 	if( !display_init() )
 	{
@@ -85,7 +87,6 @@ int main( int argc, char* args[] )
 	}
 	else
 	{
-
 		// ------------------------------ Infinite Loop  ------------------------------ //
 		while( !quit )
 		{
@@ -96,6 +97,41 @@ int main( int argc, char* args[] )
 
 			// Current time
 			tickers_current_time = SDL_GetTicks();
+
+			// Increment main loop cycle counter
+			cycle++;
+
+			// Increment Cycle per second counter
+			cycle_counter++;
+
+			// ---------------------------- Ticker Second ---------------------------- //
+
+			if ( ticker_second(ticker_second_last_time, tickers_current_time) ) {
+
+				// Cycles and FPS Measurement
+				char title_msg[510];
+				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu-1);
+				SDL_SetWindowTitle(window, title_msg);
+
+				display_draw(frame_counter, &scene);
+
+				// -------- Message slot 1 -------- //
+				showCPS(cycle_counter-1);
+				font_update_msg1(renderer);
+
+				// -------- Message slot 2 -------- //
+				showFPS(frame_counter);
+				font_update_msg2(renderer);
+
+				// Update timer variables
+				ticker_second_last_time = tickers_current_time;
+
+				// Reset counters
+				cycle_counter = 0;
+				frame_counter = 0;
+				cycle_counter_cpu = 0;
+			}
+
 
 			// ------------------------------ Ticker CPU ------------------------------ //
 
@@ -109,14 +145,12 @@ int main( int argc, char* args[] )
 
 				}
 
-				// 
+				// Draw every time the draw opcode is set
 				if ( cpu_original_draw_mode ) {
 					if ( cpu_draw_flag ) {
 
-						// if (frame_counter % 3 == 0 ) {
-						display_draw(frame_counter);
-
-						// }
+						// Draw
+						display_draw(frame_counter, &scene);
 
 						// Increment total frame counter
 						frame ++;
@@ -127,14 +161,14 @@ int main( int argc, char* args[] )
 					}
 				}
 
-				// Update timer variables
-				ticker_cpu_last_time = tickers_current_time;
-
 				// Increment CPU Cycles
 				cycle_cpu ++;
 
-				// // Reset counters
+				// Reset counters
 				cycle_counter_cpu ++;
+
+				// Update timer variables
+				ticker_cpu_last_time = tickers_current_time;
 			}
 
 			// ------------------------------ Ticker FPS ------------------------------ //
@@ -177,7 +211,7 @@ int main( int argc, char* args[] )
 
 				// Draw screen
 				if ( !cpu_original_draw_mode ) {
-					display_draw(frame_counter);
+					display_draw(frame_counter, &scene);
 
 					// Increment total frame counter
 					frame ++;
@@ -192,29 +226,7 @@ int main( int argc, char* args[] )
 				ticker_fps_last_time = tickers_current_time;
 			}
 
-			// ---------------------------- Ticker Second ---------------------------- //
-
-			if ( ticker_second(ticker_second_last_time, tickers_current_time) ) {
-
-				// Cycles and FPS Measurement
-				char title_msg[510];
-				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter+1, cycle_counter_cpu);
-				SDL_SetWindowTitle(window, title_msg);
-
-				// Update timer variables
-				ticker_second_last_time = tickers_current_time;
-
-				// Reset counters
-				cycle_counter = 0;
-				frame_counter = 0;
-				cycle_counter_cpu = 0;
-			}
-
-			// Increment main loop cycle counter
-			cycle++;
-
-			// Increment Cycle per second counter
-			cycle_counter++;
+			
 		}
 	}
 

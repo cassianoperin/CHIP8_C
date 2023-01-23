@@ -10,5 +10,5 @@ SDL_Renderer* renderer;
 SDL_Texture* texture;
 
 // // SDL Font
-// TTF_Font *font;
-// SDL_Surface *text;
+TTF_Font *font;
+SDL_Surface *text;
