@@ -113,7 +113,7 @@ void showCPS(long long unsigned int number)
 	str_size = strlen(nstring);
 
 	// Label
-	strcat(string_msg1, "Cycles per second: ");
+	strcat(string_msg1, "Emulator Cycles per second: ");
 
 	// Work with First 3 digits
 	ptr = str_size % 3;
@@ -152,7 +152,7 @@ void showCPS(long long unsigned int number)
 void showFPS(int number) 
 {
 	int length = snprintf( NULL, 0, "%d", number );
-	string_msg2 = malloc( length + 10);
+	string_msg3 = malloc( length + 10);
 
 	char temp[20];
 	char fps_count[10];
@@ -165,5 +165,25 @@ void showFPS(int number)
 	memcpy(fps_count+strlen(fps_text),temp,strlen(temp)+1);
 
 
-	strcpy(string_msg2, fps_count);
+	strcpy(string_msg3, fps_count);
+}
+
+// Show CPU Cycles Per Second
+void showCPU_CPS(int number) 
+{
+	int length = snprintf( NULL, 0, "%d", number );
+	string_msg2 = malloc( length + 40);
+
+	char temp[30];
+	char cps_count[30];
+	char cps_text[30] = "CPU Cycles per second: ";
+	snprintf( cps_count, length + 1, "%d", number );
+
+
+	memcpy(temp,cps_count,sizeof(cps_count));
+	memcpy(cps_count,cps_text,strlen(cps_text));
+	memcpy(cps_count+strlen(cps_text),temp,strlen(temp)+1);
+
+
+	strcpy(string_msg2, cps_count);
 }

@@ -75,7 +75,7 @@ void cpu_initialize(){
 	srand(time(NULL));
 
 	// Draw
-	cpu_original_draw_mode = false;
+	cpu_original_draw_mode = true;
 	cpu_halt = false;
 
 	// Debug

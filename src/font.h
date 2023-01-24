@@ -21,7 +21,7 @@ int renderstyle;
 int outline;
 int hinting;
 int kerning;
-char *string_msg1, *string_msg2, *font_path;
+char *string_msg1, *string_msg2, *string_msg3, *string_msg4, *font_path;
 
 // -------------------------------------- Constants ------------------------------------- //
 const char Chip8Fontset[80] = { \
@@ -67,3 +67,4 @@ const char SCHIPFontset[160] = {  \
 bool font_init(SDL_Renderer* renderer);
 void font_update_msg1(SDL_Renderer* renderer);
 void font_update_msg2(SDL_Renderer* renderer);
+void font_update_msg3(SDL_Renderer* renderer);

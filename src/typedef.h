@@ -10,12 +10,18 @@ typedef int bool;
 
 // Struct to render Text Messages
 typedef struct {
-    // Message 01
+    // Message slot 01
     SDL_Texture *message1;
     SDL_Rect message1_Rect;
-    // Message 02
+    // Message slot 02
     SDL_Texture *message2;
     SDL_Rect message2_Rect;
+    // Message slot 03
+    SDL_Texture *message3;
+    SDL_Rect message3_Rect;
+    // Message slot 04
+    SDL_Texture *message4;
+    SDL_Rect message4_Rect;
 } Scene;
 
 // Text Render Methods for text messages

@@ -104,7 +104,7 @@ bool            cpu_pause;                  // Pause emulation
 unsigned int    cycle_cpu = 0;		        // Executed cpu cycles
 unsigned int    cycle_counter_cpu = 0;      // CPU instructions per second
 // CPU Clock
-unsigned int    CPU_CLOCK  = 1000;
+unsigned int    CPU_CLOCK  = 500;
 
 
 // -------------------------------------- Functions ------------------------------------- //

@@ -10,7 +10,7 @@ typedef int bool;
 extern unsigned char display_FPS;
 extern unsigned char Memory[4096];
 // Font
-extern char *string_msg1, *string_msg2; 
+extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4; 
 // CPU
 extern unsigned int CPU_CLOCK;
 
@@ -38,3 +38,4 @@ void get_game_signature(char* filename, char **s);
 // Print Frames and Cycles per second on screen
 void showCPS(long long unsigned int number);
 void showFPS(int number);
+void showCPU_CPS(int number);

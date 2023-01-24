@@ -9,7 +9,7 @@ bool display_init()
 	// Variables
 	display_SCREEN_WIDTH_X	= 64;
 	display_SCREEN_HEIGHT_Y	= 32;
-	display_SCALE			= 20;
+	display_SCALE			= 10;
 	display_pixel_ON_color	= 0xFFFFFFFF;
 	display_pixel_OFF_color	= 0xFF000000;
 	display_color_theme		= 0;
@@ -76,6 +76,14 @@ bool display_draw(unsigned int frame, Scene *scene)
 	// Message Slot 2
 	if ( string_msg2 != NULL && strcmp( string_msg2, "") != 0 ) {
     	SDL_RenderCopy(renderer, scene->message2, NULL, &scene->message2_Rect);
+	}
+	// Message Slot 3
+	if ( string_msg3 != NULL && strcmp( string_msg3, "") != 0 ) {
+    	SDL_RenderCopy(renderer, scene->message3, NULL, &scene->message3_Rect);
+	}
+	// Message Slot 4
+	if ( string_msg4 != NULL && strcmp( string_msg4, "") != 0 ) {
+    	SDL_RenderCopy(renderer, scene->message4, NULL, &scene->message4_Rect);
 	}
 
 	SDL_RenderPresent(renderer);

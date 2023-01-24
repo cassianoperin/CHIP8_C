@@ -86,22 +86,32 @@ int main( int argc, char* args[] )
 
 			if ( ticker_second(ticker_second_last_time, tickers_current_time) ) {
 
+				// At least one draw per second
 				display_draw(frame_counter, &scene);
 
 				// -------- Message slot 1 -------- //
-				showCPS(cycle_counter-1);
+				showCPS(cycle_counter);
 				font_update_msg1(renderer);
 
 				// -------- Message slot 2 -------- //
-				showFPS(frame_counter);
+				showCPU_CPS(cycle_counter_cpu);
 				font_update_msg2(renderer);
+
+				// -------- Message slot 3 -------- //
+				showFPS(frame_counter);
+				font_update_msg3(renderer);
+
+				// -------- Message slot 4 -------- //
+				string_msg4 = "4th SLOT MESSAGE";
+				font_update_msg4(renderer);
+
 
 				// Update timer variables
 				ticker_second_last_time = tickers_current_time;
 
 				// Cycles and FPS Measurement
 				char title_msg[510];
-				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu-1);
+				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu);
 				SDL_SetWindowTitle(window, title_msg);
 
 				// Reset counters
@@ -118,9 +128,11 @@ int main( int argc, char* args[] )
 				if ( !cpu_pause ) {
 
 					if (!cpu_halt) {
-						// Ensure that CPU will not run any cycle more than the limit
-						// if ( )
-						cpu_interpreter();
+						// Ensure that CPU will run exactly the defined clock
+						// Sometimes the milliseconds sum leave one extra cycle into the second
+						if ( cycle_counter_cpu < CPU_CLOCK ) {
+							cpu_interpreter();
+						}
 					}
 
 				}

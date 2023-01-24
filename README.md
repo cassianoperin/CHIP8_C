@@ -93,17 +93,12 @@ if *cliSchipHack {
 		hexFlag = true
 	}
 
-9. Review the need for global vars
+8. Test cpu_halt and the quirk_display_wait
 
-10. Test cpu_halt and the quirk_display_wait
+9. Switch to show and hide messages
 
-11. Switch to show and hide messages
+10. Improve draw messages into an struct?
 
-12. Limit the cpu run to max allowed (CPU CLOCK), to correct CPU instructions per second / understand why 1001/sec
 
-13. Update Messages when not drawing (end of some games, in default draw mode Breakout (Brix hack) [David Winter, 1997].ch8)
 
-14. Confirm if is it necessary to declare functions in headers
-	// Print Frames and Cycles per second on screen
-	void showCPS(long long unsigned int number);
-	// void showFPS(int number);
+

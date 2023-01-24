@@ -12,7 +12,7 @@ extern SDL_Window* window;
 extern SDL_Renderer* renderer;
 extern SDL_Texture* texture;
 // SDL Font
-extern char *string_msg1, *string_msg2;
+extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 // Display (Screen size)
@@ -38,5 +38,4 @@ unsigned int frame_counter = 0;              // Frame per second
 // -------------------------------------- Functions ------------------------------------- //
 bool display_init();
 bool display_draw(unsigned int frame, Scene *scene);
-
 void display_update_theme();

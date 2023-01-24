@@ -240,16 +240,187 @@ void font_update_msg2(SDL_Renderer* renderer){
             exit(2);
         }
             
-        // Draw Message 1
+        // Draw Message 2
         if (text != NULL) {
             scene.message2_Rect.x = 10;
-            scene.message2_Rect.y = ((display_SCREEN_HEIGHT_Y * display_SCALE) - text->h - 10);
+            scene.message2_Rect.y = 30;
             scene.message2_Rect.w = text->w;
             scene.message2_Rect.h = text->h;
             scene.message2 = SDL_CreateTextureFromSurface(renderer, text);
             SDL_FreeSurface(text);
         } else { // text == NULL
             SDL_Log("Draw Message 2: Couldn't render text: %s\n", SDL_GetError());
+            TTF_CloseFont(font);
+            SDL_Quit();
+            exit(2);
+        }
+    }
+}
+
+void font_update_msg3(SDL_Renderer* renderer){
+
+    // Initial message
+    // string_msg3 = "SECOND SLOT MESSAGE";
+
+    if ( string_msg3 != NULL && strcmp( string_msg3, "") != 0  ) {
+
+        // Font Color
+        font_foreground_color.a = 0;
+        font_foreground_color.r = 0x87;
+        font_foreground_color.g = 0xCE;
+        font_foreground_color.b = 0xFA;
+
+        text = TTF_RenderText_Blended(font, string_msg3, font_foreground_color);
+
+        switch (rendertype) {
+            case RENDER_LATIN1:
+                switch (rendermethod) {
+                case TextRenderSolid:
+                    text = TTF_RenderText_Solid(font, string_msg3, font_foreground_color);
+                    break;
+                case TextRenderShaded:
+                    text = TTF_RenderText_Shaded(font, string_msg3, font_foreground_color, font_background_color);
+                    break;
+                case TextRenderBlended:
+                    text = TTF_RenderText_Blended(font, string_msg3, font_foreground_color);
+                    break;
+                }
+                break;
+
+            case RENDER_UTF8:
+                switch (rendermethod) {
+                case TextRenderSolid:
+                    text = TTF_RenderUTF8_Solid(font, string_msg3, font_foreground_color);
+                    break;
+                case TextRenderShaded:
+                    text = TTF_RenderUTF8_Shaded(font, string_msg3, font_foreground_color, font_background_color);
+                    break;
+                case TextRenderBlended:
+                    text = TTF_RenderUTF8_Blended(font, string_msg3, font_foreground_color);
+                    break;
+                }
+                break;
+
+            case RENDER_UNICODE:
+            {
+                Uint16 *unicode_text = SDL_iconv_utf8_ucs2(string_msg3);
+                switch (rendermethod) {
+                case TextRenderSolid:
+                    text = TTF_RenderUNICODE_Solid(font, unicode_text, font_foreground_color);
+                    break;
+                case TextRenderShaded:
+                    text = TTF_RenderUNICODE_Shaded(font, unicode_text, font_foreground_color, font_background_color);
+                    break;
+                case TextRenderBlended:
+                    text = TTF_RenderUNICODE_Blended(font, unicode_text, font_foreground_color);
+                    break;
+                }
+                SDL_free(unicode_text);
+            }
+            break;
+        }
+        if (text == NULL) {
+            SDL_Log("Couldn't render text: %s\n", SDL_GetError());
+            TTF_CloseFont(font);
+            exit(2);
+        }
+            
+        // Draw Message 3
+        if (text != NULL) {
+            scene.message3_Rect.x = 10;
+            // scene.message3_Rect.y = ((display_SCREEN_HEIGHT_Y * display_SCALE) - text->h - 10);
+            scene.message3_Rect.y = 60;
+            scene.message3_Rect.w = text->w;
+            scene.message3_Rect.h = text->h;
+            scene.message3 = SDL_CreateTextureFromSurface(renderer, text);
+            SDL_FreeSurface(text);
+        } else { // text == NULL
+            SDL_Log("Draw Message 3: Couldn't render text: %s\n", SDL_GetError());
+            TTF_CloseFont(font);
+            SDL_Quit();
+            exit(2);
+        }
+    }
+}
+
+void font_update_msg4(SDL_Renderer* renderer){
+
+    // Initial message
+    // string_msg4 = "4th SLOT MESSAGE";
+
+    if ( string_msg4 != NULL && strcmp( string_msg4, "") != 0  ) {
+
+        // Font Color
+        font_foreground_color.a = 0;
+        font_foreground_color.r = 0x87;
+        font_foreground_color.g = 0xCE;
+        font_foreground_color.b = 0xFA;
+
+        text = TTF_RenderText_Blended(font, string_msg4, font_foreground_color);
+
+        switch (rendertype) {
+            case RENDER_LATIN1:
+                switch (rendermethod) {
+                case TextRenderSolid:
+                    text = TTF_RenderText_Solid(font, string_msg4, font_foreground_color);
+                    break;
+                case TextRenderShaded:
+                    text = TTF_RenderText_Shaded(font, string_msg4, font_foreground_color, font_background_color);
+                    break;
+                case TextRenderBlended:
+                    text = TTF_RenderText_Blended(font, string_msg4, font_foreground_color);
+                    break;
+                }
+                break;
+
+            case RENDER_UTF8:
+                switch (rendermethod) {
+                case TextRenderSolid:
+                    text = TTF_RenderUTF8_Solid(font, string_msg4, font_foreground_color);
+                    break;
+                case TextRenderShaded:
+                    text = TTF_RenderUTF8_Shaded(font, string_msg4, font_foreground_color, font_background_color);
+                    break;
+                case TextRenderBlended:
+                    text = TTF_RenderUTF8_Blended(font, string_msg4, font_foreground_color);
+                    break;
+                }
+                break;
+
+            case RENDER_UNICODE:
+            {
+                Uint16 *unicode_text = SDL_iconv_utf8_ucs2(string_msg4);
+                switch (rendermethod) {
+                case TextRenderSolid:
+                    text = TTF_RenderUNICODE_Solid(font, unicode_text, font_foreground_color);
+                    break;
+                case TextRenderShaded:
+                    text = TTF_RenderUNICODE_Shaded(font, unicode_text, font_foreground_color, font_background_color);
+                    break;
+                case TextRenderBlended:
+                    text = TTF_RenderUNICODE_Blended(font, unicode_text, font_foreground_color);
+                    break;
+                }
+                SDL_free(unicode_text);
+            }
+            break;
+        }
+        if (text == NULL) {
+            SDL_Log("Couldn't render text: %s\n", SDL_GetError());
+            TTF_CloseFont(font);
+            exit(2);
+        }
+            
+        // Draw Message 4
+        if (text != NULL) {
+            scene.message4_Rect.x = 10;
+            scene.message4_Rect.y = ((display_SCREEN_HEIGHT_Y * display_SCALE) - text->h - 10);
+            scene.message4_Rect.w = text->w;
+            scene.message4_Rect.h = text->h;
+            scene.message4 = SDL_CreateTextureFromSurface(renderer, text);
+            SDL_FreeSurface(text);
+        } else { // text == NULL
+            SDL_Log("Draw Message 4: Couldn't render text: %s\n", SDL_GetError());
             TTF_CloseFont(font);
             SDL_Quit();
             exit(2);
