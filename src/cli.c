@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "cli.h"
-#include "lib.h"
 
 // Command Line Interface
 void command_line_interface(int argc, char* args[]) {

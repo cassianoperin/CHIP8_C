@@ -55,9 +55,10 @@ Chip 8 emulator written in C with SDL2
 
 4. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
 
-5. Add the usage to README
-
-6. Add pictures to README
+5. README
+	- Add the usage to README
+	- Add pictures to README
+	- ADD test result to README
 
 6. Duplicate or triplicate frame buffer to reduce flickering
 https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
@@ -92,12 +93,17 @@ if *cliSchipHack {
 		hexFlag = true
 	}
 
-8. Reduce the usage of insludes to put the counters in their places
+9. Review the need for global vars
 
-9. Test cpu_halt and the quirk_display_wait
+10. Test cpu_halt and the quirk_display_wait
 
-10. Switch to show and hide messages
+11. Switch to show and hide messages
 
-11. End use of bool def
+12. Limit the cpu run to max allowed (CPU CLOCK), to correct CPU instructions per second / understand why 1001/sec
 
-12. Limit the cpu run to max allowed (CPU CLOCK), to correct CPU instructions per second
+13. Update Messages when not drawing (end of some games, in default draw mode Breakout (Brix hack) [David Winter, 1997].ch8)
+
+14. Confirm if is it necessary to declare functions in headers
+	// Print Frames and Cycles per second on screen
+	void showCPS(long long unsigned int number);
+	// void showFPS(int number);

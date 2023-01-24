@@ -6,12 +6,17 @@ typedef int bool;
 #define false 0
 
 // --------------------------------- External Variables --------------------------------- //
+// Display
 extern unsigned char display_FPS;
 extern unsigned char Memory[4096];
+// Font
 extern char *string_msg1, *string_msg2; 
+// CPU
+extern unsigned int CPU_CLOCK;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 char *lib_game_signature;   // Game signature to apply quirks
+
 
 // -------------------------------------- Functions ------------------------------------- //
 
@@ -31,5 +36,5 @@ void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
 void get_game_signature(char* filename, char **s);
 
 // Print Frames and Cycles per second on screen
-void showCPS( long long unsigned int n);
-void showFPS( int number );
+void showCPS(long long unsigned int number);
+void showFPS(int number);

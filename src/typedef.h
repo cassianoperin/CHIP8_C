@@ -3,7 +3,7 @@
 
 // ---------------------------------- Type Definitions ---------------------------------- //
 
-// Boolean type
+// Boolean Type for Vanilla C
 typedef int bool;
 #define true 1
 #define false 0

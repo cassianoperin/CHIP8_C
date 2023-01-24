@@ -3,10 +3,6 @@
 #include <string.h>
 #include <time.h>
 #include "cpu.h"
-#include "cpu_core_chip8.h"
-#include "fonts.h"
-#include "lib.h"
-#include "quirks.h"
 
 void cpu_reset(){
 

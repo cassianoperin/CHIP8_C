@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "cpu.h"
 #include "cpu_core_chip8.h"
 
 // ---------------------------- CHIP-8 0xxx instruction set ---------------------------- //

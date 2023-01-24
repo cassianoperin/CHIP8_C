@@ -1,14 +1,11 @@
 #pragma once
-
-// Boolean Type for Vanilla C
-typedef int bool;
-#define true 1
-#define false 0
+#include "typedef.h"
 
 // --------------------------------- External Variables --------------------------------- //
-// Screen Size
+// Display
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
+// CPU
 extern bool cpu_original_draw_mode;
 
 

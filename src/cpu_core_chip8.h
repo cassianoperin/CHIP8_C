@@ -1,4 +1,5 @@
 #pragma once
+#include "typedef.h"
 
 // --------------------------------- External Variables --------------------------------- //
 // Display
@@ -24,6 +25,21 @@ extern bool quirk_ClockProgram_fonts;
 extern bool quirk_display_wait;
 // File name
 extern char* filename;
+// CPU
+extern unsigned short	PC;
+extern unsigned short	Stack[];
+extern unsigned short	SP;
+extern bool             cpu_debug_mode;
+extern char             cpu_debug_message[120];
+extern unsigned short	Opcode;
+extern unsigned char	V[16];
+extern unsigned short	I;
+extern unsigned char	Memory[4096];
+extern unsigned char    Key[16];
+extern unsigned char	DelayTimer;
+extern unsigned char	SoundTimer;
+extern bool             cpu_draw_flag;
+extern bool             cpu_draw_counter;
 
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8

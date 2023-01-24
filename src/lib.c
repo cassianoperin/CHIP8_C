@@ -39,8 +39,6 @@ bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 bool ticker_cpu(unsigned int lastTime, unsigned int currentTime)
 {
 
-	unsigned int CPU_CLOCK  = 1000;
-
 	//Initialization flag
 	bool success = false;
 
@@ -99,7 +97,7 @@ void get_game_signature(char* filename, char **s) {
 }
 
 // Show Cycles Per Second
-void showCPS( long long unsigned int number) 
+void showCPS(long long unsigned int number) 
 {
 	// Variables
     char nstring[30];
@@ -151,7 +149,7 @@ void showCPS( long long unsigned int number)
 }
 
 // Show Frames Per Second
-void showFPS( int number ) 
+void showFPS(int number) 
 {
 	int length = snprintf( NULL, 0, "%d", number );
 	string_msg2 = malloc( length + 10);

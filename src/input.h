@@ -18,12 +18,12 @@ extern void display_update_theme();
 extern void cpu_reset();
 
 // ---------------------------------- Global Variables ---------------------------------- //
-bool input_remap_flag;
-unsigned char input_remap_btn_UP;
-unsigned char input_remap_btn_DOWN;
-unsigned char input_remap_btn_LEFT;
-unsigned char input_remap_btn_RIGHT;
-unsigned char input_remap_btn_SPACE;
+bool            input_remap_flag;
+unsigned char   input_remap_btn_UP;
+unsigned char   input_remap_btn_DOWN;
+unsigned char   input_remap_btn_LEFT;
+unsigned char   input_remap_btn_RIGHT;
+unsigned char   input_remap_btn_SPACE;
 
 // -------------------------------------- Functions ------------------------------------- //
 void input_keyboard();

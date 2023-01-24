@@ -2,15 +2,6 @@
 #include <SDL2/SDL_ttf.h>
 #include <string.h>
 #include "main.h"
-#include "lib.h"
-#include "display.h"
-#include "cli.h"
-#include "cpu.h"
-#include "input.h"
-#include "quirks.h"
-#include "sound.h"
-#include "font.h"
-
 
 int main( int argc, char* args[] )
 {

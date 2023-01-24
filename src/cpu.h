@@ -1,17 +1,78 @@
 #pragma once
-
-// Boolean Type for Vanilla C
-typedef int bool;
-#define true 1
-#define false 0
+#include "typedef.h"
 
 // --------------------------------- External Variables --------------------------------- //
-// Cycles
+// Counters
 extern unsigned int  cycle;
-extern unsigned int  cycle_cpu;
-extern unsigned int  cycle_counter_cpu;
 extern unsigned char display_FPS;
+// Screen Size
+extern unsigned char display_SCREEN_WIDTH_X;
+extern unsigned char display_SCREEN_HEIGHT_Y;
 extern unsigned int  display_pixels[2048];
+extern unsigned int  display_pixel_ON_color;
+extern unsigned int  display_pixel_OFF_color;
+// Font
+extern const char Chip8Fontset[80];
+extern const char SCHIPFontset[160];
+// Legacy Opcodes and Quirks
+extern bool quirk_Memory_legacy_Fx55_Fx65;
+extern bool quirk_Shifting_legacy_8xy6_8xyE;
+extern bool quirk_Spacefight2091_Fx1E;
+extern bool quirk_Clipping_Dxyn;
+extern bool quirk_Resize_SCHIP_00FE_00FF;
+extern bool quirk_Scroll_SCHIP_00CN_00FB_00FC;
+extern bool quirk_ETI660_64x32_screen;
+extern bool quirk_Jump_with_offset_Bnnn;
+extern bool quirk_LoRes_Wide_Sprite_Dxy0;
+extern bool quirk_VF_Reset_8xy1_8xy2_8xy3;
+extern bool quirk_ClockProgram_fonts;
+extern bool quirk_display_wait;
+// Other
+extern char *lib_game_signature;
+extern char* filename;
+
+// --------------------------------- External Functions --------------------------------- //
+extern void handle_legacy_opcodes();
+extern void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
+extern void get_game_signature(char* filename, char **s);
+// CHIP-8
+void opc_chip8_0NNN();
+extern void opc_chip8_00E0();
+extern void opc_chip8_00EE();
+extern void opc_chip8_1NNN();
+extern void opc_chip8_2NNN();
+extern void opc_chip8_3XNN();
+extern void opc_chip8_4XNN();
+extern void opc_chip8_5XY0();
+extern void opc_chip8_6XNN();
+extern void opc_chip8_7XNN();
+extern void opc_chip8_8XY0(unsigned char x, unsigned char y);
+extern void opc_chip8_8XY1(unsigned char x, unsigned char y);
+extern void opc_chip8_8XY2(unsigned char x, unsigned char y);
+extern void opc_chip8_8XY3(unsigned char x, unsigned char y);
+extern void opc_chip8_8XY4(unsigned char x, unsigned char y);
+extern void opc_chip8_8XY5(unsigned char x, unsigned char y);
+extern void opc_chip8_8XY6(unsigned char x, unsigned char y);
+extern void opc_chip8_8XY7(unsigned char x, unsigned char y);
+extern void opc_chip8_8XYE(unsigned char x, unsigned char y);
+extern void opc_chip8_9XY0();
+extern void opc_chip8_ANNN();
+extern void opc_chip8_BNNN();
+extern void opc_chip8_CXNN();
+extern void opc_chip8_DXYN();
+extern void opc_chip8_EX9E(unsigned char x);
+extern void opc_chip8_EXA1(unsigned char x);
+extern void opc_chip8_FX0A(unsigned char x);
+extern void opc_chip8_FX07(unsigned char x);
+extern void opc_chip8_FX15(unsigned char x);
+extern void opc_chip8_FX18(unsigned char x);
+extern void opc_chip8_FX1E(unsigned char x);
+extern void opc_chip8_FX29(unsigned char x);
+extern void opc_chip8_FX33(unsigned char x);
+extern void opc_chip8_FX55(unsigned char x);
+extern void opc_chip8_FX65(unsigned char x);
+// CHIP-8 Undocumented
+extern void opc_chip8_ND_02D8();
 
 // ---------------------------------- Global Variables ---------------------------------- //
 unsigned char	Memory[4096];		       // Memory
@@ -39,8 +100,11 @@ bool            cpu_SCHIP_timer_hack;       // Enable or disable SCHIP DelayTime
 unsigned char   cpu_HP48_RPL_user_flags[8]; // HP-48 RPL user flags
 // Interface
 bool            cpu_pause;                  // Pause emulation
+// CPU Counters
+unsigned int    cycle_cpu = 0;		        // Executed cpu cycles
+unsigned int    cycle_counter_cpu = 0;      // CPU instructions per second
 // CPU Clock
-// unsigned int CPU_CLOCK  = 1000;
+unsigned int    CPU_CLOCK  = 1000;
 
 
 // -------------------------------------- Functions ------------------------------------- //
