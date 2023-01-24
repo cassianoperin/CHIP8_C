@@ -4,22 +4,25 @@
 // --------------------------------- External Variables --------------------------------- //
 // LIB
 extern char *lib_game_signature;
-extern char *string_msg4;
+extern char *string_msg1,*string_msg2, *string_msg3, *string_msg4;
+// extern char *string_msg4;
 // CPU
-extern unsigned char	Memory[4096];
-extern bool             cpu_halt;
-extern bool             cpu_draw_flag;
-extern bool             cpu_original_draw_mode;
-extern unsigned char	DelayTimer;
-extern unsigned char	SoundTimer;
-extern bool             cpu_pause;
-extern unsigned int     cycle_counter_cpu;
+extern unsigned char	        Memory[4096];
+extern bool                     cpu_halt;
+extern bool                     cpu_draw_flag;
+extern bool                     cpu_original_draw_mode;
+extern unsigned char	        DelayTimer;
+extern unsigned char	        SoundTimer;
+extern bool                     cpu_pause;
+extern unsigned int             cycle_counter_cpu;
 // Display
-extern Scene            scene;
-extern unsigned int     frame;
-extern unsigned int     frame_counter;
+extern Scene                    scene;
+extern unsigned int             frame;
+extern unsigned int             frame_counter;
 // Audio
-SDL_AudioDeviceID       audio_device_id;
+extern SDL_AudioDeviceID        audio_device_id;
+// Font
+extern bool                     msg_emuinfo;
 
 // --------------------------------- External Functions --------------------------------- //
 // Font

@@ -89,17 +89,26 @@ int main( int argc, char* args[] )
 				// At least one draw per second
 				display_draw(frame_counter, &scene);
 
-				// -------- Message slot 1 -------- //
-				showCPS(cycle_counter);
-				font_update_msg1(renderer);
+				if ( msg_emuinfo ) {
+					// -------- Message slot 1 -------- //
+					showCPS(cycle_counter);
+					font_update_msg1(renderer);
 
-				// -------- Message slot 2 -------- //
-				showCPU_CPS(cycle_counter_cpu);
-				font_update_msg2(renderer);
+					// -------- Message slot 2 -------- //
+					showCPU_CPS(cycle_counter_cpu);
+					font_update_msg2(renderer);
 
-				// -------- Message slot 3 -------- //
-				showFPS(frame_counter);
-				font_update_msg3(renderer);
+					// -------- Message slot 3 -------- //
+					showFPS(frame_counter);
+					font_update_msg3(renderer);
+				} else {
+					// Clean messages
+					string_msg1 = "";
+					string_msg2 = "";
+					string_msg3 = "";
+				}
+
+
 
 				// -------- Message slot 4 -------- //
 				string_msg4 = "4th SLOT MESSAGE";
@@ -110,9 +119,9 @@ int main( int argc, char* args[] )
 				ticker_second_last_time = tickers_current_time;
 
 				// Cycles and FPS Measurement
-				char title_msg[510];
-				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu);
-				SDL_SetWindowTitle(window, title_msg);
+				// char title_msg[510];
+				// sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu);
+				// SDL_SetWindowTitle(window, title_msg);
 
 				// Reset counters
 				cycle_counter = 0;

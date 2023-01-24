@@ -95,7 +95,7 @@ if *cliSchipHack {
 
 8. Test cpu_halt and the quirk_display_wait
 
-9. Switch to show and hide messages
+9. Add messages for other switches (slot 4)
 
 10. Improve draw messages into an struct?
 

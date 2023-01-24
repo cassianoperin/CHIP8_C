@@ -192,10 +192,39 @@ void input_keyboard() {
 					break;
 				}
 
+				// Show Emulator Information on screen
+				case SDLK_8: {
+
+					msg_emuinfo = !msg_emuinfo;
+
+					// First update must be immediate
+					if ( msg_emuinfo ) {
+						// -------- Message slot 1 -------- //
+						showCPS(cycle_counter);
+						font_update_msg1(renderer);
+						// -------- Message slot 2 -------- //
+						showCPU_CPS(cycle_counter_cpu);
+						font_update_msg2(renderer);
+
+						// -------- Message slot 3 -------- //
+						showFPS(frame_counter);
+						font_update_msg3(renderer);
+
+						// Draw
+						display_draw(frame_counter, &scene);
+					} else {
+						// Clean messages
+						string_msg1 = "";
+						string_msg2 = "";
+						string_msg3 = "";
+					}
+
+					break;
+				}
+
 				// Debug
 				case SDLK_9:
 					cpu_debug_mode = !cpu_debug_mode;
-					// cpu_debug_mode = false;
 					break;
 
 				// Reset

@@ -5,11 +5,11 @@ bool font_init(SDL_Renderer* renderer){
     // ------------------ Variables ------------------ //
 
     // Font Path
-    // font_path = "/Users/cassiano/Vscode/C_SDL/src/Fonts/Lazy.ttf";
-    // font_path = "/Users/cassiano/Vscode/C_SDL/src/Fonts/Zack and Sarah.ttf";
-    // font_path = "/Users/cassiano/Vscode/C_SDL/src/Fonts/39335_UniversCondensed.ttf";
-    font_path = "/Users/cassiano/Vscode/C_SDL/src/Fonts/16020_FUTURAM.ttf";
-    // font_path = "/Users/cassiano/Vscode/C_SDL/src/Fonts/07558_CenturyGothic.ttf";
+    // font_path = "/Users/cassiano/Vscode/CHIP8_C/src/Fonts/Lazy.ttf";
+    // font_path = "/Users/cassiano/Vscode/CHIP8_C/src/Fonts/Zack and Sarah.ttf";
+    // font_path = "/Users/cassiano/Vscode/CHIP8_C/src/Fonts/39335_UniversCondensed.ttf";
+    font_path = "/Users/cassiano/Vscode/CHIP8_C/src/Fonts/16020_FUTURAM.ttf";
+    // font_path = "/Users/cassiano/Vscode/CHIP8_C/src/Fonts/07558_CenturyGothic.ttf";
 
     // Colors
     // font_foreground_color = { 0x87, 0xCE, 0xFA, 0 }; // Blue
@@ -58,6 +58,9 @@ bool font_init(SDL_Renderer* renderer){
     // Outline
     outline = 0;
 
+    // Draw emulator info over the screen
+    msg_emuinfo = false;
+
     // ---------- Initialize the TTF library --------- //
 
     /* Initialize the TTF library */
@@ -97,8 +100,6 @@ void font_update_msg1(SDL_Renderer* renderer){
         font_foreground_color.r = 0xFF;
         font_foreground_color.g = 0x00;
         font_foreground_color.b = 0x00;
-
-        text = TTF_RenderText_Blended(font, string_msg1, font_foreground_color);
 
         switch (rendertype) {
         case RENDER_LATIN1:
@@ -185,8 +186,6 @@ void font_update_msg2(SDL_Renderer* renderer){
         font_foreground_color.g = 0xCE;
         font_foreground_color.b = 0xFA;
 
-        text = TTF_RenderText_Blended(font, string_msg2, font_foreground_color);
-
         switch (rendertype) {
             case RENDER_LATIN1:
                 switch (rendermethod) {
@@ -270,8 +269,6 @@ void font_update_msg3(SDL_Renderer* renderer){
         font_foreground_color.g = 0xCE;
         font_foreground_color.b = 0xFA;
 
-        text = TTF_RenderText_Blended(font, string_msg3, font_foreground_color);
-
         switch (rendertype) {
             case RENDER_LATIN1:
                 switch (rendermethod) {
@@ -329,7 +326,7 @@ void font_update_msg3(SDL_Renderer* renderer){
         if (text != NULL) {
             scene.message3_Rect.x = 10;
             // scene.message3_Rect.y = ((display_SCREEN_HEIGHT_Y * display_SCALE) - text->h - 10);
-            scene.message3_Rect.y = 60;
+            scene.message3_Rect.y = 50;
             scene.message3_Rect.w = text->w;
             scene.message3_Rect.h = text->h;
             scene.message3 = SDL_CreateTextureFromSurface(renderer, text);
@@ -355,8 +352,6 @@ void font_update_msg4(SDL_Renderer* renderer){
         font_foreground_color.r = 0x87;
         font_foreground_color.g = 0xCE;
         font_foreground_color.b = 0xFA;
-
-        text = TTF_RenderText_Blended(font, string_msg4, font_foreground_color);
 
         switch (rendertype) {
             case RENDER_LATIN1:

@@ -2,20 +2,45 @@
 #include "typedef.h"
 
 // -------------------------- External Variables and functions -------------------------- //
+// Main
 extern bool          quit;
+extern SDL_Window* window;
+extern SDL_Renderer* renderer;
+extern SDL_Texture* texture;
+unsigned int cycle_counter;
+// Display
 extern unsigned int  display_pixel_ON_color;
 extern unsigned int  display_pixel_OFF_color;
 extern unsigned int  display_pixel_ON_color_alt;
 extern unsigned int  display_pixel_OFF_color_alt;
 extern unsigned int  display_pixels[2048]; 
 extern unsigned char display_color_theme;
+extern unsigned int  frame_counter;
+extern Scene scene;
+// Lib
 extern char   *lib_game_signature;
+extern void showCPS(long long unsigned int number);
+extern void showFPS(int number);
+extern void showCPU_CPS(int number);
+// CPU
 extern unsigned char   Key[];
 extern bool cpu_pause;
 extern bool cpu_debug_mode;
-// External Functions
-extern void display_update_theme();
+extern unsigned int    cycle_counter_cpu;
+// Font
+extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4;
+extern bool msg_emuinfo;
+
+// --------------------------------- External Functions --------------------------------- //
+// CPU
 extern void cpu_reset();
+// Display
+extern void display_update_theme();
+extern bool display_draw(unsigned int frame, Scene *scene);
+// Font
+extern void font_update_msg1(SDL_Renderer* renderer);
+extern void font_update_msg2(SDL_Renderer* renderer);
+extern void font_update_msg3(SDL_Renderer* renderer);
 
 // ---------------------------------- Global Variables ---------------------------------- //
 bool            input_remap_flag;

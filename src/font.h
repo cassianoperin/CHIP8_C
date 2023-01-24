@@ -4,6 +4,7 @@
 #include "typedef.h"
 
 // --------------------------------- External Variables --------------------------------- //
+// SDL Font
 extern TTF_Font *font;
 extern SDL_Surface *text;
 extern Scene scene;
@@ -22,6 +23,7 @@ int outline;
 int hinting;
 int kerning;
 char *string_msg1, *string_msg2, *string_msg3, *string_msg4, *font_path;
+bool msg_emuinfo;
 
 // -------------------------------------- Constants ------------------------------------- //
 const char Chip8Fontset[80] = { \

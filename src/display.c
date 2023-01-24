@@ -86,8 +86,9 @@ bool display_draw(unsigned int frame, Scene *scene)
     	SDL_RenderCopy(renderer, scene->message4, NULL, &scene->message4_Rect);
 	}
 
+	// Draw
 	SDL_RenderPresent(renderer);
-	
+
 	return success;
 }
 
