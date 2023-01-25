@@ -496,4 +496,9 @@ void cpu_interpreter() {
 			printf ("Not implemented!\n");
   	}
 
+	// Print all opcode debug messages
+	if ( cpu_debug_mode ) {
+		printf("\t\t%s\n" , cpu_debug_message);
+	}
+
 }

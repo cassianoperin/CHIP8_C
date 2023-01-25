@@ -41,6 +41,14 @@ Chip 8 emulator written in C with SDL2
 # TODO
 
 1. Add SDL_Delay to avoid unnecessary infinite loop cycles
+	1ms is too much
+	measure a frame? limit there?
+
+	frame_speed = SDL_GetTicks() - start_tick;
+
+    if (frame_speed < MILLISECONDS_PER_CYCLE) {
+      SDL_Delay(MILLISECONDS_PER_CYCLE - frame_speed);
+    }
 
 2. Test more games (Need SCHIP):
 
@@ -49,21 +57,17 @@ Chip 8 emulator written in C with SDL2
 
     https://johnearnest.github.io/chip8Archive/
 
+3. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
 
-3. Print message debug just in the end of cycle?
-    printf("\t\t%s\n" , OpcMessage);
-
-4. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
-
-5. README
+4. README
 	- Add the usage to README
 	- Add pictures to README
 	- ADD test result to README
 
-6. Duplicate or triplicate frame buffer to reduce flickering
+5. Duplicate or triplicate frame buffer to reduce flickering
 https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 
-7. Add options to CLI:
+6. Add options to CLI:
 if *cliSchipHack {
 		CPU.SCHIP_TimerHack = true
 	}
@@ -96,11 +100,11 @@ if *cliSchipHack {
 	- scale
 	- clock
 
-8. Test cpu_halt and the quirk_display_wait
+7. Test cpu_halt and the quirk_display_wait
 
-9. Emu info, function to get all values, after a for in draw to render and draw, just this one.
+8. Emu info, function to get all values, after a for in draw to render and draw, just this one.
 
-10. Display keys on info
+9. Display keys on info
 
-11. In case of remap, show keys on first boot
+10. In case of remap, show keys on first boot
 
