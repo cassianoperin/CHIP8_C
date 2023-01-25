@@ -82,4 +82,6 @@ bool quit;
 // Cycle Counters
 unsigned int cycle = 0;             // Main loop cycles
 unsigned int cycle_counter = 0;     // Main loop cyles/second
+// Message Counters
+unsigned int message_slot4_timer = 0;
 

@@ -1,4 +1,5 @@
 #include <SDL2/SDL.h>
+#include <string.h>
 #include "input.h"
 
 void input_keyboard() {
@@ -117,8 +118,68 @@ void input_keyboard() {
 					cpu_pause = !cpu_pause;
 					break;
 
+				// Reduce Clock
+				case SDLK_5:
+					if ( CPU_CLOCK >= 11) {
+						CPU_CLOCK -= 10;
+
+						// Allocate Memory
+						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
+						string_msg4 = malloc( length + 10 );
+
+						// Show Message
+						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
+						font_update_msg4(renderer);
+
+					} else {
+						// Allocate Memory
+						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
+						string_msg4 = malloc( length + 20 );
+
+						// Show Message
+						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
+						strcat(string_msg4, " - Minimum Allowed");
+						font_update_msg4(renderer);
+					}
+
+					// Draw
+					display_draw(frame_counter, &scene);
+					message_slot4_timer = 3;
+
+					break;
+				
+				// Increase Clock
+				case SDLK_6:
+					if ( CPU_CLOCK < 3000) {
+						CPU_CLOCK += 10;
+
+						// Allocate Memory
+						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
+						string_msg4 = malloc( length + 10 );
+
+						// Show Message
+						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
+						font_update_msg4(renderer);
+
+					} else {
+						// Allocate Memory
+						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
+						string_msg4 = malloc( length + 20 );
+
+						// Show Message
+						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
+						strcat(string_msg4, " - Maximum Allowed");
+						font_update_msg4(renderer);
+					}
+
+					// Draw
+					display_draw(frame_counter, &scene);
+					message_slot4_timer = 3;
+
+					break;
+					
 				// Change Theme
-				case SDLK_6: {
+				case SDLK_7: {
 
 					// Jump to next color theme
 					if ( display_color_theme < 5 ) {
@@ -188,26 +249,41 @@ void input_keyboard() {
 							display_update_theme();
 							break;
 						}
+
 					}
+
+					// -------- Message slot 4 -------- //
+
+					// Allocate Memory
+					int length = snprintf( NULL, 0, "%hhu", display_color_theme );
+					string_msg4 = malloc( length + 10 );
+
+					// Show Message
+					sprintf(string_msg4, "Theme %d", display_color_theme);
+					font_update_msg4(renderer);
+
+					// Draw
+					display_draw(frame_counter, &scene);
+
+					message_slot4_timer = 3;
+
 					break;
 				}
 
 				// Show Emulator Information on screen
-				case SDLK_8: {
-
+				case SDLK_8:
 					msg_emuinfo = !msg_emuinfo;
 
 					// First update must be immediate
 					if ( msg_emuinfo ) {
 						// -------- Message slot 1 -------- //
-						showCPS(cycle_counter);
+						string_msg1 = "Emulator Cycles per second: -";
 						font_update_msg1(renderer);
 						// -------- Message slot 2 -------- //
-						showCPU_CPS(cycle_counter_cpu);
+						string_msg2 = "CPU Clock: -";
 						font_update_msg2(renderer);
-
 						// -------- Message slot 3 -------- //
-						showFPS(frame_counter);
+						string_msg3 = "FPS: -";
 						font_update_msg3(renderer);
 
 						// Draw
@@ -218,18 +294,47 @@ void input_keyboard() {
 						string_msg2 = "";
 						string_msg3 = "";
 					}
-
 					break;
-				}
 
 				// Debug
 				case SDLK_9:
 					cpu_debug_mode = !cpu_debug_mode;
+
+					if (cpu_debug_mode ) {
+						// -------- Message slot 4 -------- //
+						string_msg4 = "Debug mode: ENABLED";
+						font_update_msg4(renderer);
+
+						// Draw
+						display_draw(frame_counter, &scene);
+
+						message_slot4_timer = 3;
+					} else {
+						// -------- Message slot 4 -------- //
+						string_msg4 = "Debug mode: DISABLED";
+						font_update_msg4(renderer);
+
+						// Draw
+						display_draw(frame_counter, &scene);
+
+						message_slot4_timer = 3;
+					}
+
 					break;
 
 				// Reset
 				case SDLK_0:
 					cpu_reset();
+
+					// -------- Message slot 4 -------- //
+					string_msg4 = "RESET";
+					font_update_msg4(renderer);
+
+					// Draw
+					display_draw(frame_counter, &scene);
+
+					message_slot4_timer = 3;
+
 					break;
 
 				case SDLK_ESCAPE:

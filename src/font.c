@@ -95,11 +95,17 @@ void font_update_msg1(SDL_Renderer* renderer){
 
     if ( string_msg1 != NULL && strcmp( string_msg1, "") != 0  ) {
 
+        // // Font Color (RED)
+        // font_foreground_color.a = 0;
+        // font_foreground_color.r = 0xFF;
+        // font_foreground_color.g = 0x00;
+        // font_foreground_color.b = 0x00;
+
         // Font Color
         font_foreground_color.a = 0;
-        font_foreground_color.r = 0xFF;
-        font_foreground_color.g = 0x00;
-        font_foreground_color.b = 0x00;
+        font_foreground_color.r = 0x87;
+        font_foreground_color.g = 0xCE;
+        font_foreground_color.b = 0xFA;
 
         switch (rendertype) {
         case RENDER_LATIN1:

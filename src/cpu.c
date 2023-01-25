@@ -31,7 +31,7 @@ void cpu_reset(){
 void cpu_initialize(){
 
 	// Components
-	memset(Memory, 0x00, sizeof(Memory));	// Clean Memory
+	memset(Memory, 0x00,  (sizeof(Memory) / sizeof(Memory[0])) );	// Clean Memory
 	PC = 0x200;								// Start at 0x200 (default CHIP-8)
 	Opcode = 0x00;
 	memset(Stack, 0x00, sizeof(Stack));		// Clean Stack
@@ -40,7 +40,10 @@ void cpu_initialize(){
 	I = 0x00;
 	
 	// Initialization - Clean pixels array
-	memset(display_pixels, display_pixel_OFF_color, sizeof(display_pixels));
+	for ( int i = 0 ; i < (int)( sizeof(display_pixels) / sizeof(display_pixels[0])) ; i++ ) {
+			display_pixels[i] = display_pixel_OFF_color;
+	}
+
 
 	// Legacy Opcodes and Quirks
 	quirk_Memory_legacy_Fx55_Fx65		= false;
@@ -75,7 +78,7 @@ void cpu_initialize(){
 	srand(time(NULL));
 
 	// Draw
-	cpu_original_draw_mode = false;
+	cpu_original_draw_mode = true;
 	cpu_halt = false;
 
 	// Debug

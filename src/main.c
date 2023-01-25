@@ -23,20 +23,20 @@ int main( int argc, char* args[] )
 
 	// File name
 	// char* filename = args[1];
-	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
-	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
+	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
+	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
 	//
-	// char* filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
+	// char* filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 
-	// char* filename = (char*)"/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 
-	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
-	// filename = "/Users/cassiano/go/src/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
+	// filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
+	// filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
 
 	// Load ROM into Memory
-	load_rom(filename,  Memory, sizeof(Memory));
+	load_rom(filename,  Memory,  (sizeof(Memory) / sizeof(Memory[0])) );
 	printf("Loaded game: %s\n", filename);
 
 	// Get Game signature for Qwirks
@@ -108,12 +108,15 @@ int main( int argc, char* args[] )
 					string_msg3 = "";
 				}
 
+				// Message slot 4 timer
+				if ( message_slot4_timer > 0 ) {
+					message_slot4_timer --;
 
-
-				// -------- Message slot 4 -------- //
-				string_msg4 = "4th SLOT MESSAGE";
-				font_update_msg4(renderer);
-
+					// When reach zero, clear
+					if ( message_slot4_timer == 0 ) {
+						string_msg4 = "";
+					}
+				}
 
 				// Update timer variables
 				ticker_second_last_time = tickers_current_time;

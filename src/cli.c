@@ -17,8 +17,7 @@ void command_line_interface(int argc, char* args[]) {
 			} else {
 					filename = args[1];
 
-					// Load ROM into Memory
-					load_rom(filename,  Memory, sizeof(Memory));
+					load_rom(filename,  Memory, (sizeof(Memory) / sizeof(Memory[0])) );
 					printf("Loaded game: %s\n", filename);
 			}
 	}

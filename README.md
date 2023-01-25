@@ -93,12 +93,14 @@ if *cliSchipHack {
 		hexFlag = true
 	}
 
+	- scale
+	- clock
+
 8. Test cpu_halt and the quirk_display_wait
 
-9. Add messages for other switches (slot 4)
+9. Emu info, function to get all values, after a for in draw to render and draw, just this one.
 
-10. Improve draw messages into an struct?
+10. Display keys on info
 
-
-
+11. In case of remap, show keys on first boot
 

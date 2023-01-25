@@ -9,7 +9,7 @@ bool display_init()
 	// Variables
 	display_SCREEN_WIDTH_X	= 64;
 	display_SCREEN_HEIGHT_Y	= 32;
-	display_SCALE			= 10;
+	display_SCALE			= 20;
 	display_pixel_ON_color	= 0xFFFFFFFF;
 	display_pixel_OFF_color	= 0xFF000000;
 	display_color_theme		= 0;
@@ -23,7 +23,7 @@ bool display_init()
 	else
 	{
 		// Create window
-		window = SDL_CreateWindow( "C_SDL", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, display_SCREEN_WIDTH_X * display_SCALE, display_SCREEN_HEIGHT_Y * display_SCALE, SDL_WINDOW_SHOWN );
+		window = SDL_CreateWindow( "CHIP8", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, display_SCREEN_WIDTH_X * display_SCALE, display_SCREEN_HEIGHT_Y * display_SCALE, SDL_WINDOW_SHOWN );
 		if( window == NULL )
 		{
 			printf( "Window could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -71,7 +71,7 @@ bool display_draw(unsigned int frame, Scene *scene)
 	// ----- Update Text Messages ----- //
 	// Message Slot 1
 	if ( string_msg1 != NULL && strcmp( string_msg1, "") != 0 ) {
-		    SDL_RenderCopy(renderer, scene->message1, NULL, &scene->message1_Rect);
+		SDL_RenderCopy(renderer, scene->message1, NULL, &scene->message1_Rect);
 	}
 	// Message Slot 2
 	if ( string_msg2 != NULL && strcmp( string_msg2, "") != 0 ) {

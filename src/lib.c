@@ -176,13 +176,15 @@ void showCPU_CPS(int number)
 
 	char temp[30];
 	char cps_count[30];
-	char cps_text[30] = "CPU Cycles per second: ";
+	char cps_text[30] = "CPU Clock: ";
 	snprintf( cps_count, length + 1, "%d", number );
 
 
 	memcpy(temp,cps_count,sizeof(cps_count));
 	memcpy(cps_count,cps_text,strlen(cps_text));
 	memcpy(cps_count+strlen(cps_text),temp,strlen(temp)+1);
+
+	strcat(cps_count, " Hz");
 
 
 	strcpy(string_msg2, cps_count);
