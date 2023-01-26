@@ -2,6 +2,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <string.h>
 #include "main.h"
+// #include <unistd.h>
 
 int main( int argc, char* args[] )
 {
@@ -18,6 +19,8 @@ int main( int argc, char* args[] )
 	// Initialize
 	cpu_initialize();
 
+
+
 	// CLI
 	// command_line_interface(argc, args);
 
@@ -30,21 +33,23 @@ int main( int argc, char* args[] )
 	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 
 	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 
 	// filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
-	// filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
+	filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory,  (sizeof(Memory) / sizeof(Memory[0])) );
 	printf("Loaded game: %s\n", filename);
 
 	// Get Game signature for Qwirks
-	get_game_signature(filename, &lib_game_signature);
-	printf("Signature:   %s\n", lib_game_signature);
+	game_signature = get_game_signature(filename);
+	printf("Signature:   %s\n", game_signature );
 
 	// Check for Quirks
-	handle_legacy_opcodes(lib_game_signature);
+	handle_legacy_opcodes(game_signature);
+
+	// Free TESTTTTT!!!!!
 
 	// Load Fonts
 	cpu_load_fonts();
@@ -69,9 +74,11 @@ int main( int argc, char* args[] )
 		while( !quit )
 		{
 
+
 			// Future avoid of unnecessary loop cycles
 			// Maybe calculate the time per cycle and wait?
 			// SDL_Delay(1);
+			// usleep(500);
 
 			// Increment main loop cycle counter
 			cycle++;
@@ -222,6 +229,11 @@ int main( int argc, char* args[] )
 	//Free resources and close SDL
 	sound_close();
 	SDL_close();
+
+	// Deallocate Memory
+	free(game_signature);
+	free(string_msg4);
+
 
 	return 0;
 }

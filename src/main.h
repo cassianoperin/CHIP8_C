@@ -2,8 +2,8 @@
 #include "typedef.h"
 
 // --------------------------------- External Variables --------------------------------- //
-// LIB
-extern char *lib_game_signature;
+// Lib
+extern char* game_signature;
 extern char *string_msg1,*string_msg2, *string_msg3, *string_msg4;
 // extern char *string_msg4;
 // CPU
@@ -41,7 +41,7 @@ extern void showCPS(long long unsigned int number);
 extern void showFPS(int number);
 extern void showCPU_CPS(int number);
 extern void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
-extern void get_game_signature(char* filename, char **s);
+extern char* get_game_signature(char* filename);
 // CPU
 extern void cpu_initialize();
 extern void cpu_load_fonts();

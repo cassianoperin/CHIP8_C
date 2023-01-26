@@ -142,6 +142,9 @@ void input_keyboard() {
 						font_update_msg4(renderer);
 					}
 
+					// // Free memory
+					// free(string_msg4);
+
 					// Draw
 					display_draw(frame_counter, &scene);
 					message_slot4_timer = 3;
@@ -159,6 +162,7 @@ void input_keyboard() {
 
 						// Show Message
 						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
+
 						font_update_msg4(renderer);
 
 					} else {
@@ -169,8 +173,12 @@ void input_keyboard() {
 						// Show Message
 						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
 						strcat(string_msg4, " - Maximum Allowed");
+
 						font_update_msg4(renderer);
 					}
+
+					// Free memory
+					// free(string_msg4);
 
 					// Draw
 					display_draw(frame_counter, &scene);
@@ -261,6 +269,9 @@ void input_keyboard() {
 					// Show Message
 					sprintf(string_msg4, "Theme %d", display_color_theme);
 					font_update_msg4(renderer);
+
+					// Free memory
+					// free(string_msg4);
 
 					// Draw
 					display_draw(frame_counter, &scene);
@@ -454,7 +465,7 @@ void input_keyboard_remaps() {
 	input_remap_flag = false;
 
 	// CHIP-8 Game "Tank.ch8"
-	if ( !strcmp(lib_game_signature, "123076FB602080654F00+47957") ) {
+	if ( !strcmp(game_signature, "123076FB602080654F00+47957") ) {
 		input_remap_flag = true;
 		input_remap_btn_UP		= 0x8;
 		input_remap_btn_DOWN	= 0x2;
@@ -467,7 +478,7 @@ void input_keyboard_remaps() {
 	//
 	
 		// CHIP-8 Game "Pong (1 player).ch8"
-	if ( !strcmp(lib_game_signature, "6A026B0C6C3F6D0CA2EA+25041") ) {
+	if ( !strcmp(game_signature, "6A026B0C6C3F6D0CA2EA+25041") ) {
 		input_remap_flag = true;
 		input_remap_btn_UP		= 0x1;
 		input_remap_btn_DOWN	= 0x4;

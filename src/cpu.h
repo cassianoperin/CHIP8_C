@@ -28,13 +28,13 @@ extern bool quirk_VF_Reset_8xy1_8xy2_8xy3;
 extern bool quirk_ClockProgram_fonts;
 extern bool quirk_display_wait;
 // Other
-extern char *lib_game_signature;
+extern char* game_signature;
 extern char* filename;
 
 // --------------------------------- External Functions --------------------------------- //
+// Lib
 extern void handle_legacy_opcodes();
 extern void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
-extern void get_game_signature(char* filename, char **s);
 // CHIP-8
 void opc_chip8_0NNN();
 extern void opc_chip8_00E0();

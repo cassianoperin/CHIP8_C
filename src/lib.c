@@ -74,10 +74,10 @@ void load_rom(char* filename, unsigned char *mem, unsigned int mem_size)
 
 
 // Get Game Signature
-void get_game_signature(char* filename, char **s) {
+char* get_game_signature(char* filename) {
 
 	// Get the first 12 elements of memory
-	char signature[30] = "";
+	char *signature = (char *)malloc(26);
 	sprintf(signature, "%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X", Memory[0x200], Memory[0x201], Memory[0x202],\
 		 Memory[0x203], Memory[0x204], Memory[0x205], Memory[0x206], Memory[0x207], Memory[0x208], Memory[0x209]);
 
@@ -92,8 +92,10 @@ void get_game_signature(char* filename, char **s) {
 	// Unify the 12 first bytes and the sum into the final signature
 	sprintf(signature + strlen(signature), "+%s", sum_string);
 
-	// Update the game_signature pointer
-	*s = signature;
+	return signature;
+		
+
+	// exit(2);
 }
 
 // Show Cycles Per Second
@@ -188,4 +190,9 @@ void showCPU_CPS(int number)
 
 
 	strcpy(string_msg2, cps_count);
+
+	// BREAKING, how to keep it???
+
+	// // Free Memory
+	// free(string_msg2)
 }

@@ -15,8 +15,7 @@ extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4;
 extern unsigned int CPU_CLOCK;
 
 // ---------------------------------- Global Variables ---------------------------------- //
-char *lib_game_signature;   // Game signature to apply quirks
-
+char* game_signature;           // Game signature to apply quirks
 
 // -------------------------------------- Functions ------------------------------------- //
 
@@ -33,7 +32,7 @@ bool ticker_cpu(unsigned int lastTime, unsigned int currentTime);
 void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
 
 // Get Game Signature
-void get_game_signature(char* filename, char **s);
+char* get_game_signature(char* filename);
 
 // Print Frames and Cycles per second on screen
 void showCPS(long long unsigned int number);

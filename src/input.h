@@ -19,7 +19,7 @@ extern unsigned char display_color_theme;
 extern unsigned int  frame_counter;
 extern Scene scene;
 // Lib
-extern char *lib_game_signature;
+extern char* game_signature;
 // CPU
 extern unsigned char   Key[];
 extern bool cpu_pause;

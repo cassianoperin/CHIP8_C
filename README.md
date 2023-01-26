@@ -50,6 +50,14 @@ Chip 8 emulator written in C with SDL2
       SDL_Delay(MILLISECONDS_PER_CYCLE - frame_speed);
     }
 
+	// #include <unistd.h>
+	usleep(500) Mac
+
+	https://codeyarns.com/tech/2015-10-26-millisecond-sleep-on-windows.html#gsc.tab=0
+
+
+
+
 2. Test more games (Need SCHIP):
 
     CHIP-8 Archive - A collection of public domain (CC0) games, all playable online.
@@ -108,3 +116,24 @@ if *cliSchipHack {
 
 10. In case of remap, show keys on first boot
 
+11. Test memory leaks
+ https://www.youtube.com/watch?v=bhhDRm926qA
+ leaks --atExit --list -- ./build/debug/main
+
+ leaks Report Version: 4.0, multi-line stacks
+ Process 79426: 26320 nodes malloced for 5454 KB
+ Process 79426: 1 leak for 64 total leaked bytes.
+
+ 1 (64 bytes) ROOT LEAK: <CFString 0x7f7f02a13430> [64]  length: 20  "BuiltInSpeakerDevice"
+
+12. Replace *char by char
+	rc/main.h:char* filename;
+	src/lib.h:char *lib_game_signature;   // Game signature to apply quirks
+	src/main.c:int main( int argc, char* args[] )
+	src/main.c:	// char* filename = args[1];
+	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
+	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
+	src/main.c:	// char* filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
+	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	src/font.h:char *string_msg1, *string_msg2, *string_msg3, *string_msg4, *font_path;
