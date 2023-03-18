@@ -9,7 +9,7 @@ bool display_init()
 	// Variables
 	display_SCREEN_WIDTH_X	= 64;
 	display_SCREEN_HEIGHT_Y	= 32;
-	display_SCALE			= 20;
+	display_SCALE			= 10;
 	display_pixel_ON_color	= 0xFFFFFFFF;
 	display_pixel_OFF_color	= 0xFF000000;
 	display_color_theme		= 0;

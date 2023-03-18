@@ -5,6 +5,7 @@
 // Counters
 extern unsigned int  cycle;
 extern unsigned char display_FPS;
+extern unsigned int last_cycle_counter;
 // Screen Size
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
@@ -104,7 +105,7 @@ bool            cpu_pause;                  // Pause emulation
 unsigned int    cycle_cpu = 0;		        // Executed cpu cycles
 unsigned int    cycle_counter_cpu = 0;      // CPU instructions per second
 // CPU Clock
-unsigned int    CPU_CLOCK  = 500;
+unsigned int    CPU_CLOCK  = 400;
 
 
 // -------------------------------------- Functions ------------------------------------- //

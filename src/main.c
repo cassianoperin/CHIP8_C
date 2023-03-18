@@ -2,24 +2,22 @@
 #include <SDL2/SDL_ttf.h>
 #include <string.h>
 #include "main.h"
-// #include <unistd.h>
 
 int main( int argc, char* args[] )
 {
 	// Sound
-	bool playing_sound						= false;
+	bool playing_sound					     	    = false;
 	// Tickers
-	unsigned int tickers_current_time		= 0;
-	unsigned int ticker_second_last_time	= 0;
-	unsigned int ticker_fps_last_time 		= 0;
-	unsigned int ticker_cpu_last_time		= 0;
+	unsigned int tickers_current_time		        = 0;
+	// unsigned int ticker_millisecond_last_time	= 0;
+	unsigned int ticker_second_last_time	        = 0;
+	unsigned int ticker_fps_last_time 		        = 0;
+	unsigned int ticker_cpu_last_time		        = 0;
 	// Main loop control
-	quit								= false;
+	quit									     	= false;
 
 	// Initialize
 	cpu_initialize();
-
-
 
 	// CLI
 	// command_line_interface(argc, args);
@@ -49,8 +47,6 @@ int main( int argc, char* args[] )
 	// Check for Quirks
 	handle_legacy_opcodes(game_signature);
 
-	// Free TESTTTTT!!!!!
-
 	// Load Fonts
 	cpu_load_fonts();
 
@@ -73,13 +69,6 @@ int main( int argc, char* args[] )
 		// ------------------------------ Infinite Loop  ------------------------------ //
 		while( !quit )
 		{
-
-
-			// Future avoid of unnecessary loop cycles
-			// Maybe calculate the time per cycle and wait?
-			// SDL_Delay(1);
-			// usleep(500);
-
 			// Increment main loop cycle counter
 			cycle++;
 
@@ -128,15 +117,25 @@ int main( int argc, char* args[] )
 				// Update timer variables
 				ticker_second_last_time = tickers_current_time;
 
-				// Cycles and FPS Measurement
+				// // Cycles and FPS Measurement
 				// char title_msg[510];
 				// sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu);
 				// SDL_SetWindowTitle(window, title_msg);
 
-				// Reset counters
+				// // Reset counters
+				// if ( cycle_counter != 1 ) { // Avoid incorrect measurement on first emulator cycle
+				// 	last_cycle_counter = cycle_counter;
+				// }
+
+				// printf("last_cycle_counter: %d\n", last_cycle_counter);
+
+
 				cycle_counter = 0;
 				frame_counter = 0;
 				cycle_counter_cpu = 0;
+
+				// printf("Timer Second:\t\tSleep Milliseconds on last second: %d\n", sleep_counter);
+				sleep_counter = 0;
 			}
 
 
@@ -147,11 +146,7 @@ int main( int argc, char* args[] )
 				if ( !cpu_pause ) {
 
 					if (!cpu_halt) {
-						// Ensure that CPU will run exactly the defined clock
-						// Sometimes the milliseconds sum leave one extra cycle into the second
-						if ( cycle_counter_cpu < CPU_CLOCK ) {
-							cpu_interpreter();
-						}
+						cpu_interpreter();
 					}
 
 				}
@@ -221,7 +216,39 @@ int main( int argc, char* args[] )
 				// Update timer variables
 				ticker_fps_last_time = tickers_current_time;
 			}
+			
 
+
+			// // ----------------------- Main Loop Cycles Control ----------------------- //
+
+			// // Infinite Loop Automatic Delay Control to avoid unnecessary cpu usage
+			// if ( cycle_counter % sleep_modulus == 0) {
+			// 	// Debug
+			// 	printf("last_cycle_counter: %d\n", last_cycle_counter);
+			// 	printf("CLOCK *2: %d\n", CPU_CLOCK *2);
+			// 	printf("sleep_modulus: %d\n\n", sleep_modulus);
+
+			// 	// Limit the main loop control to the necessary CPU clock frequency
+			// 	// Reserve at least 10 times the clock speed for the main loop
+			// 	if ( last_cycle_counter > (CPU_CLOCK * 1000) ) {
+
+			// 		// Calibrate the sleep modulus
+			// 		sleep_modulus = last_cycle_counter / (CPU_CLOCK*2);
+
+			// 		// Sleep 1ms
+			// 		SDL_Delay(1);
+			// 		sleep_counter ++;
+
+			// 	} else {
+			// 		// Debug
+			// 		printf("Limit reached last_cycle_counter: %d CPU_CLOCK: %d sleep_modulus: %d NEW last_cycle_counter: %d\n", last_cycle_counter ,CPU_CLOCK, sleep_modulus, last_cycle_counter *2 );
+
+			// 		// If it starts to became close to the limit of reserved emulator cycles per second,
+			// 		// increment manually the last_cycle_counter to exit this loop and ensure a safe sleep_module value.
+			// 		last_cycle_counter *= 10;
+			// 	}
+				
+			// }
 			
 		}
 	}
@@ -232,7 +259,7 @@ int main( int argc, char* args[] )
 
 	// Deallocate Memory
 	free(game_signature);
-	free(string_msg4);
+	// free(string_msg4);
 
 
 	return 0;

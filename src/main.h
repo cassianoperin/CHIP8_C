@@ -80,8 +80,15 @@ char* filename;
 bool quit;
 
 // Cycle Counters
-unsigned int cycle = 0;             // Main loop cycles
-unsigned int cycle_counter = 0;     // Main loop cyles/second
+unsigned int cycle               = 0;     // Main loop cycles
+unsigned int cycle_counter       = 0;     // Main loop cyles/second counter
+
+// Main loop control
+unsigned int sleep_modulus      = 100;     // Cycle modulus do reduce infinity loop useless usage of cpu
+unsigned int last_cycle_counter = 9999999; // Maximum value of the last count of cycled/second to be used by main loop limit control
+                                           // Need to start with a high value due to sleep function to avoid unnecessary cpu usage
+unsigned int sleep_counter      = 0;       // How many Milliseconds slept for second
+
 // Message Counters
 unsigned int message_slot4_timer = 0;
 

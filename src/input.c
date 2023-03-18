@@ -153,7 +153,7 @@ void input_keyboard() {
 				
 				// Increase Clock
 				case SDLK_6:
-					if ( CPU_CLOCK < 3000) {
+					if ( CPU_CLOCK < Max_Overclock) {
 						CPU_CLOCK += 10;
 
 						// Allocate Memory

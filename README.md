@@ -136,4 +136,18 @@ if *cliSchipHack {
 	src/main.c:	// char* filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	src/font.h:char *string_msg1, *string_msg2, *string_msg3, *string_msg4, *font_path;
+	src/font.h:char *string_m8usg1, *string_msg2, *string_msg3, *string_msg4, *font_path;
+
+
+13. Calculate the unused cycles percentage and when smaller than 10%, add or reduce automatically the sleep_modulus shoule be increased
+
+15. Speed bug from 1000hz to 1010 hz
+
+14. Add mouse map to control some games like pong
+
+15. INTRODUCED A BUG ON THIS FIX (CPU.H)
+				// Ensure that CPU will run exactly the defined clock
+						// Sometimes the milliseconds sum leave one extra cycle into the second
+						if ( cycle_counter_cpu < CPU_CLOCK ) {
+							cpu_interpreter();
+						}

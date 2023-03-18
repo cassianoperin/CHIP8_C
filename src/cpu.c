@@ -22,6 +22,7 @@ void cpu_reset(){
 	// Clean counters
 	cycle = 0;
 	cycle_cpu = 0;
+	last_cycle_counter = 999999;
 }
 
 void cpu_initialize(){

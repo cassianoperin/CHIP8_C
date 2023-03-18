@@ -1,6 +1,8 @@
 #pragma once
 #include "typedef.h"
 
+#define Max_Overclock 1200
+
 // -------------------------- External Variables and functions -------------------------- //
 // Main
 extern bool          quit;
