@@ -34,9 +34,10 @@ extern void font_update_msg4(SDL_Renderer* renderer);
 // CLI
 extern void command_line_interface(int argc, char* args[]);
 // LIB
-extern bool ticker_second(unsigned int lastTime, unsigned int currentTime);
-extern bool ticker_fps(unsigned int lastTime, unsigned int currentTime);
-extern bool ticker_cpu(unsigned int lastTime, unsigned int currentTime);
+extern bool ticker_second(long lastTime, long currentTime);
+extern bool ticker_cpu(long lastTime, long currentTime);
+extern bool ticker_fps(long lastTime, long currentTime);
+
 extern void showCPS(long long unsigned int number);
 extern void showFPS(int number);
 extern void showCPU_CPS(int number);

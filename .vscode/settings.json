@@ -43,7 +43,8 @@
         "input.h": "c",
         "typedef.h": "c",
         "display.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "math.h": "c"
     },
     "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools",
     "C_Cpp.errorSquiggles": "Disabled"

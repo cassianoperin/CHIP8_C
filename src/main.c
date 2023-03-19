@@ -2,17 +2,20 @@
 #include <SDL2/SDL_ttf.h>
 #include <string.h>
 #include "main.h"
+#include <sys/time.h>
+
+long getMicrotime();
 
 int main( int argc, char* args[] )
 {
 	// Sound
 	bool playing_sound					     	    = false;
 	// Tickers
-	unsigned int tickers_current_time		        = 0;
-	// unsigned int ticker_millisecond_last_time	= 0;
-	unsigned int ticker_second_last_time	        = 0;
-	unsigned int ticker_fps_last_time 		        = 0;
-	unsigned int ticker_cpu_last_time		        = 0;
+	long tickers_current_time		      		    = 0;
+
+	long ticker_second_last_time	        		= 0;
+	long ticker_fps_last_time 		    		    = 0;
+	long ticker_cpu_last_time		       			= 0;
 	// Main loop control
 	quit									     	= false;
 
@@ -75,8 +78,9 @@ int main( int argc, char* args[] )
 			// Increment Cycle per second counter
 			cycle_counter++;
 
-			// Current time
-			tickers_current_time = SDL_GetTicks();
+			// Current time using sys/time.h
+			tickers_current_time = getMicrotime();
+
 
 			// ---------------------------- Ticker Second ---------------------------- //
 
@@ -117,24 +121,19 @@ int main( int argc, char* args[] )
 				// Update timer variables
 				ticker_second_last_time = tickers_current_time;
 
-				// // Cycles and FPS Measurement
-				// char title_msg[510];
-				// sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu);
-				// SDL_SetWindowTitle(window, title_msg);
+				// Cycles and FPS Measurement
+				char title_msg[510];
+				sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu);
+				SDL_SetWindowTitle(window, title_msg);
 
-				// // Reset counters
-				// if ( cycle_counter != 1 ) { // Avoid incorrect measurement on first emulator cycle
-				// 	last_cycle_counter = cycle_counter;
-				// }
-
-				// printf("last_cycle_counter: %d\n", last_cycle_counter);
-
+				// Reset counters
+				if ( cycle_counter != 1 ) { // Avoid incorrect measurement on first emulator cycle
+					last_cycle_counter = cycle_counter;
+				}
 
 				cycle_counter = 0;
 				frame_counter = 0;
 				cycle_counter_cpu = 0;
-
-				// printf("Timer Second:\t\tSleep Milliseconds on last second: %d\n", sleep_counter);
 				sleep_counter = 0;
 			}
 
@@ -166,6 +165,7 @@ int main( int argc, char* args[] )
 				// Update timer variables
 				ticker_cpu_last_time = tickers_current_time;
 			}
+
 
 			// ------------------------------ Ticker FPS ------------------------------ //
 
@@ -218,7 +218,6 @@ int main( int argc, char* args[] )
 			}
 			
 
-
 			// // ----------------------- Main Loop Cycles Control ----------------------- //
 
 			// // Infinite Loop Automatic Delay Control to avoid unnecessary cpu usage
@@ -263,4 +262,10 @@ int main( int argc, char* args[] )
 
 
 	return 0;
+}
+
+long getMicrotime(){
+	struct timeval currentTime;
+	gettimeofday(&currentTime, NULL);
+	return currentTime.tv_sec * (int)1e6 + currentTime.tv_usec;
 }

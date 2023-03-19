@@ -141,8 +141,6 @@ if *cliSchipHack {
 
 13. Calculate the unused cycles percentage and when smaller than 10%, add or reduce automatically the sleep_modulus shoule be increased
 
-15. Speed bug from 1000hz to 1010 hz
-
 14. Add mouse map to control some games like pong
 
 15. INTRODUCED A BUG ON THIS FIX (CPU.H)

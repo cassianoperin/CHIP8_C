@@ -1,17 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "lib.h"
 
-
 // Ticker - Use with actions that should be executed each second = 1hz
-bool ticker_second(unsigned int lastTime, unsigned int currentTime)
+bool ticker_second(long lastTime, long currentTime)
 {
 	//Initialization flag
 	bool success = false;
 
 	// Check if it passed one second
-	if (currentTime > lastTime + (1000)) {
+	if (currentTime > lastTime + 1000000) {
 		success = true;
 	}
 	
@@ -20,14 +20,13 @@ bool ticker_second(unsigned int lastTime, unsigned int currentTime)
 
 
 // Ticker - Use with actions that should be executed 60 times per second = 60hz
-bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
+bool ticker_fps(long lastTime, long currentTime)
 {
 	//Initialization flag
 	bool success = false;
 
 	// Check if it passed one second / FPS
-	if (currentTime > lastTime + (1000/display_FPS)) {
-	// if (currentTime > lastTime + (16)) {
+	if (currentTime > lastTime + (1000000 / display_FPS)) {
 		success = true;
 	}
 
@@ -36,18 +35,16 @@ bool ticker_fps(unsigned int lastTime, unsigned int currentTime)
 
 
 // Ticker - Use with actions that should be executed 500 times per second = 500hz
-bool ticker_cpu(unsigned int lastTime, unsigned int currentTime)
+bool ticker_cpu(long lastTime, long currentTime)
 {
-
 	//Initialization flag
 	bool success = false;
 
-
-	// Check if it passed one second / FPS
-	if (currentTime >= lastTime + (1000 / (CPU_CLOCK))) {
+	// Check if it passed one second
+	if (currentTime > lastTime + (1000000 / CPU_CLOCK)) {
 		success = true;
 	}
-
+	
 	return success;
 }
 
