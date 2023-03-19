@@ -34,6 +34,9 @@ void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
 // Get Game Signature
 char* get_game_signature(char* filename);
 
+// Time measurement
+long getMicrotime();
+
 // Print Frames and Cycles per second on screen
 void showCPS(long long unsigned int number);
 void showFPS(int number);

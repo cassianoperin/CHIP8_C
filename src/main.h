@@ -37,12 +37,12 @@ extern void command_line_interface(int argc, char* args[]);
 extern bool ticker_second(long lastTime, long currentTime);
 extern bool ticker_cpu(long lastTime, long currentTime);
 extern bool ticker_fps(long lastTime, long currentTime);
-
 extern void showCPS(long long unsigned int number);
 extern void showFPS(int number);
 extern void showCPU_CPS(int number);
 extern void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
 extern char* get_game_signature(char* filename);
+extern long getMicrotime();
 // CPU
 extern void cpu_initialize();
 extern void cpu_load_fonts();

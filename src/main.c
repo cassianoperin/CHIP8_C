@@ -2,9 +2,6 @@
 #include <SDL2/SDL_ttf.h>
 #include <string.h>
 #include "main.h"
-#include <sys/time.h>
-
-long getMicrotime();
 
 int main( int argc, char* args[] )
 {
@@ -262,10 +259,4 @@ int main( int argc, char* args[] )
 
 
 	return 0;
-}
-
-long getMicrotime(){
-	struct timeval currentTime;
-	gettimeofday(&currentTime, NULL);
-	return currentTime.tv_sec * (int)1e6 + currentTime.tv_usec;
 }

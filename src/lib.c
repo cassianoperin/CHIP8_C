@@ -2,7 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <sys/time.h>
 #include "lib.h"
+
 
 // Ticker - Use with actions that should be executed each second = 1hz
 bool ticker_second(long lastTime, long currentTime)
@@ -90,9 +92,6 @@ char* get_game_signature(char* filename) {
 	sprintf(signature + strlen(signature), "+%s", sum_string);
 
 	return signature;
-		
-
-	// exit(2);
 }
 
 // Show Cycles Per Second
@@ -192,4 +191,11 @@ void showCPU_CPS(int number)
 
 	// // Free Memory
 	// free(string_msg2)
+}
+
+// Time measurement in Microseconds (1 Sec = 1.000.000 Microsecs.)
+long getMicrotime(){
+	struct timeval currentTime;
+	gettimeofday(&currentTime, NULL);
+	return currentTime.tv_sec * (int)1e6 + currentTime.tv_usec;
 }
