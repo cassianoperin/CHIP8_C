@@ -62,11 +62,8 @@ void cpu_initialize(){
 	cpu_SCHIP_timer_hack	= false;
 
 	// Screen Size
-	display_SCREEN_WIDTH_X = 64;		// Number of Columns in Graphics
+	display_SCREEN_WIDTH_X  = 64;		// Number of Columns in Graphics
 	display_SCREEN_HEIGHT_Y = 32;		// Number of Lines in Graphics
-
-	// FPS
-	display_FPS = 60;
 	
 	// Keyboard
 	memset(Key, 0x00, sizeof(Key));

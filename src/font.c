@@ -181,9 +181,6 @@ void font_update_msg1(SDL_Renderer* renderer){
 
 void font_update_msg2(SDL_Renderer* renderer){
 
-    // Initial message
-    // string_msg2 = "SECOND SLOT MESSAGE";
-
     if ( string_msg2 != NULL && strcmp( string_msg2, "") != 0  ) {
 
         // Font Color

@@ -157,11 +157,9 @@ void showFPS(int number)
 	char fps_text[6] = "FPS: ";
 	snprintf( fps_count, length + 1, "%d", number );
 
-
 	memcpy(temp,fps_count,sizeof(fps_count));
 	memcpy(fps_count,fps_text,strlen(fps_text));
 	memcpy(fps_count+strlen(fps_text),temp,strlen(temp)+1);
-
 
 	strcpy(string_msg3, fps_count);
 }

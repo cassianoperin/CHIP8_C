@@ -149,3 +149,17 @@ if *cliSchipHack {
 						if ( cycle_counter_cpu < CPU_CLOCK ) {
 							cpu_interpreter();
 						}
+
+
+
+
+16 - NEW PROBLEMS
+
+		ROUNDING ON CPU LOOP PER FRAME
+		// RUN PREFEFINED NUMBER OF OPCODES PER FRAME
+		//NOT GOOD, LOOSING SOME OPCODES DUE TO ROUNDING!!!!
+
+
+17 - Disable Vsync for original draw mode (SLOW)
+
+18 - Enable /Disable Sound
