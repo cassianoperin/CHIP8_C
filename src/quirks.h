@@ -34,4 +34,4 @@ bool quirk_display_wait;				// Drawing sprites to the display waits for the vert
 
 
 // -------------------------------------- Functions ------------------------------------- //
-void handle_legacy_opcodes();
+void handle_legacy_opcodes(char *game_signature);

@@ -11,9 +11,6 @@ int main( int argc, char* args[] )
 
 	// ------------ Variables ------------ //
 
-	// Counters
-	unsigned int cycle = 0;
-
 	// Timing
 	uint64_t perfFrequency        = SDL_GetPerformanceFrequency();		// Platform independent frequency
 	uint64_t msPerFrameInt        = msPerFrame * perfFrequency;			// Time per frame in the deltas format
@@ -28,6 +25,9 @@ int main( int argc, char* args[] )
 	uint64_t timeSecondStart      = 0;									// Measurement of time spent on last frame
 	uint64_t timeSecondLast       = 0;									// Measurement of time spent on last frame
 
+	// CPU
+	float opcodesPerFrameResidualSum = 0;								// CPU clock fine adjustment
+
 	// On screen messages
 	// string_msg1 = (char *)malloc(sizeof(char) * (30 + 1));
 	// string_msg2 = (char *)malloc(sizeof(char) * (9 + 1));
@@ -41,7 +41,7 @@ int main( int argc, char* args[] )
 	// Main loop control
 	quit = false;
 
-	// ---------- Initialiation ---------- //
+	// --------- Initialization ---------- //
 
 	// Initialize
 	cpu_initialize();
@@ -96,79 +96,67 @@ int main( int argc, char* args[] )
 	while( !quit )
 	{
 
-// ------------------------------- P5: START OF SECONDs COUNTER  ------------------------------- //
+		// ------------------------------- P5: START OF SECONDs COUNTER  ------------------------------- //
 		if ( timeSecondLast - timeSecondStart > 1000000000 ){ 
 
-
-
-
-				
-
-
-
-
-
-
-
+			// Second Ticker validation
+			// printf("Second: %lld\n", timeSecondLast - timeSecondStart );
 
 			// Window Title Message update
 			char title_msg[80];
-			sprintf(title_msg, "Cycles per sec.: %d\t\tFPS: %d\t\tFreq: %dhz        ms: %llu", cycle, frame_counter, pal_freq, timeFrameDurationSum);
+			sprintf(title_msg, "Cycles per sec.: %d\t\tFPS: %d\t\tFreq: %dhz        ms: %llu", cycle_counter, frame_counter, pal_freq, timeFrameDurationSum);
 			SDL_SetWindowTitle(window, title_msg);
 
-			
+		
+			// Draw at least once per second???
+			// if frame = 0?
+			// display_draw(frame_counter, &scene);
 
+			if ( msg_emuinfo ) {
+				// -------- Message slot 1 -------- //
+				showCPS(cycle_counter);
+				font_update_msg1(renderer);
 
-				// display_draw(frame_counter, &scene);
+				// -------- Message slot 2 -------- //
+				showCPU_CPS(cycle_counter_cpu);
+				font_update_msg2(renderer);
 
-				if ( msg_emuinfo ) {
-					// -------- Message slot 1 -------- //
-					showCPS(cycle_counter);
-					font_update_msg1(renderer);
+				// -------- Message slot 3 -------- //
+				showFPS(frame_counter);
+				font_update_msg3(renderer);
+			} else {
+				// Clean messages
+				string_msg1 = "";
+				string_msg2 = "";
+				string_msg3 = "";
+			}
 
-					// -------- Message slot 2 -------- //
-					showCPU_CPS(cycle_counter_cpu);
-					font_update_msg2(renderer);
+			// Message slot 4 timer
+			if ( message_slot4_timer > 0 ) {
+				message_slot4_timer --;
 
-					// -------- Message slot 3 -------- //
-					showFPS(frame_counter);
-					font_update_msg3(renderer);
-				} else {
-					// Clean messages
-					string_msg1 = "";
-					string_msg2 = "";
-					string_msg3 = "";
+				// When reach zero, clear
+				if ( message_slot4_timer == 0 ) {
+					string_msg4 = "";
 				}
+			}	
 
-				// Message slot 4 timer
-				if ( message_slot4_timer > 0 ) {
-					message_slot4_timer --;
-
-					// When reach zero, clear
-					if ( message_slot4_timer == 0 ) {
-						string_msg4 = "";
-					}
-				}	
-
-
-
-
-
-			// Reset counters
-			cycle = 0;
+			// --------- Reset Counters ---------- //
+			// Main cycle
+			cycle_counter = 0;
+			// Frame
 			frame = 0;
 			frame_counter = 0;
-			cycle_counter_cpu = 0;
 			timeFrameDurationSum = 0;
+			// CPU
+			cycle_counter_cpu = 0;
+			// Second
 			timeSecondStart = SDL_GetPerformanceCounter(); // Reset second counter
 		}
 
 
 		// Timing: Start frame
 		timeFrameStartCount = SDL_GetPerformanceCounter();
-
-		// Increment main loop cycle counter
-		cycle++;
 
 		// Increment Cycle per second counter
 		cycle_counter++;
@@ -205,24 +193,35 @@ int main( int argc, char* args[] )
 		}
 
 
-
-		// RUN PREFEFINED NUMBER OF OPCODES PER FRAME
-		//NOT GOOD, LOOSING SOME OPCODES DUE TO ROUNDING!!!!
-
-
 		// --------------- CPU --------------- //
-		for( int i = 0 ; i <= (CPU_CLOCK / pal_freq) ; i++) {
+		float opcodesPerFrame = (float)CPU_CLOCK / pal_freq;					// Opcodes per frame (float)
+		// printf("Opcodes: %f\n",opcodesPerFrame);
+		float opcodesPerFrameResidual = opcodesPerFrame - (int)opcodesPerFrame;	// Opcodes per frame residual
+		// printf("Residual: %f\n",opcodesPerFrameResidual);
+		// printf("Sum anterior: %f\n",opcodesPerFrameResidualSum);
+		opcodesPerFrameResidualSum += opcodesPerFrameResidual;					// Opcode residual from last frame
+		// printf("Sum: %f\n\n",opcodesPerFrameResidualSum);
+
+
+		for( int i = 0 ; i < ( (int)opcodesPerFrame ) ; i++) {
 			if ( !cpu_pause ) {
 
 				if (!cpu_halt) {
 					cpu_interpreter();
+
+					// Sum the residual to add an aditional frame if necessary
+					if ( opcodesPerFrameResidualSum > 1 ) {
+						cpu_interpreter();
+						
+						// Update the residual opcode sum counter
+						opcodesPerFrameResidualSum = opcodesPerFrameResidualSum - 1;
+					}
 				}
 
 			}
 		}
 		
-
-
+		// -------------- DRAW --------------- //
 		// Draw screen (game and text messages)
 		display_draw(frame, &scene);
 
@@ -290,6 +289,7 @@ int main( int argc, char* args[] )
 
 
 		// ------------------------------ P4: START OF FINE SLEEP  ------------------------------ //
+		// Use main cycle loop to have precision on frames and seconds counter
 		while (timeFrameDuration < msPerFrameInt ) {
 			timeFrameStartCount = SDL_GetPerformanceCounter();
 			timeDeltaOperations = timeFrameStartCount - timeFrameLastCount;
@@ -303,7 +303,7 @@ int main( int argc, char* args[] )
 			// }
 
 			// If entered here, update the cycle counter
-			cycle ++;
+			cycle_counter++;
 		}
 
 		// Debug Timing
@@ -317,8 +317,8 @@ int main( int argc, char* args[] )
 		// // Increment frame counter
 		// frame ++;
 
-		// Increment CPU Cycle
-		cycle++;
+		// Increment Main Loop Cycle
+		// cycle++;
 
 		// Seconds Counter
 		timeSecondLast = SDL_GetPerformanceCounter();

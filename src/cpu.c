@@ -20,7 +20,7 @@ void cpu_reset(){
 	cpu_load_fonts();
 
 	// Clean counters
-	cycle = 0;
+	// cycle = 0;
 	cycle_cpu = 0;
 	last_cycle_counter = 999999;
 }

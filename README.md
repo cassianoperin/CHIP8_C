@@ -40,42 +40,24 @@ Chip 8 emulator written in C with SDL2
 
 # TODO
 
-1. Add SDL_Delay to avoid unnecessary infinite loop cycles
-	1ms is too much
-	measure a frame? limit there?
-
-	frame_speed = SDL_GetTicks() - start_tick;
-
-    if (frame_speed < MILLISECONDS_PER_CYCLE) {
-      SDL_Delay(MILLISECONDS_PER_CYCLE - frame_speed);
-    }
-
-	// #include <unistd.h>
-	usleep(500) Mac
-
-	https://codeyarns.com/tech/2015-10-26-millisecond-sleep-on-windows.html#gsc.tab=0
-
-
-
-
-2. Test more games (Need SCHIP):
+1. Test more games (Need SCHIP):
 
     CHIP-8 Archive - A collection of public domain (CC0) games, all playable online.
     A collection of CHIP-8 programs and documentation - Matt Mikolay's games, programs and documentation.
 
     https://johnearnest.github.io/chip8Archive/
 
-3. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
+2. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
 
-4. README
+3. README
 	- Add the usage to README
 	- Add pictures to README
 	- ADD test result to README
 
-5. Duplicate or triplicate frame buffer to reduce flickering
+4. Duplicate or triplicate frame buffer to reduce flickering
 https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 
-6. Add options to CLI:
+5. Add options to CLI:
 if *cliSchipHack {
 		CPU.SCHIP_TimerHack = true
 	}
@@ -108,15 +90,15 @@ if *cliSchipHack {
 	- scale
 	- clock
 
-7. Test cpu_halt and the quirk_display_wait
+6. Test cpu_halt and the quirk_display_wait
 
-8. Emu info, function to get all values, after a for in draw to render and draw, just this one.
+7. Emu info, function to get all values, after a for in draw to render and draw, just this one.
 
-9. Display keys on info
+8. Display keys on info
 
-10. In case of remap, show keys on first boot
+9. In case of remap, show keys on first boot
 
-11. Test memory leaks
+10. Test memory leaks
  https://www.youtube.com/watch?v=bhhDRm926qA
  leaks --atExit --list -- ./build/debug/main
 
@@ -126,7 +108,7 @@ if *cliSchipHack {
 
  1 (64 bytes) ROOT LEAK: <CFString 0x7f7f02a13430> [64]  length: 20  "BuiltInSpeakerDevice"
 
-12. Replace *char by char
+11. Replace *char by char
 	rc/main.h:char* filename;
 	src/lib.h:char *lib_game_signature;   // Game signature to apply quirks
 	src/main.c:int main( int argc, char* args[] )
@@ -138,28 +120,14 @@ if *cliSchipHack {
 	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	src/font.h:char *string_m8usg1, *string_msg2, *string_msg3, *string_msg4, *font_path;
 
+15. Add mouse map to control some games like pong
 
-13. Calculate the unused cycles percentage and when smaller than 10%, add or reduce automatically the sleep_modulus shoule be increased
+16 - Disable Vsync for original draw mode (SLOW)
 
-14. Add mouse map to control some games like pong
+17 - Add option to Enable / Disable Sound
 
-15. INTRODUCED A BUG ON THIS FIX (CPU.H)
-				// Ensure that CPU will run exactly the defined clock
-						// Sometimes the milliseconds sum leave one extra cycle into the second
-						if ( cycle_counter_cpu < CPU_CLOCK ) {
-							cpu_interpreter();
-						}
+18 - Review MS info menu (button 8) information when change clock
 
+19 - CPU will not run if clock < freq (Limit the minimal clock????)
 
-
-
-16 - NEW PROBLEMS
-
-		ROUNDING ON CPU LOOP PER FRAME
-		// RUN PREFEFINED NUMBER OF OPCODES PER FRAME
-		//NOT GOOD, LOOSING SOME OPCODES DUE TO ROUNDING!!!!
-
-
-17 - Disable Vsync for original draw mode (SLOW)
-
-18 - Enable /Disable Sound
+20 - When clock is modified during execution, one FPS is added permanently

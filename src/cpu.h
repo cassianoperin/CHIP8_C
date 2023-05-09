@@ -3,7 +3,7 @@
 
 // --------------------------------- External Variables --------------------------------- //
 // Counters
-extern unsigned int  cycle;
+// extern unsigned int  cycle;
 extern unsigned char display_FPS;
 extern unsigned int last_cycle_counter;
 // Screen Size
@@ -34,7 +34,7 @@ extern char* filename;
 
 // --------------------------------- External Functions --------------------------------- //
 // Lib
-extern void handle_legacy_opcodes();
+extern void handle_legacy_opcodes(char *game_signature);
 extern void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
 // CHIP-8
 void opc_chip8_0NNN();

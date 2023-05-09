@@ -49,7 +49,7 @@ extern void cpu_load_fonts();
 extern void cpu_interpreter();
 extern unsigned int CPU_CLOCK;
 // QUIRKS
-extern void handle_legacy_opcodes();
+extern void handle_legacy_opcodes(char *game_signature);
 // Input
 extern void input_keyboard();
 extern void input_keyboard_remaps();
@@ -81,7 +81,7 @@ char* filename;
 bool quit;
 
 // Cycle Counters
-unsigned int cycle               = 0;     // Main loop cycles
+// unsigned int cycle               = 0;     // Main loop cycles
 unsigned int cycle_counter       = 0;     // Main loop cyles/second counter
 
 // Main loop control
