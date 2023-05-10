@@ -1,9 +1,10 @@
 SRC_DIR = src
-BUILD_DIR = build/debug
+# BUILD_DIR = build/debug
+BUILD_DIR = src/
 CC = gcc
 SRC_FILES = $(wildcard $(SRC_DIR)/*.c)
 OBJ_NAME = main
-INCLUDE_PATHS = -Iinclude
+# INCLUDE_PATHS = -Iinclude
 # LIBRARY_PATHS = -Llib
 COMPILER_FLAGS = -std=c11 -Wall -O0 -g
 LINKER_FLAGS = -lsdl2 -lSDL2_ttf

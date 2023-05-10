@@ -20,6 +20,10 @@ void audio_callback(void* userdata, uint8_t* stream, int len)
 
 void sound_init()
 {
+    // Initialize Varibles;
+    sound_enabled = true;
+	playing_sound = false;
+
 	// Initialize SDL_Audio
 	if( SDL_Init( SDL_INIT_AUDIO ) < 0 )
 	{

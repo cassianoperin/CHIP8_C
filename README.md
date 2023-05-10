@@ -122,12 +122,8 @@ if *cliSchipHack {
 
 15. Add mouse map to control some games like pong
 
-16 - Disable Vsync for original draw mode (SLOW)
+16 - Disable Vsync for original draw mode (SLOW) cpu_original_draw_mode (RECREATE)
 
-17 - Add option to Enable / Disable Sound
+178 - Review MS info menu (button 8) information when change clock
 
-18 - Review MS info menu (button 8) information when change clock
-
-19 - CPU will not run if clock < freq (Limit the minimal clock????)
-
-20 - When clock is modified during execution, one FPS is added permanently
+19 - When clock is modified during execution, one FPS is added permanently

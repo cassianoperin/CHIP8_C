@@ -39,7 +39,7 @@ extern unsigned char    Key[16];
 extern unsigned char	DelayTimer;
 extern unsigned char	SoundTimer;
 extern bool             cpu_draw_flag;
-extern bool             cpu_draw_counter;
+// extern bool             cpu_draw_counter;
 
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8

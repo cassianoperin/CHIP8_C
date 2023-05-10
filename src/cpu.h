@@ -89,7 +89,7 @@ unsigned char   Key[16];                    // Control the Keys Pressed
 // Draw
 bool            cpu_draw_flag;			    // Send the draw to screen signal
 bool            cpu_original_draw_mode;     // True  = Refresh screen (draw) every time DrawFlag is set // False = Refresh screen at 60Hz
-bool            cpu_draw_counter;		    // Draw Flags counter
+// bool            cpu_draw_counter;		    // Draw Flags counter
 bool            cpu_halt;                   // Halt cpu waiting for vertical blank to draw (and limit to 60 draws per second - display wait quirk)
 // Debug
 bool            cpu_debug_mode;  	        // Enable debug messages

@@ -2,11 +2,10 @@
 #include <SDL2/SDL_ttf.h>
 #include <string.h>
 #include "main.h"
-
+	
 int main( int argc, char* args[] )
 {
 	// ------------ Constants ------------ //
-	const int   pal_freq   = 60; 					// NTSC: 60hz, PAL: 50HZ
 	const float msPerFrame =  1 / (float) pal_freq; // 16 ms per frame (0.016667) on NTSC, 20ms (0,02) on PAL
 
 	// ------------ Variables ------------ //
@@ -35,9 +34,6 @@ int main( int argc, char* args[] )
 	// Timing debug
 	bool debug_timing = false;
 
-	// Sound
-	bool playing_sound = false;
-
 	// Main loop control
 	quit = false;
 
@@ -51,17 +47,17 @@ int main( int argc, char* args[] )
 
 	// File name
 	// char* filename = args[1];
-	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
-	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
+	// char* filename = (char*)"#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
+	// char* filename = (char*)"#Games/SuperChip/Demos/Robot.ch8";
 	//
-	// char* filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
+	// char* filename = "#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// char* filename = (char*)"#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 
-	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	// filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// char* filename = (char*)"#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	// filename = "#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 
-	// filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
-	filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Pong (1 player).ch8";
+	// filename = "CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
+	filename = "#Games/Chip-8/Games/Pong (1 player).ch8";
 
 	// Load ROM into Memory
 	load_rom(filename,  Memory,  (sizeof(Memory) / sizeof(Memory[0])) );
@@ -173,14 +169,16 @@ int main( int argc, char* args[] )
 		}
 
 		// ----------- Sound Timer ----------- //
-		if ( SoundTimer > 0 ) {
-			if ( !playing_sound ) {
-				// Start playing the beep
-				SDL_PauseAudioDevice(audio_device_id, 0);
-				
-				// Avoid starting again when already playing the sound
-				playing_sound = true;
-			} 
+		if ( SoundTimer > 0 ) {			// Just play if sound flag is enabled
+			if ( sound_enabled ) {
+				if ( !playing_sound ) {
+					// Start playing the beep
+					SDL_PauseAudioDevice(audio_device_id, 0);
+					
+					// Avoid starting again when already playing the sound
+					playing_sound = true;
+				}
+			}
 			SoundTimer--;
 		} else {
 			if ( playing_sound ) {
@@ -212,7 +210,7 @@ int main( int argc, char* args[] )
 					// Sum the residual to add an aditional frame if necessary
 					if ( opcodesPerFrameResidualSum > 1 ) {
 						cpu_interpreter();
-						
+
 						// Update the residual opcode sum counter
 						opcodesPerFrameResidualSum = opcodesPerFrameResidualSum - 1;
 					}
@@ -223,18 +221,12 @@ int main( int argc, char* args[] )
 		
 		// -------------- DRAW --------------- //
 		// Draw screen (game and text messages)
-		display_draw(frame, &scene);
+		if ( !cpu_original_draw_mode ) {
+			display_draw(frame, &scene);
 
-		cpu_draw_flag = false;
-		cpu_halt = false;
-
-		// // Draw screen
-		// if ( !cpu_original_draw_mode ) {
-		// 	display_draw(frame_counter, &scene);
-
-		// 	cpu_draw_flag = false;
-		// 	cpu_halt = false;
-		// }
+			cpu_draw_flag = false;
+			cpu_halt = false;
+		}
 
 
 		// ---------------------------- P1: END OF FRAME OPERATIONS  ---------------------------- //

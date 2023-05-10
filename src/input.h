@@ -1,16 +1,17 @@
 #pragma once
 #include "typedef.h"
 
-#define Max_Overclock 1200
+#define Max_Overclock 5000
 
-// -------------------------- External Variables and functions -------------------------- //
+// --------------------------------- External Variables --------------------------------- //
 // Main
 extern bool          quit;
 extern SDL_Window* window;
 extern SDL_Renderer* renderer;
 extern SDL_Texture* texture;
-unsigned int cycle_counter;
-unsigned int message_slot4_timer;
+extern unsigned int cycle_counter;
+extern unsigned int message_slot4_timer;
+extern const int pal_freq;
 // Display
 extern unsigned int  display_pixel_ON_color;
 extern unsigned int  display_pixel_OFF_color;
@@ -26,11 +27,13 @@ extern char* game_signature;
 extern unsigned char   Key[];
 extern bool cpu_pause;
 extern bool cpu_debug_mode;
-extern unsigned int    cycle_counter_cpu;
+// extern unsigned int    cycle_counter_cpu;
 extern unsigned int CPU_CLOCK;
 // Font
 extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4;
 extern bool msg_emuinfo;
+// Sound
+extern bool sound_enabled;
 
 // --------------------------------- External Functions --------------------------------- //
 // CPU

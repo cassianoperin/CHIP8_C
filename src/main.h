@@ -21,6 +21,8 @@ extern unsigned int             frame;
 extern unsigned int             frame_counter;
 // Audio
 extern SDL_AudioDeviceID        audio_device_id;
+extern bool                     playing_sound;
+extern bool                     sound_enabled;
 // Font
 extern bool                     msg_emuinfo;
 
@@ -61,6 +63,9 @@ extern void SDL_close();
 extern void sound_init();
 extern void sound_close();
 
+// ---------------------------------- Global Constants ---------------------------------- //
+// NTSC: 60hz, PAL: 50HZ
+const int   pal_freq   = 60; 					
 
 // ---------------------------------- Global Variables ---------------------------------- //
 // SDL Video

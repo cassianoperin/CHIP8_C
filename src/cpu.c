@@ -20,9 +20,7 @@ void cpu_reset(){
 	cpu_load_fonts();
 
 	// Clean counters
-	// cycle = 0;
 	cycle_cpu = 0;
-	last_cycle_counter = 999999;
 }
 
 void cpu_initialize(){
@@ -72,7 +70,7 @@ void cpu_initialize(){
 	srand(time(NULL));
 
 	// Draw
-	cpu_original_draw_mode = true;
+	cpu_original_draw_mode = false;
 	cpu_halt = false;
 
 	// Debug
