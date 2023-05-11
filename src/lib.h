@@ -15,7 +15,7 @@ extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4;
 extern unsigned int CPU_CLOCK;
 
 // ---------------------------------- Global Variables ---------------------------------- //
-char* game_signature;           // Game signature to apply quirks
+char *game_signature;           // Game signature to apply quirks
 
 // -------------------------------------- Functions ------------------------------------- //
 
@@ -29,10 +29,10 @@ bool ticker_fps(long lastTime, long currentTime);
 bool ticker_cpu(long lastTime, long currentTime);
 
 // Load rom into memory
-void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
+void load_rom(char *filename, unsigned char *mem, unsigned int mem_size);
 
 // Get Game Signature
-char* get_game_signature(char* filename);
+char *get_game_signature(char *filename);
 
 // Time measurement
 long getMicrotime();

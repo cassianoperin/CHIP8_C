@@ -5,11 +5,11 @@
 // CPU
 extern unsigned char Memory[4096];
 // Main
-extern char* filename;
+extern char *filename;
 
 // --------------------------------- External Functions --------------------------------- //
 // Lib
-extern void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
+extern void load_rom(char *filename, unsigned char *mem, unsigned int mem_size);
 
 // -------------------------------------- Functions ------------------------------------- //
 // CLI

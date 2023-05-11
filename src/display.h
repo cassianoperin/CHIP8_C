@@ -8,9 +8,9 @@ typedef int bool;
 
 // --------------------------------- External Variables --------------------------------- //
 // SDL Video
-extern SDL_Window* window;
-extern SDL_Renderer* renderer;
-extern SDL_Texture* texture;
+extern SDL_Window *window;
+extern SDL_Renderer *renderer;
+extern SDL_Texture *texture;
 // SDL Font
 extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4;
 

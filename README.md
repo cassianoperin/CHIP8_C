@@ -108,22 +108,15 @@ if *cliSchipHack {
 
  1 (64 bytes) ROOT LEAK: <CFString 0x7f7f02a13430> [64]  length: 20  "BuiltInSpeakerDevice"
 
-11. Replace *char by char
-	rc/main.h:char* filename;
-	src/lib.h:char *lib_game_signature;   // Game signature to apply quirks
-	src/main.c:int main( int argc, char* args[] )
-	src/main.c:	// char* filename = args[1];
-	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
-	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/SuperChip/Demos/Robot.ch8";
-	src/main.c:	// char* filename = "/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
-	src/main.c:	// char* filename = (char*)"/Users/cassiano/Vscode/CHIP8_C/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	src/font.h:char *string_m8usg1, *string_msg2, *string_msg3, *string_msg4, *font_path;
 
-15. Add mouse map to control some games like pong
+11. Add mouse map to control some games like pong
 
-16 - Disable Vsync for original draw mode (SLOW) cpu_original_draw_mode (RECREATE)
+11 - Disable Vsync for original draw mode (SLOW) cpu_original_draw_mode (RECREATE)
 
-178 - Review MS info menu (button 8) information when change clock
+13 - Review MS info menu (button 8) information when change clock
 
-19 - When clock is modified during execution, one FPS is added permanently
+14 - When clock is modified during execution, one FPS is added permanently
+
+15 - Review on screen message system (string_msgX)
+
+16 - Clean main.c

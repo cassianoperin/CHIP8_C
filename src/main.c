@@ -46,14 +46,14 @@ int main( int argc, char* args[] )
 	// command_line_interface(argc, args);
 
 	// File name
-	// char* filename = args[1];
-	// char* filename = (char*)"#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
-	// char* filename = (char*)"#Games/SuperChip/Demos/Robot.ch8";
+	// filename = args[1];
+	// filename = "#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
+	// filename = "#Games/SuperChip/Demos/Robot.ch8";
 	//
-	// char* filename = "#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-	// char* filename = (char*)"#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
+	// filename = "#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
+	// filename = "#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
 
-	// char* filename = (char*)"#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
+	// filename = "#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
 	// filename = "#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
 
 	// filename = "CHIP8_C/#Games/Chip-8/Games/Tank.ch8";

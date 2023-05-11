@@ -6,9 +6,9 @@
 // --------------------------------- External Variables --------------------------------- //
 // Main
 extern bool          quit;
-extern SDL_Window* window;
-extern SDL_Renderer* renderer;
-extern SDL_Texture* texture;
+extern SDL_Window *window;
+extern SDL_Renderer *renderer;
+extern SDL_Texture *texture;
 extern unsigned int cycle_counter;
 extern unsigned int message_slot4_timer;
 extern const int pal_freq;
@@ -22,7 +22,7 @@ extern unsigned char display_color_theme;
 extern unsigned int  frame_counter;
 extern Scene scene;
 // Lib
-extern char* game_signature;
+extern char *game_signature;
 // CPU
 extern unsigned char   Key[];
 extern bool cpu_pause;
@@ -42,10 +42,10 @@ extern void cpu_reset();
 extern void display_update_theme();
 extern bool display_draw(unsigned int frame, Scene *scene);
 // Font
-extern void font_update_msg1(SDL_Renderer* renderer);
-extern void font_update_msg2(SDL_Renderer* renderer);
-extern void font_update_msg3(SDL_Renderer* renderer);
-extern void font_update_msg4(SDL_Renderer* renderer);
+extern void font_update_msg1(SDL_Renderer *renderer);
+extern void font_update_msg2(SDL_Renderer *renderer);
+extern void font_update_msg3(SDL_Renderer *renderer);
+extern void font_update_msg4(SDL_Renderer *renderer);
 
 // ---------------------------------- Global Variables ---------------------------------- //
 bool            input_remap_flag;

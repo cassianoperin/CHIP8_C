@@ -66,7 +66,7 @@ const char SCHIPFontset[160] = {  \
 }; // 8 columns (bits) per 10 lines sprites
 
 // -------------------------------------- Functions ------------------------------------- //
-bool font_init(SDL_Renderer* renderer);
-void font_update_msg1(SDL_Renderer* renderer);
-void font_update_msg2(SDL_Renderer* renderer);
-void font_update_msg3(SDL_Renderer* renderer);
+bool font_init(SDL_Renderer *renderer);
+void font_update_msg1(SDL_Renderer *renderer);
+void font_update_msg2(SDL_Renderer *renderer);
+void font_update_msg3(SDL_Renderer *renderer);

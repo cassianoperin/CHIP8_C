@@ -87,7 +87,7 @@ bool font_init(SDL_Renderer* renderer){
     return(0);
 }
 
-void font_update_msg1(SDL_Renderer* renderer){
+void font_update_msg1(SDL_Renderer *renderer){
 
     // Initial message
     // SDL_snprintf(string_msg1, sizeof(string_msg1), "OOOOP MESSAGE!");
@@ -179,7 +179,7 @@ void font_update_msg1(SDL_Renderer* renderer){
 }
 
 
-void font_update_msg2(SDL_Renderer* renderer){
+void font_update_msg2(SDL_Renderer *renderer){
 
     if ( string_msg2 != NULL && strcmp( string_msg2, "") != 0  ) {
 
@@ -259,7 +259,7 @@ void font_update_msg2(SDL_Renderer* renderer){
     }
 }
 
-void font_update_msg3(SDL_Renderer* renderer){
+void font_update_msg3(SDL_Renderer *renderer){
 
     // Initial message
     // string_msg3 = "SECOND SLOT MESSAGE";
@@ -343,7 +343,7 @@ void font_update_msg3(SDL_Renderer* renderer){
     }
 }
 
-void font_update_msg4(SDL_Renderer* renderer){
+void font_update_msg4(SDL_Renderer *renderer){
 
     // Initial message
     // string_msg4 = "4th SLOT MESSAGE";

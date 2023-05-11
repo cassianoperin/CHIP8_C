@@ -1,9 +1,9 @@
 #include <SDL2/SDL.h>
 #include "sound.h"
 
-void audio_callback(void* userdata, uint8_t* stream, int len)
+void audio_callback(void *userdata, uint8_t *stream, int len)
 {
-    uint64_t* samples_played = (uint64_t*)userdata;
+    uint64_t *samples_played = (uint64_t*)userdata;
     float* fstream = (float*)(stream);
     static const float volume = 0.04;
     static const float frequency = 2800.0;

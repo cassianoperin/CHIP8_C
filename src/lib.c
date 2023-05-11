@@ -52,11 +52,11 @@ bool ticker_cpu(long lastTime, long currentTime)
 
 
 // Load rom into memory
-void load_rom(char* filename, unsigned char *mem, unsigned int mem_size)
+void load_rom(char *filename, unsigned char *mem, unsigned int mem_size)
 {
 	int PC = 0x200;
 
-	FILE* rom = fopen(filename, "rb");
+	FILE *rom = fopen(filename, "rb");
 	if (!rom) {
 		fprintf(stderr, "Unable to open file '%s'!\n", filename);
 		exit(1);
@@ -73,7 +73,7 @@ void load_rom(char* filename, unsigned char *mem, unsigned int mem_size)
 
 
 // Get Game Signature
-char* get_game_signature(char* filename) {
+char *get_game_signature(char *filename) {
 
 	// Get the first 12 elements of memory
 	char *signature = (char *)malloc(26);

@@ -24,7 +24,7 @@ extern bool quirk_VF_Reset_8xy1_8xy2_8xy3;
 extern bool quirk_ClockProgram_fonts;
 extern bool quirk_display_wait;
 // File name
-extern char* filename;
+extern char *filename;
 // CPU
 extern unsigned short	PC;
 extern unsigned short	Stack[];

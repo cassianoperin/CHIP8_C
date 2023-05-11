@@ -3,9 +3,8 @@
 
 // --------------------------------- External Variables --------------------------------- //
 // Lib
-extern char* game_signature;
+extern char *game_signature;
 extern char *string_msg1,*string_msg2, *string_msg3, *string_msg4;
-// extern char *string_msg4;
 // CPU
 extern unsigned char	        Memory[4096];
 extern bool                     cpu_halt;
@@ -28,11 +27,11 @@ extern bool                     msg_emuinfo;
 
 // --------------------------------- External Functions --------------------------------- //
 // Font
-extern bool font_init(SDL_Renderer* renderer);
-extern void font_update_msg1(SDL_Renderer* renderer);
-extern void font_update_msg2(SDL_Renderer* renderer);
-extern void font_update_msg3(SDL_Renderer* renderer);
-extern void font_update_msg4(SDL_Renderer* renderer);
+extern bool font_init(SDL_Renderer *renderer);
+extern void font_update_msg1(SDL_Renderer *renderer);
+extern void font_update_msg2(SDL_Renderer *renderer);
+extern void font_update_msg3(SDL_Renderer *renderer);
+extern void font_update_msg4(SDL_Renderer *renderer);
 // CLI
 extern void command_line_interface(int argc, char* args[]);
 // LIB
@@ -42,8 +41,8 @@ extern bool ticker_fps(long lastTime, long currentTime);
 extern void showCPS(long long unsigned int number);
 extern void showFPS(int number);
 extern void showCPU_CPS(int number);
-extern void load_rom(char* filename, unsigned char *mem, unsigned int mem_size);
-extern char* get_game_signature(char* filename);
+extern void load_rom(char *filename, unsigned char *mem, unsigned int mem_size);
+extern char *get_game_signature(char *filename);
 extern long getMicrotime();
 // CPU
 extern void cpu_initialize();
@@ -69,9 +68,9 @@ const int   pal_freq   = 60;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 // SDL Video
-SDL_Window* window;
-SDL_Renderer* renderer;
-SDL_Texture* texture;
+SDL_Window *window;
+SDL_Renderer *renderer;
+SDL_Texture *texture;
 
 int FONTX = 0;
 
@@ -80,7 +79,7 @@ TTF_Font *font;
 SDL_Surface *text;
 
 // Game path and ROM name
-char* filename;
+char *filename;
 
 // Control the Main loop exit
 bool quit;
