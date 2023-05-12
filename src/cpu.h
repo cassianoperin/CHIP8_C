@@ -28,9 +28,11 @@ extern bool quirk_LoRes_Wide_Sprite_Dxy0;
 extern bool quirk_VF_Reset_8xy1_8xy2_8xy3;
 extern bool quirk_ClockProgram_fonts;
 extern bool quirk_display_wait;
-// Other
+// Main
 extern char *game_signature;
 extern char *filename;
+// Sound
+extern bool sound_enabled;
 
 // --------------------------------- External Functions --------------------------------- //
 // Lib
@@ -75,6 +77,9 @@ extern void opc_chip8_FX65(unsigned char x);
 // CHIP-8 Undocumented
 extern void opc_chip8_ND_02D8();
 
+// ---------------------------------- Global Constants ---------------------------------- //
+const int CHIP8_DEFAULT_CLOCK = 500;
+
 // ---------------------------------- Global Variables ---------------------------------- //
 unsigned char	Memory[4096];		       // Memory
 unsigned short	PC;          	            // Program Counter
@@ -105,7 +110,7 @@ bool            cpu_pause;                  // Pause emulation
 unsigned int    cycle_cpu = 0;		        // Executed cpu cycles
 unsigned int    cycle_counter_cpu = 0;      // CPU instructions per second
 // CPU Clock
-unsigned int    CPU_CLOCK  = 1000;
+unsigned int    CPU_CLOCK  = 0;             // CPU clock speed
 
 
 // -------------------------------------- Functions ------------------------------------- //

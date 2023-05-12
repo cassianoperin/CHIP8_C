@@ -25,6 +25,9 @@ void cpu_reset(){
 
 void cpu_initialize(){
 
+	// Clock
+	CPU_CLOCK  = CHIP8_DEFAULT_CLOCK;
+
 	// Components
 	memset(Memory, 0x00,  (sizeof(Memory) / sizeof(Memory[0])) );	// Clean Memory
 	PC = 0x200;								// Start at 0x200 (default CHIP-8)
@@ -38,7 +41,6 @@ void cpu_initialize(){
 	for ( int i = 0 ; i < (int)( sizeof(display_pixels) / sizeof(display_pixels[0])) ; i++ ) {
 			display_pixels[i] = display_pixel_OFF_color;
 	}
-
 
 	// Legacy Opcodes and Quirks
 	quirk_Memory_legacy_Fx55_Fx65		= false;
@@ -69,9 +71,12 @@ void cpu_initialize(){
 	// Initialize random generator
 	srand(time(NULL));
 
+	// Sound
+	sound_enabled = true;
+
 	// Draw
 	cpu_original_draw_mode = false;
-	cpu_halt = false;
+	cpu_halt 			   = false;
 
 	// Debug
 	cpu_debug_mode	= false;

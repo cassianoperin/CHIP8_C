@@ -9,7 +9,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/src/main",
-      "args": [],
+      "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Pong (1 player).ch8" ],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [],

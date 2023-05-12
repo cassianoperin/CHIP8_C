@@ -6,20 +6,60 @@
 // Command Line Interface
 void command_line_interface(int argc, char* args[]) {
 
-	if ( argc == 1 || argc > 2) {
-		printf("\nInvalid arguments.\n\n\t%s --help for more information\n\n", args[0]);
-		exit(0);
-	} else if ( argc == 2 ) {
+	// ./prog_name (1 argument)
+	if ( argc == 1 ) {
+		print_usage(args);
 
-			if ( !strcmp(args[1], "--help") ) {
-				printf("\nUsage:\t%s <rom_name> || <options>\n\nOptions:\n\t--help\tPrint help menu\n", args[0]);
-				exit(0);
+	} else if ( argc == 2 ) {	// ./main ROM.ch8 || ./main --help
+
+		if ( strContains(args[1], "--") ) {					// --"anything"
+			print_usage(args);
+		} else if ( !strcmp(args[1], "--help") ) {			// --help
+			print_usage(args);
+		}
+
+	// ./prog_name rom_name.ch8 (2 arguments)
+	} else if ( argc > 2 ) {	// ./main ROM.ch8
+			
+		// Check if the first value is the rom and not an option
+		if ( strContains(args[1], "--") ) {	// --"anything"
+			print_usage(args);
+		}
+
+		// ./prog_name rom_name.ch8 --debug --pause (more than 2 arguments)
+		for ( int i = 2 ; i < argc ; i++ ) {
+			// printf("arg %d: %s\n", i, args[i]);
+
+			// Exit if --help in some argument
+			if ( !strcmp(args[i], "--help") ) {			// --help
+				print_usage(args);
+			
+			// Enable Debug
+			} else if ( !strcmp(args[i], "--debug") ) {
+				printf("Debug mode = ON\n");
+				cpu_debug_mode = true;
+
+			// Draw on DXYN
+			} else if ( !strcmp(args[i], "--original_draw_mode") ) {
+				printf("Original Draw Mode = ON\n");
+				cpu_original_draw_mode = true;
+
+			// CPU Pause mode
+			} else if ( !strcmp(args[i], "--pause") ) {
+				printf("Pause mode = ON\n");
+				cpu_pause = true; 
 			} else {
-					filename = args[1];
-
-					load_rom(filename,  Memory, (sizeof(Memory) / sizeof(Memory[0])) );
-					printf("Loaded game: %s\n", filename);
+				printf("Invalid option '%s'\nExiting\n", args[i]);
+				exit(0);
 			}
+		}
 	}
+}
 
+// Print CLI usage and options
+void print_usage(char* args[]) {
+	printf("Usage:\t%s <rom_name> [ <options> ]\n\nOptions: \n\t--help\t\t\tPrint help menu \n\t--debug\t\t\tTurn on Debug \
+		Mode\n \t--original_draw_mode\tTurn original draw mode (on DXYN) and not on VSYNC\n \t--pause\t\t\tStart emulation with CPU Paused\n \n", args[0]);
+
+	exit(0);
 }

@@ -42,25 +42,12 @@ int main( int argc, char* args[] )
 	// Initialize
 	cpu_initialize();
 
-	// CLI
-	// command_line_interface(argc, args);
+	// CLI and argument validation
+	command_line_interface(argc, args);
 
-	// File name
-	// filename = args[1];
-	// filename = "#Games/# Not Supported Platforms/Chip-8X and Hybrids/ETI660 Hybrids/Pong (ETI660 Hybrid).ch8";
-	// filename = "#Games/SuperChip/Demos/Robot.ch8";
-	//
-	// filename = "#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-	// filename = "#Games/Chip-8/Programs/Clock Program [Bill Fisher, 1981].ch8";
-
-	// filename = "#Games/Chip-8/Test_Programs/chip8-test-suite.ch8";
-	// filename = "#Games/Chip-8/Games/Breakout (Brix hack) [David Winter, 1997].ch8";
-
-	// filename = "CHIP8_C/#Games/Chip-8/Games/Tank.ch8";
-	filename = "#Games/Chip-8/Games/Pong (1 player).ch8";
-
-	// Load ROM into Memory
-	load_rom(filename,  Memory,  (sizeof(Memory) / sizeof(Memory[0])) );
+	// Load Game into Memory
+	filename = args[1];
+	load_rom(filename,  Memory, (sizeof(Memory) / sizeof(Memory[0])) );
 	printf("Loaded game: %s\n", filename);
 
 	// Get Game signature for Qwirks
@@ -92,7 +79,7 @@ int main( int argc, char* args[] )
 	while( !quit )
 	{
 
-		// ------------------------------- P5: START OF SECONDs COUNTER  ------------------------------- //
+		// --------------------------------- START OF SECONDs COUNTER  --------------------------------- //
 		if ( timeSecondLast - timeSecondStart > 1000000000 ){ 
 
 			// Second Ticker validation
@@ -104,7 +91,7 @@ int main( int argc, char* args[] )
 			SDL_SetWindowTitle(window, title_msg);
 
 		
-			// Draw at least once per second???
+			// Draw at least once per second??? add um if frame counter zero
 			// if frame = 0?
 			// display_draw(frame_counter, &scene);
 
@@ -158,6 +145,7 @@ int main( int argc, char* args[] )
 		cycle_counter++;
 
 
+
 		// --------------------------- P1: START OF FRAME OPERATIONS  --------------------------- //
 
 		// ------------- Keyboard ------------ //
@@ -199,8 +187,7 @@ int main( int argc, char* args[] )
 		// printf("Sum anterior: %f\n",opcodesPerFrameResidualSum);
 		opcodesPerFrameResidualSum += opcodesPerFrameResidual;					// Opcode residual from last frame
 		// printf("Sum: %f\n\n",opcodesPerFrameResidualSum);
-
-
+		
 		for( int i = 0 ; i < ( (int)opcodesPerFrame ) ; i++) {
 			if ( !cpu_pause ) {
 
@@ -227,8 +214,6 @@ int main( int argc, char* args[] )
 			cpu_draw_flag = false;
 			cpu_halt = false;
 		}
-
-
 		// ---------------------------- P1: END OF FRAME OPERATIONS  ---------------------------- //
 
 
@@ -314,8 +299,6 @@ int main( int argc, char* args[] )
 
 		// Seconds Counter
 		timeSecondLast = SDL_GetPerformanceCounter();
-
-		
 	}
 
 

@@ -197,3 +197,30 @@ long getMicrotime(){
 	gettimeofday(&currentTime, NULL);
 	return currentTime.tv_sec * (int)1e6 + currentTime.tv_usec;
 }
+
+// Check if a string contains in another
+uint8_t strContains(char* string, char* toFind)
+{
+    uint8_t slen = strlen(string);
+    uint8_t tFlen = strlen(toFind);
+    uint8_t found = 0;
+
+    if( slen >= tFlen )
+    {
+        for(uint8_t s=0, t=0; s<slen; s++)
+        {
+            do{
+                if( string[s] == toFind[t] )
+                {
+                    if( ++found == tFlen ) return 1;
+                    s++;
+                    t++;
+                }
+                else { s -= found; found=0; t=0; }
+
+              }while(found);
+        }
+        return 0;
+    }
+    else return -1;
+}
