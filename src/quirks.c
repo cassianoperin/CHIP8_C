@@ -55,17 +55,34 @@ void handle_legacy_opcodes(char *game_signature) {
 		display_SCREEN_HEIGHT_Y = 32;
 	}
 
-	// Set the quirks necessary for chip8-test-suite.ch8"
+	// Set the quirks necessary for chip8-test-suite.ch8 (v2)"
 	// https://github.com/Timendus/chip8-test-suite#quirks-test
 	if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
 		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
 		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-		quirk_Shifting_legacy_8xy6_8xyE	= true;		// Shifting
+		quirk_Shifting_legacy_8xy6_8xyE	= false;		// Shifting
 		quirk_Clipping_Dxyn				= true;		// Clipping
 		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
 		quirk_display_wait				= true;		// Display wait
 		cpu_original_draw_mode			= false;	// Needed by Display Wait to draw @60hz
 		printf("Jumping, Memory, Shifting, Clipping, VF Reset and Display Wait quirks enabled.\n");
+	}
+
+	// Set the quirks necessary for chip8-test-suite.ch8 (v4)"
+	// https://github.com/Timendus/chip8-test-suite
+	if ( !strcmp(game_signature, "130C6000E0A112047001+150419") ) {
+		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+
+
+
+		// quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+		// quirk_Clipping_Dxyn				= true;		// Clipping
+		// quirk_display_wait				= true;		// Display wait
+		// cpu_original_draw_mode			= false;	// Needed by Display Wait to draw @60hz
+		printf("VF Reset, Memory quirks enabled.\n");
+		// printf("VF Reset, Jumping, Memory, Shifting, Clipping and Display Wait quirks enabled.\n");
 	}
 
 	// Do not load SCHIP fonts to avoid garbage after FFFFFF clock

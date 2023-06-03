@@ -28,10 +28,9 @@ void command_line_interface(int argc, char* args[]) {
 
 		// ./prog_name rom_name.ch8 --debug --pause (more than 2 arguments)
 		for ( int i = 2 ; i < argc ; i++ ) {
-			// printf("arg %d: %s\n", i, args[i]);
 
 			// Exit if --help in some argument
-			if ( !strcmp(args[i], "--help") ) {			// --help
+			if ( !strcmp(args[i], "--help") ) {
 				print_usage(args);
 			
 			// Enable Debug
@@ -48,6 +47,13 @@ void command_line_interface(int argc, char* args[]) {
 			} else if ( !strcmp(args[i], "--pause") ) {
 				printf("Pause mode = ON\n");
 				cpu_pause = true; 
+
+			// Disable Sound
+			} else if ( !strcmp(args[i], "--nosound") ) {
+				printf("Sound DISABLED\n");
+				sound_enabled = false; 
+
+			// Invalid option
 			} else {
 				printf("Invalid option '%s'\nExiting\n", args[i]);
 				exit(0);
@@ -58,8 +64,14 @@ void command_line_interface(int argc, char* args[]) {
 
 // Print CLI usage and options
 void print_usage(char* args[]) {
-	printf("Usage:\t%s <rom_name> [ <options> ]\n\nOptions: \n\t--help\t\t\tPrint help menu \n\t--debug\t\t\tTurn on Debug \
-		Mode\n \t--original_draw_mode\tTurn original draw mode (on DXYN) and not on VSYNC\n \t--pause\t\t\tStart emulation with CPU Paused\n \n", args[0]);
+	printf("Usage:\t%s <rom_name> [ <options> ]\n\
+		\nOptions:\
+		\n\t--help\t\t\tPrint help menu\
+		\n\t--debug\t\t\tTurn on Debug Mode\
+		\n\t--original_draw_mode\tTurn original draw mode (on DXYN) and not on VSYNC\
+		\n\t--pause\t\t\tStart emulation with CPU Paused\
+		\n\t--nosound\t\tDisable Sound\
+		\n\n", args[0]);
 
 	exit(0);
 }

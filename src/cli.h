@@ -7,6 +7,8 @@ extern bool cpu_pause;
 extern unsigned char Memory[4096];
 extern bool cpu_debug_mode;
 extern bool cpu_original_draw_mode;
+// Sound
+extern bool sound_enabled;
 // Main
 extern char *filename;
 

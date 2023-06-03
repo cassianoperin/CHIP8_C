@@ -222,13 +222,13 @@ void opc_chip8_8XY2(unsigned char x, unsigned char y) {
 void opc_chip8_8XY3(unsigned char x, unsigned char y) {
 	if ( cpu_debug_mode )
 		sprintf(cpu_debug_message, "CHIP-8 8xy3: Set V[x(%d)]:%d XOR V[y(%d)]:%d", x, V[x], y, V[y]);
+	
+	V[x] ^= V[y];
+	PC += 2;
 
 	if ( quirk_VF_Reset_8xy1_8xy2_8xy3 ) {
 		V[0xF] = 0;
 	}
-	
-	V[x] ^= V[y];
-	PC += 2;
 }
 
 // 8xy4 - ADD Vx, Vy
@@ -290,9 +290,9 @@ void opc_chip8_8XY6(unsigned char x, unsigned char y) {
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHR
 
 	if ( quirk_Shifting_legacy_8xy6_8xyE ) {
-		V[x] = V[y] >> 1;
+		V[x] = V[x] >> 1; // modern CHIP-48 and SUPER-CHIP hardware
 	} else {
-		V[x] = V[x] >> 1;
+		V[x] = V[y] >> 1; // original COSMAC VIP hardware
 	}
 
 	// Now update the flag
@@ -335,9 +335,9 @@ void opc_chip8_8XYE(unsigned char x, unsigned char y) {
 	unsigned char Vx_original = V[x];	// Necessary once the flag will be set AFTER the SHL
 
 	if ( quirk_Shifting_legacy_8xy6_8xyE ) {
-		V[x] = V[y] << 1;
+		V[x] = V[x] << 1; // modern CHIP-48 and SUPER-CHIP hardware
 	} else {
-		V[x] = V[x] << 1;
+		V[x] = V[y] << 1; // original COSMAC VIP hardware
 	}
 
 	// Now update the flag

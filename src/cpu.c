@@ -43,8 +43,9 @@ void cpu_initialize(){
 	}
 
 	// Legacy Opcodes and Quirks
+	quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
 	quirk_Memory_legacy_Fx55_Fx65		= false;
-	quirk_Shifting_legacy_8xy6_8xyE		= false;
+	quirk_Shifting_legacy_8xy6_8xyE		= true;
 	quirk_Spacefight2091_Fx1E			= false;
 	quirk_Clipping_Dxyn					= false;
 	quirk_Resize_SCHIP_00FE_00FF		= true;
@@ -52,7 +53,6 @@ void cpu_initialize(){
 	quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
 	quirk_ETI660_64x32_screen			= false;
 	quirk_Jump_with_offset_Bnnn			= false;
-	quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
 	quirk_ClockProgram_fonts			= false;
 	// Keyboard_slow_press				= false;
 

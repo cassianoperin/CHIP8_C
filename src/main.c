@@ -42,6 +42,9 @@ int main( int argc, char* args[] )
 	// Initialize
 	cpu_initialize();
 
+	// Initialize Audio System
+	sound_init();
+
 	// CLI and argument validation
 	command_line_interface(argc, args);
 
@@ -63,9 +66,6 @@ int main( int argc, char* args[] )
 	// Keyboard remaps
 	input_keyboard_remaps();
 
-	// Initialize Audio System
-	sound_init();
-
 	// -------------------------- SDL Init -------------------------- //
 	display_init();
 
@@ -80,20 +80,17 @@ int main( int argc, char* args[] )
 	{
 
 		// --------------------------------- START OF SECONDs COUNTER  --------------------------------- //
-		if ( timeSecondLast - timeSecondStart > 1000000000 ){ 
+		if ( timeSecondLast - timeSecondStart >= 1000000000 ){ 
 
 			// Second Ticker validation
-			// printf("Second: %lld\n", timeSecondLast - timeSecondStart );
+			printf("Second: %lld\n", timeSecondLast - timeSecondStart );
+
+			printf ("FINAL 60FPS time: %llu\n\n", timeFrameDurationSum);
 
 			// Window Title Message update
 			char title_msg[80];
 			sprintf(title_msg, "Cycles per sec.: %d\t\tFPS: %d\t\tFreq: %dhz        ms: %llu", cycle_counter, frame_counter, pal_freq, timeFrameDurationSum);
 			SDL_SetWindowTitle(window, title_msg);
-
-		
-			// Draw at least once per second??? add um if frame counter zero
-			// if frame = 0?
-			// display_draw(frame_counter, &scene);
 
 			if ( msg_emuinfo ) {
 				// -------- Message slot 1 -------- //
@@ -209,7 +206,13 @@ int main( int argc, char* args[] )
 		// -------------- DRAW --------------- //
 		// Draw screen (game and text messages)
 		if ( !cpu_original_draw_mode ) {
-			display_draw(frame, &scene);
+
+			// Case it already reached number of frames desired, do not draw
+			// if ( frame < pal_freq ) {
+				display_draw(frame, &scene);
+			// } else {
+			// 	printf("Frame %d not draw!\n");
+			// }
 
 			cpu_draw_flag = false;
 			cpu_halt = false;
@@ -292,7 +295,7 @@ int main( int argc, char* args[] )
 		timeFrameDurationSum += timeFrameDuration;
 
 		// // Increment frame counter
-		// frame ++;
+		frame ++;
 
 		// Increment Main Loop Cycle
 		// cycle++;

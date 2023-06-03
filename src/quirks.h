@@ -11,9 +11,13 @@ extern bool cpu_original_draw_mode;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 // Legacy Opcodes and Quirks
+bool quirk_VF_Reset_8xy1_8xy2_8xy3;		// The AND, OR and XOR opcodes (8XY1, 8XY2 and 8XY3) reset the flags register to zero
 bool quirk_Memory_legacy_Fx55_Fx65; 	// Enable original Chip-8 Fx55 and Fx65 opcodes (increases I)
+
+
+
 										// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#fx55-and-fx65-store-and-load-memory
-bool quirk_Shifting_legacy_8xy6_8xyE;	// Enable original Chip-8 8xy6 and 8xyE opcodes
+bool quirk_Shifting_legacy_8xy6_8xyE;	// Enable original Chip-8 8xy6 and 8xyE opcodes (use only V[x])
 										// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#8xy6-and-8xye-shift
 bool quirk_Spacefight2091_Fx1E;			// FX1E undocumented feature needed by Spacefight 2091!
 bool quirk_Clipping_Dxyn;				// DXYN sprite wrap in Bowling game
@@ -26,7 +30,6 @@ bool quirk_ETI660_64x32_screen;			// Enable screen adjustment to 64x32 instead o
 bool quirk_Jump_with_offset_Bnnn;		// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]
 										// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#bnnn-jump-with-offset
 bool quirk_LoRes_Wide_Sprite_Dxy0;		// DXY0_loresWideSpriteQuirks - Draws a 16x16 sprite even in low-resolution (64x32) mode, row-major
-bool quirk_VF_Reset_8xy1_8xy2_8xy3;		// The AND, OR and XOR opcodes (8XY1, 8XY2 and 8XY3) reset the flags register to zero
 bool quirk_ClockProgram_fonts;			// To avoid glitches on FFFFF display, the memory used by SCHIP fonts can't be loaded
 bool quirk_display_wait;				// Drawing sprites to the display waits for the vertical blank interrupt, limiting their speed to max 60 sprites per second
 										// Turn game slower because it halt cpu to wait for draw @60hz

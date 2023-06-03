@@ -366,20 +366,16 @@ void input_keyboard() {
 						string_msg4 = "Debug mode: ENABLED";
 						font_update_msg4(renderer);
 
-						// Draw
-						display_draw(frame_counter, &scene);
-
-						message_slot4_timer = 3;
 					} else {
 						// -------- Message slot 4 -------- //
 						string_msg4 = "Debug mode: DISABLED";
 						font_update_msg4(renderer);
-
-						// Draw
-						display_draw(frame_counter, &scene);
-
-						message_slot4_timer = 3;
 					}
+
+					// Draw
+					display_draw(frame_counter, &scene);
+					
+					message_slot4_timer = 3;
 
 					break;
 

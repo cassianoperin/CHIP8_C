@@ -91,13 +91,9 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 
 ## Problems
 
-1 - Review MS info menu (button 8) information when change clock
+1 - FPS 61 sometimes, review time mesurement
 
-2 - When clock is modified during execution, one FPS is added permanently
-
-3 - Reset on screen messages?
-
-4 - Review flag
+2 - Review flag
       cpu_halt; // Halt cpu waiting for vertical blank to draw (and limit to 60 draws per second - display wait quirk)
 
 
