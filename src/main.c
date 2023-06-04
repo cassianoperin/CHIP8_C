@@ -89,7 +89,7 @@ int main( int argc, char* args[] )
 
 			// Window Title Message update
 			char title_msg[80];
-			sprintf(title_msg, "Cycles per sec.: %d\t\tFPS: %d\t\tFreq: %dhz        ms: %llu", cycle_counter, frame_counter, pal_freq, timeFrameDurationSum);
+			sprintf(title_msg, "Cycles per sec.: %d\t\tFPS: %d\t\tDraws: %d   Freq: %dhz   ms: %llu", cycle_counter, frame_counter, draw_counter, pal_freq, timeFrameDurationSum);
 			SDL_SetWindowTitle(window, title_msg);
 
 			if ( msg_emuinfo ) {
@@ -128,6 +128,8 @@ int main( int argc, char* args[] )
 			frame = 0;
 			frame_counter = 0;
 			timeFrameDurationSum = 0;
+			// Draws
+			draw_counter = 0;
 			// CPU
 			cycle_counter_cpu = 0;
 			// Second
@@ -188,35 +190,29 @@ int main( int argc, char* args[] )
 		for( int i = 0 ; i < ( (int)opcodesPerFrame ) ; i++) {
 			if ( !cpu_pause ) {
 
-				if (!cpu_halt) {
+				cpu_interpreter();
+
+				// Sum the residual to add an aditional frame if necessary
+				if ( opcodesPerFrameResidualSum > 1 ) {
 					cpu_interpreter();
 
-					// Sum the residual to add an aditional frame if necessary
-					if ( opcodesPerFrameResidualSum > 1 ) {
-						cpu_interpreter();
-
-						// Update the residual opcode sum counter
-						opcodesPerFrameResidualSum = opcodesPerFrameResidualSum - 1;
-					}
+					// Update the residual opcode sum counter
+					opcodesPerFrameResidualSum = opcodesPerFrameResidualSum - 1;
 				}
+
 
 			}
 		}
 		
 		// -------------- DRAW --------------- //
 		// Draw screen (game and text messages)
-		if ( !cpu_original_draw_mode ) {
+		if ( quirk_display_wait ) {
 
-			// Case it already reached number of frames desired, do not draw
-			// if ( frame < pal_freq ) {
-				display_draw(frame, &scene);
-			// } else {
-			// 	printf("Frame %d not draw!\n");
-			// }
-
-			cpu_draw_flag = false;
-			cpu_halt = false;
+			// Draw
+			display_draw(frame, &scene);
+			
 		}
+
 		// ---------------------------- P1: END OF FRAME OPERATIONS  ---------------------------- //
 
 

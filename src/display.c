@@ -89,6 +89,9 @@ bool display_draw(unsigned int frame, Scene *scene)
 	// Draw
 	SDL_RenderPresent(renderer);
 
+	// Increment Draw Counter
+	draw_counter ++;
+
 	return success;
 }
 

@@ -6,7 +6,6 @@
 extern unsigned int display_pixel_ON_color;
 extern unsigned int display_pixel_OFF_color;
 extern unsigned int display_pixels[2048];
-extern bool cpu_halt;
 // Screen Size
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
@@ -39,7 +38,6 @@ extern unsigned char    Key[16];
 extern unsigned char	DelayTimer;
 extern unsigned char	SoundTimer;
 extern bool             cpu_draw_flag;
-// extern bool             cpu_draw_counter;
 
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8

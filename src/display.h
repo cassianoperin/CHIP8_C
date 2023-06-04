@@ -34,6 +34,8 @@ Scene scene;
 // Frame Counters
 unsigned int frame = 0;                      // Frame counter
 unsigned int frame_counter = 0;              // Frame per second
+// Draw Counters
+unsigned int draw_counter = 0;               // Draw Counter
 
 // -------------------------------------- Functions ------------------------------------- //
 bool display_init();

@@ -43,17 +43,21 @@ void cpu_initialize(){
 	}
 
 	// Legacy Opcodes and Quirks
+	// Chip 8
 	quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
 	quirk_Memory_legacy_Fx55_Fx65		= false;
-	quirk_Shifting_legacy_8xy6_8xyE		= true;
-	quirk_Spacefight2091_Fx1E			= false;
+	quirk_display_wait					= true;
 	quirk_Clipping_Dxyn					= false;
-	quirk_Resize_SCHIP_00FE_00FF		= true;
-	quirk_LoRes_Wide_Sprite_Dxy0		= false;
-	quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
-	quirk_ETI660_64x32_screen			= false;
-	quirk_Jump_with_offset_Bnnn			= false;
-	quirk_ClockProgram_fonts			= false;
+	quirk_Shifting_legacy_8xy6_8xyE		= true;
+	// ETI
+	// quirk_ETI660_64x32_screen			= false;
+	// // SCHIP
+	// quirk_Spacefight2091_Fx1E			= false;
+	// quirk_Resize_SCHIP_00FE_00FF		= true;
+	// quirk_LoRes_Wide_Sprite_Dxy0		= false;
+	// quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
+	// quirk_Jump_with_offset_Bnnn			= false;
+	// quirk_ClockProgram_fonts			= false;
 	// Keyboard_slow_press				= false;
 
 	// SCHIP Specific Variables
@@ -73,10 +77,6 @@ void cpu_initialize(){
 
 	// Sound
 	sound_enabled = true;
-
-	// Draw
-	cpu_original_draw_mode = false;
-	cpu_halt 			   = false;
 
 	// Debug
 	cpu_debug_mode	= false;

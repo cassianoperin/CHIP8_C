@@ -39,9 +39,9 @@ void command_line_interface(int argc, char* args[]) {
 				cpu_debug_mode = true;
 
 			// Draw on DXYN
-			} else if ( !strcmp(args[i], "--original_draw_mode") ) {
+			} else if ( !strcmp(args[i], "--quirk_display_wait") ) {
 				printf("Original Draw Mode = ON\n");
-				cpu_original_draw_mode = true;
+				quirk_display_wait = false;
 
 			// CPU Pause mode
 			} else if ( !strcmp(args[i], "--pause") ) {
@@ -68,10 +68,10 @@ void print_usage(char* args[]) {
 		\nOptions:\
 		\n\t--help\t\t\tPrint help menu\
 		\n\t--debug\t\t\tTurn on Debug Mode\
-		\n\t--original_draw_mode\tTurn original draw mode (on DXYN) and not on VSYNC\
+		\n\t--quirk_display_wait\tTurn original draw mode (on DXYN) and not on VSYNC\
 		\n\t--pause\t\t\tStart emulation with CPU Paused\
 		\n\t--nosound\t\tDisable Sound\
 		\n\n", args[0]);
-
+ 
 	exit(0);
 }

@@ -6,9 +6,10 @@
 extern bool cpu_pause; 
 extern unsigned char Memory[4096];
 extern bool cpu_debug_mode;
-extern bool cpu_original_draw_mode;
 // Sound
 extern bool sound_enabled;
+// Quirk
+extern bool quirk_display_wait;
 // Main
 extern char *filename;
 

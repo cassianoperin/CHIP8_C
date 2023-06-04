@@ -49,9 +49,7 @@ Chip 8 emulator written in C with SDL2
 
     https://johnearnest.github.io/chip8Archive/
 
-2. Test cpu_halt and the quirk_display_wait
-
-3. Test again with test roms!
+2. Test again with test roms!
 
 ## Improvements
 
@@ -62,6 +60,8 @@ Chip 8 emulator written in C with SDL2
  leaks --atExit --list -- ./build/debug/main
 
 3 - Disable Vsync for original draw mode (SLOW) cpu_original_draw_mode (RECREATE)
+    1. Unify with quirk quirk_display_wait
+    2. Test cpu_halt and the quirk_display_wait
 
 4 - Review on screen message system (string_msgX)
 
