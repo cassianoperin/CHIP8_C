@@ -59,11 +59,7 @@ Chip 8 emulator written in C with SDL2
  https://www.youtube.com/watch?v=bhhDRm926qA
  leaks --atExit --list -- ./build/debug/main
 
-3 - Disable Vsync for original draw mode (SLOW) cpu_original_draw_mode (RECREATE)
-    1. Unify with quirk quirk_display_wait
-    2. Test cpu_halt and the quirk_display_wait
-
-4 - Review on screen message system (string_msgX)
+3 - Review on screen message system (string_msgX)
 
 ## Display
 
@@ -92,8 +88,5 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 ## Problems
 
 1 - FPS 61 sometimes, review time mesurement
-
-2 - Review flag
-      cpu_halt; // Halt cpu waiting for vertical blank to draw (and limit to 60 draws per second - display wait quirk)
 
 

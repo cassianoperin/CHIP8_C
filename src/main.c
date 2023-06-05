@@ -89,7 +89,7 @@ int main( int argc, char* args[] )
 
 			// Window Title Message update
 			char title_msg[80];
-			sprintf(title_msg, "Cycles per sec.: %d\t\tFPS: %d\t\tDraws: %d   Freq: %dhz   ms: %llu", cycle_counter, frame_counter, draw_counter, pal_freq, timeFrameDurationSum);
+			sprintf(title_msg, "Cycles per sec.: %d\t\tFPS: %d   Freq: %dhz   ms: %llu", cycle_counter, frame_counter, pal_freq, timeFrameDurationSum);
 			SDL_SetWindowTitle(window, title_msg);
 
 			if ( msg_emuinfo ) {
@@ -128,8 +128,6 @@ int main( int argc, char* args[] )
 			frame = 0;
 			frame_counter = 0;
 			timeFrameDurationSum = 0;
-			// Draws
-			draw_counter = 0;
 			// CPU
 			cycle_counter_cpu = 0;
 			// Second
@@ -191,10 +189,29 @@ int main( int argc, char* args[] )
 			if ( !cpu_pause ) {
 
 				cpu_interpreter();
+				
+				// If in original draw mode, check for draw flag and draw to screen, not syncing with vsync
+				if ( !quirk_display_wait ) {
+					if ( cpu_draw_flag ) {
+						// Draw
+						display_draw(frame, &scene);
+						// Reset the draw flag
+						cpu_draw_flag = false;
+					}
+				}
 
 				// Sum the residual to add an aditional frame if necessary
 				if ( opcodesPerFrameResidualSum > 1 ) {
 					cpu_interpreter();
+
+					if ( !quirk_display_wait ) {
+						if ( cpu_draw_flag ) {
+							// Draw
+							display_draw(frame, &scene);
+							// Reset the draw flag
+							cpu_draw_flag = false;
+						}
+					}
 
 					// Update the residual opcode sum counter
 					opcodesPerFrameResidualSum = opcodesPerFrameResidualSum - 1;
@@ -210,7 +227,7 @@ int main( int argc, char* args[] )
 
 			// Draw
 			display_draw(frame, &scene);
-			
+
 		}
 
 		// ---------------------------- P1: END OF FRAME OPERATIONS  ---------------------------- //

@@ -31,8 +31,15 @@ bool display_init()
 		}
 		else
 		{
-			// Create renderer for window
-			renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+			// --- Create renderer for window --- //
+			// Display wait quirk enabled, enable vsync
+			if ( quirk_display_wait ) {
+				renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC );
+			} else {
+				renderer = SDL_CreateRenderer( window, -1, SDL_RENDERER_ACCELERATED );
+			}
+
+			// Check for errors
 			if( renderer == NULL )
 			{
 				printf( "Renderer could not be created! SDL Error: %s\n", SDL_GetError() );
@@ -88,9 +95,6 @@ bool display_draw(unsigned int frame, Scene *scene)
 
 	// Draw
 	SDL_RenderPresent(renderer);
-
-	// Increment Draw Counter
-	draw_counter ++;
 
 	return success;
 }

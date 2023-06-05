@@ -16,7 +16,6 @@ extern unsigned int             cycle_counter_cpu;
 extern Scene                    scene;
 extern unsigned int             frame;
 extern unsigned int             frame_counter;
-extern unsigned int             draw_counter;
 // Audio
 extern SDL_AudioDeviceID        audio_device_id;
 extern bool                     playing_sound;

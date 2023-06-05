@@ -13,6 +13,8 @@ extern SDL_Renderer *renderer;
 extern SDL_Texture *texture;
 // SDL Font
 extern char *string_msg1, *string_msg2, *string_msg3, *string_msg4;
+// Quirk
+extern bool quirk_display_wait;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 // Display (Screen size)
@@ -34,8 +36,6 @@ Scene scene;
 // Frame Counters
 unsigned int frame = 0;                      // Frame counter
 unsigned int frame_counter = 0;              // Frame per second
-// Draw Counters
-unsigned int draw_counter = 0;               // Draw Counter
 
 // -------------------------------------- Functions ------------------------------------- //
 bool display_init();
