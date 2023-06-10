@@ -4,7 +4,7 @@ Chip 8 emulator written in C with SDL2
 
 **CHIP-8 Space Invaders Game** | **Superchip (SCHIP) Spacefight 2091!**
 :-------------------------:|:-------------------------:
-<img width="430" alt="invaders" src="https://github.com/cassianoperin/CHIP8/blob/master/images/invaders.gif">  |  <img width="430" alt="invaders" src="https://github.com/cassianoperin/CHIP8/blob/master/images/spacefight2091.gif">
+<img width="400" alt="invaders" src="https://github.com/cassianoperin/CHIP8/blob/master/images/invaders.gif">  |  <img width="400" alt="invaders" src="https://github.com/cassianoperin/CHIP8/blob/master/images/spacefight2091.gif">
 
 ## CHIP8 Status
 * ![100%](https://progress-bar.dev/100) CPU Opcodes
