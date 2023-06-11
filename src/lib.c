@@ -94,16 +94,12 @@ char *get_game_signature(char *filename) {
 	return signature;
 }
 
-// Show Cycles Per Second
+// Show Emulator Cycles Per Second
 void showCPS(long long unsigned int number) 
 {
 	// Variables
     char nstring[50];
 	int str_size, ptr, i , j = 0;
-
-	// Allocate memory for the pointer
-	// int length = snprintf( NULL, 0, "%llu", number );
-	// string_msg1 = malloc( length + 30 );
 
 	// Convert the integer into a string
     sprintf(nstring, "%llu", number);
@@ -111,7 +107,6 @@ void showCPS(long long unsigned int number)
 	str_size = strlen(nstring);
 
 	// Label
-	// strcpy(string_msg1, "CPS: abcdefghijklmnopqrstuvxyz 0123456789");
 	strcpy(string_msg1, "Emulator Cycles per second: ");
 
 	// Work with First 3 digits
@@ -149,7 +144,6 @@ void showCPS(long long unsigned int number)
 void showFPS(int number) 
 {
 	int length = snprintf( NULL, 0, "%d", number );
-	string_msg3 = malloc( length + 10);
 
 	char temp[20];
 	char fps_count[10];
@@ -163,17 +157,15 @@ void showFPS(int number)
 	strcpy(string_msg3, fps_count);
 }
 
-// Show CPU Cycles Per Second
+// Show CPU Cycles Per Second (Clock)
 void showCPU_CPS(int number) 
 {
 	int length = snprintf( NULL, 0, "%d", number );
-	string_msg2 = malloc( length + 40);
 
 	char temp[30];
 	char cps_count[30];
 	char cps_text[30] = "CPU Clock: ";
 	snprintf( cps_count, length + 1, "%d", number );
-
 
 	memcpy(temp,cps_count,sizeof(cps_count));
 	memcpy(cps_count,cps_text,strlen(cps_text));
@@ -181,13 +173,7 @@ void showCPU_CPS(int number)
 
 	strcat(cps_count, " Hz");
 
-
 	strcpy(string_msg2, cps_count);
-
-	// BREAKING, how to keep it???
-
-	// // Free Memory
-	// free(string_msg2)
 }
 
 // Time measurement in Microseconds (1 Sec = 1.000.000 Microsecs.)
@@ -222,4 +208,46 @@ uint8_t strContains(char* string, char* toFind)
         return 0;
     }
     else return -1;
+}
+
+// Strings memory allocation
+void string_memory_alloc() {
+
+	// string_msg1: on screen message slot 1
+	string_msg1 = malloc(sizeof(char) * 50);
+	if (!string_msg1) {
+		printf("Cannot allocate memory for variable \'string_msg1\'. Exiting.\n\n");
+		exit(2);
+	}
+
+	// string_msg2: on screen message slot 2
+	string_msg2 = malloc(sizeof(char) * 50);
+	if (!string_msg2) {
+		printf("Cannot allocate memory for variable \'string_msg2\'. Exiting.\n\n");
+		exit(2);
+	}
+
+	// string_msg3: on screen message slot 3
+	string_msg3 = malloc(sizeof(char) * 50);
+	if (!string_msg3) {
+		printf("Cannot allocate memory for variable \'string_msg3\'. Exiting.\n\n");
+		exit(2);
+	}
+
+	// string_msg4: on screen message slot 4
+	string_msg4 = malloc(sizeof(char) * 50);
+	if (!string_msg4) {
+		printf("Cannot allocate memory for variable \'string_msg4\'. Exiting.\n\n");
+		exit(2);
+	}
+}
+
+// Strings memory release
+void string_memory_free() {
+	// Deallocate Memory
+	free(string_msg1);
+	free(string_msg2);
+	free(string_msg3);
+	free(string_msg4);
+	free(game_signature);
 }

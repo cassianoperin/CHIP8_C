@@ -173,27 +173,16 @@ void input_keyboard() {
 					if ( CPU_CLOCK >= pal_freq + 10) {
 						CPU_CLOCK -= 10;
 
-						// Allocate Memory
-						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
-						string_msg4 = malloc( length + 10 );
-
 						// Show Message
 						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
 						font_update_msg4(renderer);
 
 					} else {
-						// Allocate Memory
-						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
-						string_msg4 = malloc( length + 20 );
-
 						// Show Message
 						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
 						strcat(string_msg4, " - Minimum Allowed");
 						font_update_msg4(renderer);
 					}
-
-					// // Free memory
-					// free(string_msg4);
 
 					// Draw
 					display_draw(frame_counter, &scene);
@@ -206,29 +195,16 @@ void input_keyboard() {
 					if ( CPU_CLOCK < Max_Overclock) {
 						CPU_CLOCK += 10;
 
-						// Allocate Memory
-						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
-						string_msg4 = malloc( length + 10 );
-
 						// Show Message
 						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
-
 						font_update_msg4(renderer);
 
 					} else {
-						// Allocate Memory
-						int length = snprintf( NULL, 0, "%u", CPU_CLOCK );
-						string_msg4 = malloc( length + 20 );
-
 						// Show Message
 						sprintf(string_msg4, "Clock %d", CPU_CLOCK);
 						strcat(string_msg4, " - Maximum Allowed");
-
 						font_update_msg4(renderer);
 					}
-
-					// Free memory
-					// free(string_msg4);
 
 					// Draw
 					display_draw(frame_counter, &scene);
@@ -312,20 +288,12 @@ void input_keyboard() {
 
 					// -------- Message slot 4 -------- //
 
-					// Allocate Memory
-					int length = snprintf( NULL, 0, "%hhu", display_color_theme );
-					string_msg4 = malloc( length + 10 );
-
 					// Show Message
 					sprintf(string_msg4, "Theme %d", display_color_theme);
 					font_update_msg4(renderer);
 
-					// Free memory
-					// free(string_msg4);
-
 					// Draw
 					display_draw(frame_counter, &scene);
-
 					message_slot4_timer = 3;
 
 					break;
@@ -341,10 +309,10 @@ void input_keyboard() {
 						strcpy(string_msg1, "Emulator Cycles per second: -");
 						font_update_msg1(renderer);
 						// -------- Message slot 2 -------- //
-						string_msg2 = "CPU Clock: -";
+						strcpy(string_msg2, "CPU Clock: -");
 						font_update_msg2(renderer);
 						// -------- Message slot 3 -------- //
-						string_msg3 = "FPS: -";
+						strcpy(string_msg3, "FPS: -");
 						font_update_msg3(renderer);
 
 						// Draw
@@ -352,8 +320,8 @@ void input_keyboard() {
 					} else {
 						// Clean messages
 						strcpy(string_msg1, "");
-						string_msg2 = "";
-						string_msg3 = "";
+						strcpy(string_msg2, "");
+						strcpy(string_msg3, "");
 					}
 					break;
 
@@ -363,18 +331,17 @@ void input_keyboard() {
 
 					if (cpu_debug_mode ) {
 						// -------- Message slot 4 -------- //
-						string_msg4 = "Debug mode: ENABLED";
+						strcpy(string_msg4, "Debug mode: ENABLED");
 						font_update_msg4(renderer);
 
 					} else {
 						// -------- Message slot 4 -------- //
-						string_msg4 = "Debug mode: DISABLED";
+						strcpy(string_msg4, "Debug mode: DISABLED");
 						font_update_msg4(renderer);
 					}
 
 					// Draw
 					display_draw(frame_counter, &scene);
-					
 					message_slot4_timer = 3;
 
 					break;
@@ -384,12 +351,11 @@ void input_keyboard() {
 					cpu_reset();
 
 					// -------- Message slot 4 -------- //
-					string_msg4 = "RESET";
+					strcpy(string_msg4, "RESET");
 					font_update_msg4(renderer);
 
 					// Draw
 					display_draw(frame_counter, &scene);
-
 					message_slot4_timer = 3;
 
 					break;

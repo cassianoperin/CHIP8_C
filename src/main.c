@@ -27,21 +27,8 @@ int main( int argc, char* args[] )
 	// CPU
 	float opcodesPerFrameResidualSum = 0;								// CPU clock fine adjustment
 
-	// Allocate Memory for on screen messages
-	// string_msg1
-	string_msg1 = malloc(sizeof(char) * 50);
-	if (!string_msg1) {
-		printf("Cannot allocate memory for variable \'string_msg1\'. Exiting.\n\n");
-		exit(2);
-	}    	
-
-	// strcpy(string_msg1, "");
-	// printf("%s\n",string_msg1);
-
-	// strcpy(string_msg1, "CPS: abcdefghijklmnopqrstuvxyz 0123456789");
-	// printf("%s\n",string_msg1);
-
-
+	// String Memory Allocation
+	string_memory_alloc();
 
 	// Timing debug
 	bool debug_timing = false;
@@ -116,11 +103,6 @@ int main( int argc, char* args[] )
 				// -------- Message slot 3 -------- //
 				showFPS(frame_counter);
 				font_update_msg3(renderer);
-			} else {
-				// Clean messages
-				// string_msg1 = "";
-				string_msg2 = "";
-				string_msg3 = "";
 			}
 
 			// Message slot 4 timer
@@ -129,7 +111,7 @@ int main( int argc, char* args[] )
 
 				// When reach zero, clear
 				if ( message_slot4_timer == 0 ) {
-					string_msg4 = "";
+					strcpy(string_msg4, "");
 				}
 			}	
 
@@ -333,13 +315,9 @@ int main( int argc, char* args[] )
 	//Free resources and close SDL
 	sound_close();
 	SDL_close();
-
-	// Deallocate Memory
-	free(string_msg1);
-	free(game_signature);
-
-	// free(string_msg2);
-
+	
+	// String Memory release
+	string_memory_free();
 
 	return 0;
 }

@@ -164,6 +164,12 @@ Chip 8 emulator written in C with SDL2
 
 [MegaChip](https://github.com/gcsmith/gchip/blob/master/docs/megachip10.txt)
 
+### Memory leak testing
+
+Test memory leaks on binary:
+
+	`leaks --atExit --list -- main`
+
 
 ## TODO
 
@@ -181,12 +187,6 @@ Chip 8 emulator written in C with SDL2
 ### Improvements
 
 1. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
-
-2. Test memory leaks on binary:
- https://www.youtube.com/watch?v=bhhDRm926qA
- leaks --atExit --list -- ./build/debug/main
-
-3 - Review on screen message system (string_msgX)
 
 ### Display
 

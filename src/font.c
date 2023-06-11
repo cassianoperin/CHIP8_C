@@ -89,14 +89,6 @@ bool font_init(SDL_Renderer* renderer){
 
 void font_update_msg1(SDL_Renderer *renderer){
 
-    // Initial message
-    // SDL_snprintf(string_msg1, sizeof(string_msg1), "OOOOP MESSAGE!");
-    // string_msg1 = "FIRST SLOT MESSAGE";
-
-
-    // printf("%s\n", string_msg1);
-    // exit(2);
-
     if ( string_msg1 != NULL && strcmp( string_msg1, "") != 0  ) {
 
         // // Font Color (RED)
@@ -265,9 +257,6 @@ void font_update_msg2(SDL_Renderer *renderer){
 
 void font_update_msg3(SDL_Renderer *renderer){
 
-    // Initial message
-    // string_msg3 = "SECOND SLOT MESSAGE";
-
     if ( string_msg3 != NULL && strcmp( string_msg3, "") != 0  ) {
 
         // Font Color
@@ -348,9 +337,6 @@ void font_update_msg3(SDL_Renderer *renderer){
 }
 
 void font_update_msg4(SDL_Renderer *renderer){
-
-    // Initial message
-    // string_msg4 = "4th SLOT MESSAGE";
 
     if ( string_msg4 != NULL && strcmp( string_msg4, "") != 0  ) {
 

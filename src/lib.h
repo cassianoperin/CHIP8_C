@@ -44,3 +44,10 @@ void showCPU_CPS(int number);
 
 // Check if a string contains in another
 uint8_t strContains(char* string, char* toFind);
+
+// Strings memory allocation
+void string_memory_alloc();
+
+// Free allocated memory for strings
+void string_memory_free();
+

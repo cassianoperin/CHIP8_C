@@ -33,9 +33,9 @@ extern void font_update_msg1(SDL_Renderer *renderer);
 extern void font_update_msg2(SDL_Renderer *renderer);
 extern void font_update_msg3(SDL_Renderer *renderer);
 extern void font_update_msg4(SDL_Renderer *renderer);
-// CLI
+// Cli
 extern void command_line_interface(int argc, char* args[]);
-// LIB
+// Lib
 extern bool ticker_second(long lastTime, long currentTime);
 extern bool ticker_cpu(long lastTime, long currentTime);
 extern bool ticker_fps(long lastTime, long currentTime);
@@ -45,12 +45,14 @@ extern void showCPU_CPS(int number);
 extern void load_rom(char *filename, unsigned char *mem, unsigned int mem_size);
 extern char *get_game_signature(char *filename);
 extern long getMicrotime();
+extern void string_memory_alloc();
+extern void string_memory_free();
 // CPU
 extern void cpu_initialize();
 extern void cpu_load_fonts();
 extern void cpu_interpreter();
 extern unsigned int CPU_CLOCK;
-// QUIRKS
+// Quirks
 extern void handle_legacy_opcodes(char *game_signature);
 // Input
 extern void input_keyboard();
