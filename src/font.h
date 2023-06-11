@@ -4,7 +4,7 @@
 #include "typedef.h"
 
 // --------------------------------- External Variables --------------------------------- //
-// SDL Font
+// Display
 extern TTF_Font *font;
 extern SDL_Surface *text;
 extern Scene scene;

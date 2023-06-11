@@ -27,9 +27,21 @@ int main( int argc, char* args[] )
 	// CPU
 	float opcodesPerFrameResidualSum = 0;								// CPU clock fine adjustment
 
-	// On screen messages
-	// string_msg1 = (char *)malloc(sizeof(char) * (30 + 1));
-	// string_msg2 = (char *)malloc(sizeof(char) * (9 + 1));
+	// Allocate Memory for on screen messages
+	// string_msg1
+	string_msg1 = malloc(sizeof(char) * 50);
+	if (!string_msg1) {
+		printf("Cannot allocate memory for variable \'string_msg1\'. Exiting.\n\n");
+		exit(2);
+	}    	
+
+	// strcpy(string_msg1, "");
+	// printf("%s\n",string_msg1);
+
+	// strcpy(string_msg1, "CPS: abcdefghijklmnopqrstuvxyz 0123456789");
+	// printf("%s\n",string_msg1);
+
+
 
 	// Timing debug
 	bool debug_timing = false;
@@ -94,7 +106,7 @@ int main( int argc, char* args[] )
 
 			if ( msg_emuinfo ) {
 				// -------- Message slot 1 -------- //
-				showCPS(cycle_counter);
+				showCPS(cycle_counter); 	// Update string_msg1	
 				font_update_msg1(renderer);
 
 				// -------- Message slot 2 -------- //
@@ -106,7 +118,7 @@ int main( int argc, char* args[] )
 				font_update_msg3(renderer);
 			} else {
 				// Clean messages
-				string_msg1 = "";
+				// string_msg1 = "";
 				string_msg2 = "";
 				string_msg3 = "";
 			}
@@ -318,218 +330,14 @@ int main( int argc, char* args[] )
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	// //Start up SDL and create window
-	// if( !display_init() )
-	// {
-	// 	printf( "Failed to initialize SDL!\n" );
-	// }
-	// else
-	// {
-	// 	// ------------------------------ Infinite Loop  ------------------------------ //
-	// 	while( !quit )
-	// 	{
-	// 		// Increment main loop cycle counter
-	// 		cycle++;
-
-	// 		// Increment Cycle per second counter
-	// 		cycle_counter++;
-
-	// 		// Current time using sys/time.h
-	// 		tickers_current_time = getMicrotime();
-
-
-	// 		// ---------------------------- Ticker Second ---------------------------- //
-
-	// 		if ( ticker_second(ticker_second_last_time, tickers_current_time) ) {
-
-	// 			// At least one draw per second
-	// 			display_draw(frame_counter, &scene);
-
-	// 			if ( msg_emuinfo ) {
-	// 				// -------- Message slot 1 -------- //
-	// 				showCPS(cycle_counter);
-	// 				font_update_msg1(renderer);
-
-	// 				// -------- Message slot 2 -------- //
-	// 				showCPU_CPS(cycle_counter_cpu);
-	// 				font_update_msg2(renderer);
-
-	// 				// -------- Message slot 3 -------- //
-	// 				showFPS(frame_counter);
-	// 				font_update_msg3(renderer);
-	// 			} else {
-	// 				// Clean messages
-	// 				string_msg1 = "";
-	// 				string_msg2 = "";
-	// 				string_msg3 = "";
-	// 			}
-
-	// 			// Message slot 4 timer
-	// 			if ( message_slot4_timer > 0 ) {
-	// 				message_slot4_timer --;
-
-	// 				// When reach zero, clear
-	// 				if ( message_slot4_timer == 0 ) {
-	// 					string_msg4 = "";
-	// 				}
-	// 			}
-
-	// 			// Update timer variables
-	// 			ticker_second_last_time = tickers_current_time;
-
-	// 			// Cycles and FPS Measurement
-	// 			char title_msg[510];
-	// 			sprintf(title_msg, "CPS: %d\t\tFPS: %d\t\tCPU: %d", cycle_counter, frame_counter, cycle_counter_cpu);
-	// 			SDL_SetWindowTitle(window, title_msg);
-
-	// 			// Reset counters
-	// 			if ( cycle_counter != 1 ) { // Avoid incorrect measurement on first emulator cycle
-	// 				last_cycle_counter = cycle_counter;
-	// 			}
-
-	// 			cycle_counter = 0;
-	// 			frame_counter = 0;
-	// 			cycle_counter_cpu = 0;
-	// 			sleep_counter = 0;
-	// 		}
-
-
-	// 		// ------------------------------ Ticker CPU ------------------------------ //
-
-	// 		if ( ticker_cpu(ticker_cpu_last_time, tickers_current_time) ) {
-
-	// 			if ( !cpu_pause ) {
-
-	// 				if (!cpu_halt) {
-	// 					cpu_interpreter();
-	// 				}
-
-	// 			}
-
-	// 			// Draw every time the draw opcode is set
-	// 			if ( cpu_original_draw_mode ) {
-	// 				if ( cpu_draw_flag ) {
-
-	// 					// Draw
-	// 					display_draw(frame_counter, &scene);
-
-	// 					// Reset the flag
-	// 					cpu_draw_flag = false;
-	// 				}
-	// 			}
-
-	// 			// Update timer variables
-	// 			ticker_cpu_last_time = tickers_current_time;
-	// 		}
-
-
-	// 		// ------------------------------ Ticker FPS ------------------------------ //
-
-	// 		// Ticker FPS (60 times per second)
-	// 		if ( ticker_fps(ticker_fps_last_time, tickers_current_time) ) {
-
-	// 			// Handle Keyboard
-	// 			input_keyboard();
-
-	// 			// Handle Delay Timer
-	// 			if ( DelayTimer > 0 ) {
-	// 				DelayTimer--;
-	// 			}
-
-	// 			// Handle Sound Timer
-	// 			if ( SoundTimer > 0 ) {
-
-	// 				if ( !playing_sound ) {
-	// 					// Start playing the beep
-	// 					SDL_PauseAudioDevice(audio_device_id, 0);
-						
-	// 					// Avoid starting again when already playing the sound
-	// 					playing_sound = true;
-	// 				} 
-
-	// 				SoundTimer--;
-
-	// 			} else {
-
-	// 				if ( playing_sound ) {
-	// 					// Stop sound
-	// 					SDL_PauseAudioDevice(audio_device_id, 1);
-
-	// 					// Avoid starting again when already playing the sound
-	// 					playing_sound = false;
-	// 				}
-
-	// 			}
-
-	// 			// Draw screen
-	// 			if ( !cpu_original_draw_mode ) {
-	// 				display_draw(frame_counter, &scene);
-
-	// 				cpu_draw_flag = false;
-	// 				cpu_halt = false;
-	// 			}
-
-	// 			// Update timer variables
-	// 			ticker_fps_last_time = tickers_current_time;
-	// 		}
-			
-
-	// 		// // ----------------------- Main Loop Cycles Control ----------------------- //
-
-	// 		// // Infinite Loop Automatic Delay Control to avoid unnecessary cpu usage
-	// 		// if ( cycle_counter % sleep_modulus == 0) {
-	// 		// 	// Debug
-	// 		// 	printf("last_cycle_counter: %d\n", last_cycle_counter);
-	// 		// 	printf("CLOCK *2: %d\n", CPU_CLOCK *2);
-	// 		// 	printf("sleep_modulus: %d\n\n", sleep_modulus);
-
-	// 		// 	// Limit the main loop control to the necessary CPU clock frequency
-	// 		// 	// Reserve at least 10 times the clock speed for the main loop
-	// 		// 	if ( last_cycle_counter > (CPU_CLOCK * 1000) ) {
-
-	// 		// 		// Calibrate the sleep modulus
-	// 		// 		sleep_modulus = last_cycle_counter / (CPU_CLOCK*2);
-
-	// 		// 		// Sleep 1ms
-	// 		// 		SDL_Delay(1);
-	// 		// 		sleep_counter ++;
-
-	// 		// 	} else {
-	// 		// 		// Debug
-	// 		// 		printf("Limit reached last_cycle_counter: %d CPU_CLOCK: %d sleep_modulus: %d NEW last_cycle_counter: %d\n", last_cycle_counter ,CPU_CLOCK, sleep_modulus, last_cycle_counter *2 );
-
-	// 		// 		// If it starts to became close to the limit of reserved emulator cycles per second,
-	// 		// 		// increment manually the last_cycle_counter to exit this loop and ensure a safe sleep_module value.
-	// 		// 		last_cycle_counter *= 10;
-	// 		// 	}
-				
-	// 		// }
-			
-	// 	}
-	// }
-
 	//Free resources and close SDL
 	sound_close();
 	SDL_close();
 
 	// Deallocate Memory
+	free(string_msg1);
 	free(game_signature);
-	// free(string_msg1);
+
 	// free(string_msg2);
 
 

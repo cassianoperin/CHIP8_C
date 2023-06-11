@@ -25,7 +25,7 @@ bool font_init(SDL_Renderer* renderer){
     font_background_color.b = 0xFF;
 
     // Font Point Size
-    ptsize = 16;
+    ptsize = 1.5 * display_SCALE;
 
     // Render Method
     // rendermethod = TextRenderSolid;
@@ -92,6 +92,10 @@ void font_update_msg1(SDL_Renderer *renderer){
     // Initial message
     // SDL_snprintf(string_msg1, sizeof(string_msg1), "OOOOP MESSAGE!");
     // string_msg1 = "FIRST SLOT MESSAGE";
+
+
+    // printf("%s\n", string_msg1);
+    // exit(2);
 
     if ( string_msg1 != NULL && strcmp( string_msg1, "") != 0  ) {
 
@@ -163,8 +167,8 @@ void font_update_msg1(SDL_Renderer *renderer){
             
         // Draw Message 1
         if (text != NULL) {
-            scene.message1_Rect.x = 10;
-            scene.message1_Rect.y = 10;
+            scene.message1_Rect.x = 1 * display_SCALE;
+            scene.message1_Rect.y = 1 * display_SCALE;
             scene.message1_Rect.w = text->w;
             scene.message1_Rect.h = text->h;
             scene.message1 = SDL_CreateTextureFromSurface(renderer, text);
@@ -244,8 +248,8 @@ void font_update_msg2(SDL_Renderer *renderer){
             
         // Draw Message 2
         if (text != NULL) {
-            scene.message2_Rect.x = 10;
-            scene.message2_Rect.y = 30;
+            scene.message2_Rect.x = 1 * display_SCALE;
+            scene.message2_Rect.y = 4 * display_SCALE;
             scene.message2_Rect.w = text->w;
             scene.message2_Rect.h = text->h;
             scene.message2 = SDL_CreateTextureFromSurface(renderer, text);
@@ -327,9 +331,9 @@ void font_update_msg3(SDL_Renderer *renderer){
             
         // Draw Message 3
         if (text != NULL) {
-            scene.message3_Rect.x = 10;
+            scene.message3_Rect.x = 1 * display_SCALE;
             // scene.message3_Rect.y = ((display_SCREEN_HEIGHT_Y * display_SCALE) - text->h - 10);
-            scene.message3_Rect.y = 50;
+            scene.message3_Rect.y = 7 * display_SCALE;
             scene.message3_Rect.w = text->w;
             scene.message3_Rect.h = text->h;
             scene.message3 = SDL_CreateTextureFromSurface(renderer, text);
@@ -411,8 +415,8 @@ void font_update_msg4(SDL_Renderer *renderer){
             
         // Draw Message 4
         if (text != NULL) {
-            scene.message4_Rect.x = 10;
-            scene.message4_Rect.y = ((display_SCREEN_HEIGHT_Y * display_SCALE) - text->h - 10);
+            scene.message4_Rect.x = 1 * display_SCALE;
+            scene.message4_Rect.y = ((display_SCREEN_HEIGHT_Y * display_SCALE) - text->h - (1 * display_SCALE) );
             scene.message4_Rect.w = text->w;
             scene.message4_Rect.h = text->h;
             scene.message4 = SDL_CreateTextureFromSurface(renderer, text);

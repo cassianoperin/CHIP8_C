@@ -338,7 +338,7 @@ void input_keyboard() {
 					// First update must be immediate
 					if ( msg_emuinfo ) {
 						// -------- Message slot 1 -------- //
-						string_msg1 = "Emulator Cycles per second: -";
+						strcpy(string_msg1, "Emulator Cycles per second: -");
 						font_update_msg1(renderer);
 						// -------- Message slot 2 -------- //
 						string_msg2 = "CPU Clock: -";
@@ -351,7 +351,7 @@ void input_keyboard() {
 						display_draw(frame_counter, &scene);
 					} else {
 						// Clean messages
-						string_msg1 = "";
+						strcpy(string_msg1, "");
 						string_msg2 = "";
 						string_msg3 = "";
 					}

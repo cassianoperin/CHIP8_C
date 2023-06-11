@@ -5,6 +5,7 @@
 // Lib
 extern char *game_signature;
 extern char *string_msg1,*string_msg2, *string_msg3, *string_msg4;
+// extern char teste;
 // CPU
 extern unsigned char	        Memory[4096];
 extern bool                     cpu_draw_flag;

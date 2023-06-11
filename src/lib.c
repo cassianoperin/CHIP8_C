@@ -98,12 +98,12 @@ char *get_game_signature(char *filename) {
 void showCPS(long long unsigned int number) 
 {
 	// Variables
-    char nstring[30];
+    char nstring[50];
 	int str_size, ptr, i , j = 0;
 
 	// Allocate memory for the pointer
-	int length = snprintf( NULL, 0, "%llu", number );
-	string_msg1 = malloc( length + 30 );
+	// int length = snprintf( NULL, 0, "%llu", number );
+	// string_msg1 = malloc( length + 30 );
 
 	// Convert the integer into a string
     sprintf(nstring, "%llu", number);
@@ -111,7 +111,8 @@ void showCPS(long long unsigned int number)
 	str_size = strlen(nstring);
 
 	// Label
-	strcat(string_msg1, "Emulator Cycles per second: ");
+	// strcpy(string_msg1, "CPS: abcdefghijklmnopqrstuvxyz 0123456789");
+	strcpy(string_msg1, "Emulator Cycles per second: ");
 
 	// Work with First 3 digits
 	ptr = str_size % 3;
@@ -129,7 +130,6 @@ void showCPS(long long unsigned int number)
 		}
 	}
 
-
 	for ( i = ptr ; i < str_size ; i++ ) {      // print the rest inserting points
 		// printf("%c", nstring[i]);
 		strncat(string_msg1, &nstring[i], 1);
@@ -143,7 +143,6 @@ void showCPS(long long unsigned int number)
 	}
 
 	// printf("\n");
-
 }
 
 // Show Frames Per Second

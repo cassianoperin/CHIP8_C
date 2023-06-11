@@ -76,6 +76,7 @@ bool display_draw(unsigned int frame, Scene *scene)
 	SDL_RenderCopy(renderer, texture, NULL, NULL);
 
 	// ----- Update Text Messages ----- //
+
 	// Message Slot 1
 	if ( string_msg1 != NULL && strcmp( string_msg1, "") != 0 ) {
 		SDL_RenderCopy(renderer, scene->message1, NULL, &scene->message1_Rect);

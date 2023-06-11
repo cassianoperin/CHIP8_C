@@ -214,3 +214,4 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 ### Problems
 
 1 - FPS 61 sometimes, review time mesurement
+
