@@ -39,6 +39,14 @@ extern unsigned char	DelayTimer;
 extern unsigned char	SoundTimer;
 extern bool             cpu_draw_flag;
 
+
+
+extern unsigned char    key_FX0A;
+extern bool             key_FX0A_pressed;
+
+// Input
+extern void input_keyboard();
+
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8
 void opc_chip8_0NNN();

@@ -68,7 +68,7 @@ void load_rom(char *filename, unsigned char *mem, unsigned int mem_size)
 	// for(int i = 0; i < mem_size; i++)
 	// 	printf("%02X ", mem[i]);
 	
-	printf("\n\n");
+	// printf("\n\n");
 }
 
 

@@ -81,7 +81,7 @@ extern void opc_chip8_ND_02D8();
 const int CHIP8_DEFAULT_CLOCK = 500;
 
 // ---------------------------------- Global Variables ---------------------------------- //
-unsigned char	Memory[4096];		       // Memory
+unsigned char	Memory[4096];		        // Memory
 unsigned short	PC;          	            // Program Counter
 unsigned short	Opcode;                 	// CPU Operation Code
 unsigned short	Stack[16];              	// Stack
@@ -108,6 +108,9 @@ unsigned int    cycle_cpu = 0;		        // Executed cpu cycles
 unsigned int    cycle_counter_cpu = 0;      // CPU instructions per second
 // CPU Clock
 unsigned int    CPU_CLOCK  = 0;             // CPU clock speed
+// Input
+unsigned char   key_FX0A = 0;                // Keep track of the first key pressed, to wait it to be released as necessary on FX0A
+bool            key_FX0A_pressed = false;    // keep track of the state of first key pressed to check when is released to update V[x]
 
 
 // -------------------------------------- Functions ------------------------------------- //

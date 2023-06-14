@@ -596,26 +596,54 @@ void opc_chip8_FX07(unsigned char x) {
 // Fx0A - LD Vx, K
 // Wait for a key press, store the value of the key in Vx.
 // All execution stops until a key is pressed, then the value of that key is stored in Vx.
+// V[x] must be updated just AFTER the RELEASE of the key
 void opc_chip8_FX0A(unsigned char x) {
-	bool pressed = false;
+
 	unsigned int i;
 
-	for ( i = 0 ; i < sizeof(Key) ; i++ ) {
-		if (Key[i] == 1) {
-			V[x] = (unsigned char)i;
-			pressed = true;
-			PC +=2;
-			if ( cpu_debug_mode )
-				sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED)", i);
+	// Map the key is pressed
+	if ( !key_FX0A_pressed ) {
 
-			// Stop after find the first key pressed
-			break;
+		for ( i = 0 ; i < sizeof(Key) ; i++ ) {
+			if (Key[i] == 1) {
+				// Update the temporary values
+				key_FX0A = (unsigned char)i;
+				key_FX0A_pressed = true;
+
+				if ( cpu_debug_mode )
+					sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED)", i);
+				
+				// Stop after find the first key pressed
+				break;
+			}
 		}
-	}
-	if ( !pressed ) {
-		if ( cpu_debug_mode )
-			sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key press = (NOT PRESSED)");
 
+		// if 'key_FX0A_pressed' remain negative, print message
+		if ( !key_FX0A_pressed ) {
+			if ( cpu_debug_mode )
+					sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key press = (NOT PRESSED)");
+		}
+
+	// When a key is pressed
+	} else  {
+
+		// Check if the key is already released
+		if (Key[key_FX0A] == 0) {
+
+			// Update the V[x]
+			V[x] = key_FX0A;
+			PC += 2;
+
+			if ( cpu_debug_mode )
+				sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED AND RELEASED)", key_FX0A);
+
+			// Reset the temporary variables
+			key_FX0A_pressed = false;
+
+		} else {
+			if ( cpu_debug_mode )
+				sprintf(cpu_debug_message, "CHIP-8 Fx0A: Wait for a key (Key[%d]) press = (PRESSED AND NOT RELEASED)", key_FX0A);
+		}
 	}
 }
 

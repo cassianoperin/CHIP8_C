@@ -81,10 +81,9 @@ int main( int argc, char* args[] )
 		// --------------------------------- START OF SECONDs COUNTER  --------------------------------- //
 		if ( timeSecondLast - timeSecondStart >= 1000000000 ){ 
 
-			// Second Ticker validation
-			printf("Second: %lld\n", timeSecondLast - timeSecondStart );
-
-			printf ("FINAL 60FPS time: %llu\n\n", timeFrameDurationSum);
+			// // Seconds Ticker validation
+			// printf("Second: %lld\n", timeSecondLast - timeSecondStart );
+			// printf ("FINAL 60FPS time: %llu\n\n", timeFrameDurationSum);
 
 			// Window Title Message update
 			char title_msg[80];
@@ -125,7 +124,9 @@ int main( int argc, char* args[] )
 			// CPU
 			cycle_counter_cpu = 0;
 			// Second
-			timeSecondStart = SDL_GetPerformanceCounter(); // Reset second counter
+			timeSecondStart = SDL_GetPerformanceCounter(); // Reset seconds counter
+			opcodesPerFrameResidualSum = 0;
+
 		}
 
 

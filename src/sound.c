@@ -58,7 +58,6 @@ void sound_init()
 
 }
 
-
 void sound_close()
 {
 	// Destroy Audio

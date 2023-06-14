@@ -213,5 +213,7 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 
 ### Problems
 
-1 - FPS 61 sometimes, review time mesurement
+1 - FPS 61 sometimes on vsync mode, review time measurement and detect when and why
+
+2 - Keyboard bug!
 
