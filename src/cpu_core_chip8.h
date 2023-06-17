@@ -38,9 +38,6 @@ extern unsigned char    Key[16];
 extern unsigned char	DelayTimer;
 extern unsigned char	SoundTimer;
 extern bool             cpu_draw_flag;
-
-
-
 extern unsigned char    key_FX0A;
 extern bool             key_FX0A_pressed;
 

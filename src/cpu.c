@@ -45,7 +45,7 @@ void cpu_initialize(){
 	// Legacy Opcodes and Quirks
 	// Chip 85
 	quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
-	quirk_Memory_legacy_Fx55_Fx65		= false;
+	quirk_Memory_legacy_Fx55_Fx65		= true;
 	quirk_display_wait					= true;
 	quirk_Clipping_Dxyn					= false;
 	quirk_Shifting_legacy_8xy6_8xyE		= true;

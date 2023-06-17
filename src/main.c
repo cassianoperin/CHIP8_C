@@ -170,6 +170,13 @@ int main( int argc, char* args[] )
 			}
 		}
 
+		// Draw screen (game and text messages)
+		if ( quirk_display_wait ) {
+
+			// Draw
+			display_draw(frame, &scene);
+
+		}
 
 		// --------------- CPU --------------- //
 		float opcodesPerFrame = (float)CPU_CLOCK / pal_freq;					// Opcodes per frame (float)
@@ -211,19 +218,9 @@ int main( int argc, char* args[] )
 					// Update the residual opcode sum counter
 					opcodesPerFrameResidualSum = opcodesPerFrameResidualSum - 1;
 				}
-
-
 			}
 		}
 		
-		// -------------- DRAW --------------- //
-		// Draw screen (game and text messages)
-		if ( quirk_display_wait ) {
-
-			// Draw
-			display_draw(frame, &scene);
-
-		}
 
 		// ---------------------------- P1: END OF FRAME OPERATIONS  ---------------------------- //
 

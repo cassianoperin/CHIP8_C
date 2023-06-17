@@ -5,6 +5,8 @@
 // Display
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
+// CPU
+extern unsigned int  CPU_CLOCK;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 // Legacy Opcodes and Quirks
