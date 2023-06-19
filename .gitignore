@@ -3,5 +3,6 @@
 build/debug/*
 *.dSYM
 *.ch8
-main
+src/main
+src/chip8
 \#Games

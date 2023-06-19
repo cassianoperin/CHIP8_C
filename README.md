@@ -207,10 +207,6 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 
 1. Add a way to pass values to parameters like display_SCALE and CPU_CLOCK
 
-### Sound
-
-1 - Add wave sound to code
-
 ### Problems
 
 1 - FPS 61 sometimes on vsync mode, review time measurement and detect when and why
