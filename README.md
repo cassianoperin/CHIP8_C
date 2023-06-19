@@ -188,6 +188,10 @@ Test memory leaks on binary:
 
 1. Build a "cycle accurate" cpu, with a 12bits address bus and 8 bit data bus for visual representations?
 
+2. Build a GUI with Dear ImGui (https://www.dearimgui.com/)
+
+3. Migrate on-screen info to GUI
+
 ### Display
 
 1. Duplicate or triplicate frame buffer to reduce flickering

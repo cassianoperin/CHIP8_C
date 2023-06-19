@@ -5,6 +5,13 @@
 // Quirks needed by specific games
 void handle_legacy_opcodes(char *game_signature) {
 
+	// Disable Fx55 and Fx65 legacy mode
+	// Game "Astro Dodge [Revival Studios, 2008]"
+	if ( !strcmp(game_signature, "12145245564956414C53+106009") ) {
+		quirk_Memory_legacy_Fx55_Fx65 = false;
+		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	}
+
 	// Enable Fx55 and Fx65 legacy mode
 	// Game "Animal Race [Brian Astle]"
 	if ( !strcmp(game_signature, "6D0A6E02680E690BA5B5+103327") ) {

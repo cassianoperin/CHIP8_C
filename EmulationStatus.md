@@ -8,7 +8,7 @@
 | Addition Problems [Paul C. Moews] | ![100%](https://progress-bar.dev/100) | c20dc1ab | N/A |  |
 | Airplane | ![50%](https://progress-bar.dev/50) | 6fd89b3d | N/A | Collisions and stopped airplanes |
 | Animal Race [Brian Astle] | ![90%](https://progress-bar.dev/90)| 6465acef | [Animal Race](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Animal%20Race%20%5BBrian%20Astle%5D.txt) | Small Graphical Glitch after first race |
-| Astro Dodge [Revival Studios, 2008] | ![50%](https://progress-bar.dev/50) | 0614ba7f | [Astro Dodge](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Astro%20Dodge%20%5BRevival%20Studios%2C%202008%5D.txt) | Test point system |
+| Astro Dodge [Revival Studios, 2008] | ![100%](https://progress-bar.dev/100) | 0614ba7f | [Astro Dodge](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Astro%20Dodge%20%5BRevival%20Studios%2C%202008%5D.txt) | |
 | Biorhythm [Jef Winsor] | ![0%](https://progress-bar.dev/0) | | | |
 | Blinky [Hans Christian Egeberg, 1991] | ![0%](https://progress-bar.dev/0) | | | |
 | Blinky [Hans Christian Egeberg] (alt) | ![0%](https://progress-bar.dev/0) | | | |
