@@ -5,18 +5,51 @@
 // Quirks needed by specific games
 void handle_legacy_opcodes(char *game_signature) {
 
-	// Disable Fx55 and Fx65 legacy mode
-	// Game "Astro Dodge [Revival Studios, 2008]"
+	// ---------------------- CHIP8 ---------------------- //
+
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// ROM:			Astro Dodge [Revival Studios, 2008].ch8
 	if ( !strcmp(game_signature, "12145245564956414C53+106009") ) {
 		quirk_Memory_legacy_Fx55_Fx65 = false;
 		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
 	}
 
-	// Enable Fx55 and Fx65 legacy mode
-	// Game "Animal Race [Brian Astle]"
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		ENABLE Fx55 and Fx65 legacy mode
+	// ROM:			Animal Race [Brian Astle].ch8
 	if ( !strcmp(game_signature, "6D0A6E02680E690BA5B5+103327") ) {
 		quirk_Memory_legacy_Fx55_Fx65 = true;
-		printf("Legacy mode Fx55/Fx65 enabled.\n");
+		printf("\nCHIP 8 Quirks:\nMemory:\t\Enabled\n\n");
+	}
+
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// ROM:			Blinky [Hans Christian Egeberg, 1991].ch8
+	if ( !strcmp(game_signature, "121A322E303020432E20+203129") ) {
+		quirk_Memory_legacy_Fx55_Fx65 = false;
+		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	}
+
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// ROM:			Blinky [Hans Christian Egeberg] (alt).ch8
+	if ( !strcmp(game_signature, "00E0121A4368722E2045+174546") ) {
+		quirk_Memory_legacy_Fx55_Fx65 = false;
+		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	}
+
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		ENABLE DXYN pixel wrap fix (Clipping)
+	// ROM: 		Bowling [Gooitzen van der Wal].ch8
+	if ( !strcmp(game_signature, "63146400255E600525B4+110648") ) {
+		quirk_Clipping_Dxyn = true;
+		printf("\nCHIP 8 Quirks:\nClipping:\tEnabled\n\n");
 	}
 
 	// // Enable 2nd legacy mode
@@ -25,42 +58,37 @@ void handle_legacy_opcodes(char *game_signature) {
 	// 	printf("Legacy mode 8xy6/8xyE enabled.\n");
 	// }
 
-	// Enable undocumented FX1E feature needed by Spacefight 2091!
-	// Game "Spacefight 2091 [Carsten Soerensen, 1992].ch8"
-	if ( !strcmp(game_signature, "12245370616365466967+250532") ) {
-		quirk_Spacefight2091_Fx1E = true;
-		printf("FX1E undocumented feature enabled.\n");
-	}
+	// // Enable undocumented FX1E feature needed by Spacefight 2091!
+	// // Game "Spacefight 2091 [Carsten Soerensen, 1992].ch8"
+	// if ( !strcmp(game_signature, "12245370616365466967+250532") ) {
+	// 	quirk_Spacefight2091_Fx1E = true;
+	// 	printf("FX1E undocumented feature enabled.\n");
+	// }
 
-	// Enable undocumented FX1E feature needed by sctest_12
-	// SCHIP Test Program "sctest_12 (SC Test.ch8)"
-	if ( !strcmp(game_signature, "12122054726F6E697820+49853") ) {
-		quirk_Spacefight2091_Fx1E = true;
-		printf("FX1E undocumented feature enabled.\n");
-	}
+	// // Enable undocumented FX1E feature needed by sctest_12
+	// // SCHIP Test Program "sctest_12 (SC Test.ch8)"
+	// if ( !strcmp(game_signature, "12122054726F6E697820+49853") ) {
+	// 	quirk_Spacefight2091_Fx1E = true;
+	// 	printf("FX1E undocumented feature enabled.\n");
+	// }
 
-	// Enable Pixel Wrap Fix for Bowling game
-	// Game: "Bowling [Gooitzen van der Wal]"
-	if ( !strcmp(game_signature, "63146400255E600525B4+110648") ) {
-		quirk_Clipping_Dxyn = true;
-		printf("DXYN pixel wrap fix enabled.\n");
-	}
 
-	// Enable Low Res 16x16 Pixel Draw in Robot.ch8 DEMO
-	// SCHIP Demo: "Robot"
-	if ( !strcmp(game_signature, "00FEA23A60006100620F+7720") ) {
-		quirk_LoRes_Wide_Sprite_Dxy0 = true;
-		printf("DXY0 SCHIP Low Res 16x16 Pixel fix enabled.\n");
-	}
 
-	// This game uses 64x32 screen size
-	// CHIP-8 ETI-660 Hybrid: "Pong"
-	if ( !strcmp(game_signature, "6A026B0C6C3F6D0CA6EA+25121") ) {
-		quirk_ETI660_64x32_screen = true;
-		printf("ETI-660 Quirk 64 x 32 resolution Enabled.\n");
-		display_SCREEN_WIDTH_X = 64;
-		display_SCREEN_HEIGHT_Y = 32;
-	}
+	// // Enable Low Res 16x16 Pixel Draw in Robot.ch8 DEMO
+	// // SCHIP Demo: "Robot"
+	// if ( !strcmp(game_signature, "00FEA23A60006100620F+7720") ) {
+	// 	quirk_LoRes_Wide_Sprite_Dxy0 = true;
+	// 	printf("DXY0 SCHIP Low Res 16x16 Pixel fix enabled.\n");
+	// }
+
+	// // This game uses 64x32 screen size
+	// // CHIP-8 ETI-660 Hybrid: "Pong"
+	// if ( !strcmp(game_signature, "6A026B0C6C3F6D0CA6EA+25121") ) {
+	// 	quirk_ETI660_64x32_screen = true;
+	// 	printf("ETI-660 Quirk 64 x 32 resolution Enabled.\n");
+	// 	display_SCREEN_WIDTH_X = 64;
+	// 	display_SCREEN_HEIGHT_Y = 32;
+	// }
 
 	// Set the quirks necessary for chip8-test-suite.ch8 (v2)"
 	// https://github.com/Timendus/chip8-test-suite#quirks-test

@@ -181,6 +181,7 @@ Test memory leaks on binary:
     A collection of CHIP-8 programs and documentation - Matt Mikolay's games, programs and documentation.
 
     https://johnearnest.github.io/chip8Archive/
+	https://www.revival-studios.com/other.php
 
 2. Test again with test roms!
 
@@ -191,6 +192,8 @@ Test memory leaks on binary:
 2. Build a GUI with Dear ImGui (https://www.dearimgui.com/)
 
 3. Migrate on-screen info to GUI
+
+4. Create key remaps for some games
 
 ### Display
 
@@ -215,4 +218,8 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 
 1 - FPS 61 sometimes on vsync mode, review time measurement and detect when and why
 
-2 -  quirk_display_wait is not working well on tests
+2 - quirk_display_wait is not working well on tests
+
+3 - Remap keys: first time pressed a remaped key, present some slow down
+
+4 - Rename quirks function

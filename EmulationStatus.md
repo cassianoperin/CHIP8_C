@@ -9,16 +9,15 @@
 | Airplane | ![50%](https://progress-bar.dev/50) | 6fd89b3d | N/A | Collisions and stopped airplanes |
 | Animal Race [Brian Astle] | ![90%](https://progress-bar.dev/90)| 6465acef | [Animal Race](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Animal%20Race%20%5BBrian%20Astle%5D.txt) | Small Graphical Glitch after first race |
 | Astro Dodge [Revival Studios, 2008] | ![100%](https://progress-bar.dev/100) | 0614ba7f | [Astro Dodge](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Astro%20Dodge%20%5BRevival%20Studios%2C%202008%5D.txt) | |
-| Biorhythm [Jef Winsor] | ![0%](https://progress-bar.dev/0) | | | |
-| Blinky [Hans Christian Egeberg, 1991] | ![0%](https://progress-bar.dev/0) | | | |
-| Blinky [Hans Christian Egeberg] (alt) | ![0%](https://progress-bar.dev/0) | | | |
-| Blitz [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
-| Bowling [Gooitzen van der Wal] | ![0%](https://progress-bar.dev/0) | | | |
-| Breakfree [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
-| Breakout (Brix hack) [David Winter, 1997] | ![0%](https://progress-bar.dev/0) | | | |
-| Breakout [Carmelo Cortez, 1979] | ![0%](https://progress-bar.dev/0) | | | |
-| Brick (Brix hack, 1990) | ![0%](https://progress-bar.dev/0) | | | |
-| Brix [Andreas Gustafsson, 1990] | ![0%](https://progress-bar.dev/0) | | | |
+| Biorhythm [Jef Winsor] | ![100%](https://progress-bar.dev/100) | b197ce7a | [Biorhythm](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Biorhythm%20%5BJef%20Winsor%5D.txt) | |
+| Blinky [Hans Christian Egeberg, 1991] | ![100%](https://progress-bar.dev/100) | 9d307e90 | N/A | |
+| Blinky [Hans Christian Egeberg] (alt) | ![100%](https://progress-bar.dev/100) | 6ea76947 | N/A | |
+| Blitz [David Winter] | ![100%](https://progress-bar.dev/100) | d106c808 | [Blitz](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Blitz%20%5BDavid%20Winter%5D.txt) | |
+| Bowling [Gooitzen van der Wal] | ![100%](https://progress-bar.dev/100) | 0aeff5a0 | [Bowling](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Bowling%20%5BGooitzen%20van%20der%20Wal%5D.txt) | |
+| Breakout (Brix hack) [David Winter, 1997] | ![100%](https://progress-bar.dev/100) | a6bca0f7 | [Breakout (Brix hack)](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Breakout%20(Brix%20hack)%20%5BDavid%20Winter%2C%201997%5D.txt) | |
+| Breakout [Carmelo Cortez, 1979] | ![100%](https://progress-bar.dev/100) | fe8c859b | [Breakout](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Breakout%20%5BCarmelo%20Cortez%2C%201979%5D.txt) | |
+| Brick (Brix hack, 1990) | ![100%](https://progress-bar.dev/100) | 3bfced42 | [Brick](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Brick%20(Brix%20hack%2C%201990).txt) | |
+| Brix [Andreas Gustafsson, 1990] | ![100%](https://progress-bar.dev/100) | aaa44d0b | N/A | |
 | Cave | ![0%](https://progress-bar.dev/0) | | | |
 | Coin Flipping [Carmelo Cortez, 1978] | ![0%](https://progress-bar.dev/0) | | | |
 | Connect 4 [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
@@ -92,6 +91,10 @@
 | Worm V4 [RB-Revival Studios, 2007] | ![0%](https://progress-bar.dev/0) | | | |
 | X-Mirror | ![0%](https://progress-bar.dev/0) | | | |
 | ZeroPong [zeroZshadow, 2007] | ![0%](https://progress-bar.dev/0) | | | |
+
+Missing
+| Breakfree [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
+
 
 ## CHIP-8 HI-RES
 | Name  | Status | Description |

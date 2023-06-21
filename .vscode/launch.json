@@ -9,7 +9,8 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/src/chip8",
-      "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Pong (1 player).ch8" ],
+      // "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Pong (1 player).ch8" ],
+      "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Blinky [Hans Christian Egeberg, 1991].ch8" ],
       // Test Suite v2
         // "args": [ "${workspaceFolder}/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8" ],
       // Test Suite v4
