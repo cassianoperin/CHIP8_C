@@ -52,6 +52,15 @@ void handle_legacy_opcodes(char *game_signature) {
 		printf("\nCHIP 8 Quirks:\nClipping:\tEnabled\n\n");
 	}
 
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// ROM: 		Hidden [David Winter, 1996].ch8
+	if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
+		quirk_Memory_legacy_Fx55_Fx65 = false;
+		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	}
+
 	// // Enable 2nd legacy mode
 	// if (game_signature = "xxxxxxxxxxxxx") {
 	// 	Legacy_8xy6_8xyE = true;

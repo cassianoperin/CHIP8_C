@@ -50,20 +50,20 @@ void cpu_initialize(){
 	quirk_Clipping_Dxyn					= false;
 	quirk_Shifting_legacy_8xy6_8xyE		= true;
 	quirk_Jump_with_offset_Bnnn			= false;
-	// ETI
-	// quirk_ETI660_64x32_screen			= false;
+	// // ETI
+	// quirk_ETI660_64x32_screen        	= false;
 	// // SCHIP
-	// quirk_Spacefight2091_Fx1E			= false;
-	// quirk_Resize_SCHIP_00FE_00FF		= true;
-	// quirk_LoRes_Wide_Sprite_Dxy0		= false;
-	// quirk_Scroll_SCHIP_00CN_00FB_00FC	= false;
-	// quirk_ClockProgram_fonts			= false;
-	// Keyboard_slow_press				= false;
+	// quirk_Spacefight2091_Fx1E            = false;
+	// quirk_Resize_SCHIP_00FE_00FF         = true;
+	// quirk_LoRes_Wide_Sprite_Dxy0         = false;
+	// quirk_Scroll_SCHIP_00CN_00FB_00FC    = false;
+	// quirk_ClockProgram_fonts             = false;
+	// Keyboard_slow_press                  = false;
 
-	// SCHIP Specific Variables
-	cpu_SCHIP_mode			= false;
-	cpu_SCHIP_LORES_mode	= false;
-	cpu_SCHIP_timer_hack	= false;
+	// // SCHIP Specific Variables
+	// cpu_SCHIP_mode          = false;
+	// cpu_SCHIP_LORES_mode    = false;
+	// cpu_SCHIP_timer_hack    = false;
 
 	// Screen Size
 	display_SCREEN_WIDTH_X  = 64;		// Number of Columns in Graphics
