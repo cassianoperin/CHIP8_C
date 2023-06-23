@@ -64,6 +64,15 @@ void handle_legacy_opcodes(char *game_signature) {
 	// Platform:	CHIP8
 	// Type:		Game
 	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// ROM: 		Syzygy [Roy Trevino, 1990].ch8
+	if ( !strcmp(game_signature, "12128D8D20A931393930+88372") ) {
+		quirk_Memory_legacy_Fx55_Fx65 = false;
+		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	}
+
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
 	// ROM: 		Tic-Tac-Toe [David Winter].ch8
 	if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
 		quirk_Memory_legacy_Fx55_Fx65 = false;

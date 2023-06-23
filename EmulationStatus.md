@@ -45,25 +45,25 @@
 | Programmable Spacefighters [Jef Winsor] | ![0%](https://progress-bar.dev/0) | cc8eec70 | [Programmable Spacefighters](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Programmable%20Spacefighters%20%5BJef%20Winsor%5D.txt) | Understand and test game |
 | Puzzle | ![100%](https://progress-bar.dev/100) | 040ca946 | N/A | |
 | Reversi [Philip Baltzer] | ![100%](https://progress-bar.dev/100) | 02393966 | [Reversi](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Reversi%20%5BPhilip%20Baltzer%5D.txt) | |
-| Rocket Launch [Jonas Lindstedt] | ![0%](https://progress-bar.dev/0) | bb286fea | N/A | Understand game |
-| Rocket Launcher | ![0%](https://progress-bar.dev/0) | 027e5abb | N/A | Understand game |
+| Rocket Launch [Jonas Lindstedt] | ![100%](https://progress-bar.dev/100) | bb286fea | N/A | |
+| Rocket Launcher | ![100%](https://progress-bar.dev/100) | 027e5abb | N/A | |
 | Rocket [Joseph Weisbecker, 1978] | ![100%](https://progress-bar.dev/100) | 428c1e4d | N/A | |
 | Rush Hour [Hap, 2006] (alt) | ![100%](https://progress-bar.dev/100) | a423f9e7 | [Rush Hour](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Rush%20Hour%20%5BHap%2C%202006%5D.txt) | |
 | Rush Hour [Hap, 2006] | ![100%](https://progress-bar.dev/100) | 050a0a72 | [Rush Hour](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Rush%20Hour%20%5BHap%2C%202006%5D.txt) | |
 | Russian Roulette [Carmelo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | dd68f8d1 | [Russian Roulette](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Russian%20Roulette%20%5BCarmelo%20Cortez%2C%201978%5D.txt) | |
-| Sequence Shoot [Joyce Weisbecker] | ![100%](https://progress-bar.dev/100) | 5a83ff48 | [Sequence Shoot](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Sequence%20Shoot%20%5BJoyce%20Weisbecker%5D.txt) | Test quirks |
+| Sequence Shoot [Joyce Weisbecker] | ![100%](https://progress-bar.dev/100) | 5a83ff48 | [Sequence Shoot](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Sequence%20Shoot%20%5BJoyce%20Weisbecker%5D.txt) | |
 | Shooting Stars [Philip Baltzer, 1978] | ![100%](https://progress-bar.dev/100) | 200382c1 | [Shooting Stars](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Shooting%20Stars%20%5BPhilip%20Baltzer%2C%201978%5D.txt) | |
 | Slide [Joyce Weisbecker] | ![100%](https://progress-bar.dev/100) | 746a9de0 | [Slide](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Slide%20%5BJoyce%20Weisbecker%5D.txt) | |
 | Soccer | ![100%](https://progress-bar.dev/100) | 017884e3 | N/A | |
-| Space Flight | ![50%](https://progress-bar.dev/50) | dbc74090 | N/A | Understand game |
+| Space Flight | ![100%](https://progress-bar.dev/100) | dbc74090 | N/A | |
 | Space Intercept [Joseph Weisbecker, 1978] | ![100%](https://progress-bar.dev/100) | 8c99c724 | [Space Intercept](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Space%20Intercept%20%5BJoseph%20Weisbecker%2C%201978%5D.txt) | |
 | Space Invaders [David Winter] (alt) | ![100%](https://progress-bar.dev/100) | ead625b8 | [Space Invaders (alt)](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Space%20Invaders%20%5BDavid%20Winter%5D%20(alt).txt)| |
 | Space Invaders [David Winter] | ![100%](https://progress-bar.dev/100) | 6ff0a017 | [Space Invaders](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Space%20Invaders%20%5BDavid%20Winter%5D.txt) | |
 | Spooky Spot [Joseph Weisbecker, 1978] | ![100%](https://progress-bar.dev/100) | 3f15d84e | [Spooky Spot](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Spooky%20Spot%20%5BJoseph%20Weisbecker%2C%201978%5D.txt) | |
 | Squash [David Winter] | ![100%](https://progress-bar.dev/100) | 801843e0 | N/A | |
-| Submarine [Carmelo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | cb331b6a | [Submarine)(https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Submarine%20%5BCarmelo%20Cortez%2C%201978%5D.txt) | |
+| Submarine [Carmelo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | cb331b6a | [Submarine](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Submarine%20%5BCarmelo%20Cortez%2C%201978%5D.txt) | |
 | Sum Fun [Joyce Weisbecker] | ![100%](https://progress-bar.dev/100) | 51c9528b | [Sum Fun](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Sum%20Fun%20%5BJoyce%20Weisbecker%5D.txt) | |
-| Syzygy [Roy Trevino, 1990] | ![50%](https://progress-bar.dev/50) | 67e4bf9c | [Syzygy](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Syzygy%20%5BRoy%20Trevino%2C%201990%5D.txt) | Test game |
+| Syzygy [Roy Trevino, 1990] | ![100%](https://progress-bar.dev/100) | 67e4bf9c | [Syzygy](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Syzygy%20%5BRoy%20Trevino%2C%201990%5D.txt) | |
 | Tank | ![100%](https://progress-bar.dev/100) | a929cb73 | [Tank](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Tank.txt) | |
 | Tapeworm [JDR, 1999] | ![100%](https://progress-bar.dev/100) | c77a1852 | N/A | |
 | Tetris [Fran Dachille, 1991] | ![100%](https://progress-bar.dev/100) | 0ce70772 | [Tetris](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Tetris%20%5BFran%20Dachille%2C%201991%5D.txt) | |

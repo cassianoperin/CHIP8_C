@@ -23,7 +23,7 @@ bool quirk_Shifting_legacy_8xy6_8xyE;	// Enable original Chip-8 8xy6 and 8xyE op
 										// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#8xy6-and-8xye-shift
 
 // SCHIP
-bool quirk_Spacefight2091_Fx1E;			// FX1E undocumented feature needed by Spacefight 2091!
+bool quirk_Spacefight2091_Fx1E;			// FX1E undocumented feature needed by Spacefight 2091! 
 bool quirk_Resize_SCHIP_00FE_00FF;		// Resize_Quirk_00FE_00FF - Clears the screen - Must be set to True always
 bool quirk_Scroll_SCHIP_00CN_00FB_00FC;	// Shift only 2 lines
 bool quirk_Jump_with_offset_Bnnn;		// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]

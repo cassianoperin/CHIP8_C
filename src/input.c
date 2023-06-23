@@ -137,9 +137,6 @@ void input_keyboard() {
 						message_slot4_timer = 3;
 					}
 
-
-
-
 					break;
 
 				// Sound
@@ -499,10 +496,16 @@ void input_keyboard_remaps() {
 		printf("Keys remaped to Arrows.\n");
 	}
 
-
-
+	// CHIP-8 Game "Syzygy [Roy Trevino, 1990].ch8"
+	if ( !strcmp(game_signature, "12128D8D20A931393930+88372") ) {
+		input_remap_flag = true;
+		input_remap_btn_UP		= 0x3;
+		input_remap_btn_DOWN	= 0x6;
+		input_remap_btn_LEFT	= 0x7;
+		input_remap_btn_RIGHT	= 0x8;
+		printf("Keys remaped to Arrows, C, F and V\n");
+	}
 	
-
 	// CHIP-8 Game "Tank.ch8"
 	if ( !strcmp(game_signature, "123076FB602080654F00+47957") ) {
 		input_remap_flag = true;
