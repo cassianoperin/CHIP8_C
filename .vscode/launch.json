@@ -9,9 +9,9 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/src/chip8",
-      // "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Pong (1 player).ch8" ],
+      "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Pong (1 player).ch8" ],
       // Test Suite v2
-        // "args": [ "${workspaceFolder}/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8" ],
+      // "args": [ "${workspaceFolder}/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8" ],
       // Test Suite v4
       // "args": [ "${workspaceFolder}/#Games/Chip-8/Test_Programs/Test/1-chip8-logo.ch8" ],
       // "args": [ "${workspaceFolder}/#Games/Chip-8/Test_Programs/Test/2-ibm-logo.ch8" ],

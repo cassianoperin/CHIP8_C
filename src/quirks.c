@@ -61,11 +61,61 @@ void handle_legacy_opcodes(char *game_signature) {
 		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
 	}
 
-	// // Enable 2nd legacy mode
-	// if (game_signature = "xxxxxxxxxxxxx") {
-	// 	Legacy_8xy6_8xyE = true;
-	// 	printf("Legacy mode 8xy6/8xyE enabled.\n");
-	// }
+	// Platform:	CHIP8
+	// Type:		Game
+	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// ROM: 		Tic-Tac-Toe [David Winter].ch8
+	if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
+		quirk_Memory_legacy_Fx55_Fx65 = false;
+		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	}
+
+	// Platform:	CHIP8
+	// Type:		Program
+	// Quirk:		Do not load SCHIP fonts to avoid garbage after FFFFFF clock
+	// ROM:			Clock Program [Bill Fisher, 1981].ch8
+	if ( !strcmp(game_signature, "F10AF20AF30AF40AF50A+27721") ) {
+		quirk_ClockProgram_fonts = true;
+		printf("Clock Program Quirk Enabled.\n");
+	}
+	
+	// Platform:	CHIP8 / SCHIP
+	// Type:		Test Suite
+	// Quirk:		All
+	// ROM: 		chip8-test-suite.ch8 (v2).ch8
+	// Set the quirks necessary for "
+	// https://github.com/Timendus/chip8-test-suite#quirks-test
+	if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
+		// Chip8
+		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+		quirk_display_wait				= true;		// Display wait
+		quirk_Clipping_Dxyn				= true;		// Clipping
+		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+		// SCHIP
+		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
+	}
+
+	// Platform:	CHIP8 / SCHIP
+	// Type:		Test Suite
+	// Quirk:		All
+	// ROM: 		5-quirks.ch8
+	// Set the quirks necessary for "
+	// https://github.com/Timendus/chip8-test-suite
+	if ( !strcmp(game_signature, "130C6000E0A112047001+150419") ) {
+		// Chip8
+		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+		quirk_display_wait				= true;		// Display wait
+		quirk_Clipping_Dxyn				= true;		// Clipping
+		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+		// SCHIP
+		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
+	}
+
+	// ---------------------- SCHIP ---------------------- //
 
 	// // Enable undocumented FX1E feature needed by Spacefight 2091!
 	// // Game "Spacefight 2091 [Carsten Soerensen, 1992].ch8"
@@ -80,8 +130,6 @@ void handle_legacy_opcodes(char *game_signature) {
 	// 	quirk_Spacefight2091_Fx1E = true;
 	// 	printf("FX1E undocumented feature enabled.\n");
 	// }
-
-
 
 	// // Enable Low Res 16x16 Pixel Draw in Robot.ch8 DEMO
 	// // SCHIP Demo: "Robot"
@@ -98,42 +146,6 @@ void handle_legacy_opcodes(char *game_signature) {
 	// 	display_SCREEN_WIDTH_X = 64;
 	// 	display_SCREEN_HEIGHT_Y = 32;
 	// }
-
-	// Set the quirks necessary for chip8-test-suite.ch8 (v2)"
-	// https://github.com/Timendus/chip8-test-suite#quirks-test
-	if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
-		// Chip8
-		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-		quirk_display_wait				= true;		// Display wait
-		quirk_Clipping_Dxyn				= true;		// Clipping
-		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-		// SCHIP
-		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
-	}
-
-	// Set the quirks necessary for chip8-test-suite.ch8 (v4)"
-	// 5-quirks.ch8
-	// https://github.com/Timendus/chip8-test-suite
-	if ( !strcmp(game_signature, "130C6000E0A112047001+150419") ) {
-		// Chip8
-		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-		quirk_display_wait				= true;		// Display wait
-		quirk_Clipping_Dxyn				= true;		// Clipping
-		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-		// SCHIP
-		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
-	}
-
-	// Do not load SCHIP fonts to avoid garbage after FFFFFF clock
-	// CHIP8 Program: "Clock Program [Bill Fisher, 1981].ch8""
-	if ( !strcmp(game_signature, "F10AF20AF30AF40AF50A+27721") ) {
-		quirk_ClockProgram_fonts = true;
-		printf("Clock Program Quirk Enabled.\n");
-	}
 
 	// Bnnn behavior in some CHIP-48 and SUPER-CHIP that sum the value of V[x] instead of V[0]
 	// https://tobiasvl.github.io/blog/write-a-chip-8-emulator/#bnnn-jump-with-offset

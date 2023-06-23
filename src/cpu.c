@@ -59,7 +59,7 @@ void cpu_initialize(){
 	// quirk_Scroll_SCHIP_00CN_00FB_00FC    = false;
 	// quirk_ClockProgram_fonts             = false;
 	// Keyboard_slow_press                  = false;
-
+	
 	// // SCHIP Specific Variables
 	// cpu_SCHIP_mode          = false;
 	// cpu_SCHIP_LORES_mode    = false;

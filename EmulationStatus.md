@@ -4,7 +4,7 @@
 | Name | Status | CRC32 | Instructions | Issues
 | :------------ |:----------------:| :-----| :-----| :-----|
 | 15 Puzzle [Roger Ivie] | ![100%](https://progress-bar.dev/100) | 4e8693f1 | [15 Puzzle](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/15%20Puzzle%20%5BRoger%20Ivie%5D.txt) | |
-| 15 Puzzle [Roger Ivie] (alt) | ![100%](https://progress-bar.dev/100) | 30ce37b1 | [15 Puzzle (alt)](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/15%20Puzzle%20%5BRoger%20Ivie%5D.txt) | |
+| 15 Puzzle [Roger Ivie] (alt) | ![100%](https://progress-bar.dev/100) | 30ce37b1 | [15 Puzzle](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/15%20Puzzle%20%5BRoger%20Ivie%5D.txt) | |
 | Addition Problems [Paul C. Moews] | ![100%](https://progress-bar.dev/100) | c20dc1ab | N/A |  |
 | Airplane | ![50%](https://progress-bar.dev/50) | 6fd89b3d | N/A | Collisions and stopped airplanes |
 | Animal Race [Brian Astle] | ![90%](https://progress-bar.dev/90)| 6465acef | [Animal Race](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Animal%20Race%20%5BBrian%20Astle%5D.txt) | Small Graphical Glitch after first race |
@@ -41,52 +41,43 @@
 | Pong (1 player) | ![100%](https://progress-bar.dev/100) | 841fde23 | N/A | |
 | Pong (alt) | ![100%](https://progress-bar.dev/100) | 69970ad2 | N/A | |
 | Pong 2 (Pong hack) [David Winter, 1997] | ![100%](https://progress-bar.dev/100) | ac46b66d | N/A | |
-| Pong [Paul Vervalin, 1990] | ![0%](https://progress-bar.dev/0) | 7d75a857 | [Pong (Paul Vervalin)](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Pong%20%5BPaul%20Vervalin%2C%201990%5D.txt) | |
+| Pong [Paul Vervalin, 1990] | ![100%](https://progress-bar.dev/100) | 7d75a857 | [Pong (Paul Vervalin)](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Pong%20%5BPaul%20Vervalin%2C%201990%5D.txt) | |
 | Programmable Spacefighters [Jef Winsor] | ![0%](https://progress-bar.dev/0) | cc8eec70 | [Programmable Spacefighters](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Programmable%20Spacefighters%20%5BJef%20Winsor%5D.txt) | Understand and test game |
 | Puzzle | ![100%](https://progress-bar.dev/100) | 040ca946 | N/A | |
 | Reversi [Philip Baltzer] | ![100%](https://progress-bar.dev/100) | 02393966 | [Reversi](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Reversi%20%5BPhilip%20Baltzer%5D.txt) | |
 | Rocket Launch [Jonas Lindstedt] | ![0%](https://progress-bar.dev/0) | bb286fea | N/A | Understand game |
 | Rocket Launcher | ![0%](https://progress-bar.dev/0) | 027e5abb | N/A | Understand game |
 | Rocket [Joseph Weisbecker, 1978] | ![100%](https://progress-bar.dev/100) | 428c1e4d | N/A | |
-| Rush Hour [Hap, 2006] (alt) | ![0%](https://progress-bar.dev/0) | a423f9e7 | | |
-| Rush Hour [Hap, 2006] | ![0%](https://progress-bar.dev/0) | 050a0a72 | | |
-| Russian Roulette [Carmelo Cortez, 1978] | ![0%](https://progress-bar.dev/0) | dd68f8d1 | | |
-| Sequence Shoot [Joyce Weisbecker] | ![0%](https://progress-bar.dev/0) | | | |
-| Shooting Stars [Philip Baltzer, 1978] | ![0%](https://progress-bar.dev/0) | | | |
-| Slide [Joyce Weisbecker] | ![0%](https://progress-bar.dev/0) | | | |
-| Soccer | ![0%](https://progress-bar.dev/0) | | | |
-| Space Explorer [TCNJ S.572.2, 3] | ![0%](https://progress-bar.dev/0) | | | Small Graphical Glitches |
-| Space Flight | ![0%](https://progress-bar.dev/0) | | | |
-| Space Intercept [Joseph Weisbecker, 1978] | ![0%](https://progress-bar.dev/0) | | | |
-| Space Intercept [TCNJ S.572.2, 37] | ![0%](https://progress-bar.dev/0) | | | |
-| Space Invaders [David Winter] (alt) | ![0%](https://progress-bar.dev/0) | | | |
-| Space Invaders [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
-| Spooky Spot [Joseph Weisbecker, 1978] | ![0%](https://progress-bar.dev/0) | | | |
-| Squash [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
-| Submarine [Carmelo Cortez, 1978] | ![0%](https://progress-bar.dev/0) | | | |
-| Sum Fun [Joyce Weisbecker] | ![0%](https://progress-bar.dev/0) | | | |
-| Syzygy [Roy Trevino, 1990] | ![0%](https://progress-bar.dev/0) | | | |
-| Tank | ![0%](https://progress-bar.dev/0) | | | |
-| Tank Warfare | ![0%](https://progress-bar.dev/0) | | | |
-| Tapeworm [JDR, 1999] | ![0%](https://progress-bar.dev/0) | | | |
-| Tetris [Fran Dachille, 1991] | ![0%](https://progress-bar.dev/0) | | | |
-| Tic-Tac-Toe [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
-| Timebomb | ![0%](https://progress-bar.dev/0) | | | |
-| Tron | ![0%](https://progress-bar.dev/0) | | | |
-| UFO [Lutz V, 1992] | ![0%](https://progress-bar.dev/0) | | | |
-| Vers [JMN, 1991] | ![0%](https://progress-bar.dev/0) | | | |
-| Vertical Brix [Paul Robson, 1996] | ![0%](https://progress-bar.dev/0) | | | |
-| VIP Dogfight.ch8 | ![0%](https://progress-bar.dev/0) | | | |
-| Wall [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
-| Wipe Off [Joseph Weisbecker] | ![0%](https://progress-bar.dev/0) | | | |
-| Wipe Off [TCNJ S.572.2] | ![0%](https://progress-bar.dev/0) | | | |
-| Worm V4 [RB-Revival Studios, 2007] | ![0%](https://progress-bar.dev/0) | | | |
-| X-Mirror | ![0%](https://progress-bar.dev/0) | | | |
-| ZeroPong [zeroZshadow, 2007] | ![0%](https://progress-bar.dev/0) | | | |
-
-Missing
-| Breakfree [David Winter] | ![0%](https://progress-bar.dev/0) | | | |
-
+| Rush Hour [Hap, 2006] (alt) | ![100%](https://progress-bar.dev/100) | a423f9e7 | [Rush Hour](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Rush%20Hour%20%5BHap%2C%202006%5D.txt) | |
+| Rush Hour [Hap, 2006] | ![100%](https://progress-bar.dev/100) | 050a0a72 | [Rush Hour](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Rush%20Hour%20%5BHap%2C%202006%5D.txt) | |
+| Russian Roulette [Carmelo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | dd68f8d1 | [Russian Roulette](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Russian%20Roulette%20%5BCarmelo%20Cortez%2C%201978%5D.txt) | |
+| Sequence Shoot [Joyce Weisbecker] | ![100%](https://progress-bar.dev/100) | 5a83ff48 | [Sequence Shoot](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Sequence%20Shoot%20%5BJoyce%20Weisbecker%5D.txt) | Test quirks |
+| Shooting Stars [Philip Baltzer, 1978] | ![100%](https://progress-bar.dev/100) | 200382c1 | [Shooting Stars](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Shooting%20Stars%20%5BPhilip%20Baltzer%2C%201978%5D.txt) | |
+| Slide [Joyce Weisbecker] | ![100%](https://progress-bar.dev/100) | 746a9de0 | [Slide](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Slide%20%5BJoyce%20Weisbecker%5D.txt) | |
+| Soccer | ![100%](https://progress-bar.dev/100) | 017884e3 | N/A | |
+| Space Flight | ![50%](https://progress-bar.dev/50) | dbc74090 | N/A | Understand game |
+| Space Intercept [Joseph Weisbecker, 1978] | ![100%](https://progress-bar.dev/100) | 8c99c724 | [Space Intercept](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Space%20Intercept%20%5BJoseph%20Weisbecker%2C%201978%5D.txt) | |
+| Space Invaders [David Winter] (alt) | ![100%](https://progress-bar.dev/100) | ead625b8 | [Space Invaders (alt)](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Space%20Invaders%20%5BDavid%20Winter%5D%20(alt).txt)| |
+| Space Invaders [David Winter] | ![100%](https://progress-bar.dev/100) | 6ff0a017 | [Space Invaders](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Space%20Invaders%20%5BDavid%20Winter%5D.txt) | |
+| Spooky Spot [Joseph Weisbecker, 1978] | ![100%](https://progress-bar.dev/100) | 3f15d84e | [Spooky Spot](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Spooky%20Spot%20%5BJoseph%20Weisbecker%2C%201978%5D.txt) | |
+| Squash [David Winter] | ![100%](https://progress-bar.dev/100) | 801843e0 | N/A | |
+| Submarine [Carmelo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | cb331b6a | [Submarine)(https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Submarine%20%5BCarmelo%20Cortez%2C%201978%5D.txt) | |
+| Sum Fun [Joyce Weisbecker] | ![100%](https://progress-bar.dev/100) | 51c9528b | [Sum Fun](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Sum%20Fun%20%5BJoyce%20Weisbecker%5D.txt) | |
+| Syzygy [Roy Trevino, 1990] | ![50%](https://progress-bar.dev/50) | 67e4bf9c | [Syzygy](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Syzygy%20%5BRoy%20Trevino%2C%201990%5D.txt) | Test game |
+| Tank | ![100%](https://progress-bar.dev/100) | a929cb73 | [Tank](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Tank.txt) | |
+| Tapeworm [JDR, 1999] | ![100%](https://progress-bar.dev/100) | c77a1852 | N/A | |
+| Tetris [Fran Dachille, 1991] | ![100%](https://progress-bar.dev/100) | 0ce70772 | [Tetris](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Tetris%20%5BFran%20Dachille%2C%201991%5D.txt) | |
+| Tic-Tac-Toe [David Winter] | ![100%](https://progress-bar.dev/100) | 3a297a10 | N/A | |
+| Timebomb | ![100%](https://progress-bar.dev/100) | 4db1c26c | N/A | |
+| Tron | ![100%](https://progress-bar.dev/100) | e5b40a11 | N/A | |
+| UFO [Lutz V, 1992] | ![100%](https://progress-bar.dev/100) | 331413e7 | [UFO](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/UFO%20%5BLutz%20V%2C%201992%5D.txt) | |
+| Vers [JMN, 1991] | ![100%](https://progress-bar.dev/100) | 0dbf7208 | N/A | |
+| Vertical Brix [Paul Robson, 1996] | ![100%](https://progress-bar.dev/100) | 608c6ab0 | N/A | |
+| Wall [David Winter] | ![100%](https://progress-bar.dev/100) | 64a9054b | N/A | |
+| Wipe Off [Joseph Weisbecker] | ![100%](https://progress-bar.dev/100) | b2696048 | N/A | |
+| Worm V4 [RB-Revival Studios, 2007] | ![100%](https://progress-bar.dev/100) | fcfbe07d | [Worm V4](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Worm%20V4%20%5BRB-Revival%20Studios%2C%202007%5D.txt) | |
+| X-Mirror | ![100%](https://progress-bar.dev/100) | 15965766 | N/A | |
+| ZeroPong [zeroZshadow, 2007] | ![100%](https://progress-bar.dev/100) | 65c3421b | N/A | |
 
 ## CHIP-8 HI-RES
 | Name  | Status | Description |
