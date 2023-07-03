@@ -41,3 +41,4 @@ unsigned int frame_counter = 0;              // Frame per second
 bool display_init();
 bool display_draw(unsigned int frame, Scene *scene);
 void display_update_theme();
+void draw_graphics_console();

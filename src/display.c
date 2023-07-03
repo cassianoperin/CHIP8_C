@@ -97,6 +97,9 @@ bool display_draw(unsigned int frame, Scene *scene)
 	// Draw
 	SDL_RenderPresent(renderer);
 
+	// Draw to console
+	// draw_graphics_console();
+
 	return success;
 }
 
@@ -128,4 +131,48 @@ void display_update_theme(){
 	// Update the colors
 	display_pixel_ON_color	= display_pixel_ON_color_alt;
 	display_pixel_OFF_color	= display_pixel_OFF_color_alt;
+}
+
+// Print Graphics on Console
+void draw_graphics_console() {
+
+	int line, column, index = 0;
+
+	while ( index < 2048 )
+	{
+		// Add an border
+		printf("----------------------------------------------------------------------------------------------------------------------------------\n");
+
+		// Lines
+		for ( line = 0 ; line < 32 ; line ++ ) {
+
+			// Add an border
+			printf("|");
+
+			// 00 ..  63
+			// 64 .. 127
+			// Columns
+			for ( column = 0 ; column < 64 ; column ++ ) {
+				if ( display_pixels[index+column] == display_pixel_ON_color ) {
+					// printf("[] ");
+					printf("X ");
+				} else {
+					// printf("   ");
+					printf("  ");
+				}
+			}
+			// Add an border
+			printf("|");
+			printf("\n");
+
+			// Increment the index
+			index += 64;
+		}
+	}
+
+	// Add an border
+	printf("----------------------------------------------------------------------------------------------------------------------------------\n");
+
+	// Space between screens
+	printf("\n\n\n");
 }

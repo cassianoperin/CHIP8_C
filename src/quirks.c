@@ -16,6 +16,23 @@ void handle_legacy_opcodes(char *game_signature) {
 		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
 	}
 
+	// Platform:	CHIP8 / SCHIP
+	// Type:		Game
+	// Quirk:		All
+	// ROM: 		Airplane.ch8
+	if ( !strcmp(game_signature, "6A006B046C016D006E02+30465") ) {
+		// Chip8
+		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+		quirk_display_wait				= true;		// Display wait
+		quirk_Clipping_Dxyn				= true;		// Clipping
+		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+		// SCHIP
+		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
+		printf("GAME NOT FULLY IMPLEMENTED YET!!!\n\n");
+	}
+
 	// Platform:	CHIP8
 	// Type:		Game
 	// Quirk:		ENABLE Fx55 and Fx65 legacy mode

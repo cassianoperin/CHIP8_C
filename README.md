@@ -223,3 +223,20 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 3 - Remap keys: first time pressed a remaped key, present some slow down
 
 4 - Rename quirks function
+
+5 - Set the default quirks on cpu and test all games again
+		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+		quirk_display_wait				= true;		// Display wait
+		quirk_Clipping_Dxyn				= true;		// Clipping
+		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+
+6 - Bug in AIRPLANE.CH8
+			CHIP-8 Dxyn: DRAW GRAPHICS - Address I: 852 Position V[x(13)]: 12 V[y(14)]: 2 N: 2
+			[1]    21056 bus error  ./chip8 ../\#Games/Chip-8/Games/Airplane.ch8 --debug
+
+7 - core_chip8
+
+	// Fix for Bowling game where the pins wrap the screen
+	if ( quirk_Clipping_Dxyn ) {

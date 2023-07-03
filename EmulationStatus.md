@@ -6,7 +6,7 @@
 | 15 Puzzle [Roger Ivie] | ![100%](https://progress-bar.dev/100) | 4e8693f1 | [15 Puzzle](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/15%20Puzzle%20%5BRoger%20Ivie%5D.txt) | |
 | 15 Puzzle [Roger Ivie] (alt) | ![100%](https://progress-bar.dev/100) | 30ce37b1 | [15 Puzzle](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/15%20Puzzle%20%5BRoger%20Ivie%5D.txt) | |
 | Addition Problems [Paul C. Moews] | ![100%](https://progress-bar.dev/100) | c20dc1ab | N/A |  |
-| Airplane | ![50%](https://progress-bar.dev/50) | 6fd89b3d | N/A | Collisions and stopped airplanes |
+| Airplane | ![50%](https://progress-bar.dev/50) | 6fd89b3d | N/A | BUG! Stopped airplanes |
 | Animal Race [Brian Astle] | ![90%](https://progress-bar.dev/90)| 6465acef | [Animal Race](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Animal%20Race%20%5BBrian%20Astle%5D.txt) | Small Graphical Glitch after first race |
 | Astro Dodge [Revival Studios, 2008] | ![100%](https://progress-bar.dev/100) | 0614ba7f | [Astro Dodge](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Astro%20Dodge%20%5BRevival%20Studios%2C%202008%5D.txt) | |
 | Biorhythm [Jef Winsor] | ![100%](https://progress-bar.dev/100) | b197ce7a | [Biorhythm](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Biorhythm%20%5BJef%20Winsor%5D.txt) | |
