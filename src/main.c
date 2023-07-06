@@ -105,14 +105,16 @@ int main( int argc, char* args[] )
 			}
 
 			// Message slot 4 timer
-			if ( message_slot4_timer > 0 ) {
-				message_slot4_timer --;
+			// if ( !cpu_pause) {
+				if ( message_slot4_timer > 0 ) {
+					message_slot4_timer --;
 
-				// When reach zero, clear
-				if ( message_slot4_timer == 0 ) {
-					strcpy(string_msg4, "");
-				}
-			}	
+					// When reach zero, clear
+					if ( message_slot4_timer == 0 ) {
+						// strcpy(string_msg4, "");
+					}
+				}	
+			// }
 
 			// --------- Reset Counters ---------- //
 			// Main cycle

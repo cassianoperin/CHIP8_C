@@ -38,6 +38,7 @@ extern bool sound_enabled;
 // --------------------------------- External Functions --------------------------------- //
 // CPU
 extern void cpu_reset();
+extern void cpu_interpreter();
 // Display
 extern void display_update_theme();
 extern bool display_draw(unsigned int frame, Scene *scene);

@@ -90,6 +90,7 @@ bool display_draw(unsigned int frame, Scene *scene)
     	SDL_RenderCopy(renderer, scene->message3, NULL, &scene->message3_Rect);
 	}
 	// Message Slot 4
+	// if ( string_msg4 != NULL && strcmp( string_msg4, "") != 0 ) {
 	if ( string_msg4 != NULL && strcmp( string_msg4, "") != 0 ) {
     	SDL_RenderCopy(renderer, scene->message4, NULL, &scene->message4_Rect);
 	}

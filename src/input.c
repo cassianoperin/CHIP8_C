@@ -119,7 +119,7 @@ void input_keyboard() {
 
 					if (cpu_pause ) {
 						// -------- Message slot 4 -------- //
-						string_msg4 = "Pause: ENABLED";
+						strcpy(string_msg4, "Pause: ENABLED");
 						font_update_msg4(renderer);
 
 						// Draw
@@ -128,7 +128,7 @@ void input_keyboard() {
 						message_slot4_timer = 3;
 					} else {
 						// -------- Message slot 4 -------- //
-						string_msg4 = "Pause: DISABLED";
+						strcpy(string_msg4, "Pause: DISABLED");
 						font_update_msg4(renderer);
 
 						// Draw
@@ -145,7 +145,7 @@ void input_keyboard() {
 
 					if (sound_enabled ) {
 						// -------- Message slot 4 -------- //
-						string_msg4 = "Sound: ENABLED";
+						strcpy(string_msg4, "Sound: ENABLED");
 						font_update_msg4(renderer);
 
 						// Draw
@@ -154,7 +154,26 @@ void input_keyboard() {
 						message_slot4_timer = 3;
 					} else {
 						// -------- Message slot 4 -------- //
-						string_msg4 = "Sound: DISABLED";
+						strcpy(string_msg4, "Sound: DISABLED");
+						font_update_msg4(renderer);
+
+						// Draw
+						display_draw(frame_counter, &scene);
+
+						message_slot4_timer = 3;
+					}
+
+					break;
+
+				// Step Forward
+				case SDLK_i:
+
+					if (cpu_pause ) {
+						
+						cpu_interpreter();
+						
+						// -------- Message slot 4 -------- //
+						strcpy(string_msg4, "CPU: STEP FORWARD");
 						font_update_msg4(renderer);
 
 						// Draw
