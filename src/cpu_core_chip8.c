@@ -435,97 +435,147 @@ void opc_chip8_CXNN() {
 
 }
 
-// ---------------------------- CHIP-8 Dxxx instruction set ---------------------------- //
+// // ---------------------------- CHIP-8 Dxxx instruction set ---------------------------- // NOVA
+
+// // Dxyn - DRW Vx, Vy, nibble
+// // Draw n-byte sprite starting at memory location I at (Vx, Vy), set VF = collision.
+// void opc_chip8_DXYN() {
+
+
+// 	if ( cpu_debug_mode )
+// 		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
+		
+// 	// // Draw in Chip-8 Low Resolution mode
+//     // unsigned short gpx_position;
+//     // unsigned char x , y, n, byte, sprite;
+//     unsigned char x, y, n;
+
+// 	x = (Opcode & 0x0F00) >> 8;
+// 	y = (Opcode & 0x00F0) >> 4;
+//     n = (Opcode & 0x000F);
+//     // // Check if they need to be initialized //
+//     // byte = 0;
+//     // gpx_position = 0;
+//     // sprite = 0;
+
+
+// 	V[0xF] = 0;
+
+// 	// uint8_t // ESSE char	uint8_t	8	Unsigned	0 .. 255
+
+//   	for (int32_t i = 0; i < n; i++)
+//   	{
+// 		uint8_t sprite = Memory[I + i];
+// 		int32_t row = (V[y] + i) % 32;
+
+// 		for (int32_t f = 0; f < 8; f++)
+// 		{
+// 			int32_t b = (sprite & 0x80) >> 7;	// MSB (Most Significant Bit), 1 will draw, 0 don't
+// 			int32_t col = (V[x] + f) % 64;
+// 			int32_t offset = row * 64 + col;
+
+// 			// if (b == 1)
+// 			// {
+// 			// 	if (display_pixels[offset] != display_pixel_OFF_color)
+// 			// 	{
+// 			// 		display_pixels[offset] = display_pixel_OFF_color;
+// 			// 		V[0xF] = 1;
+// 			// 	}
+// 			// 	else
+// 			// 		display_pixels[offset] = display_pixel_ON_color;
+// 			// }
+
+
+// 			// If bit=1, test current graphics[index], if is already set, mark v[F]=1 (collision)
+// 			if ( b  == 1 ) {
+// 				// Set colision case graphics[index] is already 1
+// 				if ( display_pixels[offset] == display_pixel_ON_color ) {
+// 					V[0xF] = 1;
+// 					display_pixels[offset] = display_pixel_OFF_color; 
+// 				} else {
+//           			display_pixels[offset] = display_pixel_ON_color;
+// 				}
+// 			}
+
+
+// 			// Shift left to get the next bit on the MSB (Most Significant Bit) positon
+// 			sprite <<= 1;
+// 		}
+//  	 }
+
+// 	PC += 2;
+
+// 	// Ask to draw screen
+// 	cpu_draw_flag = true;
+// }
+
+// ---------------------------- CHIP-8 Dxxx instruction set ---------------------------- // NOVA MINHA
 
 // Dxyn - DRW Vx, Vy, nibble
 // Draw n-byte sprite starting at memory location I at (Vx, Vy), set VF = collision.
 void opc_chip8_DXYN() {
-	// // Draw in Chip-8 Low Resolution mode
-    unsigned short gpx_position;
-    unsigned char x , y, n, byte, sprite;
+		
+	// Draw in Chip-8 Low Resolution mode
+    unsigned short gpx_position, row, column = 0;
+    unsigned char x, y, n, byte, bit, bit_value, sprite = 0;
 
 	x = (Opcode & 0x0F00) >> 8;
 	y = (Opcode & 0x00F0) >> 4;
     n = (Opcode & 0x000F);
-    // Check if they need to be initialized //
-    byte = 0;
-    gpx_position = 0;
-    sprite = 0;
 
 	if ( cpu_debug_mode )
 		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
 
 
-	// Clean the colision flag
+		printf("CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d\n", I, x, V[x], y, V[y], n);
+
+	// Clear the carry before start
 	V[0xF] = 0;
 
-	// Check if y is out of range and apply module to fit in screen
-	if ( V[y] >= display_SCREEN_HEIGHT_Y ) {
-        if (display_SCREEN_HEIGHT_Y != 0) {
-            V[y] = V[y] % display_SCREEN_HEIGHT_Y;
-            if ( cpu_debug_mode ) {
-                printf("\t\tV[y] >= %d, modulus applied", display_SCREEN_HEIGHT_Y);
-            }
-        }
-	}
+	// // Fix for Bowling game where the pins wrap the screen
+	// if ( quirk_Clipping_Dxyn ) {
+	// 	if ( V[x] + n > display_SCREEN_WIDTH_X + 1 ) {
+	// 		printf("\nClipping: V[x(%d)] + n(%d): %d\n\n", V[x], n, V[x]+n); 
+	// 		n = (display_SCREEN_WIDTH_X - 1) - V[x];
+	// 	}
+	// }
 
-	// Check if y is out of range and apply module to fit in screen
-	if ( V[x] >= display_SCREEN_WIDTH_X ) {
-        if (display_SCREEN_WIDTH_X != 0) {
-            V[x] = V[x] % display_SCREEN_WIDTH_X;
-            if ( cpu_debug_mode ) {
-                printf("\t\tV[x] >= %d, modulus applied", display_SCREEN_WIDTH_X);
-            }
-        }
-	}
-
-	// Fix for Bowling game where the pins wrap the screen
-	if ( quirk_Clipping_Dxyn ) {
-		if ( V[x] + n > display_SCREEN_WIDTH_X + 1 ) {
-			n = (display_SCREEN_WIDTH_X - 1) - V[x];
-		}
-	}
-
-	// Translate the x and Y to the Graphics Vector
-	gpx_position = V[x] + ( display_SCREEN_WIDTH_X * V[y] );
 
 	// Print N Bytes from address I in V[x]V[y] position of the screen
-	for ( byte = 0 ; byte < n ; byte++ ) {
-
-		// Set the sprite
+  	for (byte = 0; byte < n; byte++)
+  	{
 		sprite = Memory[I + byte];
+		
+		// Row
+		row = (V[y] + byte) % 32;
 
 		// Always print 8 bits
-        // unsigned short bit, bit_value, gfx_index;
-        unsigned char bit, bit_value;
-        unsigned short gfx_index;
-		for ( bit = 0; bit < 8 ; bit++ ) {
-			// Get the value of the byte
-			bit_value = sprite >> (7 - bit) & 1;
+		for (bit = 0; bit < 8; bit++)
+		{
+			// Bit
+			bit_value = (sprite & 0x80) >> 7;	// MSB (Most Significant Bit), 1 will draw, 0 don't
+			
+			// Column
+			column = (V[x] + bit) % 64;
 
-			// Set the index to write the 8 bits of each pixel
-			gfx_index = gpx_position + bit + ( byte * display_SCREEN_WIDTH_X );
-
-			// If tryes to draw bits outside the vector size, ignore
-			if ( gfx_index >= display_SCREEN_WIDTH_X * display_SCREEN_HEIGHT_Y ) {
-				if ( cpu_debug_mode ) {
-					printf("\n\n\nGraphics: Bigger than 2048 or 8192\n\n\n\n");
-				}
-				continue;
-			}
+			// Translate the x and Y to the Graphics Vector
+			gpx_position = (row * display_SCREEN_WIDTH_X) + column; 
 
 			// If bit=1, test current graphics[index], if is already set, mark v[F]=1 (collision)
 			if ( bit_value  == 1 ) {
 				// Set colision case graphics[index] is already 1
-				if ( display_pixels[gfx_index] == display_pixel_ON_color ) {
+				if ( display_pixels[gpx_position] == display_pixel_ON_color ) {
 					V[0xF] = 1;
-					display_pixels[gfx_index] = display_pixel_OFF_color; 
+					display_pixels[gpx_position] = display_pixel_OFF_color; 
 				} else {
-          			display_pixels[gfx_index] = display_pixel_ON_color;
+          			display_pixels[gpx_position] = display_pixel_ON_color;
 				}
 			}
+
+			// Shift left to get the next bit on the MSB (Most Significant Bit) positon
+			sprite <<= 1;
 		}
-	}
+ 	 }
 
 	PC += 2;
 

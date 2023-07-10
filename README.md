@@ -232,11 +232,15 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
 		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
 
-6 - Bug in AIRPLANE.CH8
-			CHIP-8 Dxyn: DRAW GRAPHICS - Address I: 852 Position V[x(13)]: 12 V[y(14)]: 2 N: 2
-			[1]    21056 bus error  ./chip8 ../\#Games/Chip-8/Games/Airplane.ch8 --debug
-
-7 - core_chip8
+6 - core_chip8 - TEST BOWLING AGAIN NOW
 
 	// Fix for Bowling game where the pins wrap the screen
 	if ( quirk_Clipping_Dxyn ) {
+		if ( V[x] + n > display_SCREEN_WIDTH_X + 1 ) {
+			n = (display_SCREEN_WIDTH_X - 1) - V[x];
+		}
+	}
+
+7 - UPDATED DXYN, TEST ALL AGAIN WITH DEFAULT QUIRKS!!!!!
+
+8 - Reimplement dxyn clipping quirk
