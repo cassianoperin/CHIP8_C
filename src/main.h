@@ -53,7 +53,7 @@ extern void cpu_load_fonts();
 extern void cpu_interpreter();
 extern unsigned int CPU_CLOCK;
 // Quirks
-extern void handle_legacy_opcodes(char *game_signature);
+extern void handle_quirks(char *game_signature);
 // Input
 extern void input_keyboard();
 extern void input_keyboard_remaps();

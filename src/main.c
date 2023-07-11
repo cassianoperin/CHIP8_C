@@ -57,7 +57,7 @@ int main( int argc, char* args[] )
 	printf("Signature:   %s\n", game_signature );
 
 	// Check for Quirks
-	handle_legacy_opcodes(game_signature);
+	handle_quirks(game_signature);
 
 	// Load Fonts
 	cpu_load_fonts();

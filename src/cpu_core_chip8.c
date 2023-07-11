@@ -526,37 +526,47 @@ void opc_chip8_DXYN() {
 	if ( cpu_debug_mode )
 		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
 
-
-		printf("CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d\n", I, x, V[x], y, V[y], n);
-
 	// Clear the carry before start
 	V[0xF] = 0;
 
-	// // Fix for Bowling game where the pins wrap the screen
-	// if ( quirk_Clipping_Dxyn ) {
-	// 	if ( V[x] + n > display_SCREEN_WIDTH_X + 1 ) {
-	// 		printf("\nClipping: V[x(%d)] + n(%d): %d\n\n", V[x], n, V[x]+n); 
-	// 		n = (display_SCREEN_WIDTH_X - 1) - V[x];
-	// 	}
-	// }
-
-
 	// Print N Bytes from address I in V[x]V[y] position of the screen
+	// Each byte is a line of 8 bits
   	for (byte = 0; byte < n; byte++)
   	{
+		// Get the sprite from memory (8 bits / 1 byte)
 		sprite = Memory[I + byte];
-		
-		// Row
-		row = (V[y] + byte) % 32;
 
-		// Always print 8 bits
+		// --------- Row --------- //
+		if ( quirk_Clipping_Dxyn ) { 
+			// Do not split the sprite between screen top and down
+			// If the line (y) plus n bytes > 31, then do not print
+			row = ((V[y] % 32) + byte);
+			if ( row > 31 ) {
+				sprite = 0;
+			}
+		} else {
+			// Slit the sprite between screen top and down
+			// if line (y) plus n bytes > 31
+			row = (V[y] + byte) % 32;
+		}
+
+		// Always print 8 bits of the byte
 		for (bit = 0; bit < 8; bit++)
 		{
 			// Bit
 			bit_value = (sprite & 0x80) >> 7;	// MSB (Most Significant Bit), 1 will draw, 0 don't
 			
-			// Column
-			column = (V[x] + bit) % 64;
+			// ------- Column -------- //
+			if ( quirk_Clipping_Dxyn ) {
+				// Do not split the sprite between screen right and left
+				// If the row (x) plus number of bits > 63, then do not print
+				column = ((V[x]% 64) + bit);
+				if ( column > 63 ) {
+					bit_value = 0;
+				}
+			} else {
+				column = (V[x] + bit) % 64;
+			}
 
 			// Translate the x and Y to the Graphics Vector
 			gpx_position = (row * display_SCREEN_WIDTH_X) + column; 

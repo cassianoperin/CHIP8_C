@@ -36,7 +36,7 @@ extern bool sound_enabled;
 
 // --------------------------------- External Functions --------------------------------- //
 // Lib
-extern void handle_legacy_opcodes(char *game_signature);
+extern void handle_quirks(char *game_signature);
 extern void load_rom(char *filename, unsigned char *mem, unsigned int mem_size);
 // CHIP-8
 void opc_chip8_0NNN();

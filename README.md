@@ -222,9 +222,7 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 
 3 - Remap keys: first time pressed a remaped key, present some slow down
 
-4 - Rename quirks function
-
-5 - Set the default quirks on cpu and test all games again
+4 - Set the default quirks on cpu and test all games again
 		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
 		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
 		quirk_display_wait				= true;		// Display wait
@@ -232,15 +230,4 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
 		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
 
-6 - core_chip8 - TEST BOWLING AGAIN NOW
-
-	// Fix for Bowling game where the pins wrap the screen
-	if ( quirk_Clipping_Dxyn ) {
-		if ( V[x] + n > display_SCREEN_WIDTH_X + 1 ) {
-			n = (display_SCREEN_WIDTH_X - 1) - V[x];
-		}
-	}
-
-7 - UPDATED DXYN, TEST ALL AGAIN WITH DEFAULT QUIRKS!!!!!
-
-8 - Reimplement dxyn clipping quirk
+5 - UPDATED DXYN, TEST ALL AGAIN WITH DEFAULT QUIRKS!!!!!

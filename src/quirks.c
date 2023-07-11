@@ -3,7 +3,7 @@
 #include "quirks.h"
 
 // Quirks needed by specific games
-void handle_legacy_opcodes(char *game_signature) {
+void handle_quirks(char *game_signature) {
 
 	// ---------------------- CHIP8 ---------------------- //
 

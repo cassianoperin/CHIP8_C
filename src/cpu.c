@@ -14,7 +14,7 @@ void cpu_reset(){
 	printf("Loaded game: %s\n", filename);
 
 	// Check for Quirks
-	handle_legacy_opcodes(game_signature);
+	handle_quirks(game_signature);
 
 	// Load Fonts
 	cpu_load_fonts();

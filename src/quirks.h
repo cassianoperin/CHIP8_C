@@ -36,4 +36,4 @@ bool quirk_ETI660_64x32_screen;			// Enable screen adjustment to 64x32 instead o
 
 
 // -------------------------------------- Functions ------------------------------------- //
-void handle_legacy_opcodes(char *game_signature);
+void handle_quirks(char *game_signature);
