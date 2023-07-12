@@ -7,139 +7,121 @@ void handle_quirks(char *game_signature) {
 
 	// ---------------------- CHIP8 ---------------------- //
 
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// ROM:			Astro Dodge [Revival Studios, 2008].ch8
-	if ( !strcmp(game_signature, "12145245564956414C53+106009") ) {
+	// Quirk: DISABLE Fx55 and Fx65 legacy mode
+	if ( !strcmp(game_signature, "00E06300640165EE35EE+40424")		// Test Program: BC_test.ch8
+	|| !strcmp(game_signature, "60FFF015600069006E00+43064")		// Test Program: c8_test.c8
+	|| !strcmp(game_signature, "6601221EF40A44027301+5104")			// Program:		 Delay Timer Test [Matthew Mikolay, 2010].ch8
+	|| !strcmp(game_signature, "120543385060008500C0+102791")		// Demo:		 Stars [Sergey Naydenov, 2010].ch8
+	|| !strcmp(game_signature, "12145245564956414C53+106009") 		// Game:		 Astro Dodge [Revival Studios, 2008].ch8
+	|| !strcmp(game_signature, "121A322E303020432E20+203129") 		// Game:		 Blinky [Hans Christian Egeberg, 1991].ch8
+	|| !strcmp(game_signature, "00E0121A4368722E2045+174546") 		// Game:		 Blinky [Hans Christian Egeberg] (alt).ch8
+	|| !strcmp(game_signature, "121A434F4E4E45435434+19434") 		// Game:		 Connect 4 [David Winter].ch8
+	|| !strcmp(game_signature, "121D48494444454E2120+87881") )		// Game:		 Hidden [David Winter, 1996].ch8
+	{
 		quirk_Memory_legacy_Fx55_Fx65 = false;
-		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
 	}
 
-	// Platform:	CHIP8 / SCHIP
-	// Type:		Game
-	// Quirk:		All
-	// ROM: 		Airplane.ch8
-	if ( !strcmp(game_signature, "6A006B046C016D006E02+30465") ) {
-		// Chip8
-		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-		quirk_display_wait				= true;		// Display wait
-		quirk_Clipping_Dxyn				= true;		// Clipping
-		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-		// SCHIP
-		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
-		printf("GAME NOT FULLY IMPLEMENTED YET!!!\n\n");
+	// Quirk: ENABLE 8XY6 and 8XYE legacy mode
+	if ( !strcmp(game_signature, "120200E0A201F065A230+31866")		// Program: BMP Viewer - Hello (C8 example) [Hap, 2005].ch8
+	|| !strcmp(game_signature, "12054338506014A370F0+36295")		// Program: Division Test [Sergey Naydenov, 2010].ch8
+	|| !strcmp(game_signature, "124E0819010108010F01+9100") 		// Program: Keypad Test [Hap, 2006].ch8
+	|| !strcmp(game_signature, "121A322E303020432E20+203129") 		// Game:		 Blinky [Hans Christian Egeberg, 1991].ch8
+	|| !strcmp(game_signature, "00E0121A4368722E2045+174546") )		// Game:		 Blinky [Hans Christian Egeberg] (alt).ch8
+	{
+		quirk_Shifting_legacy_8xy6_8xyE	= true;
 	}
 
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		ENABLE Fx55 and Fx65 legacy mode
-	// ROM:			Animal Race [Brian Astle].ch8
-	if ( !strcmp(game_signature, "6D0A6E02680E690BA5B5+103327") ) {
-		quirk_Memory_legacy_Fx55_Fx65 = true;
-		printf("\nCHIP 8 Quirks:\nMemory:\t\Enabled\n\n");
+	// Quirk: DISABLE DXYN Clipping feature
+	if ( !strcmp(game_signature, "2280CC014C011216CA3E+12252") ) {	// Program: Framed MK1 [GV Samways, 1980].ch8
+		quirk_Clipping_Dxyn	= false;
 	}
 
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// ROM:			Blinky [Hans Christian Egeberg, 1991].ch8
-	if ( !strcmp(game_signature, "121A322E303020432E20+203129") ) {
-		quirk_Memory_legacy_Fx55_Fx65 = false;
-		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	}
-
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// ROM:			Blinky [Hans Christian Egeberg] (alt).ch8
-	if ( !strcmp(game_signature, "00E0121A4368722E2045+174546") ) {
-		quirk_Memory_legacy_Fx55_Fx65 = false;
-		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	}
-
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		ENABLE DXYN pixel wrap fix (Clipping)
-	// ROM: 		Bowling [Gooitzen van der Wal].ch8
-	if ( !strcmp(game_signature, "63146400255E600525B4+110648") ) {
-		quirk_Clipping_Dxyn = true;
-		printf("\nCHIP 8 Quirks:\nClipping:\tEnabled\n\n");
-	}
-
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// ROM: 		Hidden [David Winter, 1996].ch8
-	if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
-		quirk_Memory_legacy_Fx55_Fx65 = false;
-		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	}
-
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// ROM: 		Syzygy [Roy Trevino, 1990].ch8
-	if ( !strcmp(game_signature, "12128D8D20A931393930+88372") ) {
-		quirk_Memory_legacy_Fx55_Fx65 = false;
-		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	}
-
-	// Platform:	CHIP8
-	// Type:		Game
-	// Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// ROM: 		Tic-Tac-Toe [David Winter].ch8
-	if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
-		quirk_Memory_legacy_Fx55_Fx65 = false;
-		printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	}
-
-	// Platform:	CHIP8
-	// Type:		Program
 	// Quirk:		Do not load SCHIP fonts to avoid garbage after FFFFFF clock
-	// ROM:			Clock Program [Bill Fisher, 1981].ch8
-	if ( !strcmp(game_signature, "F10AF20AF30AF40AF50A+27721") ) {
+	if ( !strcmp(game_signature, "F10AF20AF30AF40AF50A+27721") ) {	// Program: Clock Program [Bill Fisher, 1981].ch8
 		quirk_ClockProgram_fonts = true;
 		printf("Clock Program Quirk Enabled.\n");
 	}
-	
-	// Platform:	CHIP8 / SCHIP
-	// Type:		Test Suite
-	// Quirk:		All
-	// ROM: 		chip8-test-suite.ch8 (v2).ch8
-	// Set the quirks necessary for "
-	// https://github.com/Timendus/chip8-test-suite#quirks-test
-	if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
-		// Chip8
-		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-		quirk_display_wait				= true;		// Display wait
-		quirk_Clipping_Dxyn				= true;		// Clipping
-		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-		// SCHIP
-		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
+
+	// TTEEEEEESSTTTTRSSSSS
+	if ( !strcmp(game_signature, "00E0680069006A206B20+49861") ) {
+	// quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
+	quirk_Memory_legacy_Fx55_Fx65		= false;
+	// quirk_Clipping_Dxyn					= false;
+	quirk_Shifting_legacy_8xy6_8xyE		= false;
+
+
+
+	// quirk_Jump_with_offset_Bnnn			= true;
+
 	}
 
-	// Platform:	CHIP8 / SCHIP
-	// Type:		Test Suite
-	// Quirk:		All
-	// ROM: 		5-quirks.ch8
-	// Set the quirks necessary for "
-	// https://github.com/Timendus/chip8-test-suite
-	if ( !strcmp(game_signature, "130C6000E0A112047001+150419") ) {
-		// Chip8
-		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-		quirk_display_wait				= true;		// Display wait
-		quirk_Clipping_Dxyn				= true;		// Clipping
-		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-		// SCHIP
-		printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
-	}
+
+
+	
+	// // Platform:	CHIP8
+	// // Type:		Game
+	// // Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// // ROM: 		Hidden [David Winter, 1996].ch8
+	// if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
+	// 	quirk_Memory_legacy_Fx55_Fx65 = false;
+	// 	printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	// }
+
+	// // Platform:	CHIP8
+	// // Type:		Game
+	// // Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// // ROM: 		Syzygy [Roy Trevino, 1990].ch8
+	// if ( !strcmp(game_signature, "12128D8D20A931393930+88372") ) {
+	// 	quirk_Memory_legacy_Fx55_Fx65 = false;
+	// 	printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	// }
+
+	// // Platform:	CHIP8
+	// // Type:		Game
+	// // Quirk:		DISABLE Fx55 and Fx65 legacy mode
+	// // ROM: 		Tic-Tac-Toe [David Winter].ch8
+	// if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
+	// 	quirk_Memory_legacy_Fx55_Fx65 = false;
+	// 	printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
+	// }
+
+
+	
+	// // Platform:	CHIP8 / SCHIP
+	// // Type:		Test Suite
+	// // Quirk:		All
+	// // ROM: 		chip8-test-suite.ch8 (v2).ch8
+	// // Set the quirks necessary for "
+	// // https://github.com/Timendus/chip8-test-suite#quirks-test
+	// if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
+	// 	// Chip8
+	// 	quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+	// 	quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+	// 	quirk_display_wait				= true;		// Display wait
+	// 	quirk_Clipping_Dxyn				= true;		// Clipping
+	// 	quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+	// 	quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+	// 	// SCHIP
+	// 	printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
+	// }
+
+	// // Platform:	CHIP8 / SCHIP
+	// // Type:		Test Suite
+	// // Quirk:		All
+	// // ROM: 		5-quirks.ch8
+	// // Set the quirks necessary for "
+	// // https://github.com/Timendus/chip8-test-suite
+	// if ( !strcmp(game_signature, "130C6000E0A112047001+150419") ) {
+	// 	// Chip8
+	// 	quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+	// 	quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+	// 	quirk_display_wait				= true;		// Display wait
+	// 	quirk_Clipping_Dxyn				= true;		// Clipping
+	// 	quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+	// 	quirk_Jump_with_offset_Bnnn		= false;	// Jumping
+	// 	// SCHIP
+	// 	printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
+	// }
 
 	// ---------------------- SCHIP ---------------------- //
 
@@ -185,5 +167,15 @@ void handle_quirks(char *game_signature) {
 	// if (game_signature == "xxx") {
 	// 	Keyboard_slow_press = true;
 	// }
+
+
+	// Print Quirk status on screen
+	printf("\nCHIP 8 Quirks:\nVF Reset:\t%s\nMemory:\t\t%s\nDisplay Wait:\t%s\nClipping:\t%s\nShifting:\t%s\nJumping:\t%s\n\n", 
+		quirk_VF_Reset_8xy1_8xy2_8xy3?"Enabled":"Disabled",
+		quirk_Memory_legacy_Fx55_Fx65?"Enabled":"Disabled",
+		quirk_display_wait?"Enabled":"Disabled",
+		quirk_Clipping_Dxyn?"Enabled":"Disabled",
+		quirk_Shifting_legacy_8xy6_8xyE?"Enabled":"Disabled",
+		quirk_Jump_with_offset_Bnnn?"Enabled":"Disabled");
 
 }

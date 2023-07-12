@@ -144,6 +144,8 @@ Chip 8 emulator written in C with SDL2
 
 [Tom Swan Documentation](https://github.com/TomSwan/pips-for-vips)
 
+[Chip 8 Instruction Scheduling and Frequency](https://jackson-s.me/2019/07/13/Chip-8-Instruction-Scheduling-and-Frequency.html)
+
 
 ### Superchip (SCHIP)
 [HP48 Superchip](https://github.com/Chromatophore/HP48-Superchip)
@@ -231,3 +233,5 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
 
 5 - UPDATED DXYN, TEST ALL AGAIN WITH DEFAULT QUIRKS!!!!!
+
+6 - hack rushhour password :p

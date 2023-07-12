@@ -6,8 +6,8 @@
 | 15 Puzzle [Roger Ivie] | ![100%](https://progress-bar.dev/100) | 4e8693f1 | [15 Puzzle](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/15%20Puzzle%20%5BRoger%20Ivie%5D.txt) | |
 | 15 Puzzle [Roger Ivie] (alt) | ![100%](https://progress-bar.dev/100) | 30ce37b1 | [15 Puzzle](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/15%20Puzzle%20%5BRoger%20Ivie%5D.txt) | |
 | Addition Problems [Paul C. Moews] | ![100%](https://progress-bar.dev/100) | c20dc1ab | N/A |  |
-| Airplane | ![50%](https://progress-bar.dev/50) | 6fd89b3d | N/A | BUG! Stopped airplanes |
-| Animal Race [Brian Astle] | ![90%](https://progress-bar.dev/90)| 6465acef | [Animal Race](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Animal%20Race%20%5BBrian%20Astle%5D.txt) | Small Graphical Glitch after first race |
+| Airplane | ![100%](https://progress-bar.dev/100) | 6fd89b3d | N/A | |
+| Animal Race [Brian Astle] | ![100%](https://progress-bar.dev/100)| 6465acef | [Animal Race](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Animal%20Race%20%5BBrian%20Astle%5D.txt) | |
 | Astro Dodge [Revival Studios, 2008] | ![100%](https://progress-bar.dev/100) | 0614ba7f | [Astro Dodge](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Astro%20Dodge%20%5BRevival%20Studios%2C%202008%5D.txt) | |
 | Biorhythm [Jef Winsor] | ![100%](https://progress-bar.dev/100) | b197ce7a | [Biorhythm](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Biorhythm%20%5BJef%20Winsor%5D.txt) | |
 | Blinky [Hans Christian Egeberg, 1991] | ![100%](https://progress-bar.dev/100) | 9d307e90 | N/A | |
@@ -37,7 +37,7 @@
 | Missile [David Winter] | ![100%](https://progress-bar.dev/100) | 6e485c29 | N/A | |
 | Most Dangerous Game [Peter Maruhnic] | ![50%](https://progress-bar.dev/50) | e941c6d7 | [Most Dangerous Game](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Most%20Dangerous%20Game%20%5BPeter%20Maruhnic%5D.txt) | Not working |
 | Nim [Carmelo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | 1b459fa0 | [Nim](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Nim%20%5BCarmelo%20Cortez%2C%201978%5D.txt) | |
-| Paddles | ![90%](https://progress-bar.dev/90) | 5c786254 | N/A | Glitches against CPU (Press F) |
+| Paddles | ![90%](https://progress-bar.dev/90) | 5c786254 | N/A | Glitches against CPU (Press F) in borders |
 | Pong (1 player) | ![100%](https://progress-bar.dev/100) | 841fde23 | N/A | |
 | Pong (alt) | ![100%](https://progress-bar.dev/100) | 69970ad2 | N/A | |
 | Pong 2 (Pong hack) [David Winter, 1997] | ![100%](https://progress-bar.dev/100) | ac46b66d | N/A | |

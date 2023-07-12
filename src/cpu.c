@@ -42,7 +42,7 @@ void cpu_initialize(){
 			display_pixels[i] = display_pixel_OFF_color;
 	}
 
-	// Legacy Opcodes and Quirks
+	// Legacy Opcodes and Quirks - AS WAS TO TEST GAMES
 	// CHIP8
 	// quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
 	// quirk_Memory_legacy_Fx55_Fx65		= true;
@@ -51,12 +51,13 @@ void cpu_initialize(){
 	// quirk_Shifting_legacy_8xy6_8xyE		= true;
 	// quirk_Jump_with_offset_Bnnn			= false;
 
-	quirk_VF_Reset_8xy1_8xy2_8xy3		= false;
-	quirk_Memory_legacy_Fx55_Fx65		= false;
-	quirk_display_wait					= false;
-	quirk_Clipping_Dxyn					= false;
-	quirk_Shifting_legacy_8xy6_8xyE		= false;
-	quirk_Jump_with_offset_Bnnn			= false;
+	// // New quirk pattern
+	quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
+	quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
+	quirk_display_wait				= true;		// Display wait
+	quirk_Clipping_Dxyn				= true;		// Clipping
+	quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
+	quirk_Jump_with_offset_Bnnn		= false;	// Jumping
 
 	// // ETI
 	// quirk_ETI660_64x32_screen        	= false;

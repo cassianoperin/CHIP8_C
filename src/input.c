@@ -508,10 +508,10 @@ void input_keyboard_remaps() {
 	// Game "Blinky [Hans Christian Egeberg] (alt).ch8"
 	if ( !strcmp(game_signature, "00E0121A4368722E2045+174546") ) {
 		input_remap_flag = true;
-		input_remap_btn_UP		= 0x3;
-		input_remap_btn_DOWN	= 0x6;
-		input_remap_btn_LEFT	= 0x7;
-		input_remap_btn_RIGHT	= 0x8;
+		input_remap_btn_UP		= 0x2;
+		input_remap_btn_DOWN	= 0x8;
+		input_remap_btn_LEFT	= 0x4;
+		input_remap_btn_RIGHT	= 0x6;
 		printf("Keys remaped to Arrows.\n");
 	}
 
