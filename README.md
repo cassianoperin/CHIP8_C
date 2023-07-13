@@ -154,17 +154,23 @@ Chip 8 emulator written in C with SDL2
 
 [Chip-8 Reference Manual](http://chip8.sourceforge.net/chip8-1.1.pdf)
 
-
-### Chip-8 Extensions
+### Other Chip-8 Extensions
 [CHIP‐8 Extensions Reference](https://github.com/mattmikolay/chip-8/wiki/CHIP%E2%80%908-Extensions-Reference)
 
 [CHIP‐8 Extensions (Github)](https://chip-8.github.io/extensions/)
 
 [Chip8 Hybrids](https://www.ngemu.com/threads/chip8-thread.114578/page-22/)
 
+[MegaChip](https://github.com/gcsmith/gchip/blob/master/docs/megachip10.txt)
+
+### Emulators
+
+[Octo](https://johnearnest.github.io/Octo/)
+
 [EMMA02 Opcodes Documentation](https://www.emma02.hobby-site.com/pseudo_chip8.html)
 
-[MegaChip](https://github.com/gcsmith/gchip/blob/master/docs/megachip10.txt)
+### Roms
+[Chip8 Archive](https://github.com/JohnEarnest/chip8Archive)
 
 ### Memory leak testing
 
@@ -223,15 +229,3 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 2 - quirk_display_wait is not working well on tests
 
 3 - Remap keys: first time pressed a remaped key, present some slow down
-
-4 - Set the default quirks on cpu and test all games again
-		quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-		quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-		quirk_display_wait				= true;		// Display wait
-		quirk_Clipping_Dxyn				= true;		// Clipping
-		quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-		quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-
-5 - UPDATED DXYN, TEST ALL AGAIN WITH DEFAULT QUIRKS!!!!!
-
-6 - hack rushhour password :p

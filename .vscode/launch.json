@@ -9,7 +9,7 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/src/chip8",
-      "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Bowling [Gooitzen van der Wal].ch8" ],
+      "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Most Dangerous Game [Peter Maruhnic].ch8" ],
       // "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Animal Race [Brian Astle].ch8", "--debug" ],
       // "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Airplane.ch8"],
       // Test Suite v2

@@ -51,7 +51,7 @@ void cpu_initialize(){
 	// quirk_Shifting_legacy_8xy6_8xyE		= true;
 	// quirk_Jump_with_offset_Bnnn			= false;
 
-	// // New quirk pattern
+	// New quirk pattern
 	quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
 	quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
 	quirk_display_wait				= true;		// Display wait

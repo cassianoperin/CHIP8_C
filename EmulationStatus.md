@@ -23,7 +23,7 @@
 | Connect 4 [David Winter] | ![100%](https://progress-bar.dev/100) | 9858889b | [Connect 4](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Connect%204%20%5BDavid%20Winter%5D.txt) | |
 | Craps [Camerlo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | 21a982fc | [Craps](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Craps%20%5BCamerlo%20Cortez%2C%201978%5D.txt) | |
 | Deflection [John Fort] | ![100%](https://progress-bar.dev/100) | 3b2aea72 | [Deflection](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Deflection%20%5BJohn%20Fort%5D.txt) | |
-| Figures | ![50%](https://progress-bar.dev/50) | 67a9c567 | N/A | Some glitches, need more details of this game |
+| Figures | ![100%](https://progress-bar.dev/100) | 67a9c567 | N/A | |
 | Filter | ![100%](https://progress-bar.dev/100) | fb592cc5 | N/A | |
 | Guess [David Winter] (alt) | ![100%](https://progress-bar.dev/100) | 432e2fe1 | [Guess (alt)](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Guess%20%5BDavid%20Winter%5D%20(alt).txt) | |
 | Guess [David Winter] | ![100%](https://progress-bar.dev/100) | 0501cecb | [Guess](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Guess%20%5BDavid%20Winter%5D.txt) | |

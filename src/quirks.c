@@ -7,7 +7,7 @@ void handle_quirks(char *game_signature) {
 
 	// ---------------------- CHIP8 ---------------------- //
 
-	// Quirk: DISABLE Fx55 and Fx65 legacy mode
+	// Quirk: DISABLE Fx55 and Fx65 legacy mode (load_store_quirk)
 	if ( !strcmp(game_signature, "00E06300640165EE35EE+40424")		// Test Program: BC_test.ch8
 	|| !strcmp(game_signature, "60FFF015600069006E00+43064")		// Test Program: c8_test.c8
 	|| !strcmp(game_signature, "6601221EF40A44027301+5104")			// Program:		 Delay Timer Test [Matthew Mikolay, 2010].ch8
@@ -16,17 +16,24 @@ void handle_quirks(char *game_signature) {
 	|| !strcmp(game_signature, "121A322E303020432E20+203129") 		// Game:		 Blinky [Hans Christian Egeberg, 1991].ch8
 	|| !strcmp(game_signature, "00E0121A4368722E2045+174546") 		// Game:		 Blinky [Hans Christian Egeberg] (alt).ch8
 	|| !strcmp(game_signature, "121A434F4E4E45435434+19434") 		// Game:		 Connect 4 [David Winter].ch8
-	|| !strcmp(game_signature, "121D48494444454E2120+87881") )		// Game:		 Hidden [David Winter, 1996].ch8
+	|| !strcmp(game_signature, "121D48494444454E2120+87881") 		// Game:		 Hidden [David Winter, 1996].ch8
+	|| !strcmp(game_signature, "12128D8D20A931393930+88372") 		// Game:		 Syzygy [Roy Trevino, 1990].ch8
+	|| !strcmp(game_signature, "12185449435441432062+39518") )		// Game:		 Tic-Tac-Toe [David Winter].ch8
 	{
 		quirk_Memory_legacy_Fx55_Fx65 = false;
 	}
 
-	// Quirk: ENABLE 8XY6 and 8XYE legacy mode
+	// Quirk: ENABLE 8XY6 and 8XYE legacy mode (shift_quirk)
 	if ( !strcmp(game_signature, "120200E0A201F065A230+31866")		// Program: BMP Viewer - Hello (C8 example) [Hap, 2005].ch8
 	|| !strcmp(game_signature, "12054338506014A370F0+36295")		// Program: Division Test [Sergey Naydenov, 2010].ch8
 	|| !strcmp(game_signature, "124E0819010108010F01+9100") 		// Program: Keypad Test [Hap, 2006].ch8
 	|| !strcmp(game_signature, "121A322E303020432E20+203129") 		// Game:		 Blinky [Hans Christian Egeberg, 1991].ch8
-	|| !strcmp(game_signature, "00E0121A4368722E2045+174546") )		// Game:		 Blinky [Hans Christian Egeberg] (alt).ch8
+	|| !strcmp(game_signature, "00E0121A4368722E2045+174546") 		// Game:		 Blinky [Hans Christian Egeberg] (alt).ch8
+	|| !strcmp(game_signature, "1225535041434520494E+124842") 		// Game:		 Space Invaders [David Winter].ch8
+	|| !strcmp(game_signature, "1225535041434520494E+123139") 		// Game:		 Space Invaders [David Winter] (alt).ch8
+	|| !strcmp(game_signature, "A2CD69386A1ED9A2A2D0+31820") 		// Game:		 Submarine [Carmelo Cortez, 1978].ch8
+	|| !strcmp(game_signature, "00E06A0022626380228A+16829") 		// Game:		 Sum Fun [Joyce Weisbecker].ch8
+	|| !strcmp(game_signature, "12185449435441432062+39518") )		// Game:		 Tic-Tac-Toe [David Winter].ch8
 	{
 		quirk_Shifting_legacy_8xy6_8xyE	= true;
 	}
@@ -41,87 +48,6 @@ void handle_quirks(char *game_signature) {
 		quirk_ClockProgram_fonts = true;
 		printf("Clock Program Quirk Enabled.\n");
 	}
-
-	// TTEEEEEESSTTTTRSSSSS
-	if ( !strcmp(game_signature, "00E0680069006A206B20+49861") ) {
-	// quirk_VF_Reset_8xy1_8xy2_8xy3		= true;
-	quirk_Memory_legacy_Fx55_Fx65		= false;
-	// quirk_Clipping_Dxyn					= false;
-	quirk_Shifting_legacy_8xy6_8xyE		= false;
-
-
-
-	// quirk_Jump_with_offset_Bnnn			= true;
-
-	}
-
-
-
-	
-	// // Platform:	CHIP8
-	// // Type:		Game
-	// // Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// // ROM: 		Hidden [David Winter, 1996].ch8
-	// if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
-	// 	quirk_Memory_legacy_Fx55_Fx65 = false;
-	// 	printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	// }
-
-	// // Platform:	CHIP8
-	// // Type:		Game
-	// // Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// // ROM: 		Syzygy [Roy Trevino, 1990].ch8
-	// if ( !strcmp(game_signature, "12128D8D20A931393930+88372") ) {
-	// 	quirk_Memory_legacy_Fx55_Fx65 = false;
-	// 	printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	// }
-
-	// // Platform:	CHIP8
-	// // Type:		Game
-	// // Quirk:		DISABLE Fx55 and Fx65 legacy mode
-	// // ROM: 		Tic-Tac-Toe [David Winter].ch8
-	// if ( !strcmp(game_signature, "121D48494444454E2120+87881") ) {
-	// 	quirk_Memory_legacy_Fx55_Fx65 = false;
-	// 	printf("\nCHIP 8 Quirks:\nMemory:\t\tDisabled\n\n");
-	// }
-
-
-	
-	// // Platform:	CHIP8 / SCHIP
-	// // Type:		Test Suite
-	// // Quirk:		All
-	// // ROM: 		chip8-test-suite.ch8 (v2).ch8
-	// // Set the quirks necessary for "
-	// // https://github.com/Timendus/chip8-test-suite#quirks-test
-	// if ( !strcmp(game_signature, "00E061016008AB0CD01F+320731") ) {
-	// 	// Chip8
-	// 	quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-	// 	quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-	// 	quirk_display_wait				= true;		// Display wait
-	// 	quirk_Clipping_Dxyn				= true;		// Clipping
-	// 	quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-	// 	quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-	// 	// SCHIP
-	// 	printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
-	// }
-
-	// // Platform:	CHIP8 / SCHIP
-	// // Type:		Test Suite
-	// // Quirk:		All
-	// // ROM: 		5-quirks.ch8
-	// // Set the quirks necessary for "
-	// // https://github.com/Timendus/chip8-test-suite
-	// if ( !strcmp(game_signature, "130C6000E0A112047001+150419") ) {
-	// 	// Chip8
-	// 	quirk_VF_Reset_8xy1_8xy2_8xy3	= true;		// VF Reset
-	// 	quirk_Memory_legacy_Fx55_Fx65	= true;		// Memory
-	// 	quirk_display_wait				= true;		// Display wait
-	// 	quirk_Clipping_Dxyn				= true;		// Clipping
-	// 	quirk_Shifting_legacy_8xy6_8xyE	= false;	// Shifting
-	// 	quirk_Jump_with_offset_Bnnn		= false;	// Jumping
-	// 	// SCHIP
-	// 	printf("\nCHIP 8 Quirks:\nVF Reset:\tEnabled\nMemory:\t\tEnabled\nDisplay Wait:\tEnabled\nClipping:\tEnabled\nShifting:\tDisabled\nJumping:\tDisabled\n\n");
-	// }
 
 	// ---------------------- SCHIP ---------------------- //
 
@@ -163,10 +89,7 @@ void handle_quirks(char *game_signature) {
 	// }
 
 	// Set the quirks necessary for chip8-test-suite.ch8"
-	// https://github.com/Timendus/chip8-test-suite#quirks-test
-	// if (game_signature == "xxx") {
-	// 	Keyboard_slow_press = true;
-	// }
+
 
 
 	// Print Quirk status on screen
