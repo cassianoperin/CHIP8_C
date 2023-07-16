@@ -35,7 +35,7 @@
 | Mastermind FourRow (Robert Lindley, 1978) | ![100%](https://progress-bar.dev/100) | 2b450d6a |[Mastermind FourRow](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Mastermind%20FourRow%20(Robert%20Lindley%2C%201978).txt) | |
 | Merlin [David Winter] | ![100%](https://progress-bar.dev/100) | 1096c3d5 | [Merlin](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Merlin%20%5BDavid%20Winter%5D.txt) | |
 | Missile [David Winter] | ![100%](https://progress-bar.dev/100) | 6e485c29 | N/A | |
-| Most Dangerous Game [Peter Maruhnic] | ![50%](https://progress-bar.dev/50) | e941c6d7 | [Most Dangerous Game](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Most%20Dangerous%20Game%20%5BPeter%20Maruhnic%5D.txt) | Not working |
+| Most Dangerous Game [Peter Maruhnic] | ![50%](https://progress-bar.dev/50) | e941c6d7 | [Most Dangerous Game](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Most%20Dangerous%20Game%20%5BPeter%20Maruhnic%5D.txt) | Glitches |
 | Nim [Carmelo Cortez, 1978] | ![100%](https://progress-bar.dev/100) | 1b459fa0 | [Nim](https://github.com/cassianoperin/CHIP8_C/blob/main/instructions/chip8/Nim%20%5BCarmelo%20Cortez%2C%201978%5D.txt) | |
 | Paddles | ![90%](https://progress-bar.dev/90) | 5c786254 | N/A | Glitches against CPU (Press F) in borders |
 | Pong (1 player) | ![100%](https://progress-bar.dev/100) | 841fde23 | N/A | |

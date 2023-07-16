@@ -440,14 +440,10 @@ void opc_chip8_CXNN() {
 // // Dxyn - DRW Vx, Vy, nibble
 // // Draw n-byte sprite starting at memory location I at (Vx, Vy), set VF = collision.
 // void opc_chip8_DXYN() {
-
-
-// 	if ( cpu_debug_mode )
-// 		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
-		
+	
 // 	// // Draw in Chip-8 Low Resolution mode
-//     // unsigned short gpx_position;
-//     // unsigned char x , y, n, byte, sprite;
+//     unsigned short gpx_position;
+//     unsigned char x , y, n, byte, sprite;
 //     unsigned char x, y, n;
 
 // 	x = (Opcode & 0x0F00) >> 8;
@@ -457,7 +453,8 @@ void opc_chip8_CXNN() {
 //     // byte = 0;
 //     // gpx_position = 0;
 //     // sprite = 0;
-
+// 	if ( cpu_debug_mode )
+// 		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
 
 // 	V[0xF] = 0;
 
@@ -525,6 +522,8 @@ void opc_chip8_DXYN() {
 
 	if ( cpu_debug_mode )
 		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
+	
+	printf("CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d\n", I, x, V[x], y, V[y], n);
 
 	// Clear the carry before start
 	V[0xF] = 0;
@@ -535,6 +534,8 @@ void opc_chip8_DXYN() {
   	{
 		// Get the sprite from memory (8 bits / 1 byte)
 		sprite = Memory[I + byte];
+
+		printf("Sprite: %X\n", sprite);
 
 		// --------- Row --------- //
 		if ( quirk_Clipping_Dxyn ) { 

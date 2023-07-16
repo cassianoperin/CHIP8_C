@@ -48,6 +48,7 @@ void handle_quirks(char *game_signature) {
 		quirk_ClockProgram_fonts = true;
 		printf("Clock Program Quirk Enabled.\n");
 	}
+	
 
 	// ---------------------- SCHIP ---------------------- //
 

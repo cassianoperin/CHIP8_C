@@ -18,14 +18,14 @@ Chip 8 emulator written in C with SDL2
 * ![100%](https://progress-bar.dev/100) Memory
 * ![100%](https://progress-bar.dev/100) Registers
 * ![0%](https://progress-bar.dev/0) Graphics
-* ![100%](https://progress-bar.dev/100) Qwirks
+* ![0%](https://progress-bar.dev/0) Qwirks
 * ![100%](https://progress-bar.dev/100) Sound
 ## SCHIP Status
 * ![0%](https://progress-bar.dev/0) CPU Opcodes
 * ![100%](https://progress-bar.dev/100) Memory
 * ![100%](https://progress-bar.dev/100) Registers
 * ![0%](https://progress-bar.dev/0) Graphics
-* ![100%](https://progress-bar.dev/100) Qwirks
+* ![0%](https://progress-bar.dev/0) Qwirks
 * ![100%](https://progress-bar.dev/100) Sound
 ## Emulator
 * ![100%](https://progress-bar.dev/100) Pause and resume emulation
@@ -34,13 +34,13 @@ Chip 8 emulator written in C with SDL2
 * ![100%](https://progress-bar.dev/100) Color Themes
 * ![100%](https://progress-bar.dev/100) Binary rom format support
 * ![0%](https://progress-bar.dev/0) Hexadecimal rom format support
-* ![90%](https://progress-bar.dev/90) Keyboard remaps
-* ![0%](https://progress-bar.dev/0) Step Forward CPU Cycles for Debug
+* ![80%](https://progress-bar.dev/80) Keyboard remaps
+* ![100%](https://progress-bar.dev/100) Step Forward CPU Cycles for Debug
 * ![0%](https://progress-bar.dev/0) Step Back (Rewind) CPU Cycles for Debug
 * ![100%](https://progress-bar.dev/100) Increase and Decrease CPU Clock Speed
 * ![0%](https://progress-bar.dev/0) Save States
 * ![0%](https://progress-bar.dev/0) Fullscreen
-* ![0%](https://progress-bar.dev/0) Emulation Status from all games I have to test
+* ![100%](https://progress-bar.dev/100) Emulation Status from all games I have to test
 
 ## EMULATOR Usage
 
@@ -154,6 +154,7 @@ Chip 8 emulator written in C with SDL2
 
 [Chip-8 Reference Manual](http://chip8.sourceforge.net/chip8-1.1.pdf)
 
+
 ### Other Chip-8 Extensions
 [CHIP‐8 Extensions Reference](https://github.com/mattmikolay/chip-8/wiki/CHIP%E2%80%908-Extensions-Reference)
 
@@ -163,14 +164,13 @@ Chip 8 emulator written in C with SDL2
 
 [MegaChip](https://github.com/gcsmith/gchip/blob/master/docs/megachip10.txt)
 
+
 ### Emulators
 
 [Octo](https://johnearnest.github.io/Octo/)
 
 [EMMA02 Opcodes Documentation](https://www.emma02.hobby-site.com/pseudo_chip8.html)
 
-### Roms
-[Chip8 Archive](https://github.com/JohnEarnest/chip8Archive)
 
 ### Memory leak testing
 
@@ -229,3 +229,14 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 2 - quirk_display_wait is not working well on tests
 
 3 - Remap keys: first time pressed a remaped key, present some slow down
+
+4 - Glitches in "Most Dangerous Game [Peter Maruhnic].ch8"
+	- Print sprite
+	- Print current values of screen
+	- Underestand
+
+5 - Change graphics array to dynamic
+	destroy and recreate window after?
+	https://stackoverflow.com/questions/3827892/how-can-i-change-the-size-of-an-array-in-c
+
+	
