@@ -69,10 +69,9 @@ void cpu_initialize(){
 	// quirk_ClockProgram_fonts             = false;
 	// Keyboard_slow_press                  = false;
 
-	// // SCHIP Specific Variables
-	// cpu_SCHIP_mode          = false;
-	// cpu_SCHIP_LORES_mode    = false;
-	// cpu_SCHIP_timer_hack    = false;
+	// SCHIP Specific Variables
+	cpu_SCHIP_mode 		 = false;
+	cpu_SCHIP_LORES_mode = false;
 
 	// Screen Size
 	display_SCREEN_WIDTH_X  = 64;		// Number of Columns in Graphics
@@ -198,19 +197,26 @@ void cpu_interpreter() {
 						// 	opc_schip_00FE();
 						// 	break;
 
-						// // 00FF (SCHIP)
-						// // 00FF - In ETI-660, 00FF is a NO OP (do nothing)
-						// case 0x00FF:
-						// 	// 00FF - ETI-660
-						// 	if ( Global.Hybrid_ETI_660_HW ) {
-						// 		opc_chip8_ETI660_00FF();
-						// 		break;
+						// 00FF (SCHIP)
+						// 00FF - In ETI-660, 00FF is a NO OP (do nothing)
+						case 0x00FF:
+							opc_schip_00FF();
+								break;
 
-						// 	// 00FF - SCHIP
-						// 	} else {
-						// 		opc_schip_00FF();
-						// 		break;
-						// 	}
+							// // 00FF - ETI-660
+							// if ( Global.Hybrid_ETI_660_HW ) {
+							// 	opc_chip8_ETI660_00FF();
+							// 	break;
+
+							// // 00FF - SCHIP
+							// } else {
+							// 	opc_schip_00FF();
+							// 	break;
+							// }
+
+						default:
+							printf("\t\tOpcode 0x%04X NOT IMPLEMENTED!!!!\n", Opcode);
+							exit(0);
 					}
 
 					// switch ( Opcode & 0x00F0 ){ //00N0

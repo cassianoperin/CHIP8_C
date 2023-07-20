@@ -239,4 +239,10 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 	destroy and recreate window after?
 	https://stackoverflow.com/questions/3827892/how-can-i-change-the-size-of-an-array-in-c
 
+
+SCHIP
+
+6 - quirks
+Resize_Quirk_00FE_00FF
+scrollQuirks_00CN_00FB_00FC
 	

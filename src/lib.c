@@ -64,7 +64,7 @@ void load_rom(char *filename, unsigned char *mem, unsigned int mem_size)
 	fread(&mem[PC], 1, mem_size - PC, rom);
 	fclose(rom);
 
-	// Print Memory
+	// // Print Memory
 	// for(int i = 0; i < mem_size; i++)
 	// 	printf("%02X ", mem[i]);
 	

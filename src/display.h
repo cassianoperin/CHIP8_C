@@ -7,7 +7,7 @@ typedef int bool;
 #define false 0
 
 // --------------------------------- External Variables --------------------------------- //
-// SDL Video
+// Main - SDL Video
 extern SDL_Window *window;
 extern SDL_Renderer *renderer;
 extern SDL_Texture *texture;
@@ -28,7 +28,8 @@ unsigned char display_color_theme;          // Theme number
 unsigned int  display_pixel_ON_color_alt;   // New color of enabled pixels
 unsigned int  display_pixel_OFF_color_alt;  // New color of disabled pixels
 // Display Array
-unsigned int  display_pixels[2048];
+// unsigned int  display_pixels[2048];
+unsigned int  display_pixels[4096];
 // Frames per second
 unsigned char display_FPS;
 // Print Messages

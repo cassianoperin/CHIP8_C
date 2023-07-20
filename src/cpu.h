@@ -76,6 +76,8 @@ extern void opc_chip8_FX55(unsigned char x);
 extern void opc_chip8_FX65(unsigned char x);
 // CHIP-8 Undocumented
 extern void opc_chip8_ND_02D8();
+// SCHIP
+extern void opc_schip_00FF();
 
 // ---------------------------------- Global Constants ---------------------------------- //
 const int CHIP8_DEFAULT_CLOCK = 500;
@@ -97,8 +99,8 @@ bool            cpu_draw_flag;			    // Send the draw to screen signal
 bool            cpu_debug_mode;  	        // Enable debug messages
 char            cpu_debug_message[120];     // Debug messages
 // SCHIP Specific Variables
-bool            cpu_SCHIP_mode;             
-bool            cpu_SCHIP_LORES_mode;       //  Lo-res mode, 64 x 32 resolution
+bool            cpu_SCHIP_mode;             // SCHIP mode (ENABLED or DISABLED)
+bool            cpu_SCHIP_LORES_mode;       // SCHIP in Low Resolution mode (00FE)
 bool            cpu_SCHIP_timer_hack;       // Enable or disable SCHIP DelayTimer Hack
 unsigned char   cpu_HP48_RPL_user_flags[8]; // HP-48 RPL user flags
 // Interface
