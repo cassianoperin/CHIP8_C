@@ -168,40 +168,48 @@ void cpu_interpreter() {
 						// 	opc_chip8_ETI660_00F8();
 						// 	break;
 
-						// // 00FB (SCHIP)
-						// case 0x00FB:
-						// 	opc_schip_00FB();
-						// 	break;
+						// 00FB (SCHIP)
+						case 0x00FB:
+							// opc_schip_00FB();
+								printf("Opcode 00FB not implemented yet\n");
+								exit(2);
+							break;
 
-						// // 00FC (SCHIP)
-						// // 00FC (ETI-660) - Turn display off
-						// case 0x00FC:
-						// 	// ETI-660 Opcode
-						// 	if ( Global.Hybrid_ETI_660_HW ) {
-						// 		opc_chip8_ETI660_00FC();
-						// 		break;
+						// 00FC (SCHIP)
+						// 00FC (ETI-660) - Turn display off
+						case 0x00FC:
+							// // ETI-660 Opcode
+							// if ( Global.Hybrid_ETI_660_HW ) {
+							// 	opc_chip8_ETI660_00FC();
+							// 	break;
 
-						// 	// SCHIP Opcode
-						// 	} else {
-						// 		opc_schip_00FC();
-						// 		break;
-						// 	}
+							// // SCHIP Opcode
+							// } else {
+								// opc_schip_00FC();
+								printf("Opcode 00FC not implemented yet\n");
+								exit(2);
+								break;
+							// }
 
-						// // 00FD (SCHIP)
-						// case 0x00FD:
-						// 	opc_schip_00FD();
-						// 	break;
+						// 00FD (SCHIP)
+						case 0x00FD:
+							// opc_schip_00FD();
+							printf("0x00FD not implemented yet\n");
+							exit(2);
+							break;
 
-						// // 00FE (SCHIP)
-						// case 0x00FE:
-						// 	opc_schip_00FE();
-						// 	break;
+						// 00FE (SCHIP)
+						case 0x00FE:
+							// opc_schip_00FE();
+							printf("0x00FE not implemented yet\n");
+							exit(2);
+							break;
 
 						// 00FF (SCHIP)
 						// 00FF - In ETI-660, 00FF is a NO OP (do nothing)
 						case 0x00FF:
 							opc_schip_00FF();
-								break;
+							break;
 
 							// // 00FF - ETI-660
 							// if ( Global.Hybrid_ETI_660_HW ) {
@@ -219,13 +227,16 @@ void cpu_interpreter() {
 							exit(0);
 					}
 
-					// switch ( Opcode & 0x00F0 ){ //00N0
-					// 	// 00CN (SCHIP)
-					// 	case 0x00C0:
-					// 		n := Opcode & 0x000F;
-					// 		opc_schip_00CN(n);
-					// 		break;
-					// }
+					switch ( Opcode & 0x00F0 ){ //00N0
+						// 00CN (SCHIP)
+						case 0x00C0:
+							// n := Opcode & 0x000F;
+							// opc_schip_00CN(n);
+							printf("00CN not implemented yet\n");
+							exit(2);
+
+							break;
+					}
 
 				case 0x0200: //02NN
 					switch ( Opcode & 0x0FFF ) {
@@ -378,18 +389,25 @@ void cpu_interpreter() {
 				// DXY0 (SCHIP)
 				case 0x0000:
 
-					if ( !cpu_SCHIP_mode ) {
-						// Quirk to SCHIP Robot DEMO)
-						// Even in SCHIP Mode this game needs to draw 16x16 Pixels
-						if ( quirk_LoRes_Wide_Sprite_Dxy0 ) {
-							cpu_SCHIP_LORES_mode = false;
-						} else {
-							// If NOT in SCHIP mode will draw 16x8 sprites
-							cpu_SCHIP_LORES_mode = true;
-						}
-					}
+					// if ( !cpu_SCHIP_mode ) {
+					// 	// Quirk to SCHIP Robot DEMO)
+
+
+					// 	// // Even in SCHIP Mode this game needs to draw 16x16 Pixels
+					// 	// if ( quirk_LoRes_Wide_Sprite_Dxy0 ) {
+					// 	// 	cpu_SCHIP_LORES_mode = false;
+					// 	// } else {
+					// 	// 	// If NOT in SCHIP mode will draw 16x8 sprites
+					// 	// 	cpu_SCHIP_LORES_mode = true;
+
+
+					// 	// }
+					// }
 					// If in SCHIP mode will draw 16x16 sprites
-					// opc_schip_DXY0(Opcode);
+					opc_schip_DXY0();
+							// printf("dxy0 not implemented yet\n");
+							// exit(2);
+					break;
 
 				// DXYN (CHIP-8, Draw n-byte sprites)
 				default:
@@ -462,10 +480,12 @@ void cpu_interpreter() {
 					opc_chip8_FX29(x);
 					break;
 
-				// // Fx30 (SCHIP)
-				// case 0x0030:
-				// 	opc_schip_FX30(x);
-				// 	break;
+				// Fx30 (SCHIP)
+				case 0x0030:
+					// opc_schip_FX30(x);
+					printf("Opcode Fx30 not implemented yet!\n ");
+					exit(2); 
+					break;
 
 				// Fx33 (CHIP-8)
 				case 0x0033:
@@ -482,15 +502,19 @@ void cpu_interpreter() {
 					opc_chip8_FX65(x);
 					break;
 
-				// // FX75 (SCHIP)
-				// case 0x0075:
-				// 	opc_schip_FX75(x);
-				// 	break;
+				// FX75 (SCHIP)
+				case 0x0075:
+					// opc_schip_FX75(x);
+					printf("Opcode FX75 not implemented yet!\n ");
+					exit(2); 
+					break;
 
-				// // FX85 (SCHIP)
-				// case 0x0085:
-				// 	opc_schip_FX85(x);
-				// 	break;
+				// FX85 (SCHIP)
+				case 0x0085:
+					// opc_schip_FX85(x);
+					printf("Opcode FX85 not implemented yet!\n ");
+					exit(2); 
+					break;
 
 				// // Fx00 (ETI-660)
 				// case 0x0000:

@@ -16,6 +16,7 @@ extern unsigned int CPU_CLOCK;
 
 // ---------------------------------- Global Variables ---------------------------------- //
 char *game_signature;           // Game signature to apply quirks
+extern bool rom_format_hex;
 
 // -------------------------------------- Functions ------------------------------------- //
 

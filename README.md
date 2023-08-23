@@ -33,7 +33,7 @@ Chip 8 emulator written in C with SDL2
 * ![80%](https://progress-bar.dev/80) Command Line Arguments
 * ![100%](https://progress-bar.dev/100) Color Themes
 * ![100%](https://progress-bar.dev/100) Binary rom format support
-* ![0%](https://progress-bar.dev/0) Hexadecimal rom format support
+* ![0%](https://progress-bar.dev/100) Hexadecimal rom format support
 * ![80%](https://progress-bar.dev/80) Keyboard remaps
 * ![100%](https://progress-bar.dev/100) Step Forward CPU Cycles for Debug
 * ![0%](https://progress-bar.dev/0) Step Back (Rewind) CPU Cycles for Debug
@@ -221,6 +221,7 @@ https://www.reddit.com/r/EmuDev/comments/n9dcli/comment/gxnnzdw/
 ### CLI
 
 1. Add a way to pass values to parameters like display_SCALE and CPU_CLOCK
+2. Add options to enable or disable quirks
 
 ### Problems
 

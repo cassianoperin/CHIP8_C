@@ -12,6 +12,7 @@ extern bool sound_enabled;
 extern bool quirk_display_wait;
 // Main
 extern char *filename;
+extern bool rom_format_hex;
 
 // --------------------------------- External Functions --------------------------------- //
 // Lib

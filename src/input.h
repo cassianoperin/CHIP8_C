@@ -17,7 +17,7 @@ extern unsigned int  display_pixel_ON_color;
 extern unsigned int  display_pixel_OFF_color;
 extern unsigned int  display_pixel_ON_color_alt;
 extern unsigned int  display_pixel_OFF_color_alt;
-extern unsigned int  display_pixels[2048]; 
+extern unsigned int  display_pixels[8192]; 
 extern unsigned char display_color_theme;
 extern unsigned int  frame_counter;
 extern Scene scene;

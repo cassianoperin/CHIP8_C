@@ -9,7 +9,7 @@ extern unsigned int last_cycle_counter;
 // Screen Size
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
-extern unsigned int  display_pixels[2048];
+extern unsigned int  display_pixels[8192];
 extern unsigned int  display_pixel_ON_color;
 extern unsigned int  display_pixel_OFF_color;
 // Font
@@ -78,6 +78,7 @@ extern void opc_chip8_FX65(unsigned char x);
 extern void opc_chip8_ND_02D8();
 // SCHIP
 extern void opc_schip_00FF();
+extern void opc_schip_DXY0();
 
 // ---------------------------------- Global Constants ---------------------------------- //
 const int CHIP8_DEFAULT_CLOCK = 500;

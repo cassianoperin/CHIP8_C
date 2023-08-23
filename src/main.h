@@ -83,6 +83,8 @@ SDL_Surface *text;
 
 // Game path and ROM name
 char *filename;
+// Flag to indicate rom in hexadecimal format
+bool rom_format_hex;
 
 // Control the Main loop exit
 bool quit;

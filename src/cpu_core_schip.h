@@ -26,14 +26,14 @@ extern unsigned short	PC;
 // extern unsigned short	SP;
 extern bool             cpu_debug_mode;
 extern char             cpu_debug_message[120];
-// extern unsigned short	Opcode;
-// extern unsigned char	V[16];
-// extern unsigned short	I;
-// extern unsigned char	Memory[4096];
+extern unsigned short	Opcode;
+extern unsigned char	V[16];
+extern unsigned short	I;
+extern unsigned char	Memory[4096];
 // extern unsigned char    Key[16];
 // extern unsigned char	DelayTimer;
 // extern unsigned char	SoundTimer;
-// extern bool             cpu_draw_flag;
+extern bool             cpu_draw_flag;
 // extern unsigned char    key_FX0A;
 // extern bool             key_FX0A_pressed;
 extern bool            cpu_pause;
@@ -42,7 +42,11 @@ extern bool            cpu_pause;
 extern unsigned char display_SCREEN_WIDTH_X;
 extern unsigned char display_SCREEN_HEIGHT_Y;
 extern unsigned char display_SCALE;
+extern unsigned int  display_pixel_ON_color;
+extern unsigned int  display_pixel_OFF_color;
+extern unsigned int  display_pixels[8192];
 
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8
 void opc_schip_00FF();
+void opc_schip_DXY0();

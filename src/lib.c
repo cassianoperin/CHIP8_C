@@ -56,19 +56,97 @@ void load_rom(char *filename, unsigned char *mem, unsigned int mem_size)
 {
 	int PC = 0x200;
 
-	FILE *rom = fopen(filename, "rb");
-	if (!rom) {
-		fprintf(stderr, "Unable to open file '%s'!\n", filename);
-		exit(1);
-	}
-	fread(&mem[PC], 1, mem_size - PC, rom);
-	fclose(rom);
+	if ( rom_format_hex == false ) {					// Rom in binary format
+		FILE *rom = fopen(filename, "rb");
+		if (!rom) {
+			fprintf(stderr, "Unable to open file '%s'!\n", filename);
+			exit(1);
+		}
+		fread(&mem[PC], 1, mem_size - PC, rom);
+		fclose(rom);
 
-	// // Print Memory
-	// for(int i = 0; i < mem_size; i++)
-	// 	printf("%02X ", mem[i]);
-	
-	// printf("\n\n");
+
+	} else {										 	// Rom in hexadecimal format
+
+		const int buffer_size = (sizeof(char) * 8192); // 8192
+
+		// Hex roms will have the double of size in bytes of binary format
+		char *hexBuffer = malloc( buffer_size ); // Pointer to a 8192 bytes array
+		// Array to process and filter only valid characters from a text file
+		char *hexBufferValid = malloc( buffer_size ); // Pointer to a 8192 bytes array
+
+		// Clear buffers
+		memset(hexBuffer, 0x00,  ( buffer_size / sizeof(hexBuffer[0])) );
+		memset(hexBufferValid, 0x00,  ( buffer_size / sizeof(hexBufferValid[0])) );
+
+		// Read the rom file in hexadecimal format in hexBuffer
+		FILE *rom = fopen(filename, "rt");
+		if (!rom) {
+			fprintf(stderr, "Unable to open file '%s'!\n", filename);
+			exit(1);
+		}
+		fread(&hexBuffer[0], 1, buffer_size, rom);
+		fclose(rom);
+
+		// Discard invalid values (like new lines (ascii 10)
+		// Count rom valid bytes
+		int index = 0;
+		int rom_size = 0;
+		for( int i = 0; i < buffer_size; i++ ) {
+
+			// Convert ascii values into its hex correspondent
+			if ( hexBuffer[i] >= 48 && hexBuffer[i] <= 57 ) {			// ASCII 0..9
+				hexBufferValid[index] = hexBuffer[i] - 48;
+				index++;
+				rom_size++;
+			} else if ( hexBuffer[i] >= 65 && hexBuffer[i] <= 70 ) { 	// ASCII A..E
+				hexBufferValid[index] = hexBuffer[i] - 55;
+				index++;
+				rom_size++;
+			} else if ( hexBuffer[i] >= 97 && hexBuffer[i] <= 102 ) {	// ASCII a..e
+				hexBufferValid[index] = hexBuffer[i] - 87;
+				index++;
+				rom_size++;
+			}
+		}
+
+		// Convert each 2 ascii bytes into one hexadecimal value
+		index = 0;
+		for( int i = 0 ; i < rom_size ; i+=2 ) {
+			unsigned char mem_byte = hexBufferValid[i]<<4 | hexBufferValid[i+1];
+			mem[PC+index] = mem_byte;
+			index++;
+		}
+
+		// Convert from Big endian to Little endian
+		for( int i = 0 ; i < rom_size ; i+=2 ) {
+			unsigned char v1, v2;
+			
+			v1 = mem[PC+i];
+			v2 = mem[PC+i+1];
+			
+			mem[PC+i] = v2;
+			mem[PC+i+1] = v1;
+		}
+
+		// // Print Buffer (rom)
+		// printf("Buffer (rom):\n");
+		// for( int i = 0 ; i < rom_size ; i++ ) {
+		// 	printf("%x", hexBufferValid[i]);
+		// }
+		// printf("\n\n");
+
+		// // Print Memory
+		// printf("Memory:\n");
+		// for(int i = 0; i < mem_size; i++)
+		// 	printf("%02X ", mem[i]);
+		// printf("\n\n");
+
+		// Free memory allocated
+		free(hexBuffer);
+		free(hexBufferValid);
+	}
+
 }
 
 

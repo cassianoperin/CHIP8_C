@@ -53,6 +53,11 @@ void command_line_interface(int argc, char* args[]) {
 				printf("Sound DISABLED\n");
 				sound_enabled = false; 
 
+			// Load rom in hexadecimal format
+			} else if ( !strcmp(args[i], "--hex") ) {
+				printf("Hexadecimal rom mode ENABLED\n");
+				rom_format_hex = true; 
+
 			// Invalid option
 			} else {
 				printf("Invalid option '%s'\nExiting\n", args[i]);
@@ -66,6 +71,7 @@ void command_line_interface(int argc, char* args[]) {
 void print_usage(char* args[]) {
 	printf("Usage:\t%s <rom_name> [ <options> ]\n\
 		\nOptions:\
+		\n\t--hex\t\t\tLoad rom into hexadecimal format\
 		\n\t--help\t\t\tPrint help menu\
 		\n\t--debug\t\t\tTurn on Debug Mode\
 		\n\t--quirk_display_wait\tTurn original draw mode (on DXYN) and not on VSYNC\
