@@ -45,7 +45,6 @@ extern unsigned char display_SCALE;
 extern unsigned int  display_pixel_ON_color;
 extern unsigned int  display_pixel_OFF_color;
 extern unsigned int  display_pixels[8192];
-
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8
 void opc_schip_00FF();

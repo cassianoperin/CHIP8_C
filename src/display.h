@@ -32,6 +32,8 @@ unsigned int  display_pixel_OFF_color_alt;  // New color of disabled pixels
 unsigned int  display_pixels[8192];
 // Frames per second
 unsigned char display_FPS;
+// Debug Pixels
+bool debug_pixels;                          // Print pixels to console
 // Print Messages
 Scene scene;
 // Frame Counters

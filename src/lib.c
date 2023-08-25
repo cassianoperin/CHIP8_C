@@ -329,3 +329,19 @@ void string_memory_free() {
 	free(string_msg4);
 	free(game_signature);
 }
+
+// Print the binary representation of a byte
+void print_bin(unsigned char value)
+{
+	for (int i = sizeof(char) * 7; i >= 0; i--) {
+		unsigned char tmp = (value & (1 << i)) >> i;
+
+		if ( tmp == 1 ) {
+       	 printf("###");
+		} else {
+			printf("___");
+		}
+
+	}
+	printf("  %02X\n", value);
+}

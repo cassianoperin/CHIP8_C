@@ -523,19 +523,27 @@ void opc_chip8_DXYN() {
 	if ( cpu_debug_mode )
 		sprintf(cpu_debug_message, "CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d", I, x, V[x], y, V[y], n);
 	
-	printf("CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d\n", I, x, V[x], y, V[y], n);
+	// printf("CHIP-8 Dxyn: DRAW GRAPHICS - Address I: %d Position V[x(%d)]: %d V[y(%d)]: %d N: %d\n", I, x, V[x], y, V[y], n);
 
 	// Clear the carry before start
 	V[0xF] = 0;
 
+
 	// Print N Bytes from address I in V[x]V[y] position of the screen
 	// Each byte is a line of 8 bits
+
+	// Print header of pixels to console
+	if ( debug_pixels )
+		printf("Sprite (x3): Position Line: %d\tColumn:%d\tBytes: %d\n", V[y]%64, V[x]%64, n);
+	
   	for (byte = 0; byte < n; byte++)
   	{
 		// Get the sprite from memory (8 bits / 1 byte)
 		sprite = Memory[I + byte];
 
-		printf("Sprite: %X\n", sprite);
+		// Print byte to console
+		if ( debug_pixels )
+			print_bin(sprite);
 
 		// --------- Row --------- //
 		if ( quirk_Clipping_Dxyn ) { 
@@ -587,6 +595,11 @@ void opc_chip8_DXYN() {
 			sprite <<= 1;
 		}
  	 }
+
+
+	// Print a new line after the pixel
+	if ( debug_pixels )
+		printf("\n");
 
 	PC += 2;
 

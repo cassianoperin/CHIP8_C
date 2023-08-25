@@ -52,3 +52,5 @@ void string_memory_alloc();
 // Free allocated memory for strings
 void string_memory_free();
 
+// Print the binary representation of a byte
+void print_bin(unsigned char value);

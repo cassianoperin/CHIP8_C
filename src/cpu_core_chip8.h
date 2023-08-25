@@ -80,9 +80,16 @@ extern unsigned char	SoundTimer;
 extern bool             cpu_draw_flag;
 extern unsigned char    key_FX0A;
 extern bool             key_FX0A_pressed;
+// Debug Pixels
+extern bool             debug_pixels;
 
 // Input
 extern void input_keyboard();
+
+// Print the binary representation of a byte
+extern void print_bin(unsigned char value);
+
+// CPU
 
 // -------------------------------------- Functions ------------------------------------- //
 // CHIP-8

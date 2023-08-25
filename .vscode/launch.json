@@ -9,9 +9,9 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/src/chip8",
-      // "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Pong (1 player).ch8" ],
+      "args": [ "${workspaceFolder}/#Games/Chip-8/Games/Tank.ch8" ],
       // "args": [ "${workspaceFolder}/#Games/SuperChip/Demos/Bounce [Les Harris].ch8" ],
-      "args": [ "${workspaceFolder}/Pong (1 player).hex", "--hex" ],
+      // "args": [ "${workspaceFolder}/Pong (1 player).hex", "--hex" ],
       // Test Suite v2
       // "args": [ "${workspaceFolder}/#Games/Chip-8/Test_Programs/chip8-test-suite.ch8" ],
       // Test Suite v4

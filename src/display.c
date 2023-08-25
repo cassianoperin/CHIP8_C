@@ -14,6 +14,9 @@ bool display_init()
 	display_pixel_OFF_color	= 0xFF000000;
 	display_color_theme		= 0;
 
+	// Debug
+	debug_pixels			= false;
+
 	// Initialize SDL
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
