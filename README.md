@@ -117,14 +117,19 @@ Chip 8 emulator written in C with SDL2
 	 `brew install (MAP PACKAGES!!)`
 
 * Compile:
-    `brew install sdl2 sdl2_ttf`
-	`make`
+
+  `brew install sdl2 sdl2_ttf`
+
+  `make`
 
 * Vscode Setup:
+
    Install these extensions:
+
    - C/C++ (Microsoft)
+
    - Code runner (Jun Han)
-   
+
    Press F5 to compile and run code.
 
 
