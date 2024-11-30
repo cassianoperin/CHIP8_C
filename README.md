@@ -7,40 +7,40 @@ Chip 8 emulator written in C with SDL2
 <img width="380" alt="invaders" src="https://github.com/cassianoperin/CHIP8/blob/master/images/invaders.gif">  |  <img width="380" alt="invaders" src="https://github.com/cassianoperin/CHIP8/blob/master/images/spacefight2091.gif">
 
 ## CHIP8 Status
-* ![100%](https://progress-bar.dev/100) CPU Opcodes
-* ![100%](https://progress-bar.dev/100) Memory
-* ![100%](https://progress-bar.dev/100) Registers
-* ![100%](https://progress-bar.dev/100) Graphics
-* ![100%](https://progress-bar.dev/100) Qwirks
-* ![100%](https://progress-bar.dev/100) Sound
+* ![100%](https://progress-bar.xyz/100) CPU Opcodes
+* ![100%](https://progress-bar.xyz/100) Memory
+* ![100%](https://progress-bar.xyz/100) Registers
+* ![100%](https://progress-bar.xyz/100) Graphics
+* ![100%](https://progress-bar.xyz/100) Qwirks
+* ![100%](https://progress-bar.xyz/100) Sound
 ## CHIP8 HiRes
-* ![0%](https://progress-bar.dev/0) CPU Opcodes
-* ![100%](https://progress-bar.dev/100) Memory
-* ![100%](https://progress-bar.dev/100) Registers
-* ![0%](https://progress-bar.dev/0) Graphics
-* ![0%](https://progress-bar.dev/0) Qwirks
-* ![100%](https://progress-bar.dev/100) Sound
+* ![0%](https://progress-bar.xyz/0) CPU Opcodes
+* ![100%](https://progress-bar.xyz/100) Memory
+* ![100%](https://progress-bar.xyz/100) Registers
+* ![0%](https://progress-bar.xyz/0) Graphics
+* ![0%](https://progress-bar.xyz/0) Qwirks
+* ![100%](https://progress-bar.xyz/100) Sound
 ## SCHIP Status
-* ![0%](https://progress-bar.dev/0) CPU Opcodes
-* ![100%](https://progress-bar.dev/100) Memory
-* ![100%](https://progress-bar.dev/100) Registers
-* ![0%](https://progress-bar.dev/0) Graphics
-* ![0%](https://progress-bar.dev/0) Qwirks
-* ![100%](https://progress-bar.dev/100) Sound
+* ![0%](https://progress-bar.xyz/0) CPU Opcodes
+* ![100%](https://progress-bar.xyz/100) Memory
+* ![100%](https://progress-bar.xyz/100) Registers
+* ![0%](https://progress-bar.xyz/0) Graphics
+* ![0%](https://progress-bar.xyz/0) Qwirks
+* ![100%](https://progress-bar.xyz/100) Sound
 ## Emulator
-* ![100%](https://progress-bar.dev/100) Pause and resume emulation
-* ![100%](https://progress-bar.dev/100) Reset emulation
-* ![80%](https://progress-bar.dev/80) Command Line Arguments
-* ![100%](https://progress-bar.dev/100) Color Themes
-* ![100%](https://progress-bar.dev/100) Binary rom format support
-* ![0%](https://progress-bar.dev/100) Hexadecimal rom format support
-* ![80%](https://progress-bar.dev/80) Keyboard remaps
-* ![100%](https://progress-bar.dev/100) Step Forward CPU Cycles for Debug
-* ![0%](https://progress-bar.dev/0) Step Back (Rewind) CPU Cycles for Debug
-* ![100%](https://progress-bar.dev/100) Increase and Decrease CPU Clock Speed
-* ![0%](https://progress-bar.dev/0) Save States
-* ![0%](https://progress-bar.dev/0) Fullscreen
-* ![100%](https://progress-bar.dev/100) Emulation Status from all games I have to test
+* ![100%](https://progress-bar.xyz/100) Pause and resume emulation
+* ![100%](https://progress-bar.xyz/100) Reset emulation
+* ![80%](https://progress-bar.xyz/80) Command Line Arguments
+* ![100%](https://progress-bar.xyz/100) Color Themes
+* ![100%](https://progress-bar.xyz/100) Binary rom format support
+* ![0%](https://progress-bar.xyz/100) Hexadecimal rom format support
+* ![80%](https://progress-bar.xyz/80) Keyboard remaps
+* ![100%](https://progress-bar.xyz/100) Step Forward CPU Cycles for Debug
+* ![0%](https://progress-bar.xyz/0) Step Back (Rewind) CPU Cycles for Debug
+* ![100%](https://progress-bar.xyz/100) Increase and Decrease CPU Clock Speed
+* ![0%](https://progress-bar.xyz/0) Save States
+* ![0%](https://progress-bar.xyz/0) Fullscreen
+* ![100%](https://progress-bar.xyz/100) Emulation Status from all games I have to test
 
 ## EMULATOR Usage
 
